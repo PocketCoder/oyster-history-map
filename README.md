@@ -7,8 +7,11 @@ Your Oyster history, on an SVG TfL Map
 	- [ ] Stations
 	- [ ] Scrollable/Draggable
 	- [ ] Hidden initially
-- [ ] Connection to Oyster API (if there is one)
-- [ ] Ability to upload CSV
+- [ ] History of journeys upload
+	- [ ] Connection to Oyster API (if there is one)
+	- [ ] Ability to upload CSV
+- [ ] Stations visited (to/from) are made visible
+- [ ] Route between is made visible, too
 
 ### Eventually
 - [ ] LocalStorage of user history
