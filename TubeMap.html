@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Oyster History</title>
+
+        <link rel="stylesheet" href="assets/main.css" type="text/css" />
+
+        <script src="assets/svg-pan-zoom.min.js"></script>
+    </head>
+    <body>
+        <div id="map">
+            <embed type="image/svg+xml" src="assets/map.svg" id="map-em" />
+        </div>
+        <div id="controls">
+            <button id="reset">Reset</button>
+            <button id="zoom-out" class="ic">-</button>
+            <button id="zoom-in" class="ic">+</button>
+        </div>
+        <script>
+            document.getElementById('map-em').addEventListener('load', function () {
+                svgPanZoom(document.getElementById('map-em'), {
+                    dblClickZoomEnabled: false
+                });
+            })
+        </script>
+    </body>
+</html>

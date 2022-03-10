@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'LondonTube';
+    src: url('Londontube.ttf');
+}
+
+* {
+     margin: 0;
+     padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+#map, embed {
+    width: 100%;
+    height: 100%;
+}
+
+#controls {
+    height: auto;
+    width: auto;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+#controls button {
+    font-family: 'LondonTube', Helvetica, serif;
+    font-size: 1.2em;
+    width: 75px;
+    height: 50px;
+    border: none;
+    background-color: #fedbf4;
+    color: #292a2d;
+    transition: all 0.25s ease-in-out;
+}
+
+#controls button:hover {
+    background-color: #988392;
+    color: white;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}

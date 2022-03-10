@@ -1,0 +1,14 @@
+{
+    "Bakerloo": {
+        "pre": "lul-bakerloo",
+        "Harrow & Weadlstone": "hw",
+        "Kenton": "ktn",
+        "South Kenton": "sthktn",
+        "North Wembley": "nthwbly",
+        "Wembley Central": "wblyctrl",
+        "Stonebridge Park": "sbp",
+        "Harlesden": "hlsdn",
+        "Willesden Junction": "wlsdnjc",
+        "Kensel Green": ""
+    }
+}

@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'LondonTube';
+    src: url('Londontube.ttf');
+}
+
+* {
+    font-family: 'LondonTube', Helvetica, serif;
+    font-size: 4.5px !important;
+}
+
+#lul-bakerloo_nthwbly-wblyctrl {
+    opacity: 0.2;
+}

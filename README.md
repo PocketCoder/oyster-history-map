@@ -2,10 +2,10 @@
 Your Oyster history, on an SVG TfL Map
 
 ## Primary functionality
-- [ ] SVG Map of TfL Underground
-	- [ ] Lines
-	- [ ] Stations
-	- [ ] Scrollable/Draggable
+- [x] SVG Map of TfL Underground
+	- [x] Lines
+	- [x] Stations
+	- [x] Scrollable/Draggable
 	- [ ] Hidden initially
 - [ ] History of journeys upload
 	- [ ] Connection to Oyster API (if there is one)

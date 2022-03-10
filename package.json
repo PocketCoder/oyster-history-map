@@ -1,0 +1,19 @@
+{
+  "name": "oyster-history",
+  "version": "0.0.1",
+  "description": "a visible hsitory of your history on TfL Underground",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/PocketCoder/oyster-history-map.git"
+  },
+  "author": "Jake Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PocketCoder/oyster-history-map/issues"
+  },
+  "homepage": "https://github.com/PocketCoder/oyster-history-map#readme"
+}
