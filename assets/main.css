@@ -11,10 +11,63 @@
 html, body {
     width: 100%;
     height: 100%;
+    font-family: 'LondonTube', Arial, Helvetica, sans-serif;
     overflow: hidden;
 }
 
 #map, embed {
     width: 100%;
     height: 100%;
+}
+
+#buttons {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+#buttons button {
+    width: 100px;
+    height: 50px;
+    background-color: #003688;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+#upload-popup {
+    display: none;
+    opacity: 0;
+    position: fixed;
+    top: 5vh;
+    left: 5vw;
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    -webkit-box-shadow: 15px 16px 31px 3px rgba(160,165,169,0.74); 
+    box-shadow: 15px 16px 31px 3px rgba(160,165,169,0.74);
+    transition: opacity 0.25s ease-in-out;
+}
+
+#upload-popup #head {
+    width: 100%;
+    padding: 2.5%;
+}
+
+#upload-popup #head h1 {
+    font-size: 2.6em;
+}
+
+#upload-popup #upload-area {
+    margin: auto;
+    height: 60%;
+    width: 80%;
+    background-color: #84B817;
+    border: 5px grey dashed;
+    transition: background-color 0.25s ease-in-out;
+}
+
+.dragOver #upload-area{
+    background-color: #00782A !important;
+    transition: background-color 0.25s ease-in-out;
 }
