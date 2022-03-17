@@ -32,7 +32,7 @@ $(document).ready(() => {
 });
 
 $('span#addText, i.add').click(() => {
-    $('i.add').toggleClass('add-active').css({'transform': 'translate(45deg)'});
+    $('i.add').toggleClass('add-active');
     if ($('span#addText').css('display') != 'none') {
         $('span#addText').fadeOut(200, () => {
             $('div#upload').toggleClass('opened');
@@ -51,4 +51,10 @@ $('span#addText, i.add').click(() => {
         }
         $('span#addText').fadeIn();
     }
+});
+
+$('#stationInput').on('keyup', (e) => {
+   if (e.key === 'Enter' || e.keyCode === 13) {
+       addStation($('#stationInput').val());
+   }
 });
