@@ -1,20 +1,3 @@
-$(document).ready(() => {
-    const elem = document.getElementById('map-em');
-    const panzoom = Panzoom(elem, {
-        maxScale: 5
-    });
-    elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
-    // Intro Zoom In
-    setTimeout(() => {
-        panzoom.zoom('2', {
-            animate: true,
-            duration: 500
-        })
-    }, 750);
-
-    getUsrData();
-});
-
 function getUsrData() {
     if (storageAvailable('localStorage')) {
         if (localStorage.getItem('stations') != null) {

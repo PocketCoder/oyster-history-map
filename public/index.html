@@ -3,30 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <title>Oyster History</title>
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <link rel="stylesheet" href="assets/main.css" type="text/css" />
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="assets/panzoom.min.js"></script>
+        <!--<script src="assets/panzoom.min.js"></script>-->
+        <script src="https://unpkg.com/@panzoom/panzoom@4.4.4/dist/panzoom.min.js"></script>
         <script src="assets/script.js"></script>
+        <script defer src="assets/dom.js"></script>
     </head>
     <body>
-        <div id="map">
+        <section id="map">
             <embed type="image/svg+xml" src="assets/map.svg" id="map-em" />
-        </div>
-        <div id="buttons">
-            <button id="upload" onclick="uploadButt()">Upload CSV</button>
-        </div>
-        <div id="upload-popup">
-            <div id="head">
-                <h1>Upload CSV...</h1>
+        </section>
+        <div id="upload" class="opened">
+            <i class="add"></i>
+            <span>Upload CSV</span>
+            <div id="upload-options">
+                <input type="text" id="station" placeholder="Manually add a station..." />
+                <div id="upload-area" onclick="uploadHandler()" ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
+                    <i class="up"></i>
+                </div>
+                <input type="file" id="fileSelect" accept=".csv" />
             </div>
-            <div id="upload-area" ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
-                <h3>Click, or drag and drop your CSV file here.</h3>
-            </div>
         </div>
-        <script>
-            
-        </script>
     </body>
 </html>
