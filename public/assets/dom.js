@@ -31,7 +31,24 @@ $(document).ready(() => {
     getUsrData(); // assets/script.js
 });
 
-$('i.add').click(() => {
+$('span#addText, i.add').click(() => {
     $('i.add').toggleClass('add-active').css({'transform': 'translate(45deg)'});
-    $('div#upload').toggleClass('opened');
+    if ($('span#addText').css('display') != 'none') {
+        $('span#addText').fadeOut(200, () => {
+            $('div#upload').toggleClass('opened');
+            if ($('div#upload-options').css('display') == 'none') {
+                $('div#upload-options').fadeIn().css('display', 'flex');
+            } else {
+                $('div#upload-options').css('display', 'none');
+            }
+        });
+    } else {
+        $('div#upload').toggleClass('opened');
+        if ($('div#upload-options').css('display') == 'none') {
+            $('div#upload-options').css('display', 'flex');
+        } else {
+            $('div#upload-options').css('display', 'none');
+        }
+        $('span#addText').fadeIn();
+    }
 });

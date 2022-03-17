@@ -37,7 +37,7 @@ div#upload {
     left: 1vh;
     background-color: white;
     border-radius: 50px;
-    width: 45px;
+    width: 165px;
     height: 45px;
     overflow: hidden;
     -webkit-box-shadow: 10px 10px 40px -9px #A3A3A3; 
@@ -48,12 +48,14 @@ div#upload {
 div#upload:hover {
     bottom: 3vh;
     left: 3vh;
-    width: 160px;
     padding: 2px 20px 2px 10px;
     transition: all 0.5s ease-in-out;
 }
 
 div#upload.opened {
+    padding: 0;
+    bottom: 1vh;
+    left: 1vh;
     min-width: 365px;
     width: 25%;
     max-width: 90%;
@@ -64,10 +66,6 @@ div#upload.opened {
 div#upload.opened i.add {
     bottom: 1vh;
     left: 1vh;
-}
-
-div#upload.opened span {
-    display: none;
 }
 
 i.add {
@@ -91,8 +89,7 @@ div#upload span {
 }
 
 #upload-options {
-    display: flex;
-    display: -webkit-flex;
+    display: none;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;

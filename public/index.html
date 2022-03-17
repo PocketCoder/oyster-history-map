@@ -17,9 +17,9 @@
         <section id="map">
             <embed type="image/svg+xml" src="assets/map.svg" id="map-em" />
         </section>
-        <div id="upload" class="opened">
+        <div id="upload">
             <i class="add"></i>
-            <span>Upload CSV</span>
+            <span id="addText">Add stations</span>
             <div id="upload-options">
                 <input type="text" id="station" placeholder="Manually add a station..." />
                 <div id="upload-area" onclick="uploadHandler()" ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
