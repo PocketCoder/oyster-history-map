@@ -4,7 +4,6 @@ Your Oyster history, on an SVG TfL Map
 ## Set up
 ### UI
 - [ ] Change to mobile-first design
-	- ngrok -> test on phone
 
 #### Map
 - [x] SVG Map of TfL Underground
@@ -13,8 +12,8 @@ Your Oyster history, on an SVG TfL Map
 	- [x] Scrollable/Draggable
 		- [ ] Add alert/pop-up if dragging starts without shift key being held
 	- [ ] Hidden initially
-		- Black and white lines &/ faded out
-		- Stations faded out
+		- [ ] Black and white lines &/ faded out
+		- [ ] Stations faded out
 	- [ ] Do the TfL Go App thing where stations disappear as you zoom out
 
 #### Upload
@@ -32,7 +31,7 @@ Your Oyster history, on an SVG TfL Map
 - [ ] On page load, retrieve get user data from localstorage
 	- [ ] Create if first visit
 - [ ] CSV File handling
-	- [ ] CSV to array of unique stations
+	- [x] CSV to array of unique stations
 	- [ ] Compare with user data, append new stations
 		- [ ] Save new user data
 	- [ ] Update map
@@ -40,9 +39,10 @@ Your Oyster history, on an SVG TfL Map
 		- [ ] New segments between stations on line are visible
 
 ### Backend
-- [ ] Express to serve front-end
+- [x] Express to serve frontend
 
-## Eventually
+## Eventually/If ever/For someone else to do
+- [ ] Inital zoom-in is on user's location
 - [ ] User profiles
 	- [ ] Login
 	- [ ] Data saved in database, not LS

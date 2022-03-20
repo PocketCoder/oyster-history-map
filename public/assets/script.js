@@ -1,13 +1,16 @@
+// User data and file storage
+
 function getUsrData() {
     if (storageAvailable('localStorage')) {
         if (localStorage.getItem('stations') != null) {
-            const stations = JSON.parse(localStorage.getItem('stations'));
-            // Set up map state.
+            const usrStations = JSON.parse(localStorage.getItem('stations'));
+            mapSetup(usrStations);
         } else {
-            // Create local storage, or state that it doesn't exist.
+            // TODO: Assume first visit.
         }
     } else {
-        // TODO: Display error that localstorage isnt' available
+        // TODO: Display error that localstorage isn't available.
+        alert('Sorry, local storage isn\'t available in your browser. That means we can\'t save the data you upload.');
     }
 }
 
@@ -19,51 +22,77 @@ function storageAvailable(type) {
         storage.setItem(x, x);
         storage.removeItem(x);
         return true;
-    }
-    catch(e) {
+    } catch (e) {
         return e instanceof DOMException && (
-            // everything except Firefox
-            e.code === 22 ||
-            // Firefox
-            e.code === 1014 ||
-            // test name field too, because code might not be present
-            // everything except Firefox
-            e.name === 'QuotaExceededError' ||
-            // Firefox
-            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+                // everything except Firefox
+                e.code === 22 ||
+                // Firefox
+                e.code === 1014 ||
+                // test name field too, because code might not be present
+                // everything except Firefox
+                e.name === 'QuotaExceededError' ||
+                // Firefox
+                e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
             // acknowledge QuotaExceededError only if there's something already stored
             (storage && storage.length !== 0);
     }
 }
 
-// Upload and handle of CSV
+function updateUsrData() {
 
-function uploadButt() {
-    const upPop = $('#upload-popup');
-    if (upPop.css('opacity') == 0) {
-        upPop.toggle();
-        upPop.animate({
-            opacity: 1
+}
+
+// Map update
+
+function mapSetup(stns) {
+    stns.sort();
+    let visCodes = [];
+    stns.forEach((val, i) => {
+        $(`[id*="${stations[val]}-dash"]`).addClass('visible');
+        visCodes.push(stations[val]);
+    });
+    lineSegs(visCodes);
+}
+
+function lineSegs(vis) {
+    vis = vis.filter((el, i, self) => {
+        return i === self.indexOf(el);
+    }).filter(el => {
+        return el !== "dash";
+    });
+    let end1Index = 100,
+        end2Index = 0;
+    let end1, end2;
+    let between = [];
+    for (a in lines) {
+        lines[a].forEach((s, i) => {
+            if (vis.includes(s)) {
+                if (end1Index >= i) {
+                    end1Index = i;
+                    end1 = s;
+                } else if (end2Index <= i) {
+                    end2Index = i;
+                    end2 = s;
+                } else {
+                    console.log('idk');
+                }
+            } else {
+                // Not visited.
+            }
         });
-    } else {
-        upPop.animate({
-            opacity: 0
-        }).then(() => {
-            upPop.toggle();
+        for (let f = end1Index; f <= end2Index; f++) {
+            between.push(lines[a][f]);
+        }
+        between.forEach((s, i) => {
+            if (i + 1 === undefined) return;
+            $(`#lul-${a}_${s}-${between[i+1]}`).css('opacity', '1');
         });
     }
 }
 
-function dragOverHandler(e) {
-    e.preventDefault();
-    $('#upload-popup').addClass('dragOver');
-}
+// Upload and handle CSVs
 
-function dropHandler(e) {
-    e.preventDefault();
-    $('#upload-popup').addClass('dragOver');
-
-    const file = e.dataTransfer.items[0].getAsFile();
+function readFile(file) {
     const reader = new FileReader();
 
     reader.readAsText(file, "UTF-8");
@@ -74,13 +103,14 @@ function dropHandler(e) {
         const CSVarr = CSVtoArray(fileString);
         loadData(CSVarr);
     };
+
     reader.onerror = (err) => {
         console.error(err);
     };
 }
 
 function loadData(arr) {
-    var stations = [];
+    let stations = [];
     for (a in arr) {
         const journey = arr[a][3];
         if (journey != undefined && journey != 'Journey/Action' && journey.toLowerCase().indexOf('bus') === -1 && journey != 'Topped up' && journey.toLowerCase().indexOf('topped up') === -1 && journey.toLowerCase().indexOf('topped-up') === -1 && journey != '[No touch-out]') {
@@ -92,7 +122,12 @@ function loadData(arr) {
             }
         }
     }
-    console.log(stations);
+
+    for (s in stations) {
+        if (!userStations['stations'].includes(stations[s])) {
+            userStations['stations'].push(stations[s]);
+        }
+    }
 }
 
 function CSVtoArray(strData, strDelimiter) {
@@ -135,4 +170,28 @@ function CSVtoArray(strData, strDelimiter) {
         arrData[arrData.length - 1].push(strMatchedValue);
     }
     return (arrData);
+}
+
+function dragOverHandler(e) {
+    e.preventDefault();
+    $('#upload-popup').toggleClass('dragOver');
+}
+
+function dropHandler(e) {
+    e.preventDefault();
+    $('#upload-popup').toggleClass('dragOver');
+    const file = e.dataTransfer.items[0].getAsFile();
+    readFile(file);
+}
+
+function uploadHandler(e) {
+    $('#fileSelect').click();
+    $('#fileSelect').on('change', () => {
+        const file = document.getElementById('fileSelect').files[0];
+        readFile(file);
+    });
+}
+
+function addStation(st) {
+    // TODO: Deal with.
 }
