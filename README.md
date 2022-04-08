@@ -1,4 +1,4 @@
-<img src="public/assets/logo.png" width="128" height="128">
+<img src="public/assets/logo.png" width="128">
 
 # Map of Oyster History - _your Oyster history, on an SVG TfL Map_
 
