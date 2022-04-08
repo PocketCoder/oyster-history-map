@@ -1,9 +1,12 @@
-# Map of Oyster History
-Your Oyster history, on an SVG TfL Map
+<img src="public/assets/logo.svg" width="128" height="128">
+
+# Map of Oyster History - _your Oyster history, on an SVG TfL Map_
 
 ## Set up
 ### UI
 - [ ] Change to mobile-first design
+- [ ] First visit Pop-up with explanation
+- [ ] Help pop-up with instructions on how to get CSV data
 
 #### Map
 - [x] SVG Map of TfL Underground
@@ -25,7 +28,6 @@ Your Oyster history, on an SVG TfL Map
 	- [ ] Changes colour on success/failiure
 - [ ] Page UI Change for drag/drop file on page without warning
 	- [ ] Success/Failiure colour change
-- [ ] First visit info pop-up
 
 ### Frontend
 - [ ] On page load, retrieve get user data from localstorage
