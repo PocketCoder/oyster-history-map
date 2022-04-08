@@ -8,14 +8,22 @@
   font-size: 4.5px;
 }
 
-#940GZZLUTWH_fenchurch-street {
+#THL_fenchurch-street-label {
   font-size: 2.5px !important;
 }
-/*
-g * {
-    opacity: 0.2;
+
+svg>g>text,
+svg>g>line,
+svg>g>path,
+svg>g>polygon,
+svg>g>rect,
+svg>g>polyline,
+svg>g>circle,
+svg>g>g {
+  opacity: 0.2;
 }
-*/
-.visible, .visible * {
+
+.visible,
+.visible * {
   opacity: 1 !important;
 }

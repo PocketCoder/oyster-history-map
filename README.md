@@ -13,7 +13,6 @@
 	- [x] Lines
 	- [x] Stations
 	- [x] Scrollable/Draggable
-		- [ ] Add alert/pop-up if dragging starts without shift key being held
 	- [ ] Hidden initially
 		- [ ] Black and white lines &/ faded out
 		- [ ] Stations faded out
