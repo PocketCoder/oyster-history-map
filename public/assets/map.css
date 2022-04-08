@@ -1,21 +1,21 @@
 @font-face {
-    font-family: 'LondonTube';
-    src: url('Londontube.ttf');
+  font-family: "LondonTube";
+  src: url("Londontube.ttf");
 }
 
 #status-map * {
-    font-family: 'LondonTube', Helvetica, serif;
-    font-size: 4.5px;
+  font-family: "LondonTube", Helvetica, serif;
+  font-size: 4.5px;
 }
 
 #940GZZLUTWH_fenchurch-street {
-    font-size: 2.5px !important;
+  font-size: 2.5px !important;
 }
-
+/*
 g * {
     opacity: 0.2;
 }
-
-.visible {
-    opacity: 1 !important;
+*/
+.visible, .visible * {
+  opacity: 1 !important;
 }
