@@ -41,30 +41,40 @@ $(document).ready(() => {
   });
 });
 
-$("span#addText, i.add").click(() => {
-  $("i.add").toggleClass("add-active");
-  if ($("span#addText").css("display") != "none") {
-    $("span#addText").fadeOut(200, () => {
-      $("div#upload").toggleClass("opened");
-      if ($("div#upload-options").css("display") == "none") {
-        $("div#upload-options").fadeIn().css("display", "flex");
-      } else {
-        $("div#upload-options").css("display", "none");
-      }
-    });
-  } else {
-    $("div#upload").toggleClass("opened");
-    if ($("div#upload-options").css("display") == "none") {
-      $("div#upload-options").css("display", "flex");
-    } else {
-      $("div#upload-options").css("display", "none");
+function setup() {
+  $('#welcome').fadeIn(1000);
+  $('#welcomeStnInput').on('keyup', (e) => {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      $('#welcome').fadeOut(500);
+      addStation($('#welcomeStnInput').val());
+      centerOn($('#welcomeStnInput').val());
     }
     $("span#addText").fadeIn();
   }
+  const diffX = WCW-x;
+  const diffY = WCH-y;
+  console.log(`x: ${x}, y: ${y}; WCH: ${WCH}, WCW: ${WCW}; diffX: ${diffX}, diffY: ${diffY}`);
+  panzoom.pan(diffX, diffY, { relative: true });
+}
+
+$('#upload--header').click(() => {
+  $('#upload').toggleClass('open');
+  $('#upload i.add').toggleClass('add-active');
 });
 
-$("#stationInput").on("keyup", (e) => {
-  if (e.key === "Enter" || e.keyCode === 13) {
-    addStation($("#stationInput").val());
+$('#welcome i').click(() => {
+  $('#welcome').css('display', 'none');
+});
+
+$('#upload').mouseleave(() => {
+  setTimeout(() => {
+    $('#upload').removeClass('open');
+    $('#upload i.add').removeClass('add-active');
+  }, 10000);
+});
+
+$('#stationInput').on('keyup', (e) => {
+  if (e.key === 'Enter' || e.keyCode === 13) {
+    addStation($('#stationInput').val());
   }
 });

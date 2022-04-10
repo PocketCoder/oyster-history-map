@@ -16,85 +16,136 @@ body {
   overflow: hidden;
 }
 
-#map,
-embed {
+#map {
   width: 100%;
   height: 100%;
 }
 
-aside {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
+#welcome {
+  display: none;
+  position: absolute;
+  width: 75vw;
+  height: 85vh;
+  top: 5vh;
   left: 0;
+  right: 0;
+  margin: auto;
+  padding: 25px 0 10px 25px;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 50px;
+  -webkit-box-shadow: 10px 10px 40px -9px #a3a3a3;
+  box-shadow: 10px 10px 40px -9px #a3a3a3;
 }
 
-div#upload {
+#welcome--header {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 25px 0 10px;
+}
+
+#welcome--header div {
+  margin-left: 30px;
+}
+
+#welcome i.add {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+#welcome i.add:hover {
+  cursor: pointer;
+}
+
+#welcome--body {
+  display: flex;
+  display: -webkit-flex;
+  height: 75%;
+  margin: 30px 50px 5px 10px;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow-y: scroll;
+  line-height: 25px;
+}
+
+#welcome--body p:last-child {
+  padding-bottom: 100px;
+}
+
+section#upload {
   position: absolute;
   display: flex;
   display: -webkit-flex;
   align-items: center;
-  bottom: 1vh;
-  left: 1vh;
+  justify-content: space-evenly;
+  flex-direction: column;
+  bottom: -340px;
+  left: -170px;
   padding: 2px 20px 2px 10px;
   background-color: white;
   border-radius: 50px;
-  width: 165px;
-  height: 45px;
+  min-width: 365px;
+  width: 25%;
+  max-width: 90%;
+  height: 55%;
+  min-height: 400px;
   overflow: hidden;
   -webkit-box-shadow: 10px 10px 40px -9px #a3a3a3;
   box-shadow: 10px 10px 40px -9px #a3a3a3;
   transition: all 0.5s ease-in-out;
 }
 
-div#upload:hover i.add:not(.add-active) {
-  transform: rotate(90deg);
+section#upload:hover {
+  bottom: -320px;
+  left: -150px;
+}
+
+section#upload.open {
+  bottom: 1vh;
+  left: 1vh;
+}
+
+div#upload--header {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+div#upload--header span {
+  font-size: 1.4em;
+}
+
+i.add {
+  content: url("icons/plus.svg");
+  transition: transform 0.25s ease-in-out;
 }
 
 i.add-active {
   transform: rotate(45deg);
 }
 
-div#upload.opened {
-  padding: 0;
-  bottom: 1vh;
-  left: 1vh;
-  min-width: 365px;
-  width: 25%;
-  max-width: 90%;
-  height: 55%;
-  min-height: 400px;
-}
-
-div#upload.opened i.add {
-  bottom: 1vh;
-  left: 1vh;
-}
-
-i.add {
-  position: absolute;
-  content: url("icons/plus.svg");
-  transition: transform 0.25s ease-in-out;
-}
-
-i.add:hover,
-div#upload span:hover {
+section#upload:hover {
   cursor: pointer;
 }
 
-div#upload span {
+section#upload span {
   padding: 5px 10px 5px 10px;
   margin-left: 48px;
 }
 
-#upload-options {
-  display: none;
+#upload--body {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  display: -webkit-flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 80%;
-  width: 100%;
 }
 
 i.up {
@@ -102,7 +153,7 @@ i.up {
   transition: all 0.5s;
 }
 
-#upload-options input {
+input {
   font-family: "LondonTube", Arial, Helvetica, sans-serif;
   width: 80%;
   height: 30px;
@@ -110,21 +161,17 @@ i.up {
   transition: all 0.5s ease-in-out;
 }
 
-#upload-options input[type="file"] {
-  display: none;
-}
-
-#upload-options input[type="text"] {
+input#stationInput {
   padding: 3px 5px;
   border: 1px #a0a5a9 solid;
 }
 
-#upload-options input[type="text"]:hover {
+input#stationInput:hover {
   background-color: #95cdba;
   border: 0.5px solid #a0a5a9;
 }
 
-#upload-options input[type="text"]:focus {
+input#stationInput:focus {
   outline: none;
   background-color: #95cdba;
   border: 1.5px solid #a0a5a9;
@@ -156,30 +203,4 @@ i.up {
 .dragOver #upload-area {
   background-color: #00782a !important;
   transition: background-color 0.25s ease-in-out;
-}
-
-div#help {
-  position: absolute;
-  display: flex;
-  display: -webkit-flex;
-  align-items: center;
-  top: 1vh;
-  right: 1vh;
-  padding: 2px;
-  background-color: white;
-  border-radius: 50px;
-  width: fit-content;
-  height: 45px;
-  overflow: hidden;
-  -webkit-box-shadow: 10px 10px 40px -9px #a3a3a3;
-  box-shadow: 10px 10px 40px -9px #a3a3a3;
-  transition: all 0.5s ease-in-out;
-}
-
-i.help {
-  content: url("icons/help-circle.svg");
-}
-
-div#help-box {
-  overflow-y: scroll;
 }

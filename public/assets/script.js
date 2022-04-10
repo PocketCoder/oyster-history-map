@@ -1,12 +1,13 @@
 // User data and file storage
 
 function getUsrData() {
-  if (storageAvailable("localStorage")) {
-    if (localStorage.getItem("stations") != null) {
-      const usrStations = JSON.parse(localStorage.getItem("stations"));
+  if (storageAvailable('localStorage')) {
+    if (localStorage.getItem('stations') != null) {
+      const usrStations = JSON.parse(localStorage.getItem('stations'));
       mapSetup(usrStations);
     } else {
-      // TODO: Assume first visit. Show welcome pop-up.
+      localStorage.setItem('stations', JSON.stringify([]));
+      setup();
     }
   } else {
     // TODO: Display error that localstorage isn't available.
@@ -48,52 +49,28 @@ function updateUsrData() {}
 // Map update
 
 function mapSetup(stns) {
-  stns.sort();
+  try {
+    stns.sort()
+  } catch (e) {
+    console.error(e);
+  }
   let visCodes = [];
-  stns.forEach((val, i) => {
+  stns.forEach((val) => {
     $(`[id*="${stations[val]}-dash"]`).addClass("visible");
     $(`[id*="${stations[val]}-label"]`).addClass("visible");
+    $(`[id*="IC_${stations[val]}"]`).addClass("visible");
     visCodes.push(stations[val]);
   });
   lineSegs(visCodes);
 }
 
 function lineSegs(vis) {
-  vis = vis
-    .filter((el, i, self) => {
-      return i === self.indexOf(el);
-    })
-    .filter((el) => {
-      return el !== "dash";
-    });
-  let end1Index = 100,
-    end2Index = 0;
-  let end1, end2;
-  let between = [];
-  for (a in lines) {
-    lines[a].forEach((s, i) => {
-      if (vis.includes(s)) {
-        if (end1Index >= i) {
-          end1Index = i;
-          end1 = s;
-        } else if (end2Index <= i) {
-          end2Index = i;
-          end2 = s;
-        } else {
-          console.log("idk");
-        }
-      } else {
-        // Not visited.
-      }
-    });
-    for (let f = end1Index; f <= end2Index; f++) {
-      between.push(lines[a][f]);
-    }
+  /*
     between.forEach((s, i) => {
       if (i + 1 === undefined) return;
       $(`#lul-${a}_${s}-${between[i + 1]}`).animate({ opacity: "1" });
     });
-  }
+  */
 }
 
 // Upload and handle CSVs
@@ -119,7 +96,7 @@ function loadData(arr) {
   let stations = [];
   for (a in arr) {
     const journey = arr[a][3];
-    // FIXME: Logical & may have some issues. Double check.
+    // FIXME: Logic & may have some issues. Double check.
     if (
       journey != undefined &&
       journey != "Journey/Action" &&
@@ -127,6 +104,7 @@ function loadData(arr) {
       journey != "Topped up" &&
       journey.toLowerCase().indexOf("topped up") === -1 &&
       journey.toLowerCase().indexOf("topped-up") === -1 &&
+      journey.toLowerCase().indexOf("Automate refund") === -1 &&
       journey != "[No touch-out]"
     ) {
       const j = journey.split(" to ");
@@ -135,14 +113,19 @@ function loadData(arr) {
           stations.push(j[i]);
         }
       }
+    } else if (journey.toLowerCase().indexOf("bus") === -1) {
+      console.log(journey);
     }
   }
+  console.log(stations);
   // TODO: Move data to updateMap function.
+  let userStations = JSON.parse(localStorage.getItem('stations'));
   for (s in stations) {
-    if (!userStations["stations"].includes(stations[s])) {
-      userStations["stations"].push(stations[s]);
+    if (!userStations.includes(stations[s])) {
+      userStations.push(stations[s]);
     }
   }
+  localStorage.setItem('stations', JSON.stringify(userStations));
 }
 
 function CSVtoArray(strData, strDelimiter) {
@@ -202,5 +185,5 @@ function uploadHandler(e) {
 }
 
 function addStation(st) {
-  // TODO: Deal with.
+  
 }
