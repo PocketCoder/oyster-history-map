@@ -1,76 +1,202 @@
-// User data and file storage
-
-function getUsrData() {
-  if (storageAvailable('localStorage')) {
-    if (localStorage.getItem('stations') != null) {
-      const usrStations = JSON.parse(localStorage.getItem('stations'));
-      mapSetup(usrStations);
+function usrData(func, type, data = []) {
+  if (func === 'get') {
+    if (localStorage.getItem(type) != null && localStorage.getItem(type) != "[]") {
+      return JSON.parse(localStorage.getItem(type));
     } else {
-      localStorage.setItem('stations', JSON.stringify([]));
-      setup();
+      // Does not exist/empty.
+      return [];
     }
-  } else {
-    // TODO: Display error that localstorage isn't available.
-    alert(
-      "Sorry, local storage isn't available in your browser. That means we can't save the data you upload."
-    );
-  }
-}
-
-function storageAvailable(type) {
-  var storage;
-  try {
-    storage = window[type];
-    var x = "__storage_test__";
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  } catch (e) {
-    return (
-      e instanceof DOMException &&
-      // everything except Firefox
-      (e.code === 22 ||
-        // Firefox
-        e.code === 1014 ||
-        // test name field too, because code might not be present
-        // everything except Firefox
-        e.name === "QuotaExceededError" ||
-        // Firefox
-        e.name === "NS_ERROR_DOM_QUOTA_REACHED") &&
-      // acknowledge QuotaExceededError only if there's something already stored
-      storage &&
-      storage.length !== 0
-    );
-  }
-}
-
-function updateUsrData() {}
-
-// Map update
-
-function mapSetup(stns) {
-  try {
-    stns.sort()
-  } catch (e) {
-    console.error(e);
-  }
-  let visCodes = [];
-  stns.forEach((val) => {
-    $(`[id*="${stations[val]}-dash"]`).addClass("visible");
-    $(`[id*="${stations[val]}-label"]`).addClass("visible");
-    $(`[id*="IC_${stations[val]}"]`).addClass("visible");
-    visCodes.push(stations[val]);
-  });
-  lineSegs(visCodes);
-}
-
-function lineSegs(vis) {
-  /*
-    between.forEach((s, i) => {
-      if (i + 1 === undefined) return;
-      $(`#lul-${a}_${s}-${between[i + 1]}`).animate({ opacity: "1" });
+  } else if (func === 'save') {
+    const current = JSON.parse(localStorage.getItem(type)) ? JSON.parse(localStorage.getItem(type)) : [];
+    current.push(data);
+    let unique = current.filter((c, i) => {
+      return current.indexOf(c) === i;
     });
-  */
+    localStorage.setItem(type, JSON.stringify(unique));
+  } else {
+    throw 'Func param only accepts \'get\' or \'save\'';
+  }
+}
+
+function findVisCodes(arr) {
+  const stnArr = [...arr];
+  let visArr = [];
+  for (const stn of stnArr) {
+    visArr.push(stations[stn]);
+  }
+  return visArr;
+}
+
+function addStnsToMap(stns) {
+  let s = [];
+  if (typeof stns === 'string') {
+    s.push(stns)
+  } else {
+    s.push(...stns);
+  }
+  s.sort();
+  s.forEach((v) => {
+    $(`[id*="${stations[v]}-dash"]`).addClass("visible");
+    $(`[id*="${stations[v]}-label"]`).addClass("visible");
+    $(`[id*="IC_${stations[v]}"]`).addClass("visible");
+  });
+  console.log({
+    s,
+    stns
+  });
+}
+
+function updateLineSegs(arr) {
+  let stnsArr = [],
+    stnCodes;
+  try {
+    stnsArr.push(...arr);
+  } catch (e) {
+    console.log(`stnsArr Error:\n'${e}'`);
+  } finally {
+    stnCodes = findVisCodes(usrData('get', 'stations'));
+  }
+  if (stnsArr.every((s) => s.length === 3)) { // FIXME: No handler for if it's a mix. Will it ever be a mix?
+    stnCodes.push(...stnsArr);
+  } else {
+    stnCodes.push(...findVisCodes(stnsArr));
+  }
+  for (const l in lines) {
+    // l = line name;
+    if (l !== 'central') continue;
+    const lineObj = lines[l];
+    if (lineObj['branch']) {
+
+      // Check if top branches are active.
+      function top() {
+        let active = false;
+        lineObj['top'].forEach((a) => {
+          a.forEach((s) => {
+            if (stnCodes.includes(s)) {
+              active = true;
+            } else {
+              // Hasn't been visited.
+            }
+          });
+        });
+        return active;
+      }
+
+      // Check if bottom branches are active
+      function bottom() {
+        let active = false;
+        lineObj['bottom'].forEach((a) => {
+          a.forEach((s) => {
+            if (stnCodes.includes(s)) {
+              active = true;
+            } else {
+              // Hasn't been visited.
+            }
+          });
+        });
+        return active;
+      }
+
+      // Complete the line segments.
+      function complete(top, bottom) {
+        console.log({
+          top,
+          bottom
+        });
+        // If the top and bottom branches are active then go from the the first visited station of the top branches in those arrays to the last station, then from the first station of the bottom branches to the last visited station.
+        if (top && bottom) {
+          lineObj['top'].forEach((e) => {
+            let first = 100;
+            e.forEach((a) => {
+              const index = e.indexOf(a);
+              if (stnCodes.includes(a)) {
+                if (index <= first) {
+                  first = index;
+                }
+              }
+            });
+            for (let i = first; i < e.length; i++) {
+              $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+            }
+          });
+          lineObj['bottom'].forEach((e) => {
+            let last = 0;
+            e.forEach((a) => {
+              const index = e.indexOf(a);
+              if (stnCodes.includes(a)) {
+                if (index >= last) {
+                  last = index;
+                }
+              }
+            });
+            for (let i = 0; i < last; i++) {
+              $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+            }
+          });
+        } else if (top) {
+          lineObj['top'].forEach((e) => {
+            let first = 100,
+              last = 0;
+            e.forEach((a) => {
+              const index = e.indexOf(a);
+              if (stnCodes.includes(a)) {
+                if (index <= first) {
+                  first = index;
+                } else if (index >= last) {
+                  last = index;
+                } else {
+                  // Error!
+                }
+              }
+            });
+            for (let i = first; i < last; i++) {
+              $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+            }
+          });
+        } else if (bottom) {
+          lineObj['bottom'].forEach((e) => {
+            let first = 100,
+              last = 0;
+            e.forEach((a) => {
+              const index = e.indexOf(a);
+              if (stnCodes.includes(a)) {
+                if (index <= first) {
+                  first = index;
+                } else if (index >= last) {
+                  last = index;
+                } else {
+                  // Error!
+                }
+              }
+            });
+            for (let i = first; i < last; i++) {
+              $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+            }
+          });
+        }
+      }
+      complete(top(), bottom());
+    } else {
+      const lineArr = lineObj['stations'];
+      lineArr.forEach((a) => {
+        let first = 100,
+          last = 0;
+        const index = lineArr.indexOf(a);
+        if (stnCodes.includes(a)) {
+          if (index <= first) {
+            first = index;
+          } else if (index >= last) {
+            last = index;
+          } else {
+            // Error!
+          }
+        }
+        for (let i = first; i < last; i++) {
+          $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+        }
+      });
+    }
+  }
 }
 
 // Upload and handle CSVs
@@ -97,35 +223,26 @@ function loadData(arr) {
   for (a in arr) {
     const journey = arr[a][3];
     // FIXME: Logic & may have some issues. Double check.
-    if (
-      journey != undefined &&
-      journey != "Journey/Action" &&
-      journey.toLowerCase().indexOf("bus") === -1 &&
-      journey != "Topped up" &&
-      journey.toLowerCase().indexOf("topped up") === -1 &&
-      journey.toLowerCase().indexOf("topped-up") === -1 &&
-      journey.toLowerCase().indexOf("Automate refund") === -1 &&
-      journey != "[No touch-out]"
-    ) {
-      const j = journey.split(" to ");
-      for (i in j) {
-        if (stations.includes(j[i]) == false) {
-          stations.push(j[i]);
+    if (journey.toLowerCase().indexOf("bus") !== -1) {
+      usrData('save', 'bus', journey.split('route ').shift());
+    } else if (journey.toLowerCase().indexOf(' to ') !== -1) {
+      const j = journey.split(' to ');
+      const s = j.map((d) => {
+        const regEx = /( \[.*\])|( DLR)|( tram stop)/;
+        return d.replace(regEx, '');
+      });
+      for (i in s) {
+        if (stations.includes(s[i]) == false) {
+          stations.push(s[i]);
         }
       }
-    } else if (journey.toLowerCase().indexOf("bus") === -1) {
-      console.log(journey);
     }
   }
-  console.log(stations);
-  // TODO: Move data to updateMap function.
-  let userStations = JSON.parse(localStorage.getItem('stations'));
-  for (s in stations) {
-    if (!userStations.includes(stations[s])) {
-      userStations.push(stations[s]);
-    }
-  }
-  localStorage.setItem('stations', JSON.stringify(userStations));
+  console.log({
+    stations
+  });
+  addStnsToMap(stations);
+  usrData('save', 'stations', stations);
 }
 
 function CSVtoArray(strData, strDelimiter) {
@@ -134,18 +251,20 @@ function CSVtoArray(strData, strDelimiter) {
   var objPattern = new RegExp(
     // Delimiters.
     "(\\" +
-      strDelimiter +
-      "|\\r?\\n|\\r|^)" +
-      // Quoted fields.
-      '(?:"([^"]*(?:""[^"]*)*)"|' +
-      // Standard fields.
-      '([^"\\' +
-      strDelimiter +
-      "\\r\\n]*))",
+    strDelimiter +
+    "|\\r?\\n|\\r|^)" +
+    // Quoted fields.
+    '(?:"([^"]*(?:""[^"]*)*)"|' +
+    // Standard fields.
+    '([^"\\' +
+    strDelimiter +
+    "\\r\\n]*))",
     "gi"
   );
 
-  var arrData = [[]];
+  var arrData = [
+    []
+  ];
   var arrMatches = null;
 
   while ((arrMatches = objPattern.exec(strData))) {
@@ -182,8 +301,4 @@ function uploadHandler(e) {
     const file = document.getElementById("fileSelect").files[0];
     readFile(file);
   });
-}
-
-function addStation(st) {
-  
 }
