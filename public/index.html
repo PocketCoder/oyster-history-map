@@ -23,59 +23,50 @@
         <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.01.min.css">
         <link rel="stylesheet" href="assets/main.css" type="text/css" />
         <link rel="stylesheet" href="assets/map.css" type="text/css" />
 
         <script src="assets/stations.json"></script>
         <script src="assets/lines.json"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
         <script src="https://unpkg.com/@panzoom/panzoom@4.4.4/dist/panzoom.min.js"></script>
         <script src="assets/script.js"></script>
         <script defer src="assets/dom.js"></script>
     </head>
-    <body>
+    <body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
         <section id="map"></section>
-        <section id="upload">
-            <div id="upload--header">
-                <span id="addText">Add stations</span>
-                <i class="add"></i>
-            </div>
-            <div id="upload--body">
-                <input type="text" id="stationInput" placeholder="Manually add a station..." />
-                <div id="upload-area" onclick="uploadHandler()" ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
-                    <i class="up"></i>
-                </div>
-                <input type="file" id="fileSelect" accept=".csv" />
-            </div>
-        </section>
-        <div id="welcome">
-            <i class="add add-active"></i>
-            <div id="welcome--header">
-                <img src="assets/logo.png" height="100px">
-                <div>
-                    <h1>Tubular</h1>
-                    <span>Your Oyster history on an SVG TfL Map.</span>
-                </div>
-            </div>
-            <div id="welcome--body">
-                <p>Welcome!</p>
-                <br />
-                <p>This is a fun website to help you visualise your history on TfL. Starting with a faded map, once you begin to add stations their names will light up. As you add more stations on a line, the segments in-between will become visible, too.</p>
-                <br />
-                <p>TfL let you export the last 8 weeks of journey data from their <a href="https://oyster.tfl.gov.uk" target="_blank">website.</a> Simply log in and click on the button to export your jouney history as a <u>CSV</u> file. If you don't have an account, but have an Oyster/contactless card you use for journeys, just sign up and follow the steps to link them.</p>
-                <br />
-                <p>Using the tool in the bottom-left corner, you can upload your exported CSV file, or input stations manually.</p>
-                <br />
-                <p><input type="text" id="welcomeStnInput" placeholder="Why not add your first station now? " /></p>
-                <br />
-                <p>N.B.: Syncing between this device and your others is currently unavailable. All data is stored in the browser's <code>localStorage</code>. Support for accounts and cross-device syncing will come in the near future.</p>
-                <br />
-                <p style="text-align: center;">See something wrong? I can't test everything. Help me fix it by reporting an issue on GitHub:
+        <aside>
+            <header>
+                <img src="assets/logo.svg" />
+                <h1>Tubular</h1>
+            </header>
+            <main>
+                <div id="welcome">
+                    <h4>Welcome!</h4>
                     <br />
-                    <a class="github-button" href="https://github.com/PocketCoder/tubular/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PocketCoder/tubular on GitHub">Issue</a>
-                </p>
-            </div>
-        </div>
+                    <p>This is a fun website to help you visualise your history on TfL. Starting with a faded map, once you begin to add stations their names will light up. As you add more stations on a line, the segments in-between will become visible, too.</p>
+                    <br />
+                    <p>TfL let you export the last 8 weeks of journey data from their <a href="https://oyster.tfl.gov.uk" target="_blank">website.</a> Simply log in and click on the button to export your jouney history as a <i>CSV</i> file. If you don't have an account, but have an Oyster/contactless card you use for journeys, just sign up and follow the steps to link them.</p>
+                    <br />
+                    <p id="nb">N.B.: Syncing between this device and others is currently unavailable. All data is stored in the browser's <code>localStorage</code>. Support for accounts and cross-device syncing will come in the near future.</p>
+                </div>
+                <div id="inputs">
+                    <h4>Add a station</h4>
+                    <br />
+                    <input id="stationInput" type="text" placeholder="/ to focus" dir="ltr" spellcheck=true autocorrect="true" autocomplete="true" autocapitalize="true" />
+                    <input id="fileSelect" type="file" accept=".csv" style="font-size: unset"/>
+                </div>
+                <footer>
+                    <p id="nb">See something wrong? Help me fix it by reporting an issue on GitHub:
+                        <br />
+                        <a class="github-button" href="https://github.com/PocketCoder/tubular/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PocketCoder/tubular on GitHub">Issue</a>
+                    </p>
+                </footer>
+            </main>
+        </aside>
+        <i class="menu" id="menu-icon"></i>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
     </body>
 </html>

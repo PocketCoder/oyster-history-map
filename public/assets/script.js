@@ -275,20 +275,20 @@ function CSVtoArray(strData, strDelimiter) {
 
 function dragOverHandler(e) {
   e.preventDefault();
-  $("#upload-popup").toggleClass("dragOver");
+  $('body').toggleClass('dragOver');
 }
 
 function dropHandler(e) {
   e.preventDefault();
-  $("#upload-popup").toggleClass("dragOver");
+  $('body').toggleClass('dragOver');
   const file = e.dataTransfer.items[0].getAsFile();
   readFile(file);
 }
 
 function uploadHandler(e) {
-  $("#fileSelect").click();
-  $("#fileSelect").on("change", () => {
-    const file = document.getElementById("fileSelect").files[0];
+  $('#fileSelect').click();
+  $('#fileSelect').on('change', () => {
+    const file = document.getElementById('fileSelect').files[0];
     readFile(file);
   });
 }
