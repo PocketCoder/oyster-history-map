@@ -2,7 +2,7 @@
 
 # Tubular - _your Oyster history, on an SVG TfL Map_
 
-## Eventually/If ever/For someone else to do
+## Things I may eventually add, or you can if you want.
 - [ ] Inital zoom-in is on user's location
 - [ ] User profiles
 	- [ ] Login
@@ -15,10 +15,8 @@
 - [ ] Map of Riverboat services
 - [ ] Stats
 	- [ ] % of stations visited
-		- [ ] on a line
+		- [x] on a line
 		- [ ] on the whole TfL service
-		- [ ] in Zones?
-	- [ ] % of a line travelled through
 	- [ ] miles travelled in a year or overall
 - [ ] Challenges/Achievments
 	- [ ] Streak: visit a new station every month
