@@ -225,7 +225,6 @@ function loadData(arr) {
       }
     }
   }
-  addStnsToMap(stations);
   try {
     usrData('save', 'stations', stations);
     usrData('save', 'bus', busses);
