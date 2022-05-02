@@ -50,10 +50,10 @@ function addStnsToMap(stns) {
 
 function updateLineSegs() {
   let stnCodes = findVisCodes(usrData('get', 'stations'));
+  let data = {"bakerloo":0,"central":0,"piccadilly":0,"jubilee":0,"metropolitan":0,"victoria":0,"northern":0,"circle":0,"hammersmith-city":0,"district":0,"elizabeth":0,"overground":0,"waterloo-city":0,"cable-car":0,"dlr":0,"OSI":0};
   for (const l in lines) {
     const lineObj = lines[l];
     if (lineObj['branch']) {
-
       // Check if top branches are active.
       function top() {
         let active = false;
@@ -88,11 +88,13 @@ function updateLineSegs() {
       function complete(top, bottom) {
         // If the top and bottom branches are active then go from the the first visited station of the top branches in those arrays to the last station, then from the first station of the bottom branches to the last visited station.
         if (top && bottom) {
+          let total = 0;
           lineObj['top'].forEach((e) => {
             let first = 100;
             e.forEach((a) => {
               const index = e.indexOf(a);
               if (stnCodes.includes(a)) {
+                total++;
                 if (index <= first) {
                   first = index;
                 }
@@ -107,6 +109,7 @@ function updateLineSegs() {
             e.forEach((a) => {
               const index = e.indexOf(a);
               if (stnCodes.includes(a)) {
+                total++;
                 if (index >= last) {
                   last = index;
                 }
@@ -116,13 +119,16 @@ function updateLineSegs() {
               $(`#lul-${lineObj['line']}_${e[i]}-${e[i+1]}`).addClass('visible');
             }
           });
+          data[lineObj['line']] = data[lineObj['line']] + total;
         } else if (top) {
+          let total = 0;
           lineObj['top'].forEach((e) => {
             let first = 100,
               last = 0;
             e.forEach((a) => {
               const index = e.indexOf(a);
               if (stnCodes.includes(a)) {
+                total++;
                 if (index <= first) {
                   first = index;
                 } else if (index >= last) {
@@ -136,13 +142,16 @@ function updateLineSegs() {
               $(`#lul-${lineObj['line']}_${e[i]}-${e[i+1]}`).addClass('visible');
             }
           });
+          data[lineObj['line']] = data[lineObj['line']] + total;
         } else if (bottom) {
+          let total = 0;
           lineObj['bottom'].forEach((e) => {
             let first = 100,
               last = 0;
             e.forEach((a) => {
               const index = e.indexOf(a);
               if (stnCodes.includes(a)) {
+                total++;
                 if (index <= first) {
                   first = index;
                 } else if (index >= last) {
@@ -156,16 +165,19 @@ function updateLineSegs() {
               $(`#lul-${lineObj['line']}_${e[i]}-${e[i+1]}`).addClass('visible');
             }
           });
+          data[lineObj['line']] = data[lineObj['line']] + total;
         }
       }
       complete(top(), bottom());
     } else {
       const lineArr = lineObj['stations'];
       let first = 100,
-        last = 0;
+        last = 0,
+        total = 0;
       lineArr.forEach((a) => {
         const index = lineArr.indexOf(a);
         if (stnCodes.includes(a)) {
+          total++;
           if (index < first) {
             first = index;
           } else if (index > last) {
@@ -178,11 +190,27 @@ function updateLineSegs() {
       for (let i = first; i < last; i++) {
         $(`#lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i+1]}`).addClass('visible');
       }
+      data[lineObj['line']] = data[lineObj['line']] + total;
     }
   }
+  updateStats(data);
 }
 
-// Upload and handle CSVs
+function updateStats(data) {
+  const totals = {"bakerloo":25,"central":49,"piccadilly":53,"jubilee":27,"metropolitan":34,"victoria":16,"northern":52,"circle":36,"hammersmith-city":29,"district":60,"elizabeth":32,"overground":112,"waterloo-city":2,"cable-car":2,"dlr":45,"tram":39};
+  for (l in totals) {
+    let percent, visited;
+    if (data[l] === NaN) {
+      $(`progress#${l}`).attr('value', 0);
+    } else {
+      const total = totals[l];
+      visited = data[l];
+      percent = Math.floor(visited / total * 100);
+      console.log(l, percent);
+    }
+    $(`progress#${l}`).attr('value', percent);
+  }
+}
 
 function readFile(file) {
   const reader = new FileReader();
