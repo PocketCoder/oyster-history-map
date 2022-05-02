@@ -127,6 +127,7 @@ $(window).on('keyup', (e) => {
 
 $('#menu-icon').click(() => {
   $('aside').toggleClass('aside-out');
+  /*
   if ($('aside').css('left') !== '0') {
     panzoom.setOptions({
       'disablePan': true,
@@ -137,7 +138,7 @@ $('#menu-icon').click(() => {
       'disablePan': false,
       'disableZoom': false
     });
-  }
+  }*/
 });
 
 $('#stationInput').on('keyup', (e) => {
