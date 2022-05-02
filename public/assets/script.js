@@ -7,8 +7,14 @@ function usrData(func, type, data = []) {
       return [];
     }
   } else if (func === 'save') {
-    const current = JSON.parse(localStorage.getItem(type)) ? JSON.parse(localStorage.getItem(type)) : [];
-    current.push(data);
+    let current = JSON.parse(localStorage.getItem(type)) ? JSON.parse(localStorage.getItem(type)) : [];
+    let newData = [];
+    if (typeof data === 'string') {
+      newData.push(data);
+    } else {
+      newData.push(...data);
+    }
+    current.push(...newData);
     let unique = current.filter((c, i) => {
       return current.indexOf(c) === i;
     });
@@ -40,30 +46,11 @@ function addStnsToMap(stns) {
     $(`[id*="${stations[v]}-label"]`).addClass("visible");
     $(`[id*="IC_${stations[v]}"]`).addClass("visible");
   });
-  console.log({
-    s,
-    stns
-  });
 }
 
-function updateLineSegs(arr) {
-  let stnsArr = [],
-    stnCodes;
-  try {
-    stnsArr.push(...arr);
-  } catch (e) {
-    console.log(`stnsArr Error:\n'${e}'`);
-  } finally {
-    stnCodes = findVisCodes(usrData('get', 'stations'));
-  }
-  if (stnsArr.every((s) => s.length === 3)) { // FIXME: No handler for if it's a mix. Will it ever be a mix?
-    stnCodes.push(...stnsArr);
-  } else {
-    stnCodes.push(...findVisCodes(stnsArr));
-  }
+function updateLineSegs() {
+  let stnCodes = findVisCodes(usrData('get', 'stations'));
   for (const l in lines) {
-    // l = line name;
-    if (l !== 'central') continue;
     const lineObj = lines[l];
     if (lineObj['branch']) {
 
@@ -99,10 +86,6 @@ function updateLineSegs(arr) {
 
       // Complete the line segments.
       function complete(top, bottom) {
-        console.log({
-          top,
-          bottom
-        });
         // If the top and bottom branches are active then go from the the first visited station of the top branches in those arrays to the last station, then from the first station of the bottom branches to the last visited station.
         if (top && bottom) {
           lineObj['top'].forEach((e) => {
@@ -116,7 +99,7 @@ function updateLineSegs(arr) {
               }
             });
             for (let i = first; i < e.length; i++) {
-              $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+              $(`#lul-${lineObj['line']}_${e[i]}-${e[i+1]}`).addClass('visible');
             }
           });
           lineObj['bottom'].forEach((e) => {
@@ -130,7 +113,7 @@ function updateLineSegs(arr) {
               }
             });
             for (let i = 0; i < last; i++) {
-              $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+              $(`#lul-${lineObj['line']}_${e[i]}-${e[i+1]}`).addClass('visible');
             }
           });
         } else if (top) {
@@ -150,7 +133,7 @@ function updateLineSegs(arr) {
               }
             });
             for (let i = first; i < last; i++) {
-              $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+              $(`#lul-${lineObj['line']}_${e[i]}-${e[i+1]}`).addClass('visible');
             }
           });
         } else if (bottom) {
@@ -170,7 +153,7 @@ function updateLineSegs(arr) {
               }
             });
             for (let i = first; i < last; i++) {
-              $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
+              $(`#lul-${lineObj['line']}_${e[i]}-${e[i+1]}`).addClass('visible');
             }
           });
         }
@@ -178,23 +161,23 @@ function updateLineSegs(arr) {
       complete(top(), bottom());
     } else {
       const lineArr = lineObj['stations'];
+      let first = 100,
+        last = 0;
       lineArr.forEach((a) => {
-        let first = 100,
-          last = 0;
         const index = lineArr.indexOf(a);
         if (stnCodes.includes(a)) {
-          if (index <= first) {
+          if (index < first) {
             first = index;
-          } else if (index >= last) {
+          } else if (index > last) {
             last = index;
           } else {
             // Error!
           }
         }
-        for (let i = first; i < last; i++) {
-          $(`#lul-${l}_${e[i]}-${e[i+1]}`).addClass('visible');
-        }
       });
+      for (let i = first; i < last; i++) {
+        $(`#lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i+1]}`).addClass('visible');
+      }
     }
   }
 }
@@ -219,30 +202,38 @@ function readFile(file) {
 }
 
 function loadData(arr) {
-  let stations = [];
+  let stations = [],
+    busses = [];
   for (a in arr) {
     const journey = arr[a][3];
-    // FIXME: Logic & may have some issues. Double check.
-    if (journey.toLowerCase().indexOf("bus") !== -1) {
-      usrData('save', 'bus', journey.split('route ').shift());
+    if (journey == undefined) continue;
+    if (journey.toLowerCase().indexOf('bus') !== -1) {
+      const bus = journey.split('route ')[1];
+      if (!busses.includes(bus)) {
+        busses.push(bus);
+      }
     } else if (journey.toLowerCase().indexOf(' to ') !== -1) {
       const j = journey.split(' to ');
       const s = j.map((d) => {
-        const regEx = /( \[.*\])|( DLR)|( tram stop)/;
+        const regEx = /( \[.*\])|( DLR)|( tram stop)|(\[No touch-out\])/;
         return d.replace(regEx, '');
       });
       for (i in s) {
-        if (stations.includes(s[i]) == false) {
+        if (!stations.includes(s[i])) {
           stations.push(s[i]);
         }
       }
     }
   }
-  console.log({
-    stations
-  });
   addStnsToMap(stations);
-  usrData('save', 'stations', stations);
+  try {
+    usrData('save', 'stations', stations);
+    usrData('save', 'bus', busses);
+  } catch (e) {
+    console.error(`loadData(): ${e}`);
+  } finally {
+    updateLineSegs(stations);
+  }
 }
 
 function CSVtoArray(strData, strDelimiter) {

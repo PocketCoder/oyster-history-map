@@ -31,7 +31,7 @@
         <path id="lul-tram_WLP-RVC" fill="none" stroke="#7AC143" stroke-width="2.3737" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M687.6,735.4c0,0-6.7,6.7-7.2,7.3c-1.2,1.2-3.7,2.3-5.5,2.3c-1.6,0-8.6,0-8.6,0"></path>
         <path id="lul-tram_RVC-CEN" fill="none" stroke="#7AC143" stroke-width="2.3737" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M708.1,724.3h-3.5H703c-2.9,0-5.5,1.2-7.3,3l-8.1,8.1"></path>
         <line id="lul-tram_CEN-WCY" fill="none" stroke="#7AC143" stroke-width="2.3737" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="732.3" y1="724.3" x2="707.4" y2="724.3"></line>
-        <line id="lul-tram_WCY_WLR" fill="none" stroke="#7AC143" stroke-width="2.3737" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="749.7" y1="724.3" x2="732.3" y2="724.3"></line>
+        <line id="lul-tram_WCY-WLR" fill="none" stroke="#7AC143" stroke-width="2.3737" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="749.7" y1="724.3" x2="732.3" y2="724.3"></line>
         <path id="lul-tram_CEN-CCS" fill="none" stroke="#7AC143" stroke-width="2.3737" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M707.4,724.3H703c-5.7,0-10.4,4.6-10.4,10.4c0,5.7,4.6,10.4,10.4,10.4c0.6,0,11.4,0,11.4,0"></path>
         <path id="lul-tram_WLR-ECR" fill="none" stroke="#7AC143" stroke-width="2.3737" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M749.7,724.3h3.2c5.7,0,10.4,4.6,10.4,10.4c0,5.7,4.6,10.4,10.4,10.4c1.2,0,3.2,0,3.2,0"></path>
         <line id="lul-tram_CCS-GGS" fill="none" stroke="#7AC143" stroke-width="2.3737" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="714.4" y1="745" x2="745.7" y2="745"></line>
@@ -453,9 +453,9 @@
         <line id="lul-dlr_ABR-WEH" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="854.8" y1="402.6" x2="854.8" y2="377.9"></line>
         <line id="lul-dlr_WEH-STL" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="854.8" y1="429.7" x2="854.8" y2="402.6"></line>
         <line id="lul-dlr_STL-CAT" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="854.8" y1="458.5" x2="854.8" y2="429.7"></line>
-        <path id="lul-dlr_CAT-WST" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M905.2,507.2l-37.6-37.6c-1.2-1.2-3.7-2.3-5.4-2.3c-1.8,0-3.7-1-4.9-2.3l-0.1-0.1c-1.2-1.2-2.3-3.7-2.3-5.4v-1.8"></path>
-        <path id="lul-dlr_CAT-WST" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M905.2,507.2l-37.6-37.6c-1.2-1.2-3.7-2.3-5.4-2.3c-2,0-15.2,0-15.2,0"></path>
-        <line id="lul-dlr_WST-PDK" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="905.2" y1="507.2" x2="919.3" y2="521.4"></line>
+        <path id="lul-dlr_CAT-WSN" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M905.2,507.2l-37.6-37.6c-1.2-1.2-3.7-2.3-5.4-2.3c-1.8,0-3.7-1-4.9-2.3l-0.1-0.1c-1.2-1.2-2.3-3.7-2.3-5.4v-1.8"></path>
+        <path id="lul-dlr_CAT-WSN" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M905.2,507.2l-37.6-37.6c-1.2-1.2-3.7-2.3-5.4-2.3c-2,0-15.2,0-15.2,0"></path>
+        <line id="lul-WSN-PDK" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="905.2" y1="507.2" x2="919.3" y2="521.4"></line>
         <line id="lul-dlr_PDK-LCA" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="919.3" y1="521.4" x2="931" y2="533"></line>
         <line id="lul-dlr_LCA-KGV" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="931" y1="533" x2="945.3" y2="547.4"></line>
         <path id="lul-dlr_KGV-WOA" fill="none" stroke="#00B1B0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M945.3,547.4l3.3,3.3c1.2,1.2,2.3,3.7,2.3,5.4c0,2.1,0,29.5,0,29.5"></path>
@@ -567,7 +567,7 @@
         <line id="lul-victoria_WST-OXC" fill="none" stroke="#009DDC" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="496" y1="432.4" x2="536.8" y2="391.6"></line>
         <path id="lul-victoria_OXC-GPK" fill="none" stroke="#009DDC" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M475.9,464.8l0-9.2c0-1.7,0.8-4,2.1-5.2l18-18"></path>
         <line id="lul-victoria_GPK-VIC" fill="none" stroke="#009DDC" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="475.9" y1="505.9" x2="475.9" y2="464.8"></line>
-        <line id="lul-victoria_VIC_PIM" fill="none" stroke="#009DDC" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="475.8" y1="554.8" x2="475.9" y2="505.9"></line>
+        <line id="lul-victoria_VIC-PIM" fill="none" stroke="#009DDC" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="475.8" y1="554.8" x2="475.9" y2="505.9"></line>
         <path id="lul-victoria_PIM-VUX" fill="none" stroke="#009DDC" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M481.4,611.7l-3.5-3.5c-1.2-1.2-2.1-3.5-2.1-5.3l0-49.5"></path>
         <line id="lul-victoria_VUX-STK" fill="none" stroke="#009DDC" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="514.6" y1="644.9" x2="481.4" y2="611.7"></line>
         <line id="lul-victoria_STK-BRX" fill="none" stroke="#009DDC" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="538.4" y1="668.7" x2="514.6" y2="644.9"></line>
@@ -676,7 +676,7 @@
         <line id="lul-piccadilly_HOL-COV" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="547.8" y1="446.3" x2="561.4" y2="432.7"></line>
         <line id="lul-piccadilly_COV-LSQ" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="536.8" y1="457.3" x2="548.9" y2="445.3"></line>
         <path id="lul-piccadilly_LSQ-PIC" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M515.6,464.8h10.6c1.8,0,4.2-1,5.4-2.3l5.2-5.2"></path>
-        <line id="lul-piccadilly_PIC_GPK" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="475.9" y1="464.8" x2="515.6" y2="464.8"></line>
+        <line id="lul-piccadilly_PIC-GPK" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="475.9" y1="464.8" x2="515.6" y2="464.8"></line>
         <path id="lul-piccadilly_GPK-HPC" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M463.5,470.9l3.9-3.9c1.2-1.2,3.7-2.3,5.4-2.3h3.1"></path>
         <line id="lul-piccadilly_HPC-KNB" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="443.3" y1="491.1" x2="464.6" y2="469.8"></line>
         <path id="lul-piccadilly_KNB-SKN" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M421.9,506.4l3,0c1.8,0,4.2-1,5.4-2.3l14.1-14.1"></path>
@@ -912,7 +912,7 @@
         <line id="lul-circle_EMB-WMS" fill="none" stroke="#FFD200" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="543.8" y1="511.1" x2="516.3" y2="511.1"></line>
         <line id="lul-circle_WMS-SJP" fill="none" stroke="#FFD200" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="516.3" y1="511.1" x2="489" y2="511.1"></line>
         <line id="lul-circle_SJP-VIC" fill="none" stroke="#FFD200" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="490.5" y1="511.1" x2="468.9" y2="511.1"></line>
-        <line id="lul-circle_VIC_SSQ" fill="none" stroke="#FFD200" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="468.9" y1="511.1" x2="448.2" y2="511.1"></line>
+        <line id="lul-circle_VIC-SSQ" fill="none" stroke="#FFD200" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="468.9" y1="511.1" x2="448.2" y2="511.1"></line>
         <line id="lul-circle_SSQ-SKN" fill="none" stroke="#FFD200" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="449.7" y1="511.1" x2="421.9" y2="511.1"></line>
         <line id="lul-circle_SKN-GRD" fill="none" stroke="#FFD200" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="421.9" y1="511.1" x2="406.7" y2="511.1"></line>
         <path id="lul-circle_GRD-HST" fill="none" stroke="#FFD200" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M408.2,511.1h-9.7c-2.1,0-4.1-0.9-5.5-2.3c-1.5-1.5-2.3-3.5-2.3-5.5l0-27.7">
@@ -958,27 +958,27 @@
             <path fill="none" stroke="#FFFFFF" stroke-width="1.4993" stroke-linejoin="round" stroke-miterlimit="3.9938" d="M384.4,513.3 c-2.1,0-4.1-0.9-5.5-2.3c-1.4-1.4-2.3-3.3-2.3-5.5c0-2.1,0-21.2,0-21.2"></path>
             <path id="lul-district_ECT" fill="none" stroke="#00853F" stroke-width="2.1706" stroke-linejoin="round" stroke-miterlimit="3.9938" stroke-dasharray="1.5133,1.5133" d=" M384.4,513.3c-2.1,0-4.1-0.9-5.5-2.3c-1.4-1.4-2.3-3.3-2.3-5.5c0-2.1,0-21.2,0-21.2"></path>
         </g>
-        <!--Edgware Road - Earl's Court-->
-        <path id="lul-district_ERD-PAD" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M391.5,388.1c1.9-1.9,4.4-2.9,7.1-2.9c2.6,0,18.6,0,18.6,0"></path>
-        <path id="lul-district_PAD-BAY" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M388.5,418.9v-23.7c0-2.7,1-5.2,2.9-7.1"></path>
-        <line id="lul-district_BAY-NHG" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="388.5" y1="452.2" x2="388.5" y2="417.4"></line>
-        <line id="lul-district_NHG-HST" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="388.5" y1="477.1" x2="388.5" y2="452.2"></line>
-        <path id="lul-district_HST-ECT" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M380.7,513.3c2.1,0,4.3-1,5.5-2.3c1.2-1.2,2.3-3.3,2.3-5.5v-30"></path>
-        <!--Earl's Court - Wimbledon-->
-        <path id="lul-district_ECT-WBT" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M384.4,513.3c-2.1,0-4.1,0.9-5.5,2.3c-1.4,1.4-2.3,3.3-2.3,5.5c0,0.3,0,21.5,0,21.5"></path>
-        <line id="lul-district_WBT-FBY" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="542.6" x2="376.6" y2="567.2"></line>
-        <line id="lul-district_FBY-PGR" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="567.2" x2="376.6" y2="578"></line>
-        <line id="lul-district_PGR-PUT" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="576.5" x2="376.6" y2="586.1"></line>
-        <line id="lul-district_PUT-EPY" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="586.1" x2="376.6" y2="605.7"></line>
-        <line id="lul-district_EPY-SFS" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="604.2" x2="376.6" y2="616"></line>
-        <line id="lul-district_SFS-WMP" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="616" x2="376.6" y2="627.9"></line>
-        <path id="lul-district_WMP-WDN" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M376.6,626.5c0,0,0,11.5,0,11.5"></path>
+        <!--Earl's Court - Edgware Road-->
+        <path id="lul-district_PAD-ERD" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M391.5,388.1c1.9-1.9,4.4-2.9,7.1-2.9c2.6,0,18.6,0,18.6,0"></path>
+        <path id="lul-district_BAY-PAD" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M388.5,418.9v-23.7c0-2.7,1-5.2,2.9-7.1"></path>
+        <line id="lul-district_NHG-BAY" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="388.5" y1="452.2" x2="388.5" y2="417.4"></line>
+        <line id="lul-district_HST-NHG" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="388.5" y1="477.1" x2="388.5" y2="452.2"></line>
+        <path id="lul-district_ECT-HST" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M380.7,513.3c2.1,0,4.3-1,5.5-2.3c1.2-1.2,2.3-3.3,2.3-5.5v-30"></path>
+        <!--Wimbledon - Earl's Court-->
+        <path id="lul-district_WBT-ECT" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M384.4,513.3c-2.1,0-4.1,0.9-5.5,2.3c-1.4,1.4-2.3,3.3-2.3,5.5c0,0.3,0,21.5,0,21.5"></path>
+        <line id="lul-district_FBY-WBT" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="542.6" x2="376.6" y2="567.2"></line>
+        <line id="lul-district_PGR-FBY" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="567.2" x2="376.6" y2="578"></line>
+        <line id="lul-district_PUT-PGR" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="576.5" x2="376.6" y2="586.1"></line>
+        <line id="lul-district_EPY-PUT" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="586.1" x2="376.6" y2="605.7"></line>
+        <line id="lul-district_SFS-EPY" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="604.2" x2="376.6" y2="616"></line>
+        <line id="lul-district_WMP-SFS" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="376.6" y1="616" x2="376.6" y2="627.9"></line>
+        <path id="lul-district_WDN-WMP" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M376.6,626.5c0,0,0,11.5,0,11.5"></path>
         <!--Earl's Court - Upminster-->
         <line id="lul-district_ECT-GRD" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="408.2" y1="513.3" x2="382.7" y2="513.3"></line>
         <line id="lul-district_GRD-SKN" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="421.8" y1="513.3" x2="406.7" y2="513.3"></line>
         <line id="lul-district_SKN-SSQ" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="449.7" y1="513.3" x2="421.8" y2="513.3"></line>
         <line id="lul-district_SSQ-VIC" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="468.7" y1="513.3" x2="448.2" y2="513.3"></line>
-        <line id="lul-district_VIC_SJP" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="490.5" y1="513.3" x2="468.7" y2="513.3"></line>
+        <line id="lul-district_VIC-SJP" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="490.5" y1="513.3" x2="468.7" y2="513.3"></line>
         <line id="lul-district_SJP-WMS" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="516.3" y1="513.3" x2="489.1" y2="513.3"></line>
         <line id="lul-district_WMS-EMB" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="543.8" y1="513.3" x2="516.3" y2="513.3"></line>
         <line id="lul-district_EMB-TEM" fill="none" stroke="#00853F" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="575.8" y1="513.3" x2="543.8" y2="513.3"></line>
@@ -1166,23 +1166,17 @@
             <tspan x="0" y="0" fill="#1C3F94" class="blue-fill">Bush Hill</tspan>
             <tspan x="9.3" y="4.5" fill="#1C3F94" class="blue-fill">Park</tspan>
         </text>
-        <text id="EFT-label" transform="matrix(1 0 0 1 682.4266 150.3345)" fill="#1C3F94" class="blue-fill">Enfield
-            Town</text>
-        <g id="EDG-label">
-            <text id="EDG-label" transform="matrix(1 0 0 1 718.8446 193.8356)" fill="#1C3F94" class="blue-fill">Edmonton
-                Green</text>
-            <polygon id="EDG-NR" fill="#EE3124" points="759.5,193.8 757.7,193 760.2,193 760.2,192.5 757.7,192.5 758.9,191.9 760.2,191.9 760.2,191.4 758.9,191.4 757.4,190.6 756.2,190.6 757.8,191.4 755.3,191.4 755.3,191.9 757.8,191.9 756.5,192.5 755.3,192.5 755.3,193 756.6,193 758.3,193.8 ">
-            </polygon>
+        <text id="EFT-label" transform="matrix(1 0 0 1 682.4266 150.3345)" fill="#1C3F94" class="blue-fill">Enfield Town</text>
+        <g id="EMG-label">
+            <text id="EMG-label" transform="matrix(1 0 0 1 718.8446 193.8356)" fill="#1C3F94" class="blue-fill">Edmonton Green</text>
+            <polygon id="EMG-NR" fill="#EE3124" points="759.5,193.8 757.7,193 760.2,193 760.2,192.5 757.7,192.5 758.9,191.9 760.2,191.9 760.2,191.4 758.9,191.4 757.4,190.6 756.2,190.6 757.8,191.4 755.3,191.4 755.3,191.9 757.8,191.9 756.5,192.5 755.3,192.5 755.3,193 756.6,193 758.3,193.8 "></polygon>
         </g>
         <text id="SBY-label" transform="matrix(1 0 0 1 726.2225 179.9966)" fill="#1C3F94" class="blue-fill">Southbury</text>
-        <text id="TST-label" transform="matrix(1 0 0 1 739.4305 166.9815)" fill="#1C3F94" class="blue-fill">Turkey
-            Street</text>
-        <text id="TBG-label" transform="matrix(1 0 0 1 752.0477 154.5357)" fill="#1C3F94" class="blue-fill">Theobalds
-            Grove</text>
+        <text id="TST-label" transform="matrix(1 0 0 1 739.4305 166.9815)" fill="#1C3F94" class="blue-fill">Turkey Street</text>
+        <text id="TBG-label" transform="matrix(1 0 0 1 752.0477 154.5357)" fill="#1C3F94" class="blue-fill">Theobalds Grove</text>
         <g id="CHT-label">
             <text id="CHT-label" transform="matrix(1 0 0 1 764.6307 140.6885)" fill="#1C3F94" class="blue-fill">Cheshunt</text>
-            <polygon id="CHT-NR" fill="#EE3124" points="790.2,140.7 788.4,139.9 790.9,139.9 790.9,139.4 788.4,139.4 789.7,138.7 790.9,138.7 790.9,138.2 789.7,138.2 788.1,137.5 786.9,137.5 788.6,138.2 786,138.2 786,138.7 788.6,138.7 787.2,139.4 786,139.4 786,139.9 787.3,139.9 789,140.7 ">
-            </polygon>
+            <polygon id="CHT-NR" fill="#EE3124" points="790.2,140.7 788.4,139.9 790.9,139.9 790.9,139.4 788.4,139.4 789.7,138.7 790.9,138.7 790.9,138.2 789.7,138.2 788.1,137.5 786.9,137.5 788.6,138.2 786,138.2 786,138.7 788.6,138.7 787.2,139.4 786,139.4 786,139.9 787.3,139.9 789,140.7 "></polygon>
         </g>
         <!--Overground: LST – Chingford-->
         <text id="CPT-label" transform="matrix(1 0 0 1 765.4576 311.5362)" fill="#1C3F94" class="blue-fill">Clapton</text>
@@ -1420,8 +1414,8 @@
             </polygon>
         </g>
         <!--Bakerloo-->
-        <g id="WJN-label">
-            <text id="WJN-label" transform="matrix(1 0 0 1 326.6713 147.7915)" fill="#1C3F94" class="blue-fill">Watford
+        <g id="WTJ-label">
+            <text id="WTJ-label" transform="matrix(1 0 0 1 326.6713 147.7915)" fill="#1C3F94" class="blue-fill">Watford
                 Junction</text>
             <polygon id="WJN-NR" fill="#EE3124" points="368.3,147.8 366.6,147 369,147 369,146.5 366.5,146.5 367.8,145.9 369,145.9 369,145.4 367.8,145.4 366.2,144.7 365,144.7 366.7,145.4 364.2,145.4 364.2,145.9 366.7,145.9 365.4,146.5 364.2,146.5 364.2,147 365.5,147 367.1,147.8 ">
             </polygon>
@@ -1438,7 +1432,8 @@
             Park</text>
         <text id="SPK-label" transform="matrix(1 0 0 1 280.2544 307.4702)" fill="#1C3F94" class="blue-fill">Stonebridge
             Park</text>
-        <text id="HSD-label" transform="matrix(1 0 0 1 294.5078 316.6612)" fill="#1C3F94" class="blue-fill">Harlesden</text> <text id="940GZZLUWJN_label" transform="matrix(1 0 0 1 275.981 325.4339)" fill="#1C3F94" class="blue-fill">Willesden Junction</text>
+        <text id="HSD-label" transform="matrix(1 0 0 1 294.5078 316.6612)" fill="#1C3F94" class="blue-fill">Harlesden</text>
+        <text id="WJN-label" transform="matrix(1 0 0 1 275.981 325.4339)" fill="#1C3F94" class="blue-fill">Willesden Junction</text>
         <g id="WEM-label">
             <text id="WEM-label" transform="matrix(1 0 0 1 279.6112 298.2886)" fill="#1C3F94" class="blue-fill">Wembley
                 Central</text>
@@ -1470,7 +1465,7 @@
             <tspan x="0" y="0" fill="#1C3F94" class="blue-fill">Oxford</tspan>
             <tspan x="1.8" y="4.5" fill="#1C3F94" class="blue-fill">Circus</tspan>
         </text>
-        <text id="PIC_label" transform="matrix(1 0 0 1 496.4058 472.5049)">
+        <text id="PIC-label" transform="matrix(1 0 0 1 496.4058 472.5049)">
             <tspan x="0" y="0" fill="#1C3F94" class="blue-fill">Piccadilly</tspan>
             <tspan x="6.5" y="4.5" fill="#1C3F94" class="blue-fill">Circus</tspan>
         </text>
@@ -1993,7 +1988,7 @@
             <polygon id="BRX-NR" fill="#EE3124" points="561.9,674.3 560.1,673.5 562.6,673.5 562.6,673 560.1,673 561.4,672.4 562.6,672.4 562.6,671.9 561.4,671.9 559.8,671.2 558.6,671.2 560.3,671.9 557.7,671.9 557.7,672.4 560.3,672.4 558.9,673 557.7,673 557.7,673.5 559,673.5 560.7,674.3 ">
             </polygon>
         </g>
-        <text id="WST-label" transform="matrix(1 0 0 1 907.6484 504.1953)" fill="#1C3F94" class="blue-fill">West
+        <text id="WSN-label" transform="matrix(1 0 0 1 907.6484 504.1953)" fill="#1C3F94" class="blue-fill">West
             Silvertown</text>
         <text id="PDK-label" transform="matrix(1 0 0 1 886.6604 526.5579)" fill="#1C3F94" class="blue-fill">Pontoon
             Dock</text>
@@ -2565,7 +2560,8 @@
             <path fill="#FFFFFF" d="M387.8,596.2c-1.7,0-3.1-1.4-3.1-3.1s1.4-3.1,3.1-3.1c1.7,0,3.1,1.4,3.1,3.1S389.4,596.2,387.8,596.2 L387.8,596.2z" class="white-fill"></path>
             <path fill="#1C3F94" d="M385.8,593.9l-0.7-1h0.7l0.4-0.6c0,0,0,0,0.1,0c0,0,0.1,0,0.1,0h0.6v-0.2h0.3l0.1-0.3h0.2l-0.1,0.2 l0.1,0.1h0.7v0.2h1.1c0,0,0.1,0,0.2,0.1c0.1,0.1,0.1,0.1,0.1,0.1l0.2,0.5h0.4l0.4,1c0,0-0.4-0.3-1.1-0.2c-0.6,0-0.8,0.2-1.4,0.2 c-0.3,0-0.9-0.2-1.3-0.2C386.4,593.7,385.9,593.8,385.8,593.9z M386.1,594.3c0.2-0.1,0.6-0.2,1.1,0c0.3,0.1,0.5,0.1,0.8,0.1 c0.3,0,0.5-0.1,0.8-0.1c0.2-0.1,0.5-0.1,0.7-0.1c0.4,0,0.6,0.1,0.8,0.1l-0.1-0.3c-0.3-0.1-0.8-0.2-1.4,0 c-0.2,0.1-0.5,0.1-0.8,0.1c-0.2,0-0.5,0-0.7-0.1c-0.7-0.2-1-0.1-1.4,0L386.1,594.3z M386.1,592.9h0.7v-0.4h-0.3c0,0-0.1,0-0.1,0 c0,0-0.1,0.1-0.1,0.1L386.1,592.9z M387.8,592.9h0.7v-0.4h-0.7V592.9z M389.3,592.6C389.3,592.6,389.3,592.5,389.3,592.6 c-0.1-0.1-0.1-0.1-0.1-0.1h-0.5v0.4h0.7L389.3,592.6z M386.9,592.9h0.7l0-0.4h-0.7V592.9z" class="blue-fill"></path>
         </g>
-        <g id="VUXRB"><!--a.k.a. St. George's Wharf-->
+        <g id="VUXRB">
+            <!--a.k.a. St. George's Wharf-->
             <path fill="#1C3F94" d="M485.2,589.3c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C481.8,590.8,483.3,589.3,485.2,589.3z" class="blue-fill"></path>
             <path fill="#FFFFFF" d="M485.2,595.7c-1.7,0-3.1-1.4-3.1-3.1c0-1.7,1.4-3.1,3.1-3.1c1.7,0,3.1,1.4,3.1,3.1 C488.2,594.4,486.8,595.7,485.2,595.7L485.2,595.7z" class="white-fill"></path>
             <path fill="#1C3F94" d="M483.2,593.4l-0.7-1h0.7l0.4-0.6c0,0,0,0,0.1,0c0,0,0.1,0,0.1,0h0.6v-0.2h0.3l0.1-0.3h0.2l-0.1,0.2 l0.1,0.1h0.7v0.2h1.1c0,0,0.1,0,0.2,0.1c0.1,0.1,0.1,0.1,0.1,0.1l0.2,0.5h0.4l0.4,1c0,0-0.4-0.3-1.1-0.2c-0.6,0-0.8,0.2-1.4,0.2 c-0.3,0-0.9-0.2-1.3-0.2C483.8,593.2,483.3,593.3,483.2,593.4z M483.5,593.8c0.2-0.1,0.6-0.2,1.1,0c0.3,0.1,0.5,0.1,0.8,0.1 c0.3,0,0.5-0.1,0.8-0.1c0.2-0.1,0.5-0.1,0.7-0.1c0.4,0,0.6,0.1,0.8,0.1l-0.1-0.3c-0.3-0.1-0.8-0.2-1.4,0 c-0.2,0.1-0.5,0.1-0.8,0.1c-0.2,0-0.5,0-0.7-0.1c-0.7-0.2-1-0.1-1.4,0L483.5,593.8z M483.5,592.4h0.7V592h-0.3c0,0-0.1,0-0.1,0 c0,0-0.1,0.1-0.1,0.1L483.5,592.4z M485.2,592.4h0.7V592h-0.7V592.4z M486.7,592.1C486.7,592.1,486.7,592,486.7,592.1 c-0.1-0.1-0.1-0.1-0.1-0.1h-0.5v0.4h0.7L486.7,592.1z M484.3,592.4h0.7l0-0.4h-0.7V592.4z" class="blue-fill"></path>
@@ -2617,7 +2613,7 @@
         </g>
     </g>
     <g id="interchange-circles">
-        <g id="IC_STI-dlr">
+        <g id="IC_STI">
             <g>
                 <path fill="#1C3F94" d="M818.3,312.3c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C814.9,313.8,816.4,312.3,818.3,312.3z" class="blue-fill"></path>
             </g>
@@ -2629,7 +2625,7 @@
                 </g>
             </g>
         </g>
-        <g id="IC_NGW-jubilee">
+        <g id="IC_NGW">
             <g>
                 <path fill="#1C3F94" d="M833.4,506.1c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C830,507.6,831.5,506.1,833.4,506.1z" class="blue-fill"></path>
             </g>
@@ -2707,7 +2703,7 @@
                 </g>
             </g>
         </g>
-        <g id="IC_BRX-victoria">
+        <g id="IC_BRX-VIC">
             <g>
                 <path fill="#1C3F94" d="M538.3,665.2c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C534.9,666.7,536.4,665.2,538.3,665.2z" class="blue-fill"></path>
             </g>
@@ -2850,7 +2846,7 @@
                 </g>
             </g>
         </g>
-        <g id="IC_">
+        <g id="IC_BOC">
             <g id="IC_BOC-con">
                 <path d="M801.5,398.7l-5.1,5.1c-1.1-0.3-2.4,0-3.3,0.9c-1.3,1.3-1.3,3.5,0,4.8c1.3,1.3,3.5,1.3,4.8,0c0.9-0.9,1.2-2.2,0.9-3.3 l5.1-5.1c1.1,0.3,2.4,0,3.3-0.9c1.3-1.3,1.3-3.5,0-4.8c-1.3-1.3-3.5-1.3-4.8,0C801.5,396.3,801.2,397.6,801.5,398.7z">
                 </path>
@@ -3123,7 +3119,7 @@
                 </g>
             </g>
         </g>
-        <g id="IC_WST-dlr">
+        <g id="IC_WSN-dlr">
             <g>
                 <path fill="#1C3F94" d="M905.2,503.8c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C901.8,505.4,903.3,503.8,905.2,503.8z" class="blue-fill"></path>
             </g>
@@ -3461,17 +3457,17 @@
             <path d="M582.3,300.7c-1.3,1.3-3.5,1.3-4.8,0c-1.3-1.3-1.3-3.5,0-4.8c1.3-1.3,3.5-1.3,4.8,0 C583.7,297.2,583.7,299.4,582.3,300.7z M578.3,299.9c0.9,0.9,2.3,0.9,3.2,0c0.9-0.9,0.9-2.3,0-3.2c-0.9-0.9-2.3-0.9-3.2,0 C577.4,297.6,577.4,299,578.3,299.9z">
             </path>
         </g>
-        <g id="lul-bakerloo_lul-northern_940gzzlueac">
+        <g id="IC_ELE">
             <path fill="#FFFFFF" d="M552.1,610.2c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8c0-1.6,1.3-2.8,2.8-2.8 C550.8,607.4,552.1,608.6,552.1,610.2z" class="white-fill"></path>
             <path d="M552.6,610.2c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C551.1,606.8,552.6,608.3,552.6,610.2 z M549.2,612.5c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C546.9,611.5,548,612.5,549.2,612.5z">
             </path>
         </g>
-        <g id="lul-northern_lul-victoria_940gzzluskw">
+        <g id="IC_STK">
             <path fill="#FFFFFF" d="M517.4,644.9c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8c0-1.6,1.3-2.8,2.8-2.8 C516.1,642,517.4,643.3,517.4,644.9z" class="white-fill"></path>
             <path d="M517.9,644.9c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C516.4,641.5,517.9,643,517.9,644.9z M514.5,647.2c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3s-2.3,1-2.3,2.3C512.2,646.1,513.3,647.2,514.5,647.2z">
             </path>
         </g>
-        <g id="IC_CHS-overground">
+        <g id="IC_CHS">
             <path fill="#FFFFFF" d="M501.9,647.1c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8c0-1.6,1.3-2.8,2.8-2.8 C500.6,644.2,501.9,645.5,501.9,647.1z" class="white-fill"></path>
             <path d="M502.5,647.1c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C500.9,643.7,502.5,645.2,502.5,647.1 z M499,649.3c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3s-2.3,1-2.3,2.3C496.8,648.3,497.8,649.3,499,649.3z">
             </path>
@@ -3528,36 +3524,28 @@
         </g>
         <g id="IC_RLN">
             <path fill="#FFFFFF" d="M218,257c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8c0-1.6,1.3-2.8,2.8-2.8 C216.7,254.2,218,255.5,218,257z" class="white-fill"></path>
-            <path d="M218.6,257c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C217,253.6,218.6,255.1,218.6,257z M215.2,259.3c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C212.9,258.3,213.9,259.3,215.2,259.3z">
-            </path>
+            <path d="M218.6,257c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C217,253.6,218.6,255.1,218.6,257z M215.2,259.3c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C212.9,258.3,213.9,259.3,215.2,259.3z"></path>
         </g>
         <g id="IC_BSH-overground">
             <path fill="#FFFFFF" d="M325.4,175.8c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8c0-1.6,1.3-2.8,2.8-2.8 C324.1,172.9,325.4,174.2,325.4,175.8z" class="white-fill"></path>
-            <path d="M325.9,175.8c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C324.4,172.4,325.9,173.9,325.9,175.8 z M322.5,178.1c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C320.3,177,321.3,178.1,322.5,178.1z">
-            </path>
+            <path d="M325.9,175.8c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C324.4,172.4,325.9,173.9,325.9,175.8 z M322.5,178.1c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C320.3,177,321.3,178.1,322.5,178.1z"></path>
         </g>
         <g id="IC_QPK">
             <path fill="#FFFFFF" d="M323.9,341.7c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8c0-1.6,1.3-2.8,2.8-2.8 C322.6,338.8,323.9,340.1,323.9,341.7z" class="white-fill"></path>
-            <path d="M324.5,341.7c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C322.9,338.2,324.5,339.8,324.5,341.7 z M321,343.9c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C318.8,342.9,319.8,343.9,321,343.9z">
-            </path>
+            <path d="M324.5,341.7c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C322.9,338.2,324.5,339.8,324.5,341.7 z M321,343.9c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C318.8,342.9,319.8,343.9,321,343.9z"></path>
         </g>
         <g id="IC_PRY-picadilly">
             <path fill="#FFFFFF" d="M233.5,395c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8c0-1.6,1.3-2.8,2.8-2.8 C232.3,392.1,233.5,393.4,233.5,395z" class="white-fill"></path>
-            <path d="M234.1,395c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C232.6,391.6,234.1,393.1,234.1,395z M230.7,397.3c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C228.4,396.3,229.4,397.3,230.7,397.3z">
-            </path>
+            <path d="M234.1,395c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C232.6,391.6,234.1,393.1,234.1,395z M230.7,397.3c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C228.4,396.3,229.4,397.3,230.7,397.3z"></path>
         </g>
         <g id="IC_HLN-central">
             <path fill="#FFFFFF" d="M216.2,395c0,1.6-1.3,2.8-2.8,2.8c-1.6,0-2.8-1.3-2.8-2.8c0-1.6,1.3-2.8,2.8-2.8 C214.9,392.1,216.2,393.4,216.2,395z" class="white-fill"></path>
-            <path d="M216.7,395c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C215.2,391.6,216.7,393.1,216.7,395z M213.3,397.3c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C211,396.3,212.1,397.3,213.3,397.3z">
-            </path>
+            <path d="M216.7,395c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4C215.2,391.6,216.7,393.1,216.7,395z M213.3,397.3c1.3,0,2.3-1,2.3-2.3c0-1.3-1-2.3-2.3-2.3c-1.3,0-2.3,1-2.3,2.3C211,396.3,212.1,397.3,213.3,397.3z"></path>
         </g>
         <g id="IC_MLE">
-            <path id="lul-central_lul-district_lul-hammersmith-city_940gzzlumed" d="M776.6,394.8v-0.9c1-0.6,1.7-1.7,1.7-3 c0-1.9-1.5-3.4-3.4-3.4c-1.9,0-3.4,1.5-3.4,3.4c0,1.3,0.7,2.4,1.7,3v0.9c-1,0.6-1.7,1.7-1.7,3c0,1.9,1.5,3.4,3.4,3.4 c1.9,0,3.4-1.5,3.4-3.4C778.3,396.5,777.6,395.4,776.6,394.8z">
-            </path>
-            <path id="lul-central_940gzzlumed" d="M774.9,394.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4c1.9,0,3.4,1.5,3.4,3.4 C778.3,392.9,776.7,394.4,774.9,394.4z">
-            </path>
-            <path id="lul-district_lul-hammersmith-city_940gzzlumed" d="M774.9,401.2c-1.9,0-3.4-1.5-3.4-3.4 c0-1.9,1.5-3.4,3.4-3.4c1.9,0,3.4,1.5,3.4,3.4C778.3,399.7,776.7,401.2,774.9,401.2z">
-            </path>
+            <path id="lul-central_lul-district_lul-hammersmith-city_940gzzlumed" d="M776.6,394.8v-0.9c1-0.6,1.7-1.7,1.7-3 c0-1.9-1.5-3.4-3.4-3.4c-1.9,0-3.4,1.5-3.4,3.4c0,1.3,0.7,2.4,1.7,3v0.9c-1,0.6-1.7,1.7-1.7,3c0,1.9,1.5,3.4,3.4,3.4 c1.9,0,3.4-1.5,3.4-3.4C778.3,396.5,777.6,395.4,776.6,394.8z"></path>
+            <path id="lul-central_940gzzlumed" d="M774.9,394.4c-1.9,0-3.4-1.5-3.4-3.4c0-1.9,1.5-3.4,3.4-3.4c1.9,0,3.4,1.5,3.4,3.4 C778.3,392.9,776.7,394.4,774.9,394.4z"></path>
+            <path id="lul-district_lul-hammersmith-city_940gzzlumed" d="M774.9,401.2c-1.9,0-3.4-1.5-3.4-3.4 c0-1.9,1.5-3.4,3.4-3.4c1.9,0,3.4,1.5,3.4,3.4C778.3,399.7,776.7,401.2,774.9,401.2z"></path>
             <g id="lul-central_lul-district_lul-hammersmith-city_940gzzlumed">
                 <path fill="#FFFFFF" d="M777.1,397.8c0,1.3-1,2.3-2.3,2.3c-1.3,0-2.3-1-2.3-2.3c0-1.1,0.7-1.9,1.7-2.2v-2.4 c-1-0.3-1.7-1.1-1.7-2.2c0-1.3,1-2.3,2.3-2.3c1.3,0,2.3,1,2.3,2.3c0,1.1-0.7,1.9-1.7,2.2v2.4 C776.4,395.8,777.1,396.7,777.1,397.8z" class="white-fill"></path>
             </g>
@@ -4939,19 +4927,16 @@
             </g>
         </g>
         <g id="IC_BST">
-            <path id="lul-bakerloo_lul-circle_lul-hammersmith-city_lul-metropolitan_lul-jubilee_940gzzlubst" d=" M469.8,381.7l-5.4,5.4c-1.1-0.3-2.4,0-3.3,0.9c-1.3,1.3-1.3,3.5,0,4.8c1.3,1.3,3.5,1.3,4.8,0c0.9-0.9,1.2-2.2,0.9-3.3l5.4-5.4 c1.1,0.3,2.4,0,3.3-0.9c1.3-1.3,1.3-3.5,0-4.8c-1.3-1.3-3.5-1.3-4.8,0C469.8,379.3,469.5,380.6,469.8,381.7z">
-            </path>
+            <path id="lul-bakerloo_lul-circle_lul-hammersmith-city_lul-metropolitan_lul-jubilee_940gzzlubst" d=" M469.8,381.7l-5.4,5.4c-1.1-0.3-2.4,0-3.3,0.9c-1.3,1.3-1.3,3.5,0,4.8c1.3,1.3,3.5,1.3,4.8,0c0.9-0.9,1.2-2.2,0.9-3.3l5.4-5.4 c1.1,0.3,2.4,0,3.3-0.9c1.3-1.3,1.3-3.5,0-4.8c-1.3-1.3-3.5-1.3-4.8,0C469.8,379.3,469.5,380.6,469.8,381.7z"></path>
             <g id="lul-bakerloo_lul-jubilee_940gzzlubst">
-                <path d="M465.9,392.8c-1.3,1.3-3.5,1.3-4.8,0c-1.3-1.3-1.3-3.5,0-4.8c1.3-1.3,3.5-1.3,4.8,0 C467.3,389.4,467.3,391.5,465.9,392.8z">
-                </path>
+                <path d="M465.9,392.8c-1.3,1.3-3.5,1.3-4.8,0c-1.3-1.3-1.3-3.5,0-4.8c1.3-1.3,3.5-1.3,4.8,0 C467.3,389.4,467.3,391.5,465.9,392.8z"></path>
             </g>
             <g id="lul-circle_lul-hammersmith-city_lul-metropolitan_940gzzlubst">
-                <path d="M475.5,383.3c-1.3,1.3-3.5,1.3-4.8,0c-1.3-1.3-1.3-3.5,0-4.8c1.3-1.3,3.5-1.3,4.8,0 C476.8,379.8,476.8,381.9,475.5,383.3z">
-                </path>
+                <path d="M475.5,383.3c-1.3,1.3-3.5,1.3-4.8,0c-1.3-1.3-1.3-3.5,0-4.8c1.3-1.3,3.5-1.3,4.8,0 C476.8,379.8,476.8,381.9,475.5,383.3z"></path>
             </g>
             <path id="lul-bakerloo_lul-circle_lul-hammersmith-city_lul-metropolitan_lul-jubilee_940gzzlubst" fill="#FFFFFF" d=" M471.5,379.2c0.9-0.9,2.3-0.9,3.2,0c0.9,0.9,0.9,2.3,0,3.2c-0.8,0.8-1.9,0.9-2.8,0.3l-6.5,6.5c0.5,0.9,0.4,2-0.3,2.8 c-0.9,0.9-2.3,0.9-3.2,0c-0.9-0.9-0.9-2.3,0-3.2c0.8-0.8,1.9-0.9,2.8-0.3l6.5-6.5C470.6,381.1,470.7,380,471.5,379.2z" class="white-fill"></path>
         </g>
-        <g id="lul-bakerloo_lul-circle_lul-district_lul-northern_940gzzluemb">
+        <g id="IC_EMB">
             <path id="lul-bakerloo_lul-circle_lul-district_lul-northern_l940gzzluemb" d="M542.9,508.9L540,506 c0.3-1.1,0-2.4-0.9-3.3c-1.3-1.3-3.5-1.3-4.8,0c-1.3,1.3-1.3,3.5,0,4.8c0.9,0.9,2.2,1.2,3.3,0.9l2.9,2.9c-0.3,1.1,0,2.4,0.9,3.3 c1.3,1.3,3.5,1.3,4.8,0c1.3-1.3,1.3-3.5,0-4.8C545.3,508.8,544,508.6,542.9,508.9z">
             </path>
             <g id="lul-northern_l940gzzluemb">
@@ -4964,7 +4949,7 @@
             </g>
             <path id="lul-bakerloo_lul-circle_lul-district_lul-northern_l940gzzluemb" fill="#FFFFFF" d="M545.4,510.5 c0.9,0.9,0.9,2.3,0,3.2c-0.9,0.9-2.3,0.9-3.2,0c-0.8-0.8-0.9-1.9-0.3-2.8l-4-4c-0.9,0.5-2,0.4-2.8-0.3c-0.9-0.9-0.9-2.3,0-3.2 c0.9-0.9,2.3-0.9,3.2,0c0.8,0.8,0.9,1.9,0.3,2.8l4,4C543.5,509.7,544.6,509.8,545.4,510.5z" class="white-fill"></path>
         </g>
-        <g id="lul-northern_940gzzlukng">
+        <g id="IC_KEN">
             <path id="lul-northern_940gzzlukng_00000077316366717730590640000013719364276611043493_" d="M540.1,615.2l-11.8-11.8 c0.3-1.1,0-2.4-0.9-3.3c-1.3-1.3-3.5-1.3-4.8,0c-1.3,1.3-1.3,3.5,0,4.8c0.9,0.9,2.2,1.2,3.3,0.9l11.8,11.8 c-0.3,1.1,0,2.4,0.9,3.3c1.3,1.3,3.5,1.3,4.8,0c1.3-1.3,1.3-3.5,0-4.8C542.5,615.2,541.3,614.9,540.1,615.2z">
             </path>
             <g id="lul-northern_940gzzlukng_00000065774177801773290990000017287705456263978408_">
@@ -5064,6 +5049,16 @@
                 </g>
             </g>
         </g>
+        <g id="IC_MGT">
+            <g>
+                <rect x="620.8" y="409.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -106.4771 565.4278)" width="17.1" height="3.4"></rect>
+            </g>
+            <g>
+                <path fill="#FFFFFF" d="M638.8,401.8c1.2,1.2,1.2,3.1,0,4.2c-1.2,1.2-3.1,1.2-4.2,0c-1.2-1.2-1.2-3.1,0-4.2 C635.8,400.6,637.6,400.6,638.8,401.8z" class="white-fill"></path>
+                <path d="M639.2,401.3c1.4,1.4,1.4,3.7,0,5.1c-1.4,1.4-3.7,1.4-5.1,0c-1.4-1.4-1.4-3.7,0-5.1 C635.6,399.9,637.8,399.9,639.2,401.3z M638.4,405.5c0.9-0.9,0.9-2.4,0-3.4c-0.9-0.9-2.4-0.9-3.4,0c-0.9,0.9-0.9,2.4,0,3.4 C635.9,406.5,637.5,406.5,638.4,405.5z">
+                </path>
+            </g>
+        </g>
         <g id="IC_LST">
             <g id="lul-central_lul-circle_lul-hammersmith-city_lul-metropolitan_940gzzlulvt">
                 <g>
@@ -5075,16 +5070,6 @@
                     </path>
                 </g>
                 <rect x="662.3" y="411.8" fill="#FFFFFF" width="1.1" height="9.5" class="white-fill"></rect>
-            </g>
-            <g id="lul-circle_lul-hammersmith-city_lul-metropolitan_940gzzlumgt_northern_940gmgt">
-                <g>
-                    <rect x="620.8" y="409.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -106.4771 565.4278)" width="17.1" height="3.4"></rect>
-                </g>
-                <g>
-                    <path fill="#FFFFFF" d="M638.8,401.8c1.2,1.2,1.2,3.1,0,4.2c-1.2,1.2-3.1,1.2-4.2,0c-1.2-1.2-1.2-3.1,0-4.2 C635.8,400.6,637.6,400.6,638.8,401.8z" class="white-fill"></path>
-                    <path d="M639.2,401.3c1.4,1.4,1.4,3.7,0,5.1c-1.4,1.4-3.7,1.4-5.1,0c-1.4-1.4-1.4-3.7,0-5.1 C635.6,399.9,637.8,399.9,639.2,401.3z M638.4,405.5c0.9-0.9,0.9-2.4,0-3.4c-0.9-0.9-2.4-0.9-3.4,0c-0.9,0.9-0.9,2.4,0,3.4 C635.9,406.5,637.5,406.5,638.4,405.5z">
-                    </path>
-                </g>
             </g>
             <g id="IC_LST">
                 <g>
@@ -5099,17 +5084,17 @@
                     </g>
                 </g>
             </g>
-            <g id="lul-overground_WCL_lul-hammersmith-city_940gzzluwpl_lul-district_940gzzluwpl">
+        </g>
+        <g id="IC_WCL">
+            <g>
+                <path fill="#1C3F94" d="M722.8,416.6c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C719.4,418.1,721,416.6,722.8,416.6z" class="blue-fill"></path>
+                <path fill="#FFFFFF" d="M722.8,423.1c-1.7,0-3.1-1.4-3.1-3.1c0-1.7,1.4-3.1,3.1-3.1c1.7,0,3.1,1.4,3.1,3.1 C725.9,421.7,724.5,423.1,722.8,423.1L722.8,423.1z" class="white-fill"></path>
+            </g>
+            <g>
                 <g>
-                    <path fill="#1C3F94" d="M722.8,416.6c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C719.4,418.1,721,416.6,722.8,416.6z" class="blue-fill"></path>
-                    <path fill="#FFFFFF" d="M722.8,423.1c-1.7,0-3.1-1.4-3.1-3.1c0-1.7,1.4-3.1,3.1-3.1c1.7,0,3.1,1.4,3.1,3.1 C725.9,421.7,724.5,423.1,722.8,423.1L722.8,423.1z" class="white-fill"></path>
-                </g>
-                <g>
-                    <g>
-                        <path fill="#1C3F94" d="M721.7,421c0.2,0.5,0.7,0.9,1.2,0.9c0.7,0,1.3-0.6,1.3-1.3c0-0.4-0.2-0.7-0.4-1l0.1-0.6 c0.5,0.3,0.8,0.9,0.8,1.5c0,1-0.8,1.8-1.8,1.8c-0.6,0-1.2-0.3-1.5-0.8L721.7,421z" class="blue-fill"></path>
-                        <path fill="#1C3F94" d="M722.9,417.8c0,0.3,0.2,0.5,0.5,0.5c0.3,0,0.5-0.2,0.5-0.5c0-0.3-0.2-0.5-0.5-0.5 C723.1,417.3,722.9,417.5,722.9,417.8z" class="blue-fill"></path>
-                        <path fill="#1C3F94" d="M723.2,418.6l-0.1,0.4H722c0,0-0.2,0-0.2,0.2c0,0.2,0.2,0.2,0.2,0.2h1l0,0.3h-1.4c0,0-0.1,0-0.1,0.1 c0,0-0.1,0.1-0.1,0.1l-0.8,1.6c0,0-0.1,0.2,0.1,0.3c0.2,0.1,0.4-0.1,0.4-0.1l0.6-1.2c0,0,0.1-0.1,0.1-0.1c0.1,0,0.1,0,0.1,0 l1.3,0c0,0,0.1,0,0.2-0.1c0.1-0.1,0.1-0.2,0.1-0.2l0.2-1.4c0,0,0-0.3-0.3-0.3C723.2,418.4,723.2,418.6,723.2,418.6z" class="blue-fill"></path>
-                    </g>
+                    <path fill="#1C3F94" d="M721.7,421c0.2,0.5,0.7,0.9,1.2,0.9c0.7,0,1.3-0.6,1.3-1.3c0-0.4-0.2-0.7-0.4-1l0.1-0.6 c0.5,0.3,0.8,0.9,0.8,1.5c0,1-0.8,1.8-1.8,1.8c-0.6,0-1.2-0.3-1.5-0.8L721.7,421z" class="blue-fill"></path>
+                    <path fill="#1C3F94" d="M722.9,417.8c0,0.3,0.2,0.5,0.5,0.5c0.3,0,0.5-0.2,0.5-0.5c0-0.3-0.2-0.5-0.5-0.5 C723.1,417.3,722.9,417.5,722.9,417.8z" class="blue-fill"></path>
+                    <path fill="#1C3F94" d="M723.2,418.6l-0.1,0.4H722c0,0-0.2,0-0.2,0.2c0,0.2,0.2,0.2,0.2,0.2h1l0,0.3h-1.4c0,0-0.1,0-0.1,0.1 c0,0-0.1,0.1-0.1,0.1l-0.8,1.6c0,0-0.1,0.2,0.1,0.3c0.2,0.1,0.4-0.1,0.4-0.1l0.6-1.2c0,0,0.1-0.1,0.1-0.1c0.1,0,0.1,0,0.1,0 l1.3,0c0,0,0.1,0,0.2-0.1c0.1-0.1,0.1-0.2,0.1-0.2l0.2-1.4c0,0,0-0.3-0.3-0.3C723.2,418.4,723.2,418.6,723.2,418.6z" class="blue-fill"></path>
                 </g>
             </g>
         </g>
@@ -6283,10 +6268,6 @@
             </g>
         </g>
         <g id="IC_EBY">
-            <g id="lul-central_lul-jubilee_940gzzlubnd">
-                <rect x="456" y="428" transform="matrix(0.7072 -0.707 0.707 0.7072 -169.014 451.4113)" width="8.9" height="3.4"></rect>
-                <rect x="455.8" y="429.2" transform="matrix(0.707 -0.7072 0.7072 0.707 -169.035 451.5476)" fill="#FFFFFF" width="9.3" height="1.1" class="white-fill"></rect>
-            </g>
             <g id="lul-overground-lul-elizabeth_lul-central_910gealingb_940gzzlueby">
                 <rect x="213.1" y="444.2" width="3.4" height="7.9"></rect>
                 <rect x="214.2" y="444.1" fill="#FFFFFF" width="1.1" height="8.3" class="white-fill"></rect>
@@ -6297,6 +6278,10 @@
             </g>
         </g>
         <g id="IC_BDS">
+            <g id="lul-central_lul-jubilee_940gzzlubnd">
+                <rect x="456" y="428" transform="matrix(0.7072 -0.707 0.707 0.7072 -169.014 451.4113)" width="8.9" height="3.4"></rect>
+                <rect x="455.8" y="429.2" transform="matrix(0.707 -0.7072 0.7072 0.707 -169.035 451.5476)" fill="#FFFFFF" width="9.3" height="1.1" class="white-fill"></rect>
+            </g>
             <g id="lul-jubilee_940gzzlubnd">
                 <g>
                     <path fill="#1C3F94" d="M463.5,423.3c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C460.1,424.8,461.7,423.3,463.5,423.3z" class="blue-fill"></path>
@@ -6400,8 +6385,8 @@
                 </g>
             </g>
         </g>
-        <g id="IC_EBY">
-            <g id="lul-central_940gzzlusbc_lul-overground_SHB">
+        <g id="IC_GUN">
+            <g id="lul-central_940gzzlusbc_lul-overground_GUN">
                 <path d="M251.9,540.8l-1.9,0c-0.6-1-1.7-1.7-3-1.7c-1.9,0-3.4,1.5-3.4,3.4c0,1.9,1.5,3.4,3.4,3.4c1.3,0,2.4-0.7,3-1.7h1.9 c0.6,1,1.7,1.7,3,1.7c1.9,0,3.4-1.5,3.4-3.4c0-1.9-1.5-3.4-3.4-3.4C253.6,539.1,252.5,539.8,251.9,540.8z">
                 </path>
             </g>
@@ -6523,18 +6508,6 @@
             </g>
             <g id="IC_HMD">
                 <g>
-                    <path fill="#1C3F94" d="M214.7,456c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C211.3,457.5,212.9,456,214.7,456z" class="blue-fill"></path>
-                </g>
-                <g>
-                    <g>
-                        <path fill="#FFFFFF" d="M213.6,460.4c0.2,0.5,0.7,0.9,1.2,0.9c0.7,0,1.3-0.6,1.3-1.3c0-0.4-0.2-0.7-0.4-1l0.1-0.6 c0.5,0.3,0.8,0.9,0.8,1.5c0,1-0.8,1.8-1.8,1.8c-0.6,0-1.2-0.3-1.5-0.8L213.6,460.4z" class="white-fill"></path>
-                        <path fill="#FFFFFF" d="M214.8,457.1c0,0.3,0.2,0.5,0.5,0.5c0.3,0,0.5-0.2,0.5-0.5c0-0.3-0.2-0.5-0.5-0.5 C215,456.6,214.8,456.9,214.8,457.1z" class="white-fill"></path>
-                        <path fill="#FFFFFF" d="M215.1,458l-0.1,0.4h-1.1c0,0-0.2,0-0.2,0.2c0,0.2,0.2,0.2,0.2,0.2h1l0,0.3h-1.4c0,0-0.1,0-0.1,0.1 c0,0-0.1,0.1-0.1,0.1l-0.8,1.6c0,0-0.1,0.2,0.1,0.3c0.2,0.1,0.4-0.1,0.4-0.1l0.6-1.2c0,0,0.1-0.1,0.1-0.1c0.1,0,0.1,0,0.1,0 l1.3,0c0,0,0.1,0,0.2-0.1c0.1-0.1,0.1-0.2,0.1-0.2l0.2-1.4c0,0,0-0.3-0.3-0.3C215.1,457.8,215.1,458,215.1,458z" class="white-fill"></path>
-                    </g>
-                </g>
-            </g>
-            <g id="IC_HMD">
-                <g>
                     <path fill="#1C3F94" d="M333.3,510.1c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C329.8,511.6,331.4,510.1,333.3,510.1z" class="blue-fill"></path>
                 </g>
                 <g>
@@ -6639,6 +6612,16 @@
         </g>
         <g id="IC_EBY">
             <g>
+                <path fill="#1C3F94" d="M214.7,456c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C211.3,457.5,212.9,456,214.7,456z" class="blue-fill"></path>
+            </g>
+            <g>
+                <g>
+                    <path fill="#FFFFFF" d="M213.6,460.4c0.2,0.5,0.7,0.9,1.2,0.9c0.7,0,1.3-0.6,1.3-1.3c0-0.4-0.2-0.7-0.4-1l0.1-0.6 c0.5,0.3,0.8,0.9,0.8,1.5c0,1-0.8,1.8-1.8,1.8c-0.6,0-1.2-0.3-1.5-0.8L213.6,460.4z" class="white-fill"></path>
+                    <path fill="#FFFFFF" d="M214.8,457.1c0,0.3,0.2,0.5,0.5,0.5c0.3,0,0.5-0.2,0.5-0.5c0-0.3-0.2-0.5-0.5-0.5 C215,456.6,214.8,456.9,214.8,457.1z" class="white-fill"></path>
+                    <path fill="#FFFFFF" d="M215.1,458l-0.1,0.4h-1.1c0,0-0.2,0-0.2,0.2c0,0.2,0.2,0.2,0.2,0.2h1l0,0.3h-1.4c0,0-0.1,0-0.1,0.1 c0,0-0.1,0.1-0.1,0.1l-0.8,1.6c0,0-0.1,0.2,0.1,0.3c0.2,0.1,0.4-0.1,0.4-0.1l0.6-1.2c0,0,0.1-0.1,0.1-0.1c0.1,0,0.1,0,0.1,0 l1.3,0c0,0,0.1,0,0.2-0.1c0.1-0.1,0.1-0.2,0.1-0.2l0.2-1.4c0,0,0-0.3-0.3-0.3C215.1,457.8,215.1,458,215.1,458z" class="white-fill"></path>
+                </g>
+            </g>
+            <g>
                 <path fill="#1C3F94" d="M214.7,448.6c1.9,0,3.4,1.5,3.4,3.4c0,1.9-1.5,3.4-3.4,3.4c-1.9,0-3.4-1.5-3.4-3.4 C211.3,450.1,212.9,448.6,214.7,448.6z" class="blue-fill"></path>
                 <path fill="#FFFFFF" d="M214.7,455.1c-1.7,0-3.1-1.4-3.1-3.1c0-1.7,1.4-3.1,3.1-3.1c1.7,0,3.1,1.4,3.1,3.1 C217.8,453.7,216.4,455.1,214.7,455.1L214.7,455.1z" class="white-fill"></path>
             </g>
@@ -6652,8 +6635,6 @@
         </g>
         <g id="IC_MGT">
             <rect x="622.8" y="409.7" transform="matrix(0.707 -0.7072 0.7072 0.707 -105.5091 565.9212)" fill="#FFFFFF" width="14.9" height="1.1" class="white-fill"></rect>
-        </g>
-        <g id="IC_MGT">
             <g>
                 <path fill="#1C3F94" d="M623.6,413.4c2,0,3.6,1.6,3.6,3.6c0,2-1.6,3.6-3.6,3.6c-2,0-3.6-1.6-3.6-3.6 C620,415,621.6,413.4,623.6,413.4z" class="blue-fill"></path>
             </g>
