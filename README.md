@@ -2,46 +2,6 @@
 
 # Tubular - _your Oyster history, on an SVG TfL Map_
 
-## Set up
-### UI
-- [ ] Change to mobile-first design
-- [ ] First visit Pop-up with explanation
-- [ ] Help pop-up with instructions on how to get CSV data
-
-#### Map
-- [x] SVG Map of TfL Underground
-	- [x] Lines
-	- [x] Stations
-	- [x] Scrollable/Draggable
-	- [ ] Hidden initially
-		- [ ] Black and white lines &/ faded out
-		- [ ] Stations faded out
-	- [ ] Do the TfL Go App thing where stations disappear as you zoom out
-
-#### Upload
-- [x] Upload button
-	- [x] Show/Hide upload box
-- [ ] Upload box with drag/drop area
-	- [ ] Cross close button
-	- [ ] Drag/Drop area with description
-	- [ ] Changes colour on success/failiure
-- [ ] Page UI Change for drag/drop file on page without warning
-	- [ ] Success/Failiure colour change
-
-### Frontend
-- [ ] On page load, retrieve get user data from localstorage
-	- [ ] Create if first visit
-- [ ] CSV File handling
-	- [x] CSV to array of unique stations
-	- [ ] Compare with user data, append new stations
-		- [ ] Save new user data
-	- [ ] Update map
-		- [ ] New stations are visible
-		- [ ] New segments between stations on line are visible
-
-### Backend
-- [x] Express to serve frontend
-
 ## Eventually/If ever/For someone else to do
 - [ ] Inital zoom-in is on user's location
 - [ ] User profiles

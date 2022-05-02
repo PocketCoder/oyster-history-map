@@ -125,6 +125,10 @@ aside main input {
   margin: 0 0 10px 0;
 }
 
+aside #stats label {
+  padding-right: 10px;
+}
+
 aside footer {
   height: 100px;
   margin: 0 0 75px 0;

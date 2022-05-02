@@ -79,20 +79,6 @@ $(document).ready(() => {
       });
     }, 1500);
 
-    $('#welcome').on('mouseenter mouseleave', () => {
-      if ($('#welcome').css('display') !== 'none') {
-        panzoom.setOptions({
-          'disablePan': true,
-          'disableZoom': true
-        });
-      } else {
-        panzoom.setOptions({
-          'disablePan': false,
-          'disableZoom': false
-        });
-      }
-    });
-
     try {
       if (!storageAvailable('localStorage')) {
         throw 'No localStorage available'
@@ -141,6 +127,17 @@ $(window).on('keyup', (e) => {
 
 $('#menu-icon').click(() => {
   $('aside').toggleClass('aside-out');
+  if ($('aside').css('left') !== '0') {
+    panzoom.setOptions({
+      'disablePan': true,
+      'disableZoom': true
+    });
+  } else {
+    panzoom.setOptions({
+      'disablePan': false,
+      'disableZoom': false
+    });
+  }
 });
 
 $('#stationInput').on('keyup', (e) => {
