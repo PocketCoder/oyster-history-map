@@ -1,4 +1,4 @@
-let panzoom;
+let panInst;
 
 function storageAvailable(type) {
   var storage;
@@ -52,20 +52,33 @@ $(document).ready(() => {
 
   $('#map').load('./assets/map.svg', () => {
     const elem = document.getElementById('status-map');
-
-    panzoom = Panzoom(elem, {
-      maxScale: 7,
+    panInst = panzoom(elem, {
+      filterKey: function(/* e, dx, dy, dz */) {
+        // don't let panInst handle this event:
+        return true;
+      },
+      maxZoom: 7,
+      initialX: 300,
+      initialY: 500,
+      initialZoom: 1.5,
       contain: true,
       animate: true,
+      bounds: true,
+      boundsPadding: 0.4,
       handleStartEvent: function (e) {
         e.preventDefault();
         e.stopPropagation();
       },
     });
-    parent.addEventListener('wheel', function (event) {
-      panzoom.zoomWithWheel(event);
+    panInst.on('pan', function(e) {
+      console.log(e);
     });
-
+    /*
+    parent.addEventListener('wheel', function (event) {
+      panInst.zoomWithWheel(event);
+    });
+    */
+    /*
     // Intro Zoom In
     setTimeout(() => {
       let zm = 1.5;
@@ -73,13 +86,13 @@ $(document).ready(() => {
         zm = $(window).width() / 100 + 15;
       }
 
-      panzoom.zoom(zm, {
+      panInst.zoom(zm, {
         animate: true,
         duration: 750
       });
-    }, 1500);
-
+    }, 1500);*/
     try {
+
       if (!storageAvailable('localStorage')) {
         throw 'No localStorage available'
       }
@@ -111,7 +124,7 @@ function centreOn(stn) {
   const diffX = wC - x;
   const diffY = hC - y;
   console.log(`x: ${x}, y: ${y}; hC: ${hC}, wC: ${wC}; diffX: ${diffX}, diffY: ${diffY}`);
-  panzoom.pan(diffX, diffY, {
+  panInst.pan(diffX, diffY, {
     relative: true
   });
 }*/
@@ -129,12 +142,12 @@ $('#menu-icon').click(() => {
   $('aside').toggleClass('aside-out');
   /*
   if ($('aside').css('left') !== '0') {
-    panzoom.setOptions({
+    panInst.setOptions({
       'disablePan': true,
       'disableZoom': true
     });
   } else {
-    panzoom.setOptions({
+    panInst.setOptions({
       'disablePan': false,
       'disableZoom': false
     });
