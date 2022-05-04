@@ -70,27 +70,7 @@ $(document).ready(() => {
         e.stopPropagation();
       },
     });
-    panInst.on('pan', function(e) {
-      console.log(e);
-    });
-    /*
-    parent.addEventListener('wheel', function (event) {
-      panInst.zoomWithWheel(event);
-    });
-    */
-    /*
-    // Intro Zoom In
-    setTimeout(() => {
-      let zm = 1.5;
-      if (isMobile) {
-        zm = $(window).width() / 100 + 15;
-      }
-
-      panInst.zoom(zm, {
-        animate: true,
-        duration: 750
-      });
-    }, 1500);*/
+    
     try {
 
       if (!storageAvailable('localStorage')) {
