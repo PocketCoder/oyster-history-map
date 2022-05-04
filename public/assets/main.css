@@ -46,7 +46,7 @@ input {
   font-size: 1.3em;
 }
 
-.dragOver {}
+.dragOver {/*TODO: Body style change on drag over and drop.*/}
 
 i.menu {
   content: url("icons/menu.svg");
