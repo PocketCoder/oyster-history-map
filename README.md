@@ -2,7 +2,7 @@
 
 # Tubular - _your history on TfL, visualised_
 
-> **Contents:** [What works](#what-works-so-far) &bull; [Logic Explainer](#explainer) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Contribute](#how-to-contribute) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
+> **Contents:** [What works](#what-works-so-far) &bull; [Logic Explainer](#linesjsonpublicassetslinesjson-and-scriptjspublicassetslinesjson-logic-explained) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Contribute](#how-to-contribute) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
 I made this project becaue I wanted to see how much of the TfL network I've been on and because ticking off stations on a physcial map was too easy.
 
@@ -18,7 +18,7 @@ _I am open to new ideas for names._
 - You can see a progress bar for how many stations you've visited.
 - Bus data is also saved in case of future use.
 
-## [lines.json](public/assets/lines.json) and [script.js](public/assets/lines.json) logic explained {#explainer}
+## [lines.json](public/assets/lines.json) and [script.js](public/assets/lines.json) logic explained
 
 TODO:
 
@@ -98,13 +98,11 @@ When making a feature request, include these details:
 		- Stations at either end have to be visited
 		- 11 lines + overground + trams
 	- [ ] Visit every station on a line
-		- [ ] Progress bar is in the colour of the line (of course)
 	- [ ] Use every line
 	- [ ] Use every branch of the Northern line?
-		- Or another fun one that is one of the idiosyncracies of TfL
-	- [ ] Visit every zone
+		- Or another fun idiosyncracy of TfL
 	- [ ] Use every overground line
-	- [ ] Gotten the first/last train of the day of that line/on TfL
+	- [ ] Have gotten the first/last train of the day of that line/on TfL
 - [ ] Map of Riverboat services
 - Leaderboards?
 	- Would require authentication of CSVs
