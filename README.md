@@ -2,7 +2,7 @@
 
 # Tubular - _your history on TfL, visualised_
 
-> **Contents:** [What works](#what-works-so-far) &bull; [Logic Explainer](#linesjsonpublicassetslinesjson-and-scriptjspublicassetslinesjson-logic-explained) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Contribute](#how-to-contribute) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
+> **Contents:** [What works](#what-works-so-far) &bull; [Logic Explainer](#linesjson-and-scriptjs-logic-explained) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Contribute](#how-to-contribute) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
 I made this project becaue I wanted to see how much of the TfL network I've been on and because ticking off stations on a physcial map was too easy.
 
