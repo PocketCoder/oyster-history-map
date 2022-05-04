@@ -197,7 +197,7 @@ aside #stats progress::-webkit-progress-value {
 }
 
 aside #stats progress[aria-valuenow]:before {
-	height: 7px;
+  height: 7px;
 }
 
 /* Bakerloo */
@@ -214,7 +214,7 @@ aside #stats progress#bakerloo::-webkit-progress-value {
 }
 
 aside #stats progress#bakerloo[aria-valuenow]:before {
-	background: #b36305;
+  background: #B36305;
 }
 
 /* Central */
@@ -231,7 +231,7 @@ aside #stats progress#central::-webkit-progress-value {
 }
 
 aside #stats progress#central[aria-valuenow]:before {
-	background: #e32017;
+  background: #E32017;
 }
 
 /* Circle */
@@ -248,7 +248,7 @@ aside #stats progress#circle::-webkit-progress-value {
 }
 
 aside #stats progress#circle[aria-valuenow]:before {
-	background: #ffd300;
+  background: #FFD300;
 }
 
 /* District */
@@ -265,7 +265,7 @@ aside #stats progress#district::-webkit-progress-value {
 }
 
 aside #stats progress#district[aria-valuenow]:before {
-	background: #00782a;
+  background: #00782A;
 }
 
 /* DLR */
@@ -282,7 +282,7 @@ aside #stats progress#dlr::-webkit-progress-value {
 }
 
 aside #stats progress#dlr[aria-valuenow]:before {
-	background: #00a4a7;
+  background: #00A4A7;
 }
 
 /* Elizabeth */
@@ -299,7 +299,7 @@ aside #stats progress#elizabeth::-webkit-progress-value {
 }
 
 aside #stats progress#elizabeth[aria-valuenow]:before {
-	background: #7156a5;
+  background: #7156A5;
 }
 
 /* Hammersmith & City */
@@ -316,7 +316,7 @@ aside #stats progress#hammersmith-city::-webkit-progress-value {
 }
 
 aside #stats progress#hammersmith-city[aria-valuenow]:before {
-	background: #f3a9bb;
+  background: #F3A9BB;
 }
 
 /* Jubilee */
@@ -333,7 +333,7 @@ aside #stats progress#jubilee::-webkit-progress-value {
 }
 
 aside #stats progress#jubilee[aria-valuenow]:before {
-	background: #a0a5a9;
+  background: #A0A5A9;
 }
 
 /* Metropolitan */
@@ -350,7 +350,7 @@ aside #stats progress#metropolitan::-webkit-progress-value {
 }
 
 aside #stats progress#metropolitan[aria-valuenow]:before {
-	background: #9b0056;
+  background: #9B0056;
 }
 
 /* Northern */
@@ -367,7 +367,7 @@ aside #stats progress#northern::-webkit-progress-value {
 }
 
 aside #stats progress#northern[aria-valuenow]:before {
-	background: #000000;
+  background: #000000;
 }
 
 /* Overground */
@@ -384,7 +384,7 @@ aside #stats progress#overground::-webkit-progress-value {
 }
 
 aside #stats progress#overground[aria-valuenow]:before {
-	background: #ee7c0e;
+  background: #EE7C0E;
 }
 
 /* Piccadilly */
@@ -401,7 +401,7 @@ aside #stats progress#piccadilly::-webkit-progress-value {
 }
 
 aside #stats progress#piccadilly[aria-valuenow]:before {
-	background: #003688;
+  background: #003688;
 }
 
 /* Trams */
@@ -418,7 +418,7 @@ aside #stats progress#trams::-webkit-progress-value {
 }
 
 aside #stats progress#trams[aria-valuenow]:before {
-	background: #84b817;
+  background: #84B817;
 }
 
 /* Victoria */
@@ -435,7 +435,7 @@ aside #stats progress#victoria::-webkit-progress-value {
 }
 
 aside #stats progress#victoria[aria-valuenow]:before {
-	background: #0098d4;
+  background: #0098D4;
 }
 
 /* Waterloo & City */
