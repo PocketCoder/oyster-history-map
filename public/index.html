@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
         <title>Tubular</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+        <meta name="description" content="Your history on TfL, visualised">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="white">
+
         <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-touch-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-touch-icon-72x72.png">
@@ -23,6 +26,22 @@
         <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
 
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://tubular.110399.xyz">
+        <meta property="og:title" content="Tubular">
+        <meta property="og:image" content="https://tubular.110399.xyz/assets/logo.png">
+        <meta property="og:description" content="Your history on TfL, visualised">
+        <meta property="og:site_name" content="Tubular">
+        <meta property="og:locale" content="en_GB">
+        <meta name="twitter:card" content="summary">
+        <!--<meta name="twitter:site" content="@site_account">-->
+        <meta name="twitter:creator" content="@lactaselacking">
+        <meta name="twitter:url" content="https://tubular.110399.xyz">
+        <meta name="twitter:title" content="Tubular">
+        <meta name="twitter:description" content="Your history on TfL, visualised">
+        <meta name="twitter:image" content="https://tubular.110399.xyz/assets/logo.png">
+
+        <link rel="stylesheet" href="assets/normalize.css" type="text/css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.01.min.css">
         <link rel="stylesheet" href="assets/main.css" type="text/css" />
         <link rel="stylesheet" href="assets/map.css" type="text/css" />
@@ -45,13 +64,13 @@
         </script>
     </head>
     <body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
-        <section id="map"></section>
+        <div id="map"></div>
         <aside>
             <header>
-                <img src="assets/logo.svg" />
+                <img src="assets/logo.svg" alt="Logo"/>
                 <h1>Tubular</h1>
             </header>
-            <main>
+            <div>
                 <div id="welcome">
                     <h4>Welcome!</h4>
                     <br />
@@ -59,12 +78,12 @@
                     <br />
                     <p>TfL let you export the last 8 weeks of journey data from their <a href="https://oyster.tfl.gov.uk" target="_blank">website.</a> Simply log in and click on the button to export your jouney history as a <i>CSV</i> file. If you don't have an account, but have an Oyster/contactless card you use for journeys, just sign up and follow the steps to link them.</p>
                     <br />
-                    <p id="nb">N.B.: Syncing between this device and others is currently unavailable. All data is stored in the browser's <code>localStorage</code>. Support for accounts and cross-device syncing will come in the near future.</p>
+                    <p class="nb">N.B.: Syncing between this device and others is currently unavailable. All data is stored in the browser's <code>localStorage</code>. Support for accounts and cross-device syncing will come in the near future.</p>
                 </div>
                 <div id="inputs">
                     <h4>Add a station</h4>
                     <br />
-                    <input id="stationInput" type="text" placeholder="/ to focus" dir="ltr" spellcheck=true autocorrect="true" autocomplete="true" autocapitalize="true" />
+                    <input id="stationInput" type="text" placeholder="/ to focus" dir="ltr" spellcheck=true />
                     <input id="fileSelect" type="file" accept=".csv" style="font-size: unset"/>
                 </div>
                 <div id="stats">
@@ -85,12 +104,12 @@
                     <progress id="victoria" max="100" value="0"></progress>
                 </div>
                 <footer>
-                    <p id="nb">See something wrong? Help me fix it by reporting an issue on GitHub:
+                    <p class="nb">See something wrong? Help me fix it by reporting an issue on GitHub:
                         <br />
                         <a class="github-button" href="https://github.com/PocketCoder/tubular/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PocketCoder/tubular on GitHub">Issue</a>
                     </p>
                 </footer>
-            </main>
+            </div>
         </aside>
         <i class="menu" id="menu-icon"></i>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
