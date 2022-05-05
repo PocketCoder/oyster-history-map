@@ -1,6 +1,9 @@
 @font-face {
 	font-family: 'LondonTube';
-	src: url('Londontube.ttf');
+	src: url('fonts/LondonTube.eot');
+	src: url('fonts/LondonTube.eot?#iefix') format('embedded-opentype'), url('fonts/LondonTube.woff2') format('woff2'),
+		url('fonts/LondonTube.woff') format('woff'), url('fonts/LondonTube.ttf') format('truetype'),
+		url('fonts/LondonTube.svg#London Tube') format('svg');
 }
 
 #status-map * {
@@ -24,6 +27,7 @@ svg > g > g {
 }
 
 .visible,
-.visible * {
+.visible *,
+[id*="white_line"] {
 	opacity: 1 !important;
 }
