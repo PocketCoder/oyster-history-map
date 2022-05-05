@@ -1,14 +1,14 @@
 @font-face {
-  font-family: "LondonTube";
-  src: url("Londontube.ttf");
+	font-family: 'LondonTube';
+	src: url('Londontube.ttf');
 }
 
 * {
-  font-family: "LondonTube", Helvetica, serif;
-  font-size: 4.5px !important;
+	font-family: 'LondonTube', Helvetica, serif;
+	font-size: 4.5px !important;
 }
 
 .line:not(#lul-bakerloo) *,
 .station {
-  opacity: 1;
+	opacity: 1;
 }

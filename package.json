@@ -1,15 +1,18 @@
 {
-  "name": "oyster-history",
-  "version": "0.0.0",
-  "description": "Your Oyster history, on an SVG TfL Map",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "author": "Jake Williams",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.3"
-  }
+	"name": "oyster-history",
+	"version": "0.1.0",
+	"description": "Your Oyster history, on an SVG TfL Map",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"author": "Jake Williams",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.3"
+	},
+	"devDependencies": {
+		"prettier": "2.6.2"
+	}
 }
