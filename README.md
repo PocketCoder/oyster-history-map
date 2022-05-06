@@ -2,15 +2,15 @@
 
 # Tubular - _your history on TfL, visualised_
 
-> **Contents:** [What works](#what-works-so-far) &bull; [Logic Explainer](#linesjson-and-scriptjs-logic-explained) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Contribute](#how-to-contribute) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
+> The project is currently live at [tubular.110399.xyz](https://tubular.110399.xyz).
 
 ![GitHub](https://img.shields.io/github/license/PocketCoder/tubular) ![GitHub package.json version](https://img.shields.io/github/package-json/v/PocketCoder/tubular) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/PocketCoder/tubular) ![GitHub last commit](https://img.shields.io/github/last-commit/PocketCoder/tubular) ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/PocketCoder/tubular) ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftubular.110399.xyz)
 
 ---
 
-I made this project becaue I wanted to see how much of the TfL network I've been on and because ticking off stations on a physcial map was too easy.
+> **Contents:** [What works](#what-works-so-far) &bull; [Logic Explainer](#linesjson-and-scriptjs-logic-explained) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Contribute](#how-to-contribute) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
-The project is currently live at [tubular.110399.xyz](https://tubular.110399.xyz).
+I made this project becaue I wanted to see how much of the TfL network I've been on...and because ticking off stations on a physcial map was too easy.
 
 _I am open to new ideas for names._
 
@@ -38,10 +38,11 @@ _(Some of the three-letter station codes were non-existent so I made them up. I 
 
 ## Next steps
 
+- [ ] [Front-end checklist](https://github.com/thedaviddias/Front-End-Checklist)
 - [ ] UI Polish
   - [ ] Mobile-friendly UI (WIP)
   - [ ] Make it prettier
-  - [ ] Fix font
+  - [x] Fix font
 - [ ] Login and User Profiles
   - [ ] Data saved in database, not LS; therefore syncing across devices
 - [ ] Stats
@@ -51,7 +52,7 @@ _(Some of the three-letter station codes were non-existent so I made them up. I 
   - [ ] % label next to progress bar
   - [ ] Line label next to progress bar
 - [ ] Export data as CSV or PNG Map.
-- [ ] Move development to TypeScript.
+- [x] Move development to TypeScript.
 
 [More To Dos](#things-i-may-or-may-not-eventually-add)
 
@@ -59,18 +60,19 @@ _(Some of the three-letter station codes were non-existent so I made them up. I 
 
 ### Reporting Bugs
 
-I made this on my own and I only do programming as a hobby, so there's bound to be bugs. The number of diffrent variations of visited stations is vast so there's no way I can test everything. I'm _pretty_ sure the logic JSONs are sound, but allow me some leeway.
+I made this on my own and I only do programming as a hobby, so there's bound to be bugs. The number of diffrent variations of visited stations is vast so there's no way I can test everything. I'm _pretty_ sure the logic us sound, but allow me some leeway.
 
 Please make sure that your [issue](https://github.com/PocketCoder/tubular/issues) hasn't already been brought up. If it has, and your case differs to it, then simply reply with your unique steps to reproduce the issue.
 
 When adding an issue, please include:
 
-1. A **clear and descriptive title**,
-2. a detailed desciption of the issue,
-3. tour `localStorage` data,
+1. A clear and descriptive title,
+2. a detailed desciption of the issue
+  - Include steps leading up to the issue, and
+  - What stations you added in what order, if applicable,
+3. your `localStorage` data,
 4. any console error messages,
-5. the steps take that lead up to the issue,
-6. and what you expected to happen and why.
+5. and what you expected to happen and why.
 
 This way someone can recreate the environment and the bug locally.
 
