@@ -1,6 +1,5 @@
-let panInst;
-const mapEl = document.getElementById('map');
-
+var panInst;
+var mapEl = document.getElementById('map');
 function storageAvailable(type) {
 	var storage;
 	try {
@@ -27,7 +26,6 @@ function storageAvailable(type) {
 		);
 	}
 }
-
 function loadMapData() {
 	try {
 		if (!storageAvailable('localStorage')) {
@@ -43,18 +41,20 @@ function loadMapData() {
 		}
 	}
 }
-
 function loadMap() {
 	fetch('./assets/map.svg')
-		.then((res) => res.text())
-		.then((data) => {
+		.then(function (res) {
+			return res.text();
+		})
+		.then(function (data) {
 			mapEl.innerHTML = data;
-			const elem = document.getElementById('status-map');
-			setTimeout(() => {
+			var elem = document.getElementById('status-map');
+			setTimeout(function () {
 				elem.style.opacity = '1';
 			}, 500);
+			// @ts-ignore
 			panInst = panzoom(elem, {
-				filterKey: () => {
+				filterKey: function () {
 					return true;
 				},
 				maxZoom: 4,
@@ -65,20 +65,18 @@ function loadMap() {
 				bounds: true,
 				boundsPadding: 0.4,
 			});
-			setTimeout(() => {
+			setTimeout(function () {
 				loadMapData();
 			}, 1500);
 		});
 }
-
-document.onreadystatechange = (e) => {
+document.onreadystatechange = function (e) {
 	if (document.readyState === 'complete') {
 		loadMap();
 	}
 };
-
-window.onload = () => {
-	let isMobile = false;
+window.onload = function () {
+	var isMobile = false;
 	if (
 		/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(
 			navigator.userAgent
@@ -89,12 +87,10 @@ window.onload = () => {
 	) {
 		isMobile = true;
 	}
-
 	if (isMobile) {
-		document.getElementsByTagName('body').classList.add = 'mobile';
+		document.querySelector('body').classList.add('mobile');
 	}
 };
-
 /*
 function centreOn(stn) {
   let x, y;
@@ -113,8 +109,7 @@ function centreOn(stn) {
     relative: true
   });
 }*/
-
-window.onkeyup = (e) => {
+window.onkeyup = function (e) {
 	if (e.key === '/' || e.keyCode === 191) {
 		if (!$('aside').hasClass('aside-out')) {
 			$('aside').addClass('aside-out');
@@ -122,27 +117,24 @@ window.onkeyup = (e) => {
 		$('#stationInput').focus();
 	}
 };
-
-$('#menu-icon').click(() => {
+$('#menu-icon').on('click', function () {
 	$('aside').toggleClass('aside-out');
 });
-
-$('#stationInput').on('keyup', (e) => {
+$('#stationInput').on('keyup', function (e) {
 	if (e.key === 'Enter' || e.keyCode === 13) {
-		if (newStation($('#stationInput').val())) {
+		if (newStation($('#stationInput').val().toString())) {
 			$('#stationInput').addClass('confirm-animate');
 		}
 	}
 });
-
 function newStation(input) {
 	addStnsToMap(input);
 	usrData('save', 'stations', input);
-	updateLineSegs(input);
+	updateLineSegs();
 	return true;
 }
-
-const autoCompleteJS = new autoComplete({
+// @ts-ignore
+var autoCompleteJS = new autoComplete({
 	selector: '#stationInput',
 	wrapper: true,
 	threshold: 2,
@@ -617,11 +609,11 @@ const autoCompleteJS = new autoComplete({
 		id: 'resultList',
 		maxResults: 3,
 		tabSelect: true,
-		element: (list, data) => {
+		element: function (list, data) {
 			if (!data.results.length) {
-				const message = document.createElement('div');
+				var message = document.createElement('div');
 				message.setAttribute('class', 'no_result');
-				message.innerHTML = `<span>Found No Results for "${data.query}"</span>`;
+				message.innerHTML = '<span>Found No Results for "'.concat(data.query, '"</span>');
 				list.prepend(message);
 			}
 		},
@@ -629,18 +621,18 @@ const autoCompleteJS = new autoComplete({
 	},
 	events: {
 		input: {
-			selection: (event) => {
-				const selection = event.detail.selection.value;
+			selection: function (event) {
+				var selection = event.detail.selection.value;
 				autoCompleteJS.input.value = selection;
 			},
 		},
 	},
 });
-
 document.querySelector('#stationInput').addEventListener('selection', function (event) {
+	// @ts-ignore
 	if (newStation(event.detail.selection.value)) {
 		$('#stationInput').addClass('confirm-animate');
-		setTimeout(() => {
+		setTimeout(function () {
 			$('#stationInput').removeClass('confirm-animate').val('');
 		}, 2250);
 	}
