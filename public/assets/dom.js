@@ -27,7 +27,53 @@ function storageAvailable(type) {
 	}
 }
 
-$(document).ready(() => {
+function loadMapData() {
+	try {
+		if (!storageAvailable('localStorage')) {
+			throw 'No localStorage available';
+		}
+	} catch (e) {
+		alert("Sorry, local storage isn't available in your browser. That means we can't save the data you upload.");
+	} finally {
+		if (localStorage.getItem('stations') !== null) {
+			$('#welcome').css('display', 'none');
+			addStnsToMap(usrData('get', 'stations'));
+			updateLineSegs();
+		}
+	}
+}
+
+function loadMap() {
+	$('#map').load('./assets/map.svg', () => {
+		const elem = document.getElementById('status-map');
+		setTimeout(() => {
+			elem.style.opacity = '1';
+		}, 500);
+		panInst = panzoom(elem, {
+			filterKey: () => {
+				return true;
+			},
+			maxZoom: 7,
+			initialX: 300,
+			initialY: 500,
+			initialZoom: 1.5,
+			contain: true,
+			bounds: true,
+			boundsPadding: 0.4,
+		});
+		setTimeout(() => {
+			loadMapData();
+		}, 1500);
+	});
+}
+
+document.onreadystatechange = (e) => {
+	if (document.readyState === 'complete') {
+		loadMap();
+	}
+};
+
+window.onload = () => {
 	let isMobile = false;
 	if (
 		/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(
@@ -43,56 +89,7 @@ $(document).ready(() => {
 	if (isMobile) {
 		$('body').addClass('mobile');
 	}
-
-	/*
-  const upH = $('#upload').height();
-  const upW = $('#upload').width();
-  const upHeadH = $('#upload--header').height();
-  const upHeadW = $('#upload--header').width();
-  console.log(`${upH}, ${upW}; ${upHeadH}, ${upHeadW}`);
-  const bottom = -upH + upHeadH;
-  const left = -upW + upHeadW;
-  $('#upload').css({
-    bottom: bottom,
-    left: left
-  });*/
-
-	$('#map').load('./assets/map.svg', () => {
-		const elem = document.getElementById('status-map');
-		panInst = panzoom(elem, {
-			filterKey: function (/* e, dx, dy, dz */) {
-				// don't let panInst handle this event:
-				return true;
-			},
-			maxZoom: 7,
-			initialX: 300,
-			initialY: 500,
-			initialZoom: 1.5,
-			contain: true,
-			animate: true,
-			bounds: true,
-			boundsPadding: 0.4,
-			handleStartEvent: function (e) {
-				e.preventDefault();
-				e.stopPropagation();
-			},
-		});
-
-		try {
-			if (!storageAvailable('localStorage')) {
-				throw 'No localStorage available';
-			}
-		} catch (e) {
-			alert("Sorry, local storage isn't available in your browser. That means we can't save the data you upload.");
-		} finally {
-			if (localStorage.getItem('stations') !== null) {
-				$('#welcome').css('display', 'none');
-				addStnsToMap(usrData('get', 'stations'));
-				updateLineSegs();
-			}
-		}
-	});
-});
+};
 
 /*
 function centreOn(stn) {

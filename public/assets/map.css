@@ -6,6 +6,11 @@
 		url('fonts/LondonTube.svg#London Tube') format('svg');
 }
 
+#status-map {
+	opacity: 0;
+	transition: opacity 1s ease;
+}
+
 #status-map * {
 	font-family: 'LondonTube', Helvetica, serif;
 	font-size: 4.5px;
@@ -24,10 +29,11 @@ svg > g > polyline,
 svg > g > circle,
 svg > g > g {
 	opacity: 0.2;
+	transition: opacity 1s ease;
 }
 
 .visible,
 .visible *,
-*[id*="white_line"] {
+*[id*='white_line'] {
 	opacity: 1 !important;
 }
