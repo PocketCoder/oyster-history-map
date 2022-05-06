@@ -1,11 +1,12 @@
 {
-	"name": "oyster-history",
+	"name": "tubular",
 	"version": "0.1.0",
-	"description": "Your Oyster history, on an SVG TfL Map",
+	"description": "Your history on TfL, visualised",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node index.js"
+		"start": "node index.js",
+		"prepare": "husky install"
 	},
 	"author": "Jake Williams",
 	"license": "ISC",
@@ -13,6 +14,11 @@
 		"express": "^4.17.3"
 	},
 	"devDependencies": {
+		"husky": "^7.0.4",
+		"lint-staged": "^12.4.1",
 		"prettier": "2.6.2"
+	},
+	"lint-staged": {
+		"*.{js,css,md}": "prettier --write"
 	}
 }
