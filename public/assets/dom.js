@@ -53,7 +53,7 @@ function loadMap() {
 			filterKey: () => {
 				return true;
 			},
-			maxZoom: 7,
+			maxZoom: 4,
 			initialX: 300,
 			initialY: 500,
 			initialZoom: 1.5,
