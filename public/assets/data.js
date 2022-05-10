@@ -1,4 +1,5 @@
-var lines = {
+'use strict';
+const lines = {
 	bakerloo: {
 		branch: false,
 		line: 'bakerloo',
@@ -658,7 +659,7 @@ var lines = {
 		],
 	},
 };
-var stations = {
+const stations = {
 	'Abbey Road': 'ABR',
 	'Acton Central': 'ACC',
 	'Acton Mainline': 'AML',

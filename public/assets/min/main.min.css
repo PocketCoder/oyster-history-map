@@ -5,14 +5,10 @@
 		url('fonts/LondonTube.woff') format('woff'), url('fonts/LondonTube.ttf') format('truetype'),
 		url('fonts/LondonTube.svg#London Tube') format('svg');
 }
-
-body,
-body * {
-	display: unset !important;
+* {
 	margin: 0;
 	padding: 0;
 }
-
 html,
 body {
 	width: 100%;
@@ -22,7 +18,6 @@ body {
 	font-family: 'LondonTube', Arial, Helvetica, sans-serif;
 	overflow: hidden;
 }
-
 #map {
 	position: absolute;
 	top: 0;
@@ -33,25 +28,18 @@ body {
 	max-height: 100vh;
 	overflow: hidden;
 }
-
 i.up {
 	content: url('icons/upload.svg');
 	-webkit-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
 }
-
 input {
 	font-family: 'LondonTube', Arial, Helvetica, sans-serif;
 	width: 80%;
 	height: 30px;
 	font-size: 1.3em;
 }
-
-.dragOver {
-	/* TODO: */
-}
-
 i.menu {
 	content: url('icons/menu.svg');
 	cursor: pointer;
@@ -59,7 +47,6 @@ i.menu {
 	-o-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
 }
-
 #menu-icon {
 	position: absolute;
 	display: inline-block;
@@ -67,15 +54,13 @@ i.menu {
 	left: 20px;
 	background-color: white;
 	padding: 10px;
-	-webkit-box-shadow: -6px 4px 12px 0px rgba(50, 50, 50, 0.75);
-	box-shadow: -6px 4px 12px 0px rgba(50, 50, 50, 0.75);
+	-webkit-box-shadow: -6px 4px 12px 0 rgba(50, 50, 50, 0.75);
+	box-shadow: -6px 4px 12px 0 rgba(50, 50, 50, 0.75);
 	border-radius: 50px;
 }
-
 .aside-out {
 	left: 0;
 }
-
 aside {
 	position: absolute;
 	left: -330px;
@@ -87,11 +72,10 @@ aside {
 	-webkit-transition: all 0.5s ease-in-out;
 	-o-transition: all 0.5s ease-in-out;
 	transition: all 0.5s ease-in-out;
-	-webkit-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.75);
-	box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.75);
+	-webkit-box-shadow: 3px 0 12px 0 rgba(50, 50, 50, 0.75);
+	box-shadow: 3px 0 12px 0 rgba(50, 50, 50, 0.75);
 	overflow-y: scroll;
 }
-
 aside header {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -106,27 +90,21 @@ aside header {
 	align-items: center;
 	border-bottom: 1px solid black;
 }
-
 aside header img {
 	height: 50px;
 }
-
 aside div {
 	margin: 15px 0 0 0;
 }
-
 aside div div {
 	margin: 0 0 10px 0;
 }
-
 aside div #welcome p {
 	font-size: 16px;
 }
-
 aside div #welcome p.nb {
 	font-size: 14px;
 }
-
 aside div #stationInput {
 	width: 100%;
 	background-color: #f1f3f4;
@@ -134,27 +112,22 @@ aside div #stationInput {
 	-o-transition: all 0.25s ease-in-out;
 	transition: all 0.25s ease-in-out;
 }
-
 aside div #stationInput:focus {
 	background-color: #f3a9bb;
 	color: black;
 }
-
 aside div input {
 	margin: 0 0 10px 0;
 }
-
 aside #stats label {
 	padding-right: 10px;
 }
-
 aside footer {
 	height: 100px;
 	margin: 0 0 75px 0;
 	font-size: 14px;
 	text-align: center;
 }
-
 .confirm-animate {
 	-webkit-animation-name: confirmation;
 	animation-name: confirmation;
@@ -163,305 +136,217 @@ aside footer {
 	-webkit-animation-timing-function: ease-in-out;
 	animation-timing-function: ease-in-out;
 }
-
 @keyframes confirmation {
 	0% {
 		background-color: #f1f3f4;
 	}
-
 	50% {
 		background-color: #95cdba;
 	}
-
 	100% {
 		background-color: #f1f3f4;
 	}
 }
-
 @-webkit-keyframes confirmation {
 	0% {
 		background-color: #f1f3f4;
 	}
-
 	50% {
 		background-color: #95cdba;
 	}
-
 	100% {
 		background-color: #f1f3f4;
 	}
 }
-
-/* Progress Bars */
-
-/* All */
 aside #stats progress {
 	height: 7px;
 }
-
 aside #stats progress::-moz-progress-bar {
 	height: 7px;
 }
-
 aside #stats progress::-webkit-progress-value {
 	height: 7px;
 }
-
 aside #stats progress[aria-valuenow]:before {
 	height: 7px;
 }
-
-/* Bakerloo */
 aside #stats progress#bakerloo {
 	background: #b36305;
 }
-
 aside #stats progress#bakerloo::-moz-progress-bar {
 	background: #b36305;
 }
-
 aside #stats progress#bakerloo::-webkit-progress-value {
 	background: #b36305;
 }
-
 aside #stats progress#bakerloo[aria-valuenow]:before {
 	background: #b36305;
 }
-
-/* Central */
 aside #stats progress#central {
 	background: #e32017;
 }
-
 aside #stats progress#central::-moz-progress-bar {
 	background: #e32017;
 }
-
 aside #stats progress#central::-webkit-progress-value {
 	background: #e32017;
 }
-
 aside #stats progress#central[aria-valuenow]:before {
 	background: #e32017;
 }
-
-/* Circle */
 aside #stats progress#circle {
 	background: #ffd300;
 }
-
 aside #stats progress#circle::-moz-progress-bar {
 	background: #ffd300;
 }
-
 aside #stats progress#circle::-webkit-progress-value {
 	background: #ffd300;
 }
-
 aside #stats progress#circle[aria-valuenow]:before {
 	background: #ffd300;
 }
-
-/* District */
 aside #stats progress#district {
 	background: #00782a;
 }
-
 aside #stats progress#district::-moz-progress-bar {
 	background: #00782a;
 }
-
 aside #stats progress#district::-webkit-progress-value {
 	background: #00782a;
 }
-
 aside #stats progress#district[aria-valuenow]:before {
 	background: #00782a;
 }
-
-/* DLR */
 aside #stats progress#dlr {
 	background: #00a4a7;
 }
-
 aside #stats progress#dlr::-moz-progress-bar {
 	background: #00a4a7;
 }
-
 aside #stats progress#dlr::-webkit-progress-value {
 	background: #00a4a7;
 }
-
 aside #stats progress#dlr[aria-valuenow]:before {
 	background: #00a4a7;
 }
-
-/* Elizabeth */
 aside #stats progress#elizabeth {
 	background: #7156a5;
 }
-
 aside #stats progress#elizabeth::-moz-progress-bar {
 	background: #7156a5;
 }
-
 aside #stats progress#elizabeth::-webkit-progress-value {
 	background: #7156a5;
 }
-
 aside #stats progress#elizabeth[aria-valuenow]:before {
 	background: #7156a5;
 }
-
-/* Hammersmith & City */
 aside #stats progress#hammersmith-city {
 	background: #f3a9bb;
 }
-
 aside #stats progress#hammersmith-city::-moz-progress-bar {
 	background: #f3a9bb;
 }
-
 aside #stats progress#hammersmith-city::-webkit-progress-value {
 	background: #f3a9bb;
 }
-
 aside #stats progress#hammersmith-city[aria-valuenow]:before {
 	background: #f3a9bb;
 }
-
-/* Jubilee */
 aside #stats progress#jubilee {
 	background: #a0a5a9;
 }
-
 aside #stats progress#jubilee::-moz-progress-bar {
 	background: #a0a5a9;
 }
-
 aside #stats progress#jubilee::-webkit-progress-value {
 	background: #a0a5a9;
 }
-
 aside #stats progress#jubilee[aria-valuenow]:before {
 	background: #a0a5a9;
 }
-
-/* Metropolitan */
 aside #stats progress#metropolitan {
 	background: #9b0056;
 }
-
 aside #stats progress#metropolitan::-moz-progress-bar {
 	background: #9b0056;
 }
-
 aside #stats progress#metropolitan::-webkit-progress-value {
 	background: #9b0056;
 }
-
 aside #stats progress#metropolitan[aria-valuenow]:before {
 	background: #9b0056;
 }
-
-/* Northern */
 aside #stats progress#northern {
-	background: #000000;
+	background: #000;
 }
-
 aside #stats progress#northern::-moz-progress-bar {
-	background: #000000;
+	background: #000;
 }
-
 aside #stats progress#northern::-webkit-progress-value {
-	background: #000000;
+	background: #000;
 }
-
 aside #stats progress#northern[aria-valuenow]:before {
-	background: #000000;
+	background: #000;
 }
-
-/* Overground */
 aside #stats progress#overground {
 	background: #ee7c0e;
 }
-
 aside #stats progress#overground::-moz-progress-bar {
 	background: #ee7c0e;
 }
-
 aside #stats progress#overground::-webkit-progress-value {
 	background: #ee7c0e;
 }
-
 aside #stats progress#overground[aria-valuenow]:before {
 	background: #ee7c0e;
 }
-
-/* Piccadilly */
 aside #stats progress#piccadilly {
 	background: #003688;
 }
-
 aside #stats progress#piccadilly::-moz-progress-bar {
 	background: #003688;
 }
-
 aside #stats progress#piccadilly::-webkit-progress-value {
 	background: #003688;
 }
-
 aside #stats progress#piccadilly[aria-valuenow]:before {
 	background: #003688;
 }
-
-/* Trams */
 aside #stats progress#trams {
 	background: #84b817;
 }
-
 aside #stats progress#trams::-moz-progress-bar {
 	background: #84b817;
 }
-
 aside #stats progress#trams::-webkit-progress-value {
 	background: #84b817;
 }
-
 aside #stats progress#trams[aria-valuenow]:before {
 	background: #84b817;
 }
-
-/* Victoria */
 aside #stats progress#victoria {
 	background: #0098d4;
 }
-
 aside #stats progress#victoria::-moz-progress-bar {
 	background: #0098d4;
 }
-
 aside #stats progress#victoria::-webkit-progress-value {
 	background: #0098d4;
 }
-
 aside #stats progress#victoria[aria-valuenow]:before {
 	background: #0098d4;
 }
-
-/* Waterloo & City */
 aside #stats progress#waterloo-city {
 	background: #95cdba;
 }
-
 aside #stats progress#waterloo-city::-moz-progress-bar {
 	background: #95cdba;
 }
-
 aside #stats progress#waterloo-city::-webkit-progress-value {
 	background: #95cdba;
 }
-
 aside #stats progress#waterloo-city[aria-valuenow]:before {
 	background: #95cdba;
 }

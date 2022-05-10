@@ -1,19 +1,5 @@
-var __spreadArray =
-	(this && this.__spreadArray) ||
-	function (to, from, pack) {
-		if (pack || arguments.length === 2)
-			for (var i = 0, l = from.length, ar; i < l; i++) {
-				if (ar || !(i in from)) {
-					if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-					ar[i] = from[i];
-				}
-			}
-		return to.concat(ar || Array.prototype.slice.call(from));
-	};
-function usrData(func, type, data) {
-	if (data === void 0) {
-		data = [];
-	}
+'use strict';
+function usrData(func, type, data = []) {
 	if (func === 'get') {
 		if (localStorage.getItem(type) != null && localStorage.getItem(type) != '[]') {
 			return JSON.parse(localStorage.getItem(type));
@@ -22,16 +8,16 @@ function usrData(func, type, data) {
 			return [];
 		}
 	} else if (func === 'save') {
-		var current_1 = JSON.parse(localStorage.getItem(type)) ? JSON.parse(localStorage.getItem(type)) : [];
-		var newData = [];
+		let current = JSON.parse(localStorage.getItem(type)) ? JSON.parse(localStorage.getItem(type)) : [];
+		let newData = [];
 		if (typeof data === 'string') {
 			newData.push(data);
 		} else {
-			newData.push.apply(newData, data);
+			newData.push(...data);
 		}
-		current_1.push.apply(current_1, newData);
-		var unique = current_1.filter(function (c, i) {
-			return current_1.indexOf(c) === i;
+		current.push(...newData);
+		let unique = current.filter((c, i) => {
+			return current.indexOf(c) === i;
 		});
 		localStorage.setItem(type, JSON.stringify(unique));
 	} else {
@@ -39,31 +25,30 @@ function usrData(func, type, data) {
 	}
 }
 function findVisCodes(arr) {
-	var stnArr = __spreadArray([], arr, true);
-	var visArr = [];
-	for (var _i = 0, stnArr_1 = stnArr; _i < stnArr_1.length; _i++) {
-		var stn = stnArr_1[_i];
+	const stnArr = [...arr];
+	let visArr = [];
+	for (const stn of stnArr) {
 		visArr.push(stations[stn]);
 	}
 	return visArr;
 }
 function addStnsToMap(stns) {
-	var s = [];
+	let s = [];
 	if (typeof stns === 'string') {
 		s.push(stns);
 	} else {
-		s.push.apply(s, stns);
+		s.push(...stns);
 	}
 	s.sort();
-	s.forEach(function (v) {
-		$('[id*="'.concat(stations[v], '-dash"]')).addClass('visible');
-		$('[id*="'.concat(stations[v], '-label"]')).addClass('visible');
-		$('[id*="IC_'.concat(stations[v], '"]')).addClass('visible');
+	s.forEach((v) => {
+		$(`[id*="${stations[v]}-dash"]`).addClass('visible');
+		$(`[id*="${stations[v]}-label"]`).addClass('visible');
+		$(`[id*="IC_${stations[v]}"]`).addClass('visible');
 	});
 }
 function updateLineSegs() {
-	var stnCodes = findVisCodes(usrData('get', 'stations'));
-	var data = {
+	let stnCodes = findVisCodes(usrData('get', 'stations'));
+	let data = {
 		bakerloo: 0,
 		central: 0,
 		piccadilly: 0,
@@ -81,14 +66,14 @@ function updateLineSegs() {
 		dlr: 0,
 		OSI: 0,
 	};
-	var _loop_1 = function (l) {
-		var lineObj = lines[l];
+	for (const l in lines) {
+		const lineObj = lines[l];
 		if (lineObj['branch']) {
 			// Check if top branches are active.
 			function top() {
-				var active = false;
-				lineObj['top'].forEach(function (a) {
-					a.forEach(function (s) {
+				let active = false;
+				lineObj['top'].forEach((a) => {
+					a.forEach((s) => {
 						if (stnCodes.includes(s)) {
 							active = true;
 						} else {
@@ -100,9 +85,9 @@ function updateLineSegs() {
 			}
 			// Check if bottom branches are active
 			function bottom() {
-				var active = false;
-				lineObj['bottom'].forEach(function (a) {
-					a.forEach(function (s) {
+				let active = false;
+				lineObj['bottom'].forEach((a) => {
+					a.forEach((s) => {
 						if (stnCodes.includes(s)) {
 							active = true;
 						} else {
@@ -116,57 +101,47 @@ function updateLineSegs() {
 			function complete(top, bottom) {
 				// If the top and bottom branches are active then go from the the first visited station of the top branches in those arrays to the last station, then from the first station of the bottom branches to the last visited station.
 				if (top && bottom) {
-					var total_1 = 0;
-					lineObj['top'].forEach(function (e) {
-						var first = 100;
-						e.forEach(function (a) {
-							var index = e.indexOf(a);
+					let total = 0;
+					lineObj['top'].forEach((e) => {
+						let first = 100;
+						e.forEach((a) => {
+							const index = e.indexOf(a);
 							if (stnCodes.includes(a)) {
-								total_1++;
+								total++;
 								if (index <= first) {
 									first = index;
 								}
 							}
 						});
-						for (var i = first; i < e.length; i++) {
-							$(
-								'#lul-'
-									.concat(lineObj['line'], '_')
-									.concat(e[i], '-')
-									.concat(e[i + 1])
-							).addClass('visible');
+						for (let i = first; i < e.length; i++) {
+							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
 						}
 					});
-					lineObj['bottom'].forEach(function (e) {
-						var last = 0;
-						e.forEach(function (a) {
-							var index = e.indexOf(a);
+					lineObj['bottom'].forEach((e) => {
+						let last = 0;
+						e.forEach((a) => {
+							const index = e.indexOf(a);
 							if (stnCodes.includes(a)) {
-								total_1++;
+								total++;
 								if (index >= last) {
 									last = index;
 								}
 							}
 						});
-						for (var i = 0; i < last; i++) {
-							$(
-								'#lul-'
-									.concat(lineObj['line'], '_')
-									.concat(e[i], '-')
-									.concat(e[i + 1])
-							).addClass('visible');
+						for (let i = 0; i < last; i++) {
+							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
 						}
 					});
-					data[lineObj['line']] = data[lineObj['line']] + total_1;
+					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (top) {
-					var total_2 = 0;
-					lineObj['top'].forEach(function (e) {
-						var first = 100,
+					let total = 0;
+					lineObj['top'].forEach((e) => {
+						let first = 100,
 							last = 0;
-						e.forEach(function (a) {
-							var index = e.indexOf(a);
+						e.forEach((a) => {
+							const index = e.indexOf(a);
 							if (stnCodes.includes(a)) {
-								total_2++;
+								total++;
 								if (index <= first) {
 									first = index;
 								} else if (index >= last) {
@@ -176,25 +151,20 @@ function updateLineSegs() {
 								}
 							}
 						});
-						for (var i = first; i < last; i++) {
-							$(
-								'#lul-'
-									.concat(lineObj['line'], '_')
-									.concat(e[i], '-')
-									.concat(e[i + 1])
-							).addClass('visible');
+						for (let i = first; i < last; i++) {
+							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
 						}
 					});
-					data[lineObj['line']] = data[lineObj['line']] + total_2;
+					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (bottom) {
-					var total_3 = 0;
-					lineObj['bottom'].forEach(function (e) {
-						var first = 100,
+					let total = 0;
+					lineObj['bottom'].forEach((e) => {
+						let first = 100,
 							last = 0;
-						e.forEach(function (a) {
-							var index = e.indexOf(a);
+						e.forEach((a) => {
+							const index = e.indexOf(a);
 							if (stnCodes.includes(a)) {
-								total_3++;
+								total++;
 								if (index <= first) {
 									first = index;
 								} else if (index >= last) {
@@ -204,55 +174,42 @@ function updateLineSegs() {
 								}
 							}
 						});
-						for (var i = first; i < last; i++) {
-							$(
-								'#lul-'
-									.concat(lineObj['line'], '_')
-									.concat(e[i], '-')
-									.concat(e[i + 1])
-							).addClass('visible');
+						for (let i = first; i < last; i++) {
+							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
 						}
 					});
-					data[lineObj['line']] = data[lineObj['line']] + total_3;
+					data[lineObj['line']] = data[lineObj['line']] + total;
 				}
 			}
 			complete(top(), bottom());
 		} else {
-			var lineArr_1 = lineObj['stations'];
-			var first_1 = 100,
-				last_1 = 0,
-				total_4 = 0;
-			lineArr_1.forEach(function (a) {
-				var index = lineArr_1.indexOf(a);
+			const lineArr = lineObj['stations'];
+			let first = 100,
+				last = 0,
+				total = 0;
+			lineArr.forEach((a) => {
+				const index = lineArr.indexOf(a);
 				if (stnCodes.includes(a)) {
-					total_4++;
-					if (index < first_1) {
-						first_1 = index;
-					} else if (index > last_1) {
-						last_1 = index;
+					total++;
+					if (index < first) {
+						first = index;
+					} else if (index > last) {
+						last = index;
 					} else {
 						// Error!
 					}
 				}
 			});
-			for (var i = first_1; i < last_1; i++) {
-				$(
-					'#lul-'
-						.concat(lineObj['line'], '_')
-						.concat(lineArr_1[i], '-')
-						.concat(lineArr_1[i + 1])
-				).addClass('visible');
+			for (let i = first; i < last; i++) {
+				$(`#lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`).addClass('visible');
 			}
-			data[lineObj['line']] = data[lineObj['line']] + total_4;
+			data[lineObj['line']] = data[lineObj['line']] + total;
 		}
-	};
-	for (var l in lines) {
-		_loop_1(l);
 	}
 	updateStats(data);
 }
 function updateStats(data) {
-	var totals = {
+	const totals = {
 		bakerloo: 25,
 		central: 49,
 		piccadilly: 53,
@@ -270,51 +227,50 @@ function updateStats(data) {
 		dlr: 45,
 		tram: 39,
 	};
-	for (var l in totals) {
-		var percent = void 0,
-			visited = void 0;
+	for (const l in totals) {
+		let percent, visited;
 		if (data[l] === NaN) {
-			$('progress#'.concat(l)).attr('value', 0);
+			$(`progress#${l}`).attr('value', 0);
 		} else {
-			var total = totals[l];
+			const total = totals[l];
 			visited = data[l];
 			percent = Math.floor((visited / total) * 100);
 			console.log(l, percent);
 		}
-		$('progress#'.concat(l)).attr('value', percent);
+		$(`progress#${l}`).attr('value', percent);
 	}
 }
 function readFile(file) {
-	var reader = new FileReader();
+	const reader = new FileReader();
 	reader.readAsText(file, 'UTF-8');
 	// reader.onprogress = updateProgress;
-	reader.onload = function (evt) {
-		var fileString = evt.target.result;
-		var CSVarr = CSVtoArray(fileString);
+	reader.onload = (evt) => {
+		const fileString = evt.target.result;
+		const CSVarr = CSVtoArray(fileString);
 		loadData(CSVarr);
 	};
-	reader.onerror = function (err) {
+	reader.onerror = (err) => {
 		console.error(err);
 	};
 }
 function loadData(arr) {
-	var stations = [],
+	let stations = [],
 		busses = [];
-	for (var a in arr) {
-		var journey = arr[a][3];
+	for (const a in arr) {
+		const journey = arr[a][3];
 		if (journey == undefined) continue;
 		if (journey.toLowerCase().indexOf('bus') !== -1) {
-			var bus = journey.split('route ')[1];
+			const bus = journey.split('route ')[1];
 			if (!busses.includes(bus)) {
 				busses.push(bus);
 			}
 		} else if (journey.toLowerCase().indexOf(' to ') !== -1) {
-			var j = journey.split(' to ');
-			var s = j.map(function (d) {
-				var regEx = /( \[.*\])|( DLR)|( tram stop)|(\[No touch-out\])/;
+			const j = journey.split(' to ');
+			const s = j.map((d) => {
+				const regEx = /( \[.*\])|( DLR)|( tram stop)|(\[No touch-out\])/;
 				return d.replace(regEx, '');
 			});
-			for (var i in s) {
+			for (const i in s) {
 				if (!stations.includes(s[i])) {
 					stations.push(s[i]);
 				}
@@ -325,15 +281,12 @@ function loadData(arr) {
 		usrData('save', 'stations', stations);
 		usrData('save', 'bus', busses);
 	} catch (e) {
-		console.error('loadData(): '.concat(e));
+		console.error(`loadData(): ${e}`);
 	} finally {
 		updateLineSegs();
 	}
 }
-function CSVtoArray(strData, strDelimiter) {
-	if (strDelimiter === void 0) {
-		strDelimiter = ',';
-	}
+function CSVtoArray(strData, strDelimiter = ',') {
 	// https://gist.github.com/luishdez/644215
 	strDelimiter = strDelimiter || ',';
 	var objPattern = new RegExp(
@@ -372,14 +325,14 @@ function dragOverHandler(e) {
 function dropHandler(e) {
 	e.preventDefault();
 	$('body').toggleClass('dragOver');
-	var file = e.dataTransfer.items[0].getAsFile();
+	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);
 }
 function uploadHandler(e) {
 	$('#fileSelect').click();
-	$('#fileSelect').on('change', function () {
-		var fileEl = document.getElementById('fileSelect');
-		var file = fileEl === null || fileEl === void 0 ? void 0 : fileEl.files[0];
+	$('#fileSelect').on('change', () => {
+		const fileEl = document.getElementById('fileSelect');
+		const file = fileEl === null || fileEl === void 0 ? void 0 : fileEl.files[0];
 		readFile(file);
 	});
 }
