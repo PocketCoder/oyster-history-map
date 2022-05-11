@@ -37,6 +37,10 @@ body {
   cursor: move;
 }
 
+#map:active:hover {
+  cursor: move;
+}
+
 i.up {
 	content: url('icons/upload.svg');
 	transition: all 0.5s;
