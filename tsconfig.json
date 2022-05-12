@@ -1,4 +1,7 @@
 {
+  "compileOnSave": true,
+	"include": ["public/assets/*.ts", "*.ts"],
+  "exclude": ["./node_modules/*"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -99,8 +102,5 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  },
-  "compileOnSave": true,
-	"include": ["public/assets/*.ts", "*.ts"],
-  "exclude": ["./node_modules/*"]
+  }
 }
