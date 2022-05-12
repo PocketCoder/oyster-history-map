@@ -41,16 +41,16 @@
         <meta name="twitter:description" content="Your history on TfL, visualised">
         <meta name="twitter:image" content="https://tubular.110399.xyz/assets/logo.png">
 
-        <link rel="stylesheet" href="assets/normalize.css" type="text/css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.01.min.css">
-        <link rel="stylesheet" href="assets/main.css" type="text/css" />
-        <link rel="stylesheet" href="assets/map.css" type="text/css" />
+        <link rel="stylesheet" href="assets/normalize.css" type="text/css" media="print" onload="this.media='all'"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.01.min.css" media="print" onload="this.media='all'"/>
+        <link rel="stylesheet" href="assets/main.css" type="text/css" media="print" onload="this.media='all'"/>
+        <link rel="stylesheet" href="assets/map.css" type="text/css" media="print" onload="this.media='all'"/>
 
-        <script src="assets/data.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://unpkg.com/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
-        <script src="https://unpkg.com/panzoom@9.4.2/dist/panzoom.min.js"></script>
-        <script src="assets/script.js"></script>
+        <script defer src="assets/data.js"></script>
+        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script defer src="https://unpkg.com/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+        <script defer src="https://unpkg.com/panzoom@9.4.2/dist/panzoom.min.js"></script>
+        <script defer src="assets/script.js"></script>
         <script defer src="assets/dom.js"></script>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -62,7 +62,10 @@
             gtag('config', 'G-4WKGBXR96J');
         </script>
     </head>
-    <body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
+    <body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);" style="display: none;">
+        <noscript>
+            <h1>You don't have JavaScript enabled in your browser which means this website won't work. Turn JavaScript on and refresh the page to get going!</h1>
+        </noscript>
         <div id="map"></div>
         <footer id="js-footer">
             <i class="menu" id="js-menu"></i>

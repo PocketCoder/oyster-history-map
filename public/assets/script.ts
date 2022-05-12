@@ -15,7 +15,7 @@ function usrData(func: string, type: string, data: string | Array<string> = []) 
 			newData.push(...data);
 		}
 		current.push(...newData);
-		let unique = current.filter((c, i) => {
+		let unique = current.filter((c: string, i: number) => {
 			return current.indexOf(c) === i;
 		});
 		localStorage.setItem(type, JSON.stringify(unique));
@@ -25,16 +25,16 @@ function usrData(func: string, type: string, data: string | Array<string> = []) 
 }
 
 function findVisCodes(arr: string | Array<string>) {
-	const stnArr = [...arr];
-	let visArr = [];
+	const stnArr: Array<string> = [...arr];
+	let visArr: Array<string> = [];
 	for (const stn of stnArr) {
 		visArr.push(stations[stn]);
 	}
 	return visArr;
 }
 
-function addStnsToMap(stns) {
-	let s = [];
+function addStnsToMap(stns: string | Array<string>) {
+	let s: Array<String> = [];
 	if (typeof stns === 'string') {
 		s.push(stns);
 	} else {
@@ -74,7 +74,7 @@ function updateLineSegs() {
 			// Check if top branches are active.
 			function top() {
 				let active = false;
-				lineObj['top'].forEach((a) => {
+				lineObj['top'].forEach((a: string[]) => {
 					a.forEach((s) => {
 						if (stnCodes.includes(s)) {
 							active = true;
@@ -89,7 +89,7 @@ function updateLineSegs() {
 			// Check if bottom branches are active
 			function bottom() {
 				let active = false;
-				lineObj['bottom'].forEach((a) => {
+				lineObj['bottom'].forEach((a: string[]) => {
 					a.forEach((s) => {
 						if (stnCodes.includes(s)) {
 							active = true;
@@ -102,11 +102,11 @@ function updateLineSegs() {
 			}
 
 			// Complete the line segments.
-			function complete(top, bottom) {
+			function complete(top: Boolean, bottom: Boolean) {
 				// If the top and bottom branches are active then go from the the first visited station of the top branches in those arrays to the last station, then from the first station of the bottom branches to the last visited station.
 				if (top && bottom) {
 					let total = 0;
-					lineObj['top'].forEach((e) => {
+					lineObj['top'].forEach((e: string[]) => {
 						let first = 100;
 						e.forEach((a) => {
 							const index = e.indexOf(a);
@@ -123,7 +123,7 @@ function updateLineSegs() {
 					});
 					lineObj['bottom'].forEach((e) => {
 						let last = 0;
-						e.forEach((a) => {
+						e.forEach((a: string) => {
 							const index = e.indexOf(a);
 							if (stnCodes.includes(a)) {
 								total++;
@@ -215,22 +215,22 @@ function updateLineSegs() {
 
 function updateStats(data) {
 	const totals = {
-		'bakerloo': 25,
-		'central': 49,
-		'piccadilly': 53,
-		'jubilee': 27,
-		'metropolitan': 34,
-		'victoria': 16,
-		'northern': 52,
-		'circle': 36,
+		bakerloo: 25,
+		central: 49,
+		piccadilly: 53,
+		jubilee: 27,
+		metropolitan: 34,
+		victoria: 16,
+		northern: 52,
+		circle: 36,
 		'hammersmith-city': 29,
-		'district': 60,
-		'elizabeth': 32,
-		'overground': 112,
+		district: 60,
+		elizabeth: 32,
+		overground: 112,
 		'waterloo-city': 2,
 		'cable-car': 2,
-		'dlr': 45,
-		'tram': 39
+		dlr: 45,
+		tram: 39,
 	};
 	for (const l in totals) {
 		let percent: number, visited;

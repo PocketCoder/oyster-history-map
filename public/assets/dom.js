@@ -65,7 +65,6 @@ function loadMap() {
 				initialX: 300,
 				initialY: 500,
 				initialZoom: 1.5,
-				contain: true,
 				bounds: true,
 				boundsPadding: 0.4,
 			});

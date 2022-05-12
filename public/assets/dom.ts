@@ -1,5 +1,5 @@
 let panInst: any;
-const mapEl = document.getElementById('map');
+const mapEl = document.getElementById('map') as HTMLDivElement;
 
 function storageAvailable(type: any) {
 	var storage;
@@ -52,7 +52,7 @@ function loadMap() {
 		.then((res) => res.text())
 		.then((data) => {
 			mapEl.innerHTML = data;
-			const elem = document.getElementById('status-map');
+			const elem = document.getElementById('status-map') as HTMLDivElement;
 			setTimeout(() => {
 				elem.style.opacity = '1';
 			}, 500);
@@ -66,7 +66,6 @@ function loadMap() {
 				initialX: 300,
 				initialY: 500,
 				initialZoom: 1.5,
-				contain: true,
 				bounds: true,
 				boundsPadding: 0.4,
 			});
@@ -625,7 +624,7 @@ const autoCompleteJS = new autoComplete({
 		position: 'afterbegin',
 		maxResults: 3,
 		tabSelect: true,
-		element: (list, data) => {
+		element: (list: any, data: any) => {
 			if (!data.results.length) {
 				const message = document.createElement('div');
 				message.setAttribute('class', 'no_result');
@@ -637,7 +636,7 @@ const autoCompleteJS = new autoComplete({
 	},
 	events: {
 		input: {
-			selection: (event) => {
+			selection: (event: any) => {
 				const selection = event.detail.selection.value;
 				autoCompleteJS.input.value = selection;
 			},

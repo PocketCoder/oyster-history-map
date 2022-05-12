@@ -1,476 +1,660 @@
 {
-    "bakerloo": {
-        "branch": false,
-        "line": "bakerloo",
-        "stations": [
-            "HAW",
-            "SKT",
-            "NWM",
-            "WEM",
-            "SPK",
-            "HSD",
-            "WJN",
-            "KGN",
-            "QPK",
-            "KPK",
-            "MDV",
-            "WAR",
-            "PAD",
-            "ERB",
-            "MYB",
-            "BST",
-            "RPK",
-            "OXC",
-            "PIC",
-            "CHX",
-            "EMB",
-            "WLO",
-            "LAM",
-            "ELE"
-        ]
-    },
-    "central": {
-        "branch": true,
-        "line": "central",
-        "top": [
-            ["WRP", "RUG", "SRP", "NHT", "GFD", "PER", "HLN", "NAC"],
-            ["EBY", "WAC", "NAC"]
-        ],
-        "bottom": [
-            ["EAC", "WCT", "SHB", "HPK", "NHG", "QWY", "LAN", "MAR", "BDS", "OXC", "TCR", "HOL", "CYL", "STP", "BNK", "LST", "BNG", "MLE", "SFD", "LEY", "LYS"],
-            ["EAC", "WCT", "SHB", "HPK", "NHG", "QWY", "LAN", "MAR", "BDS", "OXC", "TCR", "HOL", "CYL", "STP", "BNK", "LST", "BNG", "MLE", "SFD", "LEY", "LYS", "SNB", "SWF", "WFD", "BHL", "LTN", "DEB", "THB", "EPP"],
-            ["EAC", "WCT", "SHB", "HPK", "NHG", "QWY", "LAN", "MAR", "BDS", "OXC", "TCR", "HOL", "CYL", "STP", "BNK", "LST", "BNG", "MLE", "SFD", "LEY", "LYS", "WSD", "RED", "GHL", "NEP", "BDE", "FLP", "HAI", "GRH", "CHG", "ROD", "WFD"]
-        ]
-    },
-    "piccadilly": {
-        "branch": "true",
-        "line": "piccadilly",
-        "top": [
-            ["CFS", "OAK", "SGT", "AGR", "BGR", "WGN", "TPL", "TPL", "MNR", "FPK", "ARL", "HRD", "CRD", "KXX", "RSQ", "HOL", "COV", "LSQ", "PIC", "GPK", "HPC", "KNB", "SKN", "GRD", "ECT", "BCT", "HMD", "TGR"]
-        ],
-        "bottom": [
-            ["TGR", "ACT", "ECM", "NEL", "PRY", "ALP", "STN", "SHL", "SHR", "RLN", "ETE", "RUM", "RUI", "ICK", "HDN", "UXB"],
-            ["TGR", "ACT", "SEL", "NFD", "BOS", "OST", "HNE", "HNC", "HNW", "HTX", "HRC", "HTF", "HTC"],
-            ["TGR", "ACT", "SEL", "NFD", "BOS", "OST", "HNE", "HNC", "HNW", "HTX", "HRC", "HRV"]
-        ]
-    },
-    "jubilee": {
-        "branch": false,
-        "line": "jubilee",
-        "stations": [
-            "STA",
-            "CPK",
-            "QBY",
-            "KBY",
-            "WPK",
-            "NEA",
-            "DHL",
-            "WLG",
-            "KIL",
-            "WHD",
-            "FRD",
-            "SWC",
-            "SJW",
-            "BST",
-            "BDS",
-            "GPK",
-            "WMS",
-            "WLO",
-            "SWK",
-            "LON",
-            "BER",
-            "CWR",
-            "CWF",
-            "NGW",
-            "CAT",
-            "WEH",
-            "SFD"
-        ]
-    },
-    "metropolitan": {
-        "branch": true,
-        "line": "metropolitan",
-        "top": [
-            ["AME", "CLF", "CWD", "RKY", "MPK", "NWD", "NWH", "PIN", "NHR", "HOH"],
-            ["CHE", "CLF", "CWD", "RKY", "MPK", "NWD", "NWH", "PIN", "NHR", "HOH"],
-            ["WAT", "CRX", "MPK", "NWD", "NWH", "PIN", "NHR", "HOH"],
-            ["UXB", "HDN", "ICK", "RUI", "RUM", "ETE", "RLN", "WHR", "HOH"]
-        ],
-        "bottom": [
-            ["HOH", "NWP", "PRD", "WPK", "FRD", "BST", "GPS", "ESQ", "KXX", "FAR", "BAR", "MGT", "LST", "ALD"]
-        ]
-    },
-    "victoria": {
-        "branch": false,
-        "line": "victoria",
-        "stations": [
-            "WAL",
-            "BHR",
-            "TTH",
-            "SVS",
-            "FPK",
-            "HBY",
-            "KXX",
-            "EUS",
-            "WST",
-            "OXC",
-            "GPK",
-            "VIC",
-            "PIM",
-            "VUX",
-            "STK",
-            "BRX"
-        ]
-    },
-    "northern": {
-        "branch": true,
-        "line": "northern",
-        "top": [
-            ["HBT", "TOT", "WSP", "WFY", "FYC", "FYC", "EFY", "HIG", "ARC", "TPK", "KTN", "CTN"],
-            ["MHE", "FYC", "EFY", "HIG", "ARC", "TPK", "KTN", "CTN"],
-            ["EDG", "BUR", "COL", "HND", "BTX", "GGR", "HMP", "BPK", "CHF", "CTN"]
-        ],
-        "bottom": [
-            ["CTN", "MCR", "EUS", "WST", "GST", "TCR", "LSQ", "CHX", "EMB", "WLO", "KEN", "NIE", "BAT"],
-            ["CTN", "EUS", "KXX", "ANG", "OLD", "MGT", "BNK", "LON", "BOR", "ELE", "KEN", "OVL", "STK", "CPN", "CPC", "CPS", "BAL", "TBE", "TBY", "CLW", "SWM", "MOR"]
-        ]
-    },
-    "circle": {
-        "branch": false,
-        "line": "circle",
-        "stations": [
-            "HMS",
-            "GOR",
-            "SBM",
-            "WOL",
-            "LAT",
-            "LAD",
-            "WBP",
-            "ROO",
-            "PAD",
-            "ERD",
-            "BST",
-            "GPS",
-            "ESQ",
-            "KXX",
-            "FAR",
-            "BAR",
-            "MGT",
-            "LST",
-            "ALD",
-            "THL",
-            "MON",
-            "CST",
-            "MAN",
-            "BLF",
-            "TEM",
-            "EMB",
-            "WMS",
-            "SJP",
-            "VIC",
-            "SSQ",
-            "SKN",
-            "GRD",
-            "HST",
-            "NHG",
-            "BAY",
-            "PAD",
-            "ERD",
-            "PAD"
-        ]
-    },
-    "hammersmith-city": {
-        "branch": false,
-        "line": "hammersmith-city",
-        "stations": [
-            "HMS",
-            "GOR",
-            "SBM",
-            "WOL",
-            "LAT",
-            "LAD",
-            "WBP",
-            "ROO",
-            "PAD",
-            "ERD",
-            "BST",
-            "GPS",
-            "ESQ",
-            "KXX",
-            "FAR",
-            "BAR",
-            "MGT",
-            "LST",
-            "ALE",
-            "WCL",
-            "STG",
-            "MLE",
-            "BWR",
-            "BBB",
-            "WEH",
-            "PLW",
-            "UPK",
-            "EHM",
-            "BKG"
-        ]
-    },
-    "district": {
-        "branch": true,
-        "line": "district",
-        "top": [
-            ["EBY", "ECM", "ACT", "CHP", "TGR", "STB", "RCP", "HMD", "BCT", "WKN", "ECT"],
-            ["RMD", "KEW", "GUN", "TGR", "STB", "RCP", "HMD", "BCT", "WKN", "ECT"],
-            ["OLY", "ECT"],
-            ["WDN", "WMP", "SFS", "EPY", "PUT", "PGR", "FBY", "WBT", "ECT"]
-        ],
-        "bottom": [
-            ["ECT", "HST", "NHG", "BAY", "PAD", "ERD"],
-            ["ECT", "GRD", "SKN", "SSQ", "VIC", "SJP", "WMS", "EMB", "TEM", "BLF", "MAN", "CST", "MON", "THL", "ALE", "WCL", "STG", "MLE", "BWR", "BBB", "WEH", "PLW", "UPK", "EHM", "BKG", "UPY", "BEC", "DGH", "DGE", "EPK", "HCH", "UPB", "UPM"]
-        ]
-    },
-    "elizabeth-east": {
-        "branch": true,
-        "line": "elizabeth",
-        "top": [
-            ["RDG", "TFD", "MDH", "TLW", "BHM", "SGH", "LGY", "IVR", "WDT", "HAH"],
-            ["HRF", "HTC", "HAH"],
-            ["HTV", "HTC", "HAH"]
-        ],
-        "bottom": [
-            ["HAH", "SAL", "HWL", "WEL", "EBY", "AML", "PAD"],
-            ["LST", ""]
-        ]
-    },
-    "elizabeth-west": {
-        "branch": false,
-        "line": "elizabeth",
-        "stations": [
-            "LST",
-            "SFD",
-            "MLD",
-            "FGT",
-            "MNP",
-            "IFD",
-            "SVK",
-            "GDM",
-            "CWH",
-            "RFD",
-            "GDP",
-            "HWD",
-            "BWD",
-            "SND"
-        ]
-    },
-    "overground_WTJ-EUS": {
-        "branch": false,
-        "line": "overground",
-        "stations": [
-            "WTJ",
-            "WFH",
-            "BSH",
-            "CEP",
-            "HTE",
-            "HDL",
-            "HAW",
-            "KNT",
-            "SKT",
-            "NWM",
-            "WEM",
-            "SPK",
-            "HSD",
-            "WJN",
-            "KGN",
-            "QPK",
-            "KBN",
-            "SOH",
-            "EUS"
-        ],
-    },
-    "overground_GPO-BKG": {
-        "branch": false,
-        "line": "overground",
-        "stations": [
-            "GPO",
-            "UHL",
-            "CRH",
-            "HRY",
-            "STO",
-            "BHR",
-            "WMW",
-            "LEM",
-            "LER",
-            "WNP",
-            "WGR",
-            "BKG"
-        ]
-    },
-    "overground_HBY": {
-        "branch": true,
-        "line": "overground",
-        "top": [
-            ["HBY", "CNN", "DLJ", "HGG", "HOX", "SDC", "WCL", "SHA", "WPE", "ROE", "CWR", "SUQ"]
-        ],
-        "bottom": [
-            ["SUQ", "NWX"],
-            ["SUQ", "NXG", "BCY", "HPA", "FOH", "SYD", "CRP"],
-            ["SUQ", "NXG", "BCY", "HPA", "FOH", "SYD", "PNW", "ANZ", "NJN", "WCY"],
-            ["SUQ", "NXG", "BCY", "HPA", "FOH", "SYD", "QRP", "PMR", "DMH", "CHS", "WWR", "CLH"]
-        ]
-    },
-    "overground_LST": {
-        "branch": true,
-        "line": "overground",
-        "top": [
-            ["HKD", "RRD", "SNT", "SFH", "SVS", "BRG", "WHL", "SST", "EMG", "BHP", "EFT"],
-            ["HKD", "RRD", "SNT", "SFH", "SVS", "BRG", "WHL", "SST", "EMG", "SBY", "TST", "TBG", "CHT"],
-            ["HKD", "CPT", "SJS", "WAL", "WOS", "HGP", "CFD"]
-        ],
-        "bottom": [
-            ["LST", "BNG", "CBH", "LFD", "HKD"]
-        ]
-    },
-    "overground_SFD": {
-        "branch": true,
-        "line": "overground",
-        "top": [
-            ["RMD", "KEW", "GUN", "SAT", "ACC", "WJN"],
-            ["CLJ", "IMW", "WBT", "OLY", "SHB", "WJN"]
-        ],
-        "bottom": [
-            ["WJN", "KNR", "BSP", "BSY", "WHD", "FNY", "HDH", "GPO", "KTW", "CMD", "CIR", "HBY", "CNN", "DLK", "HKC", "HMN", "HKW", "SFD"]
-        ]
-    },
-    "overground_UPM": {
-        "branch": false,
-        "line": "overground",
-        "stations": [
-            "RFD",
-            "EMP",
-            "UPM"
-        ]
-    },
-    "tram": {
-        "branch": true,
-        "line": "tram",
-        "top": [
-            ["WDN", "DDN", "MRP", "MRD", "PBR", "BGW", "MTM", "MTJ", "BDL", "TRL", "AMP", "WDM", "WLP", "RVC", "CEN", "WCY", "WLR", "ECR", "LEB", "SAN"],
-            ["WDN", "DDN", "MRP", "MRD", "PBR", "BGW", "MTM", "MTJ", "BDL", "TRL", "AMP", "WDM", "WLP", "CCS", "GGS", "ECR", "LEB", "SAN"]
-        ],
-        "bottom": [
-            ["SAN", "LPK", "CLN", "GVH", "ADV", "FLW", "KHD", "NAD"],
-            ["SAN", "ADS", "BSL", "WDS", "ARN", "ELM"],
-            ["SAN", "ADS", "BSL", "WDS", "ARN", "HRD", "BKB", "AVR", "BCR", "BCJ"]
-        ]
-    },
-    "waterloo-city": {
-        "branch": false,
-        "line": "waterloo-city",
-        "stations": [
-            "WLO",
-            "BNK"
-        ]
-    },
-    "cable-car": {
-        "branch": false,
-        "line": "cable-car",
-        "stations": [
-            "EGP",
-            "EMD"
-        ]
-    },
-    "dlr_E-W": {
-        "branch": true,
-        "line": "dlr",
-        "top": [
-            ["BNK", "SHA", "LIM", "WES"],
-            ["TOG", "SHA", "LIM", "WES"]
-        ],
-        "bottom": [
-            ["WES", "POP", "BLA", "EAI", "CAT", "WST", "PDK", "LCA", "KGV", "WOA"],
-            ["WES", "POP", "BLA", "EAI", "CAT", "ROV", "CUH", "PRR", "ROA", "BEP", "CYP", "GAR", "BEC"],
-            ["WES", "WIQ", "CWF", "HEW", "SOW", "CRO", "MUD", "ISG", "CUS", "GRE", "DEB", "ELR", "LEW"]
-        ]
-    },
-    "dlr_N-S": {
-        "branch": true,
-        "line": "dlr",
-        "top": [
-            ["STI", "SFD", "SHS", "ABR", "WEH", "STL", "CAT"]
-        ],
-        "bottom": [
-            ["CAT", "WST", "PDK", "LCA", "KGV", "WOA"],
-            ["CAT", "ROV", "CUH", "PRR", "ROA", "BEP", "CYP", "GAR", "BEC"]
-        ]
-    },
-    "dlr_SFD-LEW": {
-        "branch": false,
-        "line": "dlr",
-        "stations": [
-            "STI",
-            "SFD",
-            "PML",
-            "DER",
-            "LAP",
-            "ALS",
-            "POP",
-            "WIQ",
-            "CWF",
-            "HEW",
-            "SOW",
-            "CRO",
-            "MUD",
-            "ISG",
-            "CUS",
-            "GRE",
-            "DEB",
-            "ELR",
-            "LEW"
-        ]
-    },
-    "OSI": {
-        "branch": false,
-        "line": "OSI",
-        "stations": [
-            "HLN",
-            "PRY",
-            "HMS",
-            "HMD",
-            "CRD",
-            "CIR",
-            "CMD",
-            "CTN",
-            "FRD",
-            "FNY",
-            "EUS",
-            "ESQ",
-            "WCT",
-            "WOL",
-            "SOH",
-            "SWC",
-            "THL",
-            "TOG",
-            "ROV",
-            "EMD",
-            "NGW",
-            "EGP",
-            "KNT",
-            "NWP",
-            "STO",
-            "SVS",
-            "WAL",
-            "WMW",
-            "HNY",
-            "MNR",
-            "ARC",
-            "UHL",
-            "WAN",
-            "FGT",
-            "CHS",
-            "CPN",
-            "SWM",
-            "MRD",
-            "NWX",
-            "NXG"
-        ]
-    }
+	"bakerloo": {
+		"branch": false,
+		"line": "bakerloo",
+		"stations": [
+			"HAW",
+			"SKT",
+			"NWM",
+			"WEM",
+			"SPK",
+			"HSD",
+			"WJN",
+			"KGN",
+			"QPK",
+			"KPK",
+			"MDV",
+			"WAR",
+			"PAD",
+			"ERB",
+			"MYB",
+			"BST",
+			"RPK",
+			"OXC",
+			"PIC",
+			"CHX",
+			"EMB",
+			"WLO",
+			"LAM",
+			"ELE"
+		]
+	},
+	"central": {
+		"branch": true,
+		"line": "central",
+		"top": [
+			["WRP", "RUG", "SRP", "NHT", "GFD", "PER", "HLN", "NAC"],
+			["EBY", "WAC", "NAC"]
+		],
+		"bottom": [
+			[
+				"EAC",
+				"WCT",
+				"SHB",
+				"HPK",
+				"NHG",
+				"QWY",
+				"LAN",
+				"MAR",
+				"BDS",
+				"OXC",
+				"TCR",
+				"HOL",
+				"CYL",
+				"STP",
+				"BNK",
+				"LST",
+				"BNG",
+				"MLE",
+				"SFD",
+				"LEY",
+				"LYS"
+			],
+			[
+				"EAC",
+				"WCT",
+				"SHB",
+				"HPK",
+				"NHG",
+				"QWY",
+				"LAN",
+				"MAR",
+				"BDS",
+				"OXC",
+				"TCR",
+				"HOL",
+				"CYL",
+				"STP",
+				"BNK",
+				"LST",
+				"BNG",
+				"MLE",
+				"SFD",
+				"LEY",
+				"LYS",
+				"SNB",
+				"SWF",
+				"WFD",
+				"BHL",
+				"LTN",
+				"DEB",
+				"THB",
+				"EPP"
+			],
+			[
+				"EAC",
+				"WCT",
+				"SHB",
+				"HPK",
+				"NHG",
+				"QWY",
+				"LAN",
+				"MAR",
+				"BDS",
+				"OXC",
+				"TCR",
+				"HOL",
+				"CYL",
+				"STP",
+				"BNK",
+				"LST",
+				"BNG",
+				"MLE",
+				"SFD",
+				"LEY",
+				"LYS",
+				"WSD",
+				"RED",
+				"GHL",
+				"NEP",
+				"BDE",
+				"FLP",
+				"HAI",
+				"GRH",
+				"CHG",
+				"ROD",
+				"WFD"
+			]
+		]
+	},
+	"piccadilly": {
+		"branch": "true",
+		"line": "piccadilly",
+		"top": [
+			[
+				"CFS",
+				"OAK",
+				"SGT",
+				"AGR",
+				"BGR",
+				"WGN",
+				"TPL",
+				"TPL",
+				"MNR",
+				"FPK",
+				"ARL",
+				"HRD",
+				"CRD",
+				"KXX",
+				"RSQ",
+				"HOL",
+				"COV",
+				"LSQ",
+				"PIC",
+				"GPK",
+				"HPC",
+				"KNB",
+				"SKN",
+				"GRD",
+				"ECT",
+				"BCT",
+				"HMD",
+				"TGR"
+			]
+		],
+		"bottom": [
+			["TGR", "ACT", "ECM", "NEL", "PRY", "ALP", "STN", "SHL", "SHR", "RLN", "ETE", "RUM", "RUI", "ICK", "HDN", "UXB"],
+			["TGR", "ACT", "SEL", "NFD", "BOS", "OST", "HNE", "HNC", "HNW", "HTX", "HRC", "HTF", "HTC"],
+			["TGR", "ACT", "SEL", "NFD", "BOS", "OST", "HNE", "HNC", "HNW", "HTX", "HRC", "HRV"]
+		]
+	},
+	"jubilee": {
+		"branch": false,
+		"line": "jubilee",
+		"stations": [
+			"STA",
+			"CPK",
+			"QBY",
+			"KBY",
+			"WPK",
+			"NEA",
+			"DHL",
+			"WLG",
+			"KIL",
+			"WHD",
+			"FRD",
+			"SWC",
+			"SJW",
+			"BST",
+			"BDS",
+			"GPK",
+			"WMS",
+			"WLO",
+			"SWK",
+			"LON",
+			"BER",
+			"CWR",
+			"CWF",
+			"NGW",
+			"CAT",
+			"WEH",
+			"SFD"
+		]
+	},
+	"metropolitan": {
+		"branch": true,
+		"line": "metropolitan",
+		"top": [
+			["AME", "CLF", "CWD", "RKY", "MPK", "NWD", "NWH", "PIN", "NHR", "HOH"],
+			["CHE", "CLF", "CWD", "RKY", "MPK", "NWD", "NWH", "PIN", "NHR", "HOH"],
+			["WAT", "CRX", "MPK", "NWD", "NWH", "PIN", "NHR", "HOH"],
+			["UXB", "HDN", "ICK", "RUI", "RUM", "ETE", "RLN", "WHR", "HOH"]
+		],
+		"bottom": [["HOH", "NWP", "PRD", "WPK", "FRD", "BST", "GPS", "ESQ", "KXX", "FAR", "BAR", "MGT", "LST", "ALD"]]
+	},
+	"victoria": {
+		"branch": false,
+		"line": "victoria",
+		"stations": [
+			"WAL",
+			"BHR",
+			"TTH",
+			"SVS",
+			"FPK",
+			"HBY",
+			"KXX",
+			"EUS",
+			"WST",
+			"OXC",
+			"GPK",
+			"VIC",
+			"PIM",
+			"VUX",
+			"STK",
+			"BRX"
+		]
+	},
+	"northern": {
+		"branch": true,
+		"line": "northern",
+		"top": [
+			["HBT", "TOT", "WSP", "WFY", "FYC", "FYC", "EFY", "HIG", "ARC", "TPK", "KTN", "CTN"],
+			["MHE", "FYC", "EFY", "HIG", "ARC", "TPK", "KTN", "CTN"],
+			["EDG", "BUR", "COL", "HND", "BTX", "GGR", "HMP", "BPK", "CHF", "CTN"]
+		],
+		"bottom": [
+			["CTN", "MCR", "EUS", "WST", "GST", "TCR", "LSQ", "CHX", "EMB", "WLO", "KEN", "NIE", "BAT"],
+			[
+				"CTN",
+				"EUS",
+				"KXX",
+				"ANG",
+				"OLD",
+				"MGT",
+				"BNK",
+				"LON",
+				"BOR",
+				"ELE",
+				"KEN",
+				"OVL",
+				"STK",
+				"CPN",
+				"CPC",
+				"CPS",
+				"BAL",
+				"TBE",
+				"TBY",
+				"CLW",
+				"SWM",
+				"MOR"
+			]
+		]
+	},
+	"circle": {
+		"branch": false,
+		"line": "circle",
+		"stations": [
+			"HMS",
+			"GOR",
+			"SBM",
+			"WOL",
+			"LAT",
+			"LAD",
+			"WBP",
+			"ROO",
+			"PAD",
+			"ERD",
+			"BST",
+			"GPS",
+			"ESQ",
+			"KXX",
+			"FAR",
+			"BAR",
+			"MGT",
+			"LST",
+			"ALD",
+			"THL",
+			"MON",
+			"CST",
+			"MAN",
+			"BLF",
+			"TEM",
+			"EMB",
+			"WMS",
+			"SJP",
+			"VIC",
+			"SSQ",
+			"SKN",
+			"GRD",
+			"HST",
+			"NHG",
+			"BAY",
+			"PAD",
+			"ERD",
+			"PAD"
+		]
+	},
+	"hammersmith-city": {
+		"branch": false,
+		"line": "hammersmith-city",
+		"stations": [
+			"HMS",
+			"GOR",
+			"SBM",
+			"WOL",
+			"LAT",
+			"LAD",
+			"WBP",
+			"ROO",
+			"PAD",
+			"ERD",
+			"BST",
+			"GPS",
+			"ESQ",
+			"KXX",
+			"FAR",
+			"BAR",
+			"MGT",
+			"LST",
+			"ALE",
+			"WCL",
+			"STG",
+			"MLE",
+			"BWR",
+			"BBB",
+			"WEH",
+			"PLW",
+			"UPK",
+			"EHM",
+			"BKG"
+		]
+	},
+	"district": {
+		"branch": true,
+		"line": "district",
+		"top": [
+			["EBY", "ECM", "ACT", "CHP", "TGR", "STB", "RCP", "HMD", "BCT", "WKN", "ECT"],
+			["RMD", "KEW", "GUN", "TGR", "STB", "RCP", "HMD", "BCT", "WKN", "ECT"],
+			["OLY", "ECT"],
+			["WDN", "WMP", "SFS", "EPY", "PUT", "PGR", "FBY", "WBT", "ECT"]
+		],
+		"bottom": [
+			["ECT", "HST", "NHG", "BAY", "PAD", "ERD"],
+			[
+				"ECT",
+				"GRD",
+				"SKN",
+				"SSQ",
+				"VIC",
+				"SJP",
+				"WMS",
+				"EMB",
+				"TEM",
+				"BLF",
+				"MAN",
+				"CST",
+				"MON",
+				"THL",
+				"ALE",
+				"WCL",
+				"STG",
+				"MLE",
+				"BWR",
+				"BBB",
+				"WEH",
+				"PLW",
+				"UPK",
+				"EHM",
+				"BKG",
+				"UPY",
+				"BEC",
+				"DGH",
+				"DGE",
+				"EPK",
+				"HCH",
+				"UPB",
+				"UPM"
+			]
+		]
+	},
+	"elizabeth-east": {
+		"branch": true,
+		"line": "elizabeth",
+		"top": [
+			["RDG", "TFD", "MDH", "TLW", "BHM", "SGH", "LGY", "IVR", "WDT", "HAH"],
+			["HRF", "HTC", "HAH"],
+			["HTV", "HTC", "HAH"]
+		],
+		"bottom": [
+			["HAH", "SAL", "HWL", "WEL", "EBY", "AML", "PAD"],
+			["LST", ""]
+		]
+	},
+	"elizabeth-west": {
+		"branch": false,
+		"line": "elizabeth",
+		"stations": ["LST", "SFD", "MLD", "FGT", "MNP", "IFD", "SVK", "GDM", "CWH", "RFD", "GDP", "HWD", "BWD", "SND"]
+	},
+	"overground_WTJ-EUS": {
+		"branch": false,
+		"line": "overground",
+		"stations": [
+			"WTJ",
+			"WFH",
+			"BSH",
+			"CEP",
+			"HTE",
+			"HDL",
+			"HAW",
+			"KNT",
+			"SKT",
+			"NWM",
+			"WEM",
+			"SPK",
+			"HSD",
+			"WJN",
+			"KGN",
+			"QPK",
+			"KBN",
+			"SOH",
+			"EUS"
+		]
+	},
+	"overground_GPO-BKG": {
+		"branch": false,
+		"line": "overground",
+		"stations": ["GPO", "UHL", "CRH", "HRY", "STO", "BHR", "WMW", "LEM", "LER", "WNP", "WGR", "BKG"]
+	},
+	"overground_HBY": {
+		"branch": true,
+		"line": "overground",
+		"top": [["HBY", "CNN", "DLJ", "HGG", "HOX", "SDC", "WCL", "SHA", "WPE", "ROE", "CWR", "SUQ"]],
+		"bottom": [
+			["SUQ", "NWX"],
+			["SUQ", "NXG", "BCY", "HPA", "FOH", "SYD", "CRP"],
+			["SUQ", "NXG", "BCY", "HPA", "FOH", "SYD", "PNW", "ANZ", "NJN", "WCY"],
+			["SUQ", "NXG", "BCY", "HPA", "FOH", "SYD", "QRP", "PMR", "DMH", "CHS", "WWR", "CLH"]
+		]
+	},
+	"overground_LST": {
+		"branch": true,
+		"line": "overground",
+		"top": [
+			["HKD", "RRD", "SNT", "SFH", "SVS", "BRG", "WHL", "SST", "EMG", "BHP", "EFT"],
+			["HKD", "RRD", "SNT", "SFH", "SVS", "BRG", "WHL", "SST", "EMG", "SBY", "TST", "TBG", "CHT"],
+			["HKD", "CPT", "SJS", "WAL", "WOS", "HGP", "CFD"]
+		],
+		"bottom": [["LST", "BNG", "CBH", "LFD", "HKD"]]
+	},
+	"overground_SFD": {
+		"branch": true,
+		"line": "overground",
+		"top": [
+			["RMD", "KEW", "GUN", "SAT", "ACC", "WJN"],
+			["CLJ", "IMW", "WBT", "OLY", "SHB", "WJN"]
+		],
+		"bottom": [
+			[
+				"WJN",
+				"KNR",
+				"BSP",
+				"BSY",
+				"WHD",
+				"FNY",
+				"HDH",
+				"GPO",
+				"KTW",
+				"CMD",
+				"CIR",
+				"HBY",
+				"CNN",
+				"DLK",
+				"HKC",
+				"HMN",
+				"HKW",
+				"SFD"
+			]
+		]
+	},
+	"overground_UPM": {
+		"branch": false,
+		"line": "overground",
+		"stations": ["RFD", "EMP", "UPM"]
+	},
+	"tram": {
+		"branch": true,
+		"line": "tram",
+		"top": [
+			[
+				"WDN",
+				"DDN",
+				"MRP",
+				"MRD",
+				"PBR",
+				"BGW",
+				"MTM",
+				"MTJ",
+				"BDL",
+				"TRL",
+				"AMP",
+				"WDM",
+				"WLP",
+				"RVC",
+				"CEN",
+				"WCY",
+				"WLR",
+				"ECR",
+				"LEB",
+				"SAN"
+			],
+			[
+				"WDN",
+				"DDN",
+				"MRP",
+				"MRD",
+				"PBR",
+				"BGW",
+				"MTM",
+				"MTJ",
+				"BDL",
+				"TRL",
+				"AMP",
+				"WDM",
+				"WLP",
+				"CCS",
+				"GGS",
+				"ECR",
+				"LEB",
+				"SAN"
+			]
+		],
+		"bottom": [
+			["SAN", "LPK", "CLN", "GVH", "ADV", "FLW", "KHD", "NAD"],
+			["SAN", "ADS", "BSL", "WDS", "ARN", "ELM"],
+			["SAN", "ADS", "BSL", "WDS", "ARN", "HRD", "BKB", "AVR", "BCR", "BCJ"]
+		]
+	},
+	"waterloo-city": {
+		"branch": false,
+		"line": "waterloo-city",
+		"stations": ["WLO", "BNK"]
+	},
+	"cable-car": {
+		"branch": false,
+		"line": "cable-car",
+		"stations": ["EGP", "EMD"]
+	},
+	"dlr_E-W": {
+		"branch": true,
+		"line": "dlr",
+		"top": [
+			["BNK", "SHA", "LIM", "WES"],
+			["TOG", "SHA", "LIM", "WES"]
+		],
+		"bottom": [
+			["WES", "POP", "BLA", "EAI", "CAT", "WST", "PDK", "LCA", "KGV", "WOA"],
+			["WES", "POP", "BLA", "EAI", "CAT", "ROV", "CUH", "PRR", "ROA", "BEP", "CYP", "GAR", "BEC"],
+			["WES", "WIQ", "CWF", "HEW", "SOW", "CRO", "MUD", "ISG", "CUS", "GRE", "DEB", "ELR", "LEW"]
+		]
+	},
+	"dlr_N-S": {
+		"branch": true,
+		"line": "dlr",
+		"top": [["STI", "SFD", "SHS", "ABR", "WEH", "STL", "CAT"]],
+		"bottom": [
+			["CAT", "WST", "PDK", "LCA", "KGV", "WOA"],
+			["CAT", "ROV", "CUH", "PRR", "ROA", "BEP", "CYP", "GAR", "BEC"]
+		]
+	},
+	"dlr_SFD-LEW": {
+		"branch": false,
+		"line": "dlr",
+		"stations": [
+			"STI",
+			"SFD",
+			"PML",
+			"DER",
+			"LAP",
+			"ALS",
+			"POP",
+			"WIQ",
+			"CWF",
+			"HEW",
+			"SOW",
+			"CRO",
+			"MUD",
+			"ISG",
+			"CUS",
+			"GRE",
+			"DEB",
+			"ELR",
+			"LEW"
+		]
+	},
+	"OSI": {
+		"branch": false,
+		"line": "OSI",
+		"stations": [
+			"HLN",
+			"PRY",
+			"HMS",
+			"HMD",
+			"CRD",
+			"CIR",
+			"CMD",
+			"CTN",
+			"FRD",
+			"FNY",
+			"EUS",
+			"ESQ",
+			"WCT",
+			"WOL",
+			"SOH",
+			"SWC",
+			"THL",
+			"TOG",
+			"ROV",
+			"EMD",
+			"NGW",
+			"EGP",
+			"KNT",
+			"NWP",
+			"STO",
+			"SVS",
+			"WAL",
+			"WMW",
+			"HNY",
+			"MNR",
+			"ARC",
+			"UHL",
+			"WAN",
+			"FGT",
+			"CHS",
+			"CPN",
+			"SWM",
+			"MRD",
+			"NWX",
+			"NXG"
+		]
+	}
 }

@@ -6,7 +6,9 @@
 		url('fonts/LondonTube.svg#London Tube') format('svg');
 }
 
-* {
+body,
+body * {
+	display: unset !important;
 	margin: 0;
 	padding: 0;
 }
@@ -43,6 +45,8 @@ body {
 
 i.up {
 	content: url('icons/upload.svg');
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
 	transition: all 0.5s;
 }
 
