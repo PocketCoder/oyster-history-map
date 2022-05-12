@@ -101,6 +101,6 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "compileOnSave": true,
-	"include": ["*.ts"],
+	"include": ["public/assets/*.ts", "*.ts"],
   "exclude": ["./node_modules/*"]
 }
