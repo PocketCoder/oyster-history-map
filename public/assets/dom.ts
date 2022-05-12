@@ -93,11 +93,11 @@ $('#js-menu').on('click', () => {
 	document.getElementById('js-aside')?.classList.toggle('aside-out');
 });
 
-$('.js-stn-input').on('keyup', (e) => {
+$('#js-stnInput').on('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
-		const stn = (<HTMLInputElement>document.getElementById('js-stnInput')).value;
-		if (newStation(stn)) {
-			document.getElementById('js-stnInput')?.classList.add('confirm-animate');
+		const stnEl = (<HTMLInputElement>document.getElementById('js-stnInput'));
+		if (newStation(stnEl.value)) {
+			stnEl.value = '';
 		}
 	}
 });

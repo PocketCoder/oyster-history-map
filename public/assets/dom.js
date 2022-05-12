@@ -85,14 +85,11 @@ $('#js-menu').on('click', () => {
 	(_a = document.getElementById('js-footer')) === null || _a === void 0 ? void 0 : _a.classList.toggle('aside-active');
 	(_b = document.getElementById('js-aside')) === null || _b === void 0 ? void 0 : _b.classList.toggle('aside-out');
 });
-$('.js-stn-input').on('keyup', (e) => {
-	var _a;
+$('#js-stnInput').on('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
-		const stn = document.getElementById('js-stnInput').value;
-		if (newStation(stn)) {
-			(_a = document.getElementById('js-stnInput')) === null || _a === void 0
-				? void 0
-				: _a.classList.add('confirm-animate');
+		const stnEl = document.getElementById('js-stnInput');
+		if (newStation(stnEl.value)) {
+			stnEl.value = '';
 		}
 	}
 });
