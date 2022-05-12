@@ -13,13 +13,13 @@
 
 html,
 body {
-  width: 100%;
-  max-width: 100vw;
-  height: 100%;
-  max-height: 100vh;
-  font-family: "LondonTube", Arial, Helvetica, sans-serif;
-  overflow: hidden;
-  cursor: crosshair;
+	width: 100%;
+	max-width: 100vw;
+	height: 100%;
+	max-height: 100vh;
+	font-family: 'LondonTube', Helvetica, Arial, sans-serif;
+	cursor: crosshair;
+	overflow: hidden;
 }
 
 #map {
@@ -34,11 +34,11 @@ body {
 }
 
 #map:active:hover {
-  cursor: move;
+	cursor: move;
 }
 
 #map:active:hover {
-  cursor: move;
+	cursor: move;
 }
 
 i.up {
@@ -53,25 +53,76 @@ input {
 	font-size: 1.3em;
 }
 
-.dragOver {/*TODO: Body style change on drag over and drop.*/}
+.dragOver {
+	/*TODO: Body style change on drag over and drop.*/
+}
 
-i.menu {
-	content: url('icons/menu.svg');
-	cursor: pointer;
+footer {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: min(550px, 90vw);
+	height: 50px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	padding: 10px;
 	transition: all 0.5s ease-in-out;
 }
 
-#menu-icon {
-	position: absolute;
+footer > * {
+	margin: 0 10px 0 0;
+}
+
+#footerInput {
+	width: min(400px, 70vw);
+	height: 48px;
+	-webkit-box-shadow: 0px 7px 30px 0px rgba(50, 50, 50, 0.45);
+	-moz-box-shadow: 0px 7px 30px 0px rgba(50, 50, 50, 0.45);
+	box-shadow: 0px 7px 30px 0px rgba(50, 50, 50, 0.45);
+	border-radius: 50px;
+	color: #000000;
+	font-size: 1.25em;
+	transition: all 0.33s ease-in-out;
+}
+
+#footerInput::placeholder {
+	color: #0098d4;
+}
+
+#footerInput:focus::placeholder {
+	color: #fcf7f7;
+}
+
+#footerInput:focus {
+	border-radius: 10px;
+	background-color: #0098d4;
+	color: #000000;
+}
+
+i {
 	display: inline-block;
-	bottom: 20px;
-	left: 20px;
 	background-color: white;
 	padding: 10px;
 	-webkit-box-shadow: -6px 4px 12px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow: -6px 4px 12px 0px rgba(50, 50, 50, 0.75);
 	box-shadow: -6px 4px 12px 0px rgba(50, 50, 50, 0.75);
 	border-radius: 50px;
+}
+
+i.menu {
+	content: url('icons/menu.svg');
+	cursor: pointer;
+}
+
+i.info {
+	content: url('icons/info.svg');
+	cursor: pointer;
+}
+
+footer.aside-active {
+	left: 330px;
 }
 
 .aside-out {
@@ -84,68 +135,24 @@ aside {
 	top: 0;
 	width: 300px;
 	height: 100vh;
-	padding: 20px 10px 10px 10px;
-	background: white;
+	padding: 10px 10px 10px 10px;
+	background: transparent;
+	overflow-y: scroll;
 	transition: all 0.5s ease-in-out;
+}
+
+aside .bubble {
+	margin: 0 auto;
+	width: 90%;
+	height: auto;
+	min-height: 50px;
+	background-color: white;
+	border-radius: 20px;
+	padding: 25px 15px;
+	margin: 7px 0;
 	-webkit-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.75);
 	box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.75);
-	overflow-y: scroll;
-}
-
-aside header {
-	display: flex;
-	display: -webkit-flex;
-	height: 100px;
-	justify-content: space-evenly;
-	align-items: center;
-	border-bottom: 1px solid black;
-}
-
-aside header img {
-	height: 50px;
-}
-
-aside div {
-	margin: 15px 0 0 0;
-}
-
-aside div div {
-	margin: 0 0 10px 0;
-}
-
-aside div #welcome p {
-	font-size: 16px;
-}
-
-aside div #welcome p.nb {
-	font-size: 14px;
-}
-
-aside div #stationInput {
-	width: 100%;
-	background-color: #f1f3f4;
-	transition: all 0.25s ease-in-out;
-}
-
-aside div #stationInput:focus {
-	background-color: #f3a9bb;
-	color: black;
-}
-
-aside div input {
-	margin: 0 0 10px 0;
-}
-
-aside #stats label {
-	padding-right: 10px;
-}
-
-aside footer {
-	height: 100px;
-	margin: 0 0 75px 0;
-	font-size: 14px;
-	text-align: center;
 }
 
 .confirm-animate {
@@ -159,7 +166,7 @@ aside footer {
 
 @keyframes confirmation {
 	0% {
-		background-color: #f1f3f4;
+		background-color: initial;
 	}
 
 	50% {
@@ -167,7 +174,7 @@ aside footer {
 	}
 
 	100% {
-		background-color: #f1f3f4;
+		background-color: initial;
 	}
 }
 
@@ -188,273 +195,273 @@ aside footer {
 /* Progress Bars */
 
 /* All */
-aside #stats progress {
+#line-progress progress {
 	height: 7px;
 }
 
-aside #stats progress::-moz-progress-bar {
+#line-progress progress::-moz-progress-bar {
 	height: 7px;
 }
 
-aside #stats progress::-webkit-progress-value {
+#line-progress progress::-webkit-progress-value {
 	height: 7px;
 }
 
-aside #stats progress[aria-valuenow]:before {
-  height: 7px;
+#line-progress progress[aria-valuenow]:before {
+	height: 7px;
 }
 
 /* Bakerloo */
-aside #stats progress#bakerloo {
+#line-progress progress#bakerloo {
 	background: #b36305;
 }
 
-aside #stats progress#bakerloo::-moz-progress-bar {
+#line-progress progress#bakerloo::-moz-progress-bar {
 	background: #b36305;
 }
 
-aside #stats progress#bakerloo::-webkit-progress-value {
+#line-progress progress#bakerloo::-webkit-progress-value {
 	background: #b36305;
 }
 
-aside #stats progress#bakerloo[aria-valuenow]:before {
-  background: #B36305;
+#line-progress progress#bakerloo[aria-valuenow]:before {
+	background: #b36305;
 }
 
 /* Central */
-aside #stats progress#central {
+#line-progress progress#central {
 	background: #e32017;
 }
 
-aside #stats progress#central::-moz-progress-bar {
+#line-progress progress#central::-moz-progress-bar {
 	background: #e32017;
 }
 
-aside #stats progress#central::-webkit-progress-value {
+#line-progress progress#central::-webkit-progress-value {
 	background: #e32017;
 }
 
-aside #stats progress#central[aria-valuenow]:before {
-  background: #E32017;
+#line-progress progress#central[aria-valuenow]:before {
+	background: #e32017;
 }
 
 /* Circle */
-aside #stats progress#circle {
+#line-progress progress#circle {
 	background: #ffd300;
 }
 
-aside #stats progress#circle::-moz-progress-bar {
+#line-progress progress#circle::-moz-progress-bar {
 	background: #ffd300;
 }
 
-aside #stats progress#circle::-webkit-progress-value {
+#line-progress progress#circle::-webkit-progress-value {
 	background: #ffd300;
 }
 
-aside #stats progress#circle[aria-valuenow]:before {
-  background: #FFD300;
+#line-progress progress#circle[aria-valuenow]:before {
+	background: #ffd300;
 }
 
 /* District */
-aside #stats progress#district {
+#line-progress progress#district {
 	background: #00782a;
 }
 
-aside #stats progress#district::-moz-progress-bar {
+#line-progress progress#district::-moz-progress-bar {
 	background: #00782a;
 }
 
-aside #stats progress#district::-webkit-progress-value {
+#line-progress progress#district::-webkit-progress-value {
 	background: #00782a;
 }
 
-aside #stats progress#district[aria-valuenow]:before {
-  background: #00782A;
+#line-progress progress#district[aria-valuenow]:before {
+	background: #00782a;
 }
 
 /* DLR */
-aside #stats progress#dlr {
+#line-progress progress#dlr {
 	background: #00a4a7;
 }
 
-aside #stats progress#dlr::-moz-progress-bar {
+#line-progress progress#dlr::-moz-progress-bar {
 	background: #00a4a7;
 }
 
-aside #stats progress#dlr::-webkit-progress-value {
+#line-progress progress#dlr::-webkit-progress-value {
 	background: #00a4a7;
 }
 
-aside #stats progress#dlr[aria-valuenow]:before {
-  background: #00A4A7;
+#line-progress progress#dlr[aria-valuenow]:before {
+	background: #00a4a7;
 }
 
 /* Elizabeth */
-aside #stats progress#elizabeth {
+#line-progress progress#elizabeth {
 	background: #7156a5;
 }
 
-aside #stats progress#elizabeth::-moz-progress-bar {
+#line-progress progress#elizabeth::-moz-progress-bar {
 	background: #7156a5;
 }
 
-aside #stats progress#elizabeth::-webkit-progress-value {
+#line-progress progress#elizabeth::-webkit-progress-value {
 	background: #7156a5;
 }
 
-aside #stats progress#elizabeth[aria-valuenow]:before {
-  background: #7156A5;
+#line-progress progress#elizabeth[aria-valuenow]:before {
+	background: #7156a5;
 }
 
 /* Hammersmith & City */
-aside #stats progress#hammersmith-city {
+#line-progress progress#hammersmith-city {
 	background: #f3a9bb;
 }
 
-aside #stats progress#hammersmith-city::-moz-progress-bar {
+#line-progress progress#hammersmith-city::-moz-progress-bar {
 	background: #f3a9bb;
 }
 
-aside #stats progress#hammersmith-city::-webkit-progress-value {
+#line-progress progress#hammersmith-city::-webkit-progress-value {
 	background: #f3a9bb;
 }
 
-aside #stats progress#hammersmith-city[aria-valuenow]:before {
-  background: #F3A9BB;
+#line-progress progress#hammersmith-city[aria-valuenow]:before {
+	background: #f3a9bb;
 }
 
 /* Jubilee */
-aside #stats progress#jubilee {
+#line-progress progress#jubilee {
 	background: #a0a5a9;
 }
 
-aside #stats progress#jubilee::-moz-progress-bar {
+#line-progress progress#jubilee::-moz-progress-bar {
 	background: #a0a5a9;
 }
 
-aside #stats progress#jubilee::-webkit-progress-value {
+#line-progress progress#jubilee::-webkit-progress-value {
 	background: #a0a5a9;
 }
 
-aside #stats progress#jubilee[aria-valuenow]:before {
-  background: #A0A5A9;
+#line-progress progress#jubilee[aria-valuenow]:before {
+	background: #a0a5a9;
 }
 
 /* Metropolitan */
-aside #stats progress#metropolitan {
+#line-progress progress#metropolitan {
 	background: #9b0056;
 }
 
-aside #stats progress#metropolitan::-moz-progress-bar {
+#line-progress progress#metropolitan::-moz-progress-bar {
 	background: #9b0056;
 }
 
-aside #stats progress#metropolitan::-webkit-progress-value {
+#line-progress progress#metropolitan::-webkit-progress-value {
 	background: #9b0056;
 }
 
-aside #stats progress#metropolitan[aria-valuenow]:before {
-  background: #9B0056;
+#line-progress progress#metropolitan[aria-valuenow]:before {
+	background: #9b0056;
 }
 
 /* Northern */
-aside #stats progress#northern {
+#line-progress progress#northern {
 	background: #000000;
 }
 
-aside #stats progress#northern::-moz-progress-bar {
+#line-progress progress#northern::-moz-progress-bar {
 	background: #000000;
 }
 
-aside #stats progress#northern::-webkit-progress-value {
+#line-progress progress#northern::-webkit-progress-value {
 	background: #000000;
 }
 
-aside #stats progress#northern[aria-valuenow]:before {
-  background: #000000;
+#line-progress progress#northern[aria-valuenow]:before {
+	background: #000000;
 }
 
 /* Overground */
-aside #stats progress#overground {
+#line-progress progress#overground {
 	background: #ee7c0e;
 }
 
-aside #stats progress#overground::-moz-progress-bar {
+#line-progress progress#overground::-moz-progress-bar {
 	background: #ee7c0e;
 }
 
-aside #stats progress#overground::-webkit-progress-value {
+#line-progress progress#overground::-webkit-progress-value {
 	background: #ee7c0e;
 }
 
-aside #stats progress#overground[aria-valuenow]:before {
-  background: #EE7C0E;
+#line-progress progress#overground[aria-valuenow]:before {
+	background: #ee7c0e;
 }
 
 /* Piccadilly */
-aside #stats progress#piccadilly {
+#line-progress progress#piccadilly {
 	background: #003688;
 }
 
-aside #stats progress#piccadilly::-moz-progress-bar {
+#line-progress progress#piccadilly::-moz-progress-bar {
 	background: #003688;
 }
 
-aside #stats progress#piccadilly::-webkit-progress-value {
+#line-progress progress#piccadilly::-webkit-progress-value {
 	background: #003688;
 }
 
-aside #stats progress#piccadilly[aria-valuenow]:before {
-  background: #003688;
+#line-progress progress#piccadilly[aria-valuenow]:before {
+	background: #003688;
 }
 
 /* Trams */
-aside #stats progress#trams {
+#line-progress progress#trams {
 	background: #84b817;
 }
 
-aside #stats progress#trams::-moz-progress-bar {
+#line-progress progress#trams::-moz-progress-bar {
 	background: #84b817;
 }
 
-aside #stats progress#trams::-webkit-progress-value {
+#line-progress progress#trams::-webkit-progress-value {
 	background: #84b817;
 }
 
-aside #stats progress#trams[aria-valuenow]:before {
-  background: #84B817;
+#line-progress progress#trams[aria-valuenow]:before {
+	background: #84b817;
 }
 
 /* Victoria */
-aside #stats progress#victoria {
+#line-progress progress#victoria {
 	background: #0098d4;
 }
 
-aside #stats progress#victoria::-moz-progress-bar {
+#line-progress progress#victoria::-moz-progress-bar {
 	background: #0098d4;
 }
 
-aside #stats progress#victoria::-webkit-progress-value {
+#line-progress progress#victoria::-webkit-progress-value {
 	background: #0098d4;
 }
 
-aside #stats progress#victoria[aria-valuenow]:before {
-  background: #0098D4;
+#line-progress progress#victoria[aria-valuenow]:before {
+	background: #0098d4;
 }
 
 /* Waterloo & City */
-aside #stats progress#waterloo-city {
+#line-progress progress#waterloo-city {
 	background: #95cdba;
 }
 
-aside #stats progress#waterloo-city::-moz-progress-bar {
+#line-progress progress#waterloo-city::-moz-progress-bar {
 	background: #95cdba;
 }
 
-aside #stats progress#waterloo-city::-webkit-progress-value {
+#line-progress progress#waterloo-city::-webkit-progress-value {
 	background: #95cdba;
 }
 
-aside #stats progress#waterloo-city[aria-valuenow]:before {
+#line-progress progress#waterloo-city[aria-valuenow]:before {
 	background: #95cdba;
 }

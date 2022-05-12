@@ -1,5 +1,7 @@
-var panInst;
-var mapEl = document.getElementById('map');
+'use strict';
+var _a;
+let panInst;
+const mapEl = document.getElementById('map');
 function storageAvailable(type) {
 	var storage;
 	try {
@@ -35,29 +37,31 @@ function loadMapData() {
 		alert("Sorry, local storage isn't available in your browser. That means we can't save the data you upload.");
 	} finally {
 		if (localStorage.getItem('stations') !== null) {
-			$('#welcome').css('display', 'none');
+			$('#js-welcome').css('display', 'none');
 			addStnsToMap(usrData('get', 'stations'));
 			updateLineSegs();
+		} else {
+			$('#js-footer').toggleClass('aside-active');
+			$('aside').toggleClass('aside-out');
 		}
 	}
 }
 function loadMap() {
 	fetch('./assets/map.svg')
-		.then(function (res) {
-			return res.text();
-		})
-		.then(function (data) {
+		.then((res) => res.text())
+		.then((data) => {
 			mapEl.innerHTML = data;
-			var elem = document.getElementById('status-map');
-			setTimeout(function () {
+			const elem = document.getElementById('status-map');
+			setTimeout(() => {
 				elem.style.opacity = '1';
 			}, 500);
 			// @ts-ignore
 			panInst = panzoom(elem, {
-				filterKey: function () {
+				filterKey: () => {
 					return true;
 				},
 				maxZoom: 4,
+				minZoom: 1,
 				initialX: 300,
 				initialY: 500,
 				initialZoom: 1.5,
@@ -65,18 +69,19 @@ function loadMap() {
 				bounds: true,
 				boundsPadding: 0.4,
 			});
-			setTimeout(function () {
+			setTimeout(() => {
 				loadMapData();
 			}, 1500);
 		});
 }
-document.onreadystatechange = function (e) {
+document.onreadystatechange = (e) => {
 	if (document.readyState === 'complete') {
 		loadMap();
 	}
 };
-window.onload = function () {
-	var isMobile = false;
+window.onload = () => {
+	var _a;
+	let isMobile = false;
 	if (
 		/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(
 			navigator.userAgent
@@ -88,7 +93,7 @@ window.onload = function () {
 		isMobile = true;
 	}
 	if (isMobile) {
-		document.querySelector('body').classList.add('mobile');
+		(_a = document.querySelector('body')) === null || _a === void 0 ? void 0 : _a.classList.add('mobile');
 	}
 };
 /*
@@ -109,21 +114,22 @@ function centreOn(stn) {
     relative: true
   });
 }*/
-window.onkeyup = function (e) {
+window.onkeyup = (e) => {
 	if (e.key === '/' || e.keyCode === 191) {
 		if (!$('aside').hasClass('aside-out')) {
 			$('aside').addClass('aside-out');
 		}
-		$('#stationInput').focus();
+		$('.js-stn-input').focus();
 	}
 };
-$('#menu-icon').on('click', function () {
+$('#js-menu').on('click', () => {
+	$('#js-footer').toggleClass('aside-active');
 	$('aside').toggleClass('aside-out');
 });
-$('#stationInput').on('keyup', function (e) {
+$('.js-stn-input').on('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
-		if (newStation($('#stationInput').val().toString())) {
-			$('#stationInput').addClass('confirm-animate');
+		if (newStation($('.js-stn-input').val().toString())) {
+			$('.js-stn-input').addClass('confirm-animate');
 		}
 	}
 });
@@ -134,8 +140,8 @@ function newStation(input) {
 	return true;
 }
 // @ts-ignore
-var autoCompleteJS = new autoComplete({
-	selector: '#stationInput',
+const autoCompleteJS = new autoComplete({
+	selector: '.js-stn-input',
 	wrapper: true,
 	threshold: 2,
 	data: {
@@ -607,13 +613,14 @@ var autoCompleteJS = new autoComplete({
 	},
 	resultsList: {
 		id: 'resultList',
+		position: 'afterbegin',
 		maxResults: 3,
 		tabSelect: true,
-		element: function (list, data) {
+		element: (list, data) => {
 			if (!data.results.length) {
-				var message = document.createElement('div');
+				const message = document.createElement('div');
 				message.setAttribute('class', 'no_result');
-				message.innerHTML = '<span>Found No Results for "'.concat(data.query, '"</span>');
+				message.innerHTML = `<span>Found No Results for "${data.query}"</span>`;
 				list.prepend(message);
 			}
 		},
@@ -621,19 +628,21 @@ var autoCompleteJS = new autoComplete({
 	},
 	events: {
 		input: {
-			selection: function (event) {
-				var selection = event.detail.selection.value;
+			selection: (event) => {
+				const selection = event.detail.selection.value;
 				autoCompleteJS.input.value = selection;
 			},
 		},
 	},
 });
-document.querySelector('#stationInput').addEventListener('selection', function (event) {
-	// @ts-ignore
-	if (newStation(event.detail.selection.value)) {
-		$('#stationInput').addClass('confirm-animate');
-		setTimeout(function () {
-			$('#stationInput').removeClass('confirm-animate').val('');
-		}, 2250);
-	}
-});
+(_a = document.querySelector('.js-stn-input')) === null || _a === void 0
+	? void 0
+	: _a.addEventListener('selection', function (event) {
+			// @ts-ignore
+			if (newStation(event.detail.selection.value)) {
+				$('.js-stn-input').addClass('confirm-animate');
+				setTimeout(() => {
+					$('.js-stn-input').removeClass('confirm-animate').val('');
+				}, 2250);
+			}
+	  });

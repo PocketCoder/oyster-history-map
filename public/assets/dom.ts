@@ -37,9 +37,12 @@ function loadMapData() {
 		alert("Sorry, local storage isn't available in your browser. That means we can't save the data you upload.");
 	} finally {
 		if (localStorage.getItem('stations') !== null) {
-			$('#welcome').css('display', 'none');
+			$('#js-welcome').css('display', 'none');
 			addStnsToMap(usrData('get', 'stations'));
 			updateLineSegs();
+		} else {
+			$('#js-footer').toggleClass('aside-active');
+			$('aside').toggleClass('aside-out');
 		}
 	}
 }
@@ -59,6 +62,7 @@ function loadMap() {
 					return true;
 				},
 				maxZoom: 4,
+				minZoom: 1,
 				initialX: 300,
 				initialY: 500,
 				initialZoom: 1.5,
@@ -92,7 +96,7 @@ window.onload = () => {
 	}
 
 	if (isMobile) {
-		document.querySelector('body').classList.add('mobile');
+		document.querySelector('body')?.classList.add('mobile');
 	}
 };
 
@@ -120,18 +124,19 @@ window.onkeyup = (e: any) => {
 		if (!$('aside').hasClass('aside-out')) {
 			$('aside').addClass('aside-out');
 		}
-		$('#stationInput').focus();
+		$('.js-stn-input').focus();
 	}
 };
 
-$('#menu-icon').on('click', () => {
+$('#js-menu').on('click', () => {
+	$('#js-footer').toggleClass('aside-active');
 	$('aside').toggleClass('aside-out');
 });
 
-$('#stationInput').on('keyup', (e) => {
+$('.js-stn-input').on('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
-		if (newStation($('#stationInput').val().toString())) {
-			$('#stationInput').addClass('confirm-animate');
+		if (newStation($('.js-stn-input').val().toString())) {
+			$('.js-stn-input').addClass('confirm-animate');
 		}
 	}
 });
@@ -145,7 +150,7 @@ function newStation(input: string) {
 
 // @ts-ignore
 const autoCompleteJS = new autoComplete({
-	selector: '#stationInput',
+	selector: '.js-stn-input',
 	wrapper: true,
 	threshold: 2,
 	data: {
@@ -617,6 +622,7 @@ const autoCompleteJS = new autoComplete({
 	},
 	resultsList: {
 		id: 'resultList',
+		position: 'afterbegin',
 		maxResults: 3,
 		tabSelect: true,
 		element: (list, data) => {
@@ -639,12 +645,12 @@ const autoCompleteJS = new autoComplete({
 	},
 });
 
-document.querySelector('#stationInput').addEventListener('selection', function (event) {
+document.querySelector('.js-stn-input')?.addEventListener('selection', function (event) {
 	// @ts-ignore
 	if (newStation(event.detail.selection.value)) {
-		$('#stationInput').addClass('confirm-animate');
+		$('.js-stn-input').addClass('confirm-animate');
 		setTimeout(() => {
-			$('#stationInput').removeClass('confirm-animate').val('');
+			$('.js-stn-input').removeClass('confirm-animate').val('');
 		}, 2250);
 	}
 });

@@ -64,53 +64,49 @@
     </head>
     <body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
         <div id="map"></div>
+        <footer id="js-footer">
+            <i class="menu" id="js-menu"></i>
+            <input class="js-stn-input" id="footerInput" type="text" placeholder="Add a station..." dir="ltr" spellcheck=true />
+            <i class="info" id="js-info"></i>
+        </footer>
         <aside>
-            <header>
-                <img src="assets/logo.svg" alt="Logo"/>
-                <h1>Tubular</h1>
-            </header>
-            <div>
-                <div id="welcome">
-                    <h4>Welcome!</h4>
-                    <br />
-                    <p>This is a fun website to help you visualise your history on TfL. Starting with a faded map, once you begin to add stations their names will light up. As you add more stations on a line, the segments in-between will become visible, too.</p>
-                    <br />
-                    <p>TfL let you export the last 8 weeks of journey data from their <a href="https://oyster.tfl.gov.uk" target="_blank">website.</a> Simply log in and click on the button to export your jouney history as a <i>CSV</i> file. If you don't have an account, but have an Oyster/contactless card you use for journeys, just sign up and follow the steps to link them.</p>
-                    <br />
-                    <p class="nb">N.B.: Syncing between this device and others is currently unavailable. All data is stored in the browser's <code>localStorage</code>. Support for accounts and cross-device syncing will come in the near future.</p>
-                </div>
-                <div id="inputs">
-                    <h4>Add a station</h4>
-                    <br />
-                    <input id="stationInput" type="text" placeholder="/ to focus" dir="ltr" spellcheck=true />
-                    <input id="fileSelect" type="file" accept=".csv" style="font-size: unset"/>
-                </div>
-                <div id="stats">
-                    <h4>Stats</h4>
-                    <progress id="bakerloo" max="100" value="0"></progress><br />
-                    <progress id="central" max="100" value="0"></progress><br />
-                    <progress id="circle" max="100" value="0"></progress><br />
-                    <progress id="district" max="100" value="0"></progress><br />
-                    <progress id="dlr" max="100" value="0"></progress><br />
-                    <progress id="elizabeth" max="100" value="0"></progress><br />
-                    <progress id="hammersmith-city" max="100" value="0"></progress><br />
-                    <progress id="jubilee" max="100" value="0"></progress><br />
-                    <progress id="metropolitan" max="100" value="0"></progress><br />
-                    <progress id="northern" max="100" value="0"></progress><br />
-                    <progress id="overground" max="100" value="0"></progress><br />
-                    <progress id="piccadilly" max="100" value="0"></progress><br />
-                    <progress id="trams" max="100" value="0"></progress><br />
-                    <progress id="victoria" max="100" value="0"></progress>
-                </div>
-                <footer>
-                    <p class="nb">See something wrong? Help me fix it by reporting an issue on GitHub:
-                        <br />
-                        <a class="github-button" href="https://github.com/PocketCoder/tubular/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PocketCoder/tubular on GitHub">Issue</a>
-                    </p>
-                </footer>
+            <div class="bubble" id="js-welcome">
+                <h4>Welcome!</h4>
+                <br />
+                <p>This is a fun website to help you visualise your history on TfL. Starting with a faded map, once you begin to add stations their names will light up. As you add more stations on a line, the segments in-between will become visible, too.</p>
+                <br />
+                <p>TfL let you export the last 8 weeks of journey data from their <a href="https://oyster.tfl.gov.uk" target="_blank">website.</a> Simply log in and click on the button to export your jouney history as a <u>CSV</u> file. If you don't have an account, but have an Oyster/contactless card you use for journeys, just sign up and follow the steps to link them.</p>
+                <br />
+                <p class="nb">N.B.: Syncing between this device and others is currently unavailable. All data is stored in the browser's <code>localStorage</code>. Support for accounts and cross-device syncing will come in the near future.</p>
+            </div>
+            <div class="bubble">
+                <h4>Upload CSV</h4>
+                <br />
+                <input id="fileSelect" type="file" accept=".csv" style="font-size: unset"/>
+            </div>
+            <div class="bubble" id="line-progress">
+                <h4>Stats</h4>
+                <progress id="bakerloo" max="100" value="0"></progress><br />
+                <progress id="central" max="100" value="0"></progress><br />
+                <progress id="circle" max="100" value="0"></progress><br />
+                <progress id="district" max="100" value="0"></progress><br />
+                <progress id="dlr" max="100" value="0"></progress><br />
+                <progress id="elizabeth" max="100" value="0"></progress><br />
+                <progress id="hammersmith-city" max="100" value="0"></progress><br />
+                <progress id="jubilee" max="100" value="0"></progress><br />
+                <progress id="metropolitan" max="100" value="0"></progress><br />
+                <progress id="northern" max="100" value="0"></progress><br />
+                <progress id="overground" max="100" value="0"></progress><br />
+                <progress id="piccadilly" max="100" value="0"></progress><br />
+                <progress id="trams" max="100" value="0"></progress><br />
+                <progress id="victoria" max="100" value="0"></progress>
+            </div>
+            <div class="bubble">
+                <p class="nb">See something wrong?</p>
+                <p>Help me fix it by reporting an issue on GitHub:</p>
+                <a class="github-button" href="https://github.com/PocketCoder/tubular/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue PocketCoder/tubular on GitHub">Issue</a>
             </div>
         </aside>
-        <i class="menu" id="menu-icon"></i>
         <script async defer src="https://buttons.github.io/buttons.js"></script>
     </body>
 </html>
