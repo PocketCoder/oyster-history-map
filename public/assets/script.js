@@ -63,7 +63,7 @@ function updateLineSegs() {
 		'waterloo-city': 0,
 		'cable-car': 0,
 		dlr: 0,
-		OSI: 0,
+		OSI: 0
 	};
 	for (const l in lines) {
 		const lineObj = lines[l];
@@ -215,7 +215,7 @@ function updateStats(data) {
 		'waterloo-city': 2,
 		'cable-car': 2,
 		dlr: 45,
-		tram: 39,
+		tram: 39
 	};
 	for (const l in totals) {
 		let percent, visited;

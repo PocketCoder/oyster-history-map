@@ -27,15 +27,15 @@ const lines = {
 			'EMB',
 			'WLO',
 			'LAM',
-			'ELE',
-		],
+			'ELE'
+		]
 	},
 	central: {
 		branch: true,
 		line: 'central',
 		top: [
 			['WRP', 'RUG', 'SRP', 'NHT', 'GFD', 'PER', 'HLN', 'NAC'],
-			['EBY', 'WAC', 'NAC'],
+			['EBY', 'WAC', 'NAC']
 		],
 		bottom: [
 			[
@@ -59,7 +59,7 @@ const lines = {
 				'MLE',
 				'SFD',
 				'LEY',
-				'LYS',
+				'LYS'
 			],
 			[
 				'EAC',
@@ -90,7 +90,7 @@ const lines = {
 				'LTN',
 				'DEB',
 				'THB',
-				'EPP',
+				'EPP'
 			],
 			[
 				'EAC',
@@ -124,9 +124,9 @@ const lines = {
 				'GRH',
 				'CHG',
 				'ROD',
-				'WFD',
-			],
-		],
+				'WFD'
+			]
+		]
 	},
 	piccadilly: {
 		branch: 'true',
@@ -160,14 +160,14 @@ const lines = {
 				'ECT',
 				'BCT',
 				'HMD',
-				'TGR',
-			],
+				'TGR'
+			]
 		],
 		bottom: [
 			['TGR', 'ACT', 'ECM', 'NEL', 'PRY', 'ALP', 'STN', 'SHL', 'SHR', 'RLN', 'ETE', 'RUM', 'RUI', 'ICK', 'HDN', 'UXB'],
 			['TGR', 'ACT', 'SEL', 'NFD', 'BOS', 'OST', 'HNE', 'HNC', 'HNW', 'HTX', 'HRC', 'HTF', 'HTC'],
-			['TGR', 'ACT', 'SEL', 'NFD', 'BOS', 'OST', 'HNE', 'HNC', 'HNW', 'HTX', 'HRC', 'HRV'],
-		],
+			['TGR', 'ACT', 'SEL', 'NFD', 'BOS', 'OST', 'HNE', 'HNC', 'HNW', 'HTX', 'HRC', 'HRV']
+		]
 	},
 	jubilee: {
 		branch: false,
@@ -199,8 +199,8 @@ const lines = {
 			'NGW',
 			'CAT',
 			'WEH',
-			'SFD',
-		],
+			'SFD'
+		]
 	},
 	metropolitan: {
 		branch: true,
@@ -209,9 +209,9 @@ const lines = {
 			['AME', 'CLF', 'CWD', 'RKY', 'MPK', 'NWD', 'NWH', 'PIN', 'NHR', 'HOH'],
 			['CHE', 'CLF', 'CWD', 'RKY', 'MPK', 'NWD', 'NWH', 'PIN', 'NHR', 'HOH'],
 			['WAT', 'CRX', 'MPK', 'NWD', 'NWH', 'PIN', 'NHR', 'HOH'],
-			['UXB', 'HDN', 'ICK', 'RUI', 'RUM', 'ETE', 'RLN', 'WHR', 'HOH'],
+			['UXB', 'HDN', 'ICK', 'RUI', 'RUM', 'ETE', 'RLN', 'WHR', 'HOH']
 		],
-		bottom: [['HOH', 'NWP', 'PRD', 'WPK', 'FRD', 'BST', 'GPS', 'ESQ', 'KXX', 'FAR', 'BAR', 'MGT', 'LST', 'ALD']],
+		bottom: [['HOH', 'NWP', 'PRD', 'WPK', 'FRD', 'BST', 'GPS', 'ESQ', 'KXX', 'FAR', 'BAR', 'MGT', 'LST', 'ALD']]
 	},
 	victoria: {
 		branch: false,
@@ -232,8 +232,8 @@ const lines = {
 			'PIM',
 			'VUX',
 			'STK',
-			'BRX',
-		],
+			'BRX'
+		]
 	},
 	northern: {
 		branch: true,
@@ -241,7 +241,7 @@ const lines = {
 		top: [
 			['HBT', 'TOT', 'WSP', 'WFY', 'FYC', 'FYC', 'EFY', 'HIG', 'ARC', 'TPK', 'KTN', 'CTN'],
 			['MHE', 'FYC', 'EFY', 'HIG', 'ARC', 'TPK', 'KTN', 'CTN'],
-			['EDG', 'BUR', 'COL', 'HND', 'BTX', 'GGR', 'HMP', 'BPK', 'CHF', 'CTN'],
+			['EDG', 'BUR', 'COL', 'HND', 'BTX', 'GGR', 'HMP', 'BPK', 'CHF', 'CTN']
 		],
 		bottom: [
 			['CTN', 'MCR', 'EUS', 'WST', 'GST', 'TCR', 'LSQ', 'CHX', 'EMB', 'WLO', 'KEN', 'NIE', 'BAT'],
@@ -267,9 +267,9 @@ const lines = {
 				'TBY',
 				'CLW',
 				'SWM',
-				'MOR',
-			],
-		],
+				'MOR'
+			]
+		]
 	},
 	circle: {
 		branch: false,
@@ -312,8 +312,8 @@ const lines = {
 			'BAY',
 			'PAD',
 			'ERD',
-			'PAD',
-		],
+			'PAD'
+		]
 	},
 	'hammersmith-city': {
 		branch: false,
@@ -347,8 +347,8 @@ const lines = {
 			'PLW',
 			'UPK',
 			'EHM',
-			'BKG',
-		],
+			'BKG'
+		]
 	},
 	district: {
 		branch: true,
@@ -357,7 +357,7 @@ const lines = {
 			['EBY', 'ECM', 'ACT', 'CHP', 'TGR', 'STB', 'RCP', 'HMD', 'BCT', 'WKN', 'ECT'],
 			['RMD', 'KEW', 'GUN', 'TGR', 'STB', 'RCP', 'HMD', 'BCT', 'WKN', 'ECT'],
 			['OLY', 'ECT'],
-			['WDN', 'WMP', 'SFS', 'EPY', 'PUT', 'PGR', 'FBY', 'WBT', 'ECT'],
+			['WDN', 'WMP', 'SFS', 'EPY', 'PUT', 'PGR', 'FBY', 'WBT', 'ECT']
 		],
 		bottom: [
 			['ECT', 'HST', 'NHG', 'BAY', 'PAD', 'ERD'],
@@ -394,9 +394,9 @@ const lines = {
 				'EPK',
 				'HCH',
 				'UPB',
-				'UPM',
-			],
-		],
+				'UPM'
+			]
+		]
 	},
 	'elizabeth-east': {
 		branch: true,
@@ -404,17 +404,17 @@ const lines = {
 		top: [
 			['RDG', 'TFD', 'MDH', 'TLW', 'BHM', 'SGH', 'LGY', 'IVR', 'WDT', 'HAH'],
 			['HRF', 'HTC', 'HAH'],
-			['HTV', 'HTC', 'HAH'],
+			['HTV', 'HTC', 'HAH']
 		],
 		bottom: [
 			['HAH', 'SAL', 'HWL', 'WEL', 'EBY', 'AML', 'PAD'],
-			['LST', ''],
-		],
+			['LST', '']
+		]
 	},
 	'elizabeth-west': {
 		branch: false,
 		line: 'elizabeth',
-		stations: ['LST', 'SFD', 'MLD', 'FGT', 'MNP', 'IFD', 'SVK', 'GDM', 'CWH', 'RFD', 'GDP', 'HWD', 'BWD', 'SND'],
+		stations: ['LST', 'SFD', 'MLD', 'FGT', 'MNP', 'IFD', 'SVK', 'GDM', 'CWH', 'RFD', 'GDP', 'HWD', 'BWD', 'SND']
 	},
 	'overground_WTJ-EUS': {
 		branch: false,
@@ -438,13 +438,13 @@ const lines = {
 			'QPK',
 			'KBN',
 			'SOH',
-			'EUS',
-		],
+			'EUS'
+		]
 	},
 	'overground_GPO-BKG': {
 		branch: false,
 		line: 'overground',
-		stations: ['GPO', 'UHL', 'CRH', 'HRY', 'STO', 'BHR', 'WMW', 'LEM', 'LER', 'WNP', 'WGR', 'BKG'],
+		stations: ['GPO', 'UHL', 'CRH', 'HRY', 'STO', 'BHR', 'WMW', 'LEM', 'LER', 'WNP', 'WGR', 'BKG']
 	},
 	overground_HBY: {
 		branch: true,
@@ -454,8 +454,8 @@ const lines = {
 			['SUQ', 'NWX'],
 			['SUQ', 'NXG', 'BCY', 'HPA', 'FOH', 'SYD', 'CRP'],
 			['SUQ', 'NXG', 'BCY', 'HPA', 'FOH', 'SYD', 'PNW', 'ANZ', 'NJN', 'WCY'],
-			['SUQ', 'NXG', 'BCY', 'HPA', 'FOH', 'SYD', 'QRP', 'PMR', 'DMH', 'CHS', 'WWR', 'CLH'],
-		],
+			['SUQ', 'NXG', 'BCY', 'HPA', 'FOH', 'SYD', 'QRP', 'PMR', 'DMH', 'CHS', 'WWR', 'CLH']
+		]
 	},
 	overground_LST: {
 		branch: true,
@@ -463,16 +463,16 @@ const lines = {
 		top: [
 			['HKD', 'RRD', 'SNT', 'SFH', 'SVS', 'BRG', 'WHL', 'SST', 'EMG', 'BHP', 'EFT'],
 			['HKD', 'RRD', 'SNT', 'SFH', 'SVS', 'BRG', 'WHL', 'SST', 'EMG', 'SBY', 'TST', 'TBG', 'CHT'],
-			['HKD', 'CPT', 'SJS', 'WAL', 'WOS', 'HGP', 'CFD'],
+			['HKD', 'CPT', 'SJS', 'WAL', 'WOS', 'HGP', 'CFD']
 		],
-		bottom: [['LST', 'BNG', 'CBH', 'LFD', 'HKD']],
+		bottom: [['LST', 'BNG', 'CBH', 'LFD', 'HKD']]
 	},
 	overground_SFD: {
 		branch: true,
 		line: 'overground',
 		top: [
 			['RMD', 'KEW', 'GUN', 'SAT', 'ACC', 'WJN'],
-			['CLJ', 'IMW', 'WBT', 'OLY', 'SHB', 'WJN'],
+			['CLJ', 'IMW', 'WBT', 'OLY', 'SHB', 'WJN']
 		],
 		bottom: [
 			[
@@ -493,14 +493,14 @@ const lines = {
 				'HKC',
 				'HMN',
 				'HKW',
-				'SFD',
-			],
-		],
+				'SFD'
+			]
+		]
 	},
 	overground_UPM: {
 		branch: false,
 		line: 'overground',
-		stations: ['RFD', 'EMP', 'UPM'],
+		stations: ['RFD', 'EMP', 'UPM']
 	},
 	tram: {
 		branch: true,
@@ -526,7 +526,7 @@ const lines = {
 				'WLR',
 				'ECR',
 				'LEB',
-				'SAN',
+				'SAN'
 			],
 			[
 				'WDN',
@@ -546,37 +546,37 @@ const lines = {
 				'GGS',
 				'ECR',
 				'LEB',
-				'SAN',
-			],
+				'SAN'
+			]
 		],
 		bottom: [
 			['SAN', 'LPK', 'CLN', 'GVH', 'ADV', 'FLW', 'KHD', 'NAD'],
 			['SAN', 'ADS', 'BSL', 'WDS', 'ARN', 'ELM'],
-			['SAN', 'ADS', 'BSL', 'WDS', 'ARN', 'HRD', 'BKB', 'AVR', 'BCR', 'BCJ'],
-		],
+			['SAN', 'ADS', 'BSL', 'WDS', 'ARN', 'HRD', 'BKB', 'AVR', 'BCR', 'BCJ']
+		]
 	},
 	'waterloo-city': {
 		branch: false,
 		line: 'waterloo-city',
-		stations: ['WLO', 'BNK'],
+		stations: ['WLO', 'BNK']
 	},
 	'cable-car': {
 		branch: false,
 		line: 'cable-car',
-		stations: ['EGP', 'EMD'],
+		stations: ['EGP', 'EMD']
 	},
 	'dlr_E-W': {
 		branch: true,
 		line: 'dlr',
 		top: [
 			['BNK', 'SHA', 'LIM', 'WES'],
-			['TOG', 'SHA', 'LIM', 'WES'],
+			['TOG', 'SHA', 'LIM', 'WES']
 		],
 		bottom: [
 			['WES', 'POP', 'BLA', 'EAI', 'CAT', 'WST', 'PDK', 'LCA', 'KGV', 'WOA'],
 			['WES', 'POP', 'BLA', 'EAI', 'CAT', 'ROV', 'CUH', 'PRR', 'ROA', 'BEP', 'CYP', 'GAR', 'BEC'],
-			['WES', 'WIQ', 'CWF', 'HEW', 'SOW', 'CRO', 'MUD', 'ISG', 'CUS', 'GRE', 'DEB', 'ELR', 'LEW'],
-		],
+			['WES', 'WIQ', 'CWF', 'HEW', 'SOW', 'CRO', 'MUD', 'ISG', 'CUS', 'GRE', 'DEB', 'ELR', 'LEW']
+		]
 	},
 	'dlr_N-S': {
 		branch: true,
@@ -584,8 +584,8 @@ const lines = {
 		top: [['STI', 'SFD', 'SHS', 'ABR', 'WEH', 'STL', 'CAT']],
 		bottom: [
 			['CAT', 'WST', 'PDK', 'LCA', 'KGV', 'WOA'],
-			['CAT', 'ROV', 'CUH', 'PRR', 'ROA', 'BEP', 'CYP', 'GAR', 'BEC'],
-		],
+			['CAT', 'ROV', 'CUH', 'PRR', 'ROA', 'BEP', 'CYP', 'GAR', 'BEC']
+		]
 	},
 	'dlr_SFD-LEW': {
 		branch: false,
@@ -609,8 +609,8 @@ const lines = {
 			'GRE',
 			'DEB',
 			'ELR',
-			'LEW',
-		],
+			'LEW'
+		]
 	},
 	OSI: {
 		branch: false,
@@ -655,9 +655,9 @@ const lines = {
 			'SWM',
 			'MRD',
 			'NWX',
-			'NXG',
-		],
-	},
+			'NXG'
+		]
+	}
 };
 const stations = {
 	'Abbey Road': 'ABR',
@@ -1119,5 +1119,5 @@ const stations = {
 	Woodside: 'WDS',
 	'Woodside Park': 'WSP',
 	'Wood Street': 'WOS',
-	'Woolwich Arsenal': 'WOA',
+	'Woolwich Arsenal': 'WOA'
 };
