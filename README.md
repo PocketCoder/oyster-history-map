@@ -10,16 +10,16 @@
 
 > **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Logic Explainer](#linesjson-and-scriptjs-logic-explained) &bull; [Next Steps](#next-steps) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
-I made this project becaue I wanted to see how much of the TfL network I've been on...and because ticking off stations on a physcial map was too easy.
+I made this project because I wanted to see how much of the TfL network I've been on...and because ticking off stations on a physical map was too easy.
 
 _I am open to new ideas for names._
 
 ## M.V.P.
 
 - The map displays and is faded out initially.
-- Any previosuly added stations are retrieved from `localStorage` and added to the map.
+- Any previously added stations are retrieved from `localStorage` and added to the map.
 - The input box makes the station fade in, stores it in `localStorage`, and updates the line to be complete.
-- You can upload a CSV file (downloaded from the Osyter website) to mass-add stations.
+- You can upload a CSV file (downloaded from the Oyster website) to mass-add stations.
 - You can see a progress bar for how many stations you've visited.
 - Bus data is also saved in case of future use.
 
@@ -57,14 +57,14 @@ TODO:
 
 ## Things I may or may not eventually add
 
-- [ ] Inital zoom-in is on user's home station.
+- [ ] Initial zoom-in is on user's home station.
 - [ ] Hover on line/stations for emphasis and information (number of visits, last visit)
 - [ ] Bus route data
   - [ ] Button/Icon in the corner
   - [ ] Reveals list of bus routes in London, shaded in if used
     - Bus number, From–To, No. times used
-  - [ ] miles travelled in a year or overall
-- [ ] Challenges/Achievments:
+  - [ ] miles traveled in a year or overall
+- [ ] Challenges/Achievements:
   - [ ] Streak: visit a new station every month
     - 272 stations; 272/12 = 22 years to do them all
   - [ ] Travel through the whole of each line
@@ -73,14 +73,14 @@ TODO:
   - [ ] Visit every station on a line
   - [ ] Use every line
   - [ ] Use every branch of the Northern line?
-    - Or another fun idiosyncracy of TfL
+    - Or another fun idiosyncrasy of TfL
   - [ ] Use every overground line
   - [ ] Have gotten the first/last train of the day of that line/on TfL
 - [ ] Map of Riverboat services
 - Leaderboards?
   - Would require authentication of CSVs
     - Complicated:- See if their journeys were feasible. Times taken + whether the line/stations were open on that day/time + gap between entries
-    - Easier:- User hsitory. Not too many visited too often. Account age and number of stations visited.
+    - Easier:- User history. Not too many visited too often. Account age and number of stations visited.
     - Easiest:- Honour system
   - Can be turned on/off by users
   - Rankings of users stats
