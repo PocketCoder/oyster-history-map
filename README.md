@@ -2,29 +2,26 @@
 
 # Tubular - _your history on TfL, visualised_
 
-> The project is currently live at [tubular.110399.xyz](https://tubular.110399.xyz).
+> The project is currently live at [🚇🚇🚇.ml](https://🚇🚇🚇.ml).
 
 ![GitHub](https://img.shields.io/github/license/PocketCoder/tubular) ![GitHub package.json version](https://img.shields.io/github/package-json/v/PocketCoder/tubular) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/PocketCoder/tubular) ![GitHub last commit](https://img.shields.io/github/last-commit/PocketCoder/tubular) ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/PocketCoder/tubular) ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftubular.110399.xyz)
 
 ---
 
-> **Contents:** [What works](#what-works-so-far) &bull; [Logic Explainer](#linesjson-and-scriptjs-logic-explained) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Contribute](#how-to-contribute) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
+> **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Logic Explainer](#linesjson-and-scriptjs-logic-explained) &bull; [Next Steps](#next-steps) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
 I made this project becaue I wanted to see how much of the TfL network I've been on...and because ticking off stations on a physcial map was too easy.
 
 _I am open to new ideas for names._
 
-## What works so far
+## M.V.P.
 
 - The map displays and is faded out initially.
-- The input box makes the station fade in, stores it in the localStorage, and updates the line to be complete.
+- Any previosuly added stations are retrieved from `localStorage` and added to the map.
+- The input box makes the station fade in, stores it in `localStorage`, and updates the line to be complete.
 - You can upload a CSV file (downloaded from the Osyter website) to mass-add stations.
 - You can see a progress bar for how many stations you've visited.
 - Bus data is also saved in case of future use.
-
-## [lines.json](public/assets/lines.json) and [script.js](public/assets/lines.json) logic explained
-
-TODO:
 
 ## Sources
 
@@ -36,12 +33,16 @@ _(I spent **hours** changing the IDs on the [map.svg](public/assets/map.svg) so 
 
 _(Some of the three-letter station codes were non-existent so I made them up. I didn't keep track of which are made up. I'm sorry.)_
 
+## [lines.json](public/assets/lines.json) and [script.js](public/assets/lines.json) logic explained
+
+TODO:
+
 ## Next steps
 
-- [ ] [Front-end checklist](https://github.com/thedaviddias/Front-End-Checklist)
-- [ ] UI Polish
-  - [ ] Mobile-friendly UI (WIP)
-  - [ ] Make it prettier
+- [ ] [Front-end checklist](https://github.com/thedaviddias/Front-End-Checklist) (WIP)
+- [x] UI Polish
+  - [x] Mobile-friendly UI
+  - [x] Make it prettier
   - [x] Fix font
 - [ ] Login and User Profiles
   - [ ] Data saved in database, not LS; therefore syncing across devices
@@ -53,41 +54,6 @@ _(Some of the three-letter station codes were non-existent so I made them up. I 
   - [ ] Line label next to progress bar
 - [ ] Export data as CSV or PNG Map.
 - [x] Move development to TypeScript.
-
-[More To Dos](#things-i-may-or-may-not-eventually-add)
-
-## How to contribute
-
-### Reporting Bugs
-
-I made this on my own and I only do programming as a hobby, so there's bound to be bugs. The number of diffrent variations of visited stations is vast so there's no way I can test everything. I'm _pretty_ sure the logic us sound, but allow me some leeway.
-
-Please make sure that your [issue](https://github.com/PocketCoder/tubular/issues) hasn't already been brought up. If it has, and your case differs to it, then simply reply with your unique steps to reproduce the issue.
-
-When adding an issue, please include:
-
-1. A clear and descriptive title,
-2. a detailed desciption of the issue
-  - Include steps leading up to the issue, and
-  - What stations you added in what order, if applicable,
-3. your `localStorage` data,
-4. any console error messages,
-5. and what you expected to happen and why.
-
-This way someone can recreate the environment and the bug locally.
-
-### Submitting a feature request
-
-Make sure that the feature isn't already on my [short-](#next-steps) or [long-](#things-i-may-or-may-not-eventually-add)term roadmap.
-
-When making a feature request, include these details:
-
-1. Describe the problem the feature will solve, or the functionality it will add.
-2. Describe the solution you'd like
-3. Describe alternatives you've considered
-4. Additional context
-
----
 
 ## Things I may or may not eventually add
 
