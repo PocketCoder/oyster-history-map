@@ -51,22 +51,22 @@ function addStnsToMap(stns: string | Array<string>) {
 function updateLineSegs() {
 	let stnCodes = findVisCodes(usrData('get', 'stations'));
 	let data = {
-		bakerloo: 0,
-		central: 0,
-		piccadilly: 0,
-		jubilee: 0,
-		metropolitan: 0,
-		victoria: 0,
-		northern: 0,
-		circle: 0,
+		'bakerloo': 0,
+		'central': 0,
+		'piccadilly': 0,
+		'jubilee': 0,
+		'metropolitan': 0,
+		'victoria': 0,
+		'northern': 0,
+		'circle': 0,
 		'hammersmith-city': 0,
-		district: 0,
-		elizabeth: 0,
-		overground: 0,
+		'district': 0,
+		'elizabeth': 0,
+		'overground': 0,
 		'waterloo-city': 0,
 		'cable-car': 0,
-		dlr: 0,
-		OSI: 0,
+		'dlr': 0,
+		'OSI': 0,
 	};
 	for (const l in lines) {
 		const lineObj = lines[l];
@@ -215,22 +215,22 @@ function updateLineSegs() {
 
 function updateStats(data) {
 	const totals = {
-		bakerloo: 25,
-		central: 49,
-		piccadilly: 53,
-		jubilee: 27,
-		metropolitan: 34,
-		victoria: 16,
-		northern: 52,
-		circle: 36,
+		'bakerloo': 25,
+		'central': 49,
+		'piccadilly': 53,
+		'jubilee': 27,
+		'metropolitan': 34,
+		'victoria': 16,
+		'northern': 52,
+		'circle': 36,
 		'hammersmith-city': 29,
-		district: 60,
-		elizabeth: 32,
-		overground: 112,
+		'district': 60,
+		'elizabeth': 32,
+		'overground': 112,
 		'waterloo-city': 2,
 		'cable-car': 2,
-		dlr: 45,
-		tram: 39,
+		'dlr': 45,
+		'tram': 39,
 	};
 	for (const l in totals) {
 		let percent: number, visited;
@@ -349,7 +349,7 @@ function uploadHandler(e) {
 	$('#fileSelect').click();
 	$('#fileSelect').on('change', () => {
 		const fileEl = document.getElementById('fileSelect') as HTMLInputElement | null;
-		const file = fileEl?.files[0];
+		const file = fileEl?.files![0];
 		readFile(file);
 	});
 }
