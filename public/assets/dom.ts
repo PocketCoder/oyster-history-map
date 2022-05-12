@@ -108,7 +108,7 @@ function newStation(input: string) {
 	updateLineSegs();
 	return true;
 }
-
+/*
 // @ts-ignore
 const autoCompleteJS = new autoComplete({
 	selector: '#js-stnInput',
@@ -605,3 +605,4 @@ const autoCompleteJS = new autoComplete({
 		},
 	},
 });
+*/
