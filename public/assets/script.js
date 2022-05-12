@@ -4,7 +4,6 @@ function usrData(func, type, data = []) {
 		if (localStorage.getItem(type) != null && localStorage.getItem(type) != '[]') {
 			return JSON.parse(localStorage.getItem(type));
 		} else {
-			// Does not exist/empty.
 			return [];
 		}
 	} else if (func === 'save') {
@@ -69,7 +68,6 @@ function updateLineSegs() {
 	for (const l in lines) {
 		const lineObj = lines[l];
 		if (lineObj['branch']) {
-			// Check if top branches are active.
 			function top() {
 				let active = false;
 				lineObj['top'].forEach((a) => {
@@ -77,13 +75,11 @@ function updateLineSegs() {
 						if (stnCodes.includes(s)) {
 							active = true;
 						} else {
-							// Hasn't been visited.
 						}
 					});
 				});
 				return active;
 			}
-			// Check if bottom branches are active
 			function bottom() {
 				let active = false;
 				lineObj['bottom'].forEach((a) => {
@@ -91,15 +87,12 @@ function updateLineSegs() {
 						if (stnCodes.includes(s)) {
 							active = true;
 						} else {
-							// Hasn't been visited.
 						}
 					});
 				});
 				return active;
 			}
-			// Complete the line segments.
 			function complete(top, bottom) {
-				// If the top and bottom branches are active then go from the the first visited station of the top branches in those arrays to the last station, then from the first station of the bottom branches to the last visited station.
 				if (top && bottom) {
 					let total = 0;
 					lineObj['top'].forEach((e) => {
@@ -147,7 +140,6 @@ function updateLineSegs() {
 								} else if (index >= last) {
 									last = index;
 								} else {
-									// Error!
 								}
 							}
 						});
@@ -170,7 +162,6 @@ function updateLineSegs() {
 								} else if (index >= last) {
 									last = index;
 								} else {
-									// Error!
 								}
 							}
 						});
@@ -196,7 +187,6 @@ function updateLineSegs() {
 					} else if (index > last) {
 						last = index;
 					} else {
-						// Error!
 					}
 				}
 			});
@@ -243,7 +233,6 @@ function updateStats(data) {
 function readFile(file) {
 	const reader = new FileReader();
 	reader.readAsText(file, 'UTF-8');
-	// reader.onprogress = updateProgress;
 	reader.onload = (evt) => {
 		const fileString = evt.target.result;
 		const CSVarr = CSVtoArray(fileString);
@@ -287,19 +276,9 @@ function loadData(arr) {
 	}
 }
 function CSVtoArray(strData, strDelimiter = ',') {
-	// https://gist.github.com/luishdez/644215
 	strDelimiter = strDelimiter || ',';
 	var objPattern = new RegExp(
-		// Delimiters.
-		'(\\' +
-			strDelimiter +
-			'|\\r?\\n|\\r|^)' +
-			// Quoted fields.
-			'(?:"([^"]*(?:""[^"]*)*)"|' +
-			// Standard fields.
-			'([^"\\' +
-			strDelimiter +
-			'\\r\\n]*))',
+		'(\\' + strDelimiter + '|\\r?\\n|\\r|^)' + '(?:"([^"]*(?:""[^"]*)*)"|' + '([^"\\' + strDelimiter + '\\r\\n]*))',
 		'gi'
 	);
 	var arrData = [[]];

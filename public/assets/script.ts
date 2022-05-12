@@ -1,13 +1,13 @@
 function usrData(func: string, type: string, data: string | Array<string> = []) {
 	if (func === 'get') {
 		if (localStorage.getItem(type) != null && localStorage.getItem(type) != '[]') {
-			return JSON.parse(localStorage.getItem(type));
+			return JSON.parse(localStorage.getItem(type)!);
 		} else {
 			// Does not exist/empty.
 			return [];
 		}
 	} else if (func === 'save') {
-		let current = JSON.parse(localStorage.getItem(type)) ? JSON.parse(localStorage.getItem(type)) : [];
+		let current = JSON.parse(localStorage.getItem(type)!) ? JSON.parse(localStorage.getItem(type)!) : [];
 		let newData = [];
 		if (typeof data === 'string') {
 			newData.push(data);
