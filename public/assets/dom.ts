@@ -98,7 +98,7 @@ $('#js-stnInput').on('keyup', (e) => {
 		const stnEl = (<HTMLInputElement>document.getElementById('js-stnInput'));
 		if (newStation(stnEl.value)) {
 			stnEl.value = '';
-		}
+g		}
 	}
 });
 
