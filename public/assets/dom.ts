@@ -68,7 +68,7 @@ function loadMap() {
 				initialY: 500,
 				initialZoom: 1.5,
 				bounds: true,
-				boundsPadding: 0.4,
+				boundsPadding: 0.4
 			});
 			setTimeout(() => {
 				loadMapData();
@@ -93,12 +93,22 @@ $('#js-menu').on('click', () => {
 	document.getElementById('js-aside')?.classList.toggle('aside-out');
 });
 
+document.getElementById('js-stnInput')?.addEventListener('focus', (event) => {
+	document.getElementById('js-footer')!.style.bottom = '';
+	document.getElementById('js-footer')!.style.top = '10px';
+});
+
+document.getElementById('js-stnInput')?.addEventListener('blur', (event) => {
+	document.getElementById('js-footer')!.style.top = '';
+	document.getElementById('js-footer')!.style.bottom = '10px';
+});
+
 $('#js-stnInput').on('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
-		const stnEl = (<HTMLInputElement>document.getElementById('js-stnInput'));
+		const stnEl = <HTMLInputElement>document.getElementById('js-stnInput');
 		if (newStation(stnEl.value)) {
 			stnEl.value = '';
-g		}
+		}
 	}
 });
 
@@ -108,7 +118,7 @@ function newStation(input: string) {
 	updateLineSegs();
 	return true;
 }
-/*
+
 // @ts-ignore
 const autoCompleteJS = new autoComplete({
 	selector: '#js-stnInput',
@@ -573,17 +583,16 @@ const autoCompleteJS = new autoComplete({
 			'Woodside',
 			'Woodside Park',
 			'Wood Street',
-			'Woolwich Arsenal',
+			'Woolwich Arsenal'
 		],
-		cache: true,
+		cache: true
 	},
 	resultItem: {
 		highlight: true,
-		id: 'resultItem',
+		id: 'resultItem'
 	},
 	resultsList: {
 		id: 'resultList',
-		position: 'afterbegin',
 		maxResults: 3,
 		tabSelect: true,
 		element: (list: any, data: any) => {
@@ -594,15 +603,14 @@ const autoCompleteJS = new autoComplete({
 				list.prepend(message);
 			}
 		},
-		noResults: true,
+		noResults: true
 	},
 	events: {
 		input: {
 			selection: (event: any) => {
 				const selection = event.detail.selection.value;
 				autoCompleteJS.input.value = selection;
-			},
-		},
-	},
+			}
+		}
+	}
 });
-*/
