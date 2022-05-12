@@ -8,7 +8,6 @@
 
 body,
 body * {
-	display: unset !important;
 	margin: 0;
 	padding: 0;
 }
