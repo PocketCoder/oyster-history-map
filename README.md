@@ -39,11 +39,11 @@ TODO:
 
 ## Next steps
 
-- [ ] [Front-end checklist](https://github.com/thedaviddias/Front-End-Checklist) (WIP)
 - [x] UI Polish
   - [x] Mobile-friendly UI
   - [x] Make it prettier
   - [x] Fix font
+- [x] Bus route data (X routes used out of X) (for now) (WIP)
 - [ ] Login and User Profiles
   - [ ] Data saved in database, not LS; therefore syncing across devices
 - [ ] Stats
@@ -57,13 +57,8 @@ TODO:
 
 ## Things I may or may not eventually add
 
-- [ ] Initial zoom-in is on user's home station.
+- [ ] PWA
 - [ ] Hover on line/stations for emphasis and information (number of visits, last visit)
-- [ ] Bus route data
-  - [ ] Button/Icon in the corner
-  - [ ] Reveals list of bus routes in London, shaded in if used
-    - Bus number, From–To, No. times used
-  - [ ] miles traveled in a year or overall
 - [ ] Challenges/Achievements:
   - [ ] Streak: visit a new station every month
     - 272 stations; 272/12 = 22 years to do them all
