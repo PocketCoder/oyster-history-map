@@ -1,9 +1,6 @@
 @font-face {
-	font-family: 'LondonTube';
-	src: url('fonts/LondonTube.eot');
-	src: url('fonts/LondonTube.eot?#iefix') format('embedded-opentype'), url('fonts/LondonTube.woff2') format('woff2'),
-		url('fonts/LondonTube.woff') format('woff'), url('fonts/LondonTube.ttf') format('truetype'),
-		url('fonts/LondonTube.svg#London Tube') format('svg');
+	font-family: 'Roboto';
+	src: url('fonts/Roboto/Roboto-Regular.ttf') format('truetype');
 }
 
 body,
@@ -18,7 +15,8 @@ body {
 	max-width: 100vw;
 	height: 100%;
 	max-height: 100vh;
-	font-family: 'LondonTube', Helvetica, Arial, sans-serif;
+	font-family: 'Roboto', sans-serif;
+	font-weight: lighter;
 	cursor: crosshair;
 	overflow: hidden;
 }
@@ -50,7 +48,7 @@ i.up {
 }
 
 input {
-	font-family: 'LondonTube', Arial, Helvetica, sans-serif;
+	font-family: 'Roboto', Arial, Helvetica, sans-serif;
 	width: 80%;
 	height: 30px;
 	font-size: 1.3em;
