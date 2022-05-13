@@ -66,12 +66,10 @@ In [`data.ts`](public/assets/data.ts), there are two variables for us to access:
 The Bakerloo Line is represented like this:
 
 ```javascript
-{
-  	bakerloo: {
-		branch: false,
-		line: 'bakerloo',
-		stations: ['HAW', 'SKT', 'NWM', 'WEM', 'SPK', 'HSD', 'WJN', 'KGN', 'QPK', 'KPK', 'MDV', 'WAR', 'PAD', 'ERB', 'MYB', 'BST', 'RPK', 'OXC', 'PIC', 'CHX', 'EMB', 'WLO', 'LAM', 'ELE']
-	}
+bakerloo: {
+	branch: false,
+	line: 'bakerloo',
+	stations: ['HAW', 'SKT', 'NWM', 'WEM', 'SPK', 'HSD', 'WJN', 'KGN', 'QPK', 'KPK', 'MDV', 'WAR', 'PAD', 'ERB', 'MYB', 'BST', 'RPK', 'OXC', 'PIC', 'CHX', 'EMB', 'WLO', 'LAM', 'ELE']
 }
 ```
 
