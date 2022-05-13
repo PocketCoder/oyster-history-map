@@ -8,7 +8,7 @@
 
 ---
 
-> **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Logic Explainer](#linesjson-and-scriptjs-logic-explained) &bull; [Next Steps](#next-steps) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
+> **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Logic Explained](#linesjson-and-scriptjs-logic-explained) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
 I made this project because I wanted to see how much of the TfL network I've been on...and because ticking off stations on a physical map was too easy.
 
@@ -33,17 +33,15 @@ _(I spent **hours** changing the IDs on the [map.svg](public/assets/map.svg) so 
 
 _(Some of the three-letter station codes were non-existent so I made them up. I didn't keep track of which are made up. I'm sorry.)_
 
-## [lines.json](public/assets/lines.json) and [script.js](public/assets/lines.json) logic explained
-
-TODO:
-
 ## Next steps
 
 - [x] UI Polish
   - [x] Mobile-friendly UI
   - [x] Make it prettier
   - [x] Fix font
-- [x] Bus route data (X routes used out of X) (for now) (WIP)
+  - [ ] Rough text match for station input.
+  - [ ] Visual handling of correct and incorrect input.
+- [x] Bus route data (X routes used out of X) (for now)
 - [ ] Login and User Profiles
   - [ ] Data saved in database, not LS; therefore syncing across devices
 - [ ] Stats
@@ -54,6 +52,191 @@ TODO:
   - [ ] Line label next to progress bar
 - [ ] Export data as CSV or PNG Map.
 - [x] Move development to TypeScript.
+
+## Logic explained
+
+### data.ts
+
+In [`data.ts`](public/assets/data.ts), there are two variables for us to access: `lines` and `stations`.
+
+`stations` is a simple object that holds the station name (as it appears on an Oyster statement) as the key, and it's corresponding unique three-letter code as the value.
+
+`lines` holds the information about the line and it's stations, primarily: if it has branches or not, and the order the stations appear it. North to South, East to West (with one exception: the Overground line from Liverpool Street to Enfield Town/Chesnut/Chingford.)
+
+The Bakerloo Line is represented like this:
+
+```javascript
+{
+  	bakerloo: {
+		branch: false,
+		line: 'bakerloo',
+		stations: ['HAW', 'SKT', 'NWM', 'WEM', 'SPK', 'HSD', 'WJN', 'KGN', 'QPK', 'KPK', 'MDV', 'WAR', 'PAD', 'ERB', 'MYB', 'BST', 'RPK', 'OXC', 'PIC', 'CHX', 'EMB', 'WLO', 'LAM', 'ELE']
+	}
+}
+```
+
+with no branches, the stations are in an array in N-S order.
+
+The Picadilly Line branches at one the southern end, so is represented like so:
+
+```javascript
+piccadilly: {
+		branch: 'true',
+		line: 'piccadilly',
+		top: [
+			['CFS', 'OAK', 'SGT', 'AGR', 'BGR', 'WGN', 'TPL', 'TPL', 'MNR', 'FPK', 'ARL', 'HRD', 'CRD', 'KXX', 'RSQ', 'HOL', 'COV', 'LSQ', 'PIC', 'GPK', 'HPC', 'KNB', 'SKN', 'GRD', 'ECT', 'BCT', 'HMD', 'TGR']
+		],
+		bottom: [
+			['TGR', 'ACT', 'ECM', 'NEL', 'PRY', 'ALP', 'STN', 'SHL', 'SHR', 'RLN', 'ETE', 'RUM', 'RUI', 'ICK', 'HDN', 'UXB'],
+			['TGR', 'ACT', 'SEL', 'NFD', 'BOS', 'OST', 'HNE', 'HNC', 'HNW', 'HTX', 'HRC', 'HTF', 'HTC'],
+			['TGR', 'ACT', 'SEL', 'NFD', 'BOS', 'OST', 'HNE', 'HNC', 'HNW', 'HTX', 'HRC', 'HRV']
+		]
+	}
+```
+
+The `stations` array is now replaced by arrays `top` and `bottom`. The `top` array holds all the stations from north to south up to Turnham Green (TGR), the station just before the line splits. The `bottom` array holds all the stations from Turnham Green to their termini. As it splits futher down in the southern end at the Heathrow stations, the arrays contain repeated data as if each end-point were their own branch.
+
+`top` and `bottom` are always named so, even if they could be more aptly named `left` and `right`.
+
+### script.js
+
+To interpret these arrays, there's the `updateLineSegs()` function.
+
+```js
+let stnCodes = findVisCodes(usrData('get', 'stations'));
+```
+
+First we get an array of station codes that the user has visited. `usrData('get', 'stations')` retrieves a list of all the stations a user has visited and returns the array. `findVisCodes()` takes in the array and outputs a new array of only the three-letter codes.
+
+> In future I will change it so the stations are saved as codes.
+
+```js
+let data = {
+	bakerloo: 0,
+	central: 0,
+	piccadilly: 0,
+	jubilee: 0,
+	metropolitan: 0,
+	victoria: 0,
+	northern: 0,
+	circle: 0,
+	'hammersmith-city': 0,
+	district: 0,
+	elizabeth: 0,
+	overground: 0,
+	'waterloo-city': 0,
+	'cable-car': 0,
+	dlr: 0,
+	OSI: 0
+};
+```
+
+This is for the stats. We set up the object to assume the user has visited none of them.
+
+```js
+for (const l in lines) {
+		const lineObj = lines[l];
+```
+
+For each of the lines in the `line` variable we have in `data.ts`, explose the line's object to `lineObj`.
+
+```js
+if (lineObj['branch']) {
+```
+
+We then check to see if this line has branches. If it does we set up two functions: `top()` and `bottom()` which see if the corresponding branch has visited stations in it.
+
+```js
+function top() {
+	let active = false;
+	lineObj['top'].forEach((a: string[]) => {
+		a.forEach((s) => {
+			if (stnCodes.includes(s)) {
+				active = true;
+			} else {
+				// Hasn't been visited.
+			}
+		});
+	});
+	return active;
+}
+
+function bottom() {
+	let active = false;
+	lineObj['bottom'].forEach((a: string[]) => {
+		a.forEach((s) => {
+			if (stnCodes.includes(s)) {
+				active = true;
+			} else {
+				// Hasn't been visited.
+			}
+		});
+	});
+	return active;
+}
+```
+
+If cycles through each station in each branch in the `top` and `bottom` arrays and if the previously retrieved station codes contain any of them then the branch is deemed active.
+
+We then have a function called `complete(top, bottom)` which takes in `Booleans` to fill in the line segements depending on if one of both of the sections are active.
+
+```js
+if (top && bottom) {
+	let total = 0; // For the stats saved earlier
+	lineObj['top'].forEach((e: string[]) => {
+		let first = 100; // The first station will never be at array position 100.
+		e.forEach((a) => {
+			// For each array in top.
+			const index = e.indexOf(a); // Get index of station in array.
+			if (stnCodes.includes(a)) {
+				// If the station has been visited by the user.
+				total++; // Increase the total.
+				if (index <= first) {
+					// If it's earlier than the current earliest station.
+					first = index; // Make it the earliest.
+				}
+			}
+		});
+		for (let i = first; i < e.length; i++) {
+			// Between the first station visited and the last on the branch.
+			$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible'); // Make the segment between the current station and the next visible.
+			// Stations have id #lul-[line name]_[stnCode]-[stnCode].
+			// e.g. #lul-central_OXC-BST
+		}
+	});
+	lineObj['bottom'].forEach((e) => {
+		let last = 0;
+		e.forEach((a: string) => {
+			const index = e.indexOf(a);
+			if (stnCodes.includes(a)) {
+				total++;
+				if (index >= last) {
+					last = index;
+				}
+			}
+		});
+		for (let i = 0; i < last; i++) {
+			$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+		}
+	});
+	// Same is done for the bottom branches, except we find the last station visited.
+	data[lineObj['line']] = data[lineObj['line']] + total; // Update total in data object.
+}
+```
+
+If just the `top` or `bottom` branches have been visited, we essneitally combine the above to find the first and last visited stations and loop through the segments between them to make them visible.
+
+Finally we call `complete(top(), bottom())` passing in the earlier functions and their returned `Booleans`.
+
+If there are no branches we copy the code of filling in the line segments as if only one branch were visited. Finding the first and last station visited and looping between their indexes.
+
+Finally we call the `updateStats()` function, passing in our `data` variable which should now be complete for each line.
+
+### Final additions
+
+Each line in `data.ts` is sometimes split into segments, for example the DLR is explit into three segments as it is a mini-network in itself. TfL Rail (soon to be the Elizabeth Line) acts as two separate lines as currently it is disconnected.
+
+---
 
 ## Things I may or may not eventually add
 
