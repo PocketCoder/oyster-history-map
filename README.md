@@ -53,6 +53,45 @@ _(Some of the three-letter station codes were non-existent so I made them up. I 
 - [ ] Export data as CSV or PNG Map.
 - [x] Move development to TypeScript.
 
+## Brand
+
+### Type faces
+
+To keep it open source, the station labels on the map are [`Hammersmith One`](https://fonts.google.com/specimen/Hammersmith+One)—a copyright friendly font alternative to the official [`Johnston`](<https://en.wikipedia.org/wiki/Johnston_(typeface)>).
+
+![Hammersmith One font sample](/README%20assets/hammersmith-one.png)
+
+![Oxford Circus on the map](/README%20assets/OXC.png)
+
+The body is currently [`Roboto`](https://fonts.google.com/specimen/Roboto). This may change in future.
+
+![Body Sample](/README%20assets/body.png)
+
+### Colours
+
+Borrowed from [oobrien.com](https://oobrien.com/2012/01/tube-colours/).
+
+| Line               | Colour Hex |
+| ------------------ | ---------- |
+| Bakerloo           | #B36305    |
+| Cable Car          | #E21836    |
+| Central            | #E32017    |
+| Circle             | #FFD300    |
+| District           | #00782A    |
+| DLR                | #00A4A7    |
+| Elizabeth          | #7156A5    |
+| Hammersmith & City | #F3A9BB    |
+| Jubilee            | #A0A5A9    |
+| Metropolitan       | #9B0056    |
+| Northern           | #000000    |
+| Overground         | #EE7C0E    |
+| Piccadilly         | #003688    |
+| Trams              | #84B817    |
+| Victoria           | #0098D4    |
+| Waterloo & City    | #95CDBA    |
+
+Where possible, all the colours are one of the above.
+
 ## Logic explained
 
 ### data.ts
