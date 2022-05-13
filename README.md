@@ -8,7 +8,7 @@
 
 ---
 
-> **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Style](#brand) &bull; [Logic Explained](#linesjson-and-scriptjs-logic-explained) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
+> **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Rough Roadmap](#roadmap) &bull; [Style](#brand) &bull; [Logic Explained](#linesjson-and-scriptjs-logic-explained) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
 I made this project because I wanted to see how much of the TfL network I've been on...and because ticking off stations on a physical map was too easy.
 
@@ -52,6 +52,17 @@ _(Some of the three-letter station codes were non-existent so I made them up. I 
   - [ ] Line label next to progress bar
 - [ ] Export data as CSV or PNG Map.
 - [x] Move development to TypeScript.
+
+## Roadmap
+
+| Version | Feature                           |
+| ------- | --------------------------------- |
+| 1.0.0   | Minimum Viable Product            |
+| 1.X.0   | Stats are better labelled         |
+| 1.X.0   | Bus routes displayed more clearly |
+| 2.0.0   | User Login and info stored in DB  |
+| 2.X.0   | Sharable PNG of map/stats         |
+| 3.0.0   | PWA                               |
 
 ## Brand
 
