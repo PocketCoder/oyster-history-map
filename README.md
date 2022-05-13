@@ -8,7 +8,7 @@
 
 ---
 
-> **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Logic Explained](#linesjson-and-scriptjs-logic-explained) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
+> **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Style](#brand) &bull; [Logic Explained](#linesjson-and-scriptjs-logic-explained) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
 I made this project because I wanted to see how much of the TfL network I've been on...and because ticking off stations on a physical map was too easy.
 
