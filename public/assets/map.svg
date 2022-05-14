@@ -1359,7 +1359,7 @@
         <text id="SJP-label" transform="matrix(1 0 0 1 479.1508 519.7138)">
             <tspan x="0" y="0" fill="#1C3F94" class="blue-fill">S</tspan>
             <tspan x="2.3" y="0" fill="#1C3F94" class="blue-fill">t</tspan>
-            <tspan x="4.3" y="0" fill="#1C3F94" class="blue-fill">&nbsp;</tspan>
+            <tspan x="4.3" y="0" fill="#1C3F94" class="blue-fill">&#160;</tspan>
             <tspan x="5.1" y="0" fill="#1C3F94" class="blue-fill">Jam</tspan>
             <tspan x="13.5" y="0" fill="#1C3F94" class="blue-fill">e</tspan>
             <tspan x="16.1" y="0" fill="#1C3F94" class="blue-fill">s</tspan>
