@@ -1,0 +1,13 @@
+name: SVGO action
+uses: ericcornelissen/svgo-action@v3.0.0
+on:
+  push:
+    jobs:
+      svgs:
+        name: SVGs
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          - uses: ericcornelissen/svgo-action@v3
+            with:
+              repo-token: ${{ secrets.GITHUB_TOKEN }}
