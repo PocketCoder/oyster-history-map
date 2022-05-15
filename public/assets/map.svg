@@ -475,8 +475,8 @@
         </path>
     </g>
     <g id="lul-bakerloo" class="line">
-        <line id="lul-bakerloo_HAW-KTN" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="319.4" y1="245.8" x2="319.4" y2="224.5"></line>
-        <line id="lul-bakerloo_KTN-SKT" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="319.4" y1="277.7" x2="319.4" y2="245.8"></line>
+        <line id="lul-bakerloo_HAW-KNT" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="319.4" y1="245.8" x2="319.4" y2="224.5"></line>
+        <line id="lul-bakerloo_KNT-SKT" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="319.4" y1="277.7" x2="319.4" y2="245.8"></line>
         <line id="lul-bakerloo_SKT-NWM" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="319.4" y1="288.7" x2="319.4" y2="277.7"></line>
         <line id="lul-bakerloo_NWM-WEM" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="319.4" y1="296.9" x2="319.4" y2="287.2"></line>
         <line id="lul-bakerloo_WEM-SPK" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="319.4" y1="307" x2="319.4" y2="296.9"></line>
@@ -494,7 +494,7 @@
         <line id="lul-bakerloo_BST-RPK" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="483.1" y1="410.1" x2="463.5" y2="390.5"></line>
         <path id="lul-bakerloo_RPK-OXC" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M496,432.3v-6.1c0-2.1-0.8-4.3-2.3-5.4l-11.7-11.7"></path>
         <path id="lul-bakerloo_OXC-PIC" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M515.6,464.8l-17.3-17.3c-1.2-1.2-2.3-3.7-2.3-5.4v-9.7"></path>
-        <line id="lul-bakerloo_PIC_CHX" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="536.8" y1="486" x2="515.6" y2="464.8"></line>
+        <line id="lul-bakerloo_PIC-CHX" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="536.8" y1="486" x2="515.6" y2="464.8"></line>
         <path id="lul-bakerloo_CHX-EMB" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M543.8,512.2l0-16c0-1.8-1-4.2-2.3-5.4l-4.8-4.8"></path>
         <line id="lul-bakerloo_EMB-WLO" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="543.8" y1="535.7" x2="543.8" y2="512.2"></line>
         <line id="lul-bakerloo_WLO-LAM" fill="none" stroke="#B06010" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="543.8" y1="572.3" x2="543.8" y2="535.7"></line>

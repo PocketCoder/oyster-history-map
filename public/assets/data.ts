@@ -4,6 +4,7 @@ const lines: Object = {
 		line: 'bakerloo',
 		stations: [
 			'HAW',
+			'KNT',
 			'SKT',
 			'NWM',
 			'WEM',
@@ -38,6 +39,7 @@ const lines: Object = {
 		],
 		bottom: [
 			[
+				'NAC',
 				'EAC',
 				'WCT',
 				'SHB',
@@ -61,6 +63,7 @@ const lines: Object = {
 				'LYS'
 			],
 			[
+				'NAC',
 				'EAC',
 				'WCT',
 				'SHB',
@@ -92,6 +95,7 @@ const lines: Object = {
 				'EPP'
 			],
 			[
+				'NAC',
 				'EAC',
 				'WCT',
 				'SHB',
