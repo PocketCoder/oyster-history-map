@@ -200,23 +200,6 @@ aside .bubble:last-child {
 
 /* Progress Bars */
 
-/* All */
-#line-progress progress {
-	height: 7px;
-}
-
-#line-progress progress::-moz-progress-bar {
-	height: 7px;
-}
-
-#line-progress progress::-webkit-progress-value {
-	height: 7px;
-}
-
-#line-progress progress[aria-valuenow]:before {
-	height: 7px;
-}
-
 /* Bakerloo */
 #line-progress progress#bakerloo {
 	accent-color: #b36305;
