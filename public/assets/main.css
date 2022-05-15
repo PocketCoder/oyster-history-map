@@ -219,255 +219,75 @@ aside .bubble:last-child {
 
 /* Bakerloo */
 #line-progress progress#bakerloo {
-	background: #b36305;
-}
-
-#line-progress progress#bakerloo::-moz-progress-bar {
-	background: #b36305;
-}
-
-#line-progress progress#bakerloo::-webkit-progress-value {
-	background: #b36305;
-}
-
-#line-progress progress#bakerloo[aria-valuenow]:before {
-	background: #b36305;
+	accent-color: #b36305;
 }
 
 /* Central */
 #line-progress progress#central {
-	background: #e32017;
-}
-
-#line-progress progress#central::-moz-progress-bar {
-	background: #e32017;
-}
-
-#line-progress progress#central::-webkit-progress-value {
-	background: #e32017;
-}
-
-#line-progress progress#central[aria-valuenow]:before {
-	background: #e32017;
+	accent-color: #e32017;
 }
 
 /* Circle */
 #line-progress progress#circle {
-	background: #ffd300;
-}
-
-#line-progress progress#circle::-moz-progress-bar {
-	background: #ffd300;
-}
-
-#line-progress progress#circle::-webkit-progress-value {
-	background: #ffd300;
-}
-
-#line-progress progress#circle[aria-valuenow]:before {
-	background: #ffd300;
+	accent-color: #ffd300;
 }
 
 /* District */
 #line-progress progress#district {
-	background: #00782a;
-}
-
-#line-progress progress#district::-moz-progress-bar {
-	background: #00782a;
-}
-
-#line-progress progress#district::-webkit-progress-value {
-	background: #00782a;
-}
-
-#line-progress progress#district[aria-valuenow]:before {
-	background: #00782a;
+	accent-color: #00782a;
 }
 
 /* DLR */
 #line-progress progress#dlr {
-	background: #00a4a7;
-}
-
-#line-progress progress#dlr::-moz-progress-bar {
-	background: #00a4a7;
-}
-
-#line-progress progress#dlr::-webkit-progress-value {
-	background: #00a4a7;
-}
-
-#line-progress progress#dlr[aria-valuenow]:before {
-	background: #00a4a7;
+	accent-color: #00a4a7;
 }
 
 /* Elizabeth */
 #line-progress progress#elizabeth {
-	background: #7156a5;
-}
-
-#line-progress progress#elizabeth::-moz-progress-bar {
-	background: #7156a5;
-}
-
-#line-progress progress#elizabeth::-webkit-progress-value {
-	background: #7156a5;
-}
-
-#line-progress progress#elizabeth[aria-valuenow]:before {
-	background: #7156a5;
+	accent-color: #7156a5;
 }
 
 /* Hammersmith & City */
 #line-progress progress#hammersmith-city {
-	background: #f3a9bb;
-}
-
-#line-progress progress#hammersmith-city::-moz-progress-bar {
-	background: #f3a9bb;
-}
-
-#line-progress progress#hammersmith-city::-webkit-progress-value {
-	background: #f3a9bb;
-}
-
-#line-progress progress#hammersmith-city[aria-valuenow]:before {
-	background: #f3a9bb;
+	accent-color: #f3a9bb;
 }
 
 /* Jubilee */
 #line-progress progress#jubilee {
-	background: #a0a5a9;
-}
-
-#line-progress progress#jubilee::-moz-progress-bar {
-	background: #a0a5a9;
-}
-
-#line-progress progress#jubilee::-webkit-progress-value {
-	background: #a0a5a9;
-}
-
-#line-progress progress#jubilee[aria-valuenow]:before {
-	background: #a0a5a9;
+	accent-color: #a0a5a9;
 }
 
 /* Metropolitan */
 #line-progress progress#metropolitan {
-	background: #9b0056;
-}
-
-#line-progress progress#metropolitan::-moz-progress-bar {
-	background: #9b0056;
-}
-
-#line-progress progress#metropolitan::-webkit-progress-value {
-	background: #9b0056;
-}
-
-#line-progress progress#metropolitan[aria-valuenow]:before {
-	background: #9b0056;
+	accent-color: #9b0056;
 }
 
 /* Northern */
 #line-progress progress#northern {
-	background: #000000;
-}
-
-#line-progress progress#northern::-moz-progress-bar {
-	background: #000000;
-}
-
-#line-progress progress#northern::-webkit-progress-value {
-	background: #000000;
-}
-
-#line-progress progress#northern[aria-valuenow]:before {
-	background: #000000;
+	accent-color: #000000;
 }
 
 /* Overground */
 #line-progress progress#overground {
-	background: #ee7c0e;
-}
-
-#line-progress progress#overground::-moz-progress-bar {
-	background: #ee7c0e;
-}
-
-#line-progress progress#overground::-webkit-progress-value {
-	background: #ee7c0e;
-}
-
-#line-progress progress#overground[aria-valuenow]:before {
-	background: #ee7c0e;
+	accent-color: #ee7c0e;
 }
 
 /* Piccadilly */
 #line-progress progress#piccadilly {
-	background: #003688;
-}
-
-#line-progress progress#piccadilly::-moz-progress-bar {
-	background: #003688;
-}
-
-#line-progress progress#piccadilly::-webkit-progress-value {
-	background: #003688;
-}
-
-#line-progress progress#piccadilly[aria-valuenow]:before {
-	background: #003688;
+	accent-color: #003688;
 }
 
 /* Trams */
 #line-progress progress#trams {
-	background: #84b817;
-}
-
-#line-progress progress#trams::-moz-progress-bar {
-	background: #84b817;
-}
-
-#line-progress progress#trams::-webkit-progress-value {
-	background: #84b817;
-}
-
-#line-progress progress#trams[aria-valuenow]:before {
-	background: #84b817;
+	accent-color: #84b817;
 }
 
 /* Victoria */
 #line-progress progress#victoria {
-	background: #0098d4;
-}
-
-#line-progress progress#victoria::-moz-progress-bar {
-	background: #0098d4;
-}
-
-#line-progress progress#victoria::-webkit-progress-value {
-	background: #0098d4;
-}
-
-#line-progress progress#victoria[aria-valuenow]:before {
-	background: #0098d4;
+	accent-color: #0098d4;
 }
 
 /* Waterloo & City */
 #line-progress progress#waterloo-city {
-	background: #95cdba;
-}
-
-#line-progress progress#waterloo-city::-moz-progress-bar {
-	background: #95cdba;
-}
-
-#line-progress progress#waterloo-city::-webkit-progress-value {
-	background: #95cdba;
-}
-
-#line-progress progress#waterloo-city[aria-valuenow]:before {
-	background: #95cdba;
+	accent-color: #95cdba;
 }
