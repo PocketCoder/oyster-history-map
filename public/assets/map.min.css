@@ -1,16 +1,14 @@
 @font-face {
-	font-family: 'LondonTube';
-	src: url('fonts/LondonTube.eot');
-	src: url('fonts/LondonTube.eot?#iefix') format('embedded-opentype'), url('fonts/LondonTube.woff2') format('woff2'),
-		url('fonts/LondonTube.woff') format('woff'), url('fonts/LondonTube.ttf') format('truetype'),
-		url('fonts/LondonTube.svg#London Tube') format('svg');
+	font-family: 'Hammersmith One';
+	src: url('fonts/HammersmithOne-Regular.ttf') format('truetype');
+	font-display: swap;
 }
 #status-map {
 	opacity: 0;
 	transition: opacity 1s ease;
 }
 #status-map * {
-	font-family: 'LondonTube', Helvetica, serif;
+	font-family: 'Hammersmith One', Helvetica, serif;
 	font-size: 4.5px;
 }
 #THL_fenchurch-street-label {
