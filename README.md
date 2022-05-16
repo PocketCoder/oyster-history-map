@@ -58,10 +58,10 @@ _(Some of the three-letter station codes were non-existent so I made them up. I 
 | Version | Feature                           |
 | ------- | --------------------------------- |
 | 1.0.0   | Minimum Viable Product            |
-| 1.X.0   | Stats are better labelled         |
+| 1.0.X   | Stats are better labelled         |
 | 1.X.0   | Bus routes displayed more clearly |
+| X.X.0   | Sharable PNG of map/stats         |
 | 2.0.0   | User Login and info stored in DB  |
-| 2.X.0   | Sharable PNG of map/stats         |
 | 3.0.0   | PWA                               |
 
 ## Brand
