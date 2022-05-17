@@ -4,7 +4,7 @@
 
 > The project is currently live at [🚇🚇🚇.ml](https://🚇🚇🚇.ml).
 
-![GitHub](https://img.shields.io/github/license/PocketCoder/tubular) ![GitHub package.json version](https://img.shields.io/github/package-json/v/PocketCoder/tubular) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/PocketCoder/tubular) ![GitHub last commit](https://img.shields.io/github/last-commit/PocketCoder/tubular) ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/PocketCoder/tubular) ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftubular.110399.xyz)
+![GitHub](https://img.shields.io/github/license/PocketCoder/tubular) ![GitHub package.json version](https://img.shields.io/github/package-json/v/PocketCoder/tubular) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/PocketCoder/tubular) ![GitHub last commit](https://img.shields.io/github/last-commit/PocketCoder/tubular) ![Website](https://img.shields.io/website?url=https%3A%2F%2Ftubular.110399.xyz)
 
 ---
 
