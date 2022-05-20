@@ -8,6 +8,10 @@
 
 ---
 
+> The _Elizabeth line_ will be added when I can find it in SVG format. The [new map](https://twitter.com/TfL/status/1527222586442227712/photo/1) has changed a lot, namely interchanges and the new Elizabeth line branch. It may be some time before the SVG [sources](#sources) I used originally will be updated. I have submitted an FOI request to TfL to hopefully get the new map sooner.
+
+---
+
 > **Contents:** [Minimum Viable Product](#mvp) &bull; [Information sources](#sources) &bull; [Next Steps](#next-steps) &bull; [Rough Roadmap](#roadmap) &bull; [Style](#brand) &bull; [Logic Explained](#linesjson-and-scriptjs-logic-explained) &bull; [Extended To Do List](#things-i-may-or-may-not-eventually-add)
 
 I made this project because I wanted to see how much of the TfL network I've been on...and because ticking off stations on a physical map was too easy.
