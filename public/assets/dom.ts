@@ -122,6 +122,27 @@ function newStation(input: string) {
 	return true;
 }
 
+function popUp(title: string, text: string, type: string, customColour: string) {
+	const types = ['info', 'confirm', 'error'];
+	const el = document.createElement('div');
+	el.classList.add('pop');
+	if (!types.includes(type)) {
+		el.style.cssText = `background:${customColour}`;
+	} else {
+		el.classList.add(type);
+	}
+	const head = document.createElement('h4');
+	head.innerHTML = title;
+	const body = document.createElement('p');
+	body.innerHTML = text;
+	el.appendChild(head);
+	el.appendChild(body);
+	document.body.appendChild(el);
+	setTimeout(() => {
+		document.body.removeChild(el);
+	}, 10000);
+}
+
 // @ts-ignore
 const autoCompleteJS = new autoComplete({
 	selector: '#js-stnInput',

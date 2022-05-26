@@ -161,6 +161,34 @@ aside .bubble:last-child {
 	margin: 0 0 100px 0;
 }
 
+.pop {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0px;
+	left: 50%;
+	height: 30px;
+	min-width: 150px;
+	transform: translate(-50%, 0);
+	border-radius: 5px 5px 20px 20px;
+	z-index: 9999;
+}
+
+.pop.confirm {
+	background-color: #84b817;
+}
+
+.pop.error {
+	color: white;
+	background-color: #e32017;
+}
+
+.pop.info {
+	background-color: #f3a9bb;
+}
+
 .confirm-animate {
 	-webkit-animation-name: confirmation;
 	animation-name: confirmation;
