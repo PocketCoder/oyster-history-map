@@ -132,42 +132,46 @@
     </g>
     <g id="lul-elizabeth" class="line">
         <!--Reading - Hayes and Harlington-->
-        <line id="lul-elizabeth_RDG-TFD" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="327.7" x2="106.1" y2="339.3"></line>
-        <line id="lul-elizabeth_TFD-MDH" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="339.3" x2="106.1" y2="350.9"></line>
-        <line id="lul-elizabeth_MDH-TLW" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="350.9" x2="106.1" y2="363.3"></line>
-        <line id="lul-elizabeth_TLW-BHM" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="361.8" x2="106.1" y2="374.2"></line>
-        <line id="lul-elizabeth_BHM-SGH" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="374.2" x2="106.1" y2="385.9"></line>
-        <line id="lul-elizabeth_SGH-LGY" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="385.9" x2="106.1" y2="398.2"></line>
-        <line id="lul-elizabeth_LGY-IVR" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="396.7" x2="106.1" y2="409"></line>
-        <path id="lul-elizabeth_IVR-WDT" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M106.1,407.5c0,0,0,20,0,21.4"></path>
-        <path id="lul-elizabeth_WDT-HAH" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M106.1,427.4c0,0,0,8.4,0,9.8c0,1.8,1,4.2,2.3,5.4c1.2,1.2,3.7,2.3,5.4,2.3c1.4,0,30,0,30,0"></path>
+        <line id="lul-elizabeth_RDG-TFD" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="327.7" x2="106.1" y2="339.3"></line>
+        <line id="lul-elizabeth_TFD-MDH" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="339.3" x2="106.1" y2="350.9"></line>
+        <line id="lul-elizabeth_MDH-TLW" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="350.9" x2="106.1" y2="363.3"></line>
+        <line id="lul-elizabeth_TLW-BHM" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="361.8" x2="106.1" y2="374.2"></line>
+        <line id="lul-elizabeth_BHM-SGH" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="374.2" x2="106.1" y2="385.9"></line>
+        <line id="lul-elizabeth_SGH-LGY" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="385.9" x2="106.1" y2="398.2"></line>
+        <line id="lul-elizabeth_LGY-IVR" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="106.1" y1="396.7" x2="106.1" y2="409"></line>
+        <path id="lul-elizabeth_IVR-WDT" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M106.1,407.5c0,0,0,20,0,21.4"></path>
+        <path id="lul-elizabeth_WDT-HAH" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M106.1,427.4c0,0,0,8.4,0,9.8c0,1.8,1,4.2,2.3,5.4c1.2,1.2,3.7,2.3,5.4,2.3c1.4,0,30,0,30,0"></path>
         <!--Heathrow - Hayes and Harlington -->
-        <line id="lul-elizabeth_HTF-HRC" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="129.3" y1="572.3" x2="129.3" y2="617.1"></line>
-        <path id="lul-elizabeth_HRC-HAH" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M129.3,572.3c0,0,0-117.9,0-119.8h0c0-1.8,1-4.2,2.3-5.4c1.2-1.2,3.7-2.3,5.4-2.3c1.4,0,6.8,0,6.8,0">
+        <line id="lul-elizabeth_HTF-HRC" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="129.3" y1="572.3" x2="129.3" y2="617.1"></line>
+        <path id="lul-elizabeth_HRC-HAH" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M129.3,572.3c0,0,0-117.9,0-119.8h0c0-1.8,1-4.2,2.3-5.4c1.2-1.2,3.7-2.3,5.4-2.3c1.4,0,6.8,0,6.8,0">
         </path>
         <!--Heathrow / Pic Overlap Line-->
         <line fill="none" stroke="#F1F2F2" stroke-width="2.9476" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="127" y1="587" x2="131.8" y2="582.2"></line>
-        <line id="lul-elizabeth_HAH-SAL" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="169" y1="444.8" x2="143.8" y2="444.8"></line>
-        <line id="lul-elizabeth_SAL-HWL" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="175.5" y1="444.8" x2="167.4" y2="444.8"></line>
-        <line id="lul-elizabeth_HWL-WEL" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="196.9" y1="444.8" x2="174" y2="444.8"></line>
-        <path id="lul-elizabeth_WEL-EBY" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M214.6,444.8c-9,0-17.7,0-17.7,0"></path>
-        <path id="lul-elizabeth_EBY-AML" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M262.8,419.2c-13,13-23.3,23.3-23.3,23.3c-1.2,1.2-3.7,2.3-5.4,2.3c-0.4,0-10.1,0-19.5,0"></path>
-        <path id="lul-elizabeth_AML-PAD" fill="none" stroke="#1C3F94" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M376.4,387.3l-78.4,0c-1.8,0-4.2,1-5.4,2.3c-0.6,0.6-30.8,30.8-30.8,30.8">
+        <line id="lul-elizabeth_HAH-SAL" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="169" y1="444.8" x2="143.8" y2="444.8"></line>
+        <line id="lul-elizabeth_SAL-HWL" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="175.5" y1="444.8" x2="167.4" y2="444.8"></line>
+        <line id="lul-elizabeth_HWL-WEL" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="196.9" y1="444.8" x2="174" y2="444.8"></line>
+        <path id="lul-elizabeth_WEL-EBY" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M214.6,444.8c-9,0-17.7,0-17.7,0"></path>
+        <path id="lul-elizabeth_EBY-AML" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M262.8,419.2c-13,13-23.3,23.3-23.3,23.3c-1.2,1.2-3.7,2.3-5.4,2.3c-0.4,0-10.1,0-19.5,0"></path>
+        <path id="lul-elizabeth_AML-PAD" fill="none" stroke="#634EA0" stroke-width="2.3442" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M376.4,387.3l-78.4,0c-1.8,0-4.2,1-5.4,2.3c-0.6,0.6-30.8,30.8-30.8,30.8">
         </path>
         <!--LST - SFD-->
-        <path id="lul-elizabeth_LST-SFD" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M845,340c-38.2,38.2-69,69-69.7,69.7c-1.2,1.2-3.7,2.3-5.4,2.3c-2.9,0-107.1,0-107.1,0"></path>
-        <line id="lul-elizabeth_SFD-MLD" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="863.6" y1="321.4" x2="845" y2="340"></line>
-        <path id="lul-elizabeth_MLD-FGT" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M881.2,303.8c-6.5,6.5-17.6,17.6-17.6,17.6"></path>
-        <line id="lul-elizabeth_FGT-MNP" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="895.8" y1="289.2" x2="881.2" y2="303.8"></line>
-        <line id="lul-elizabeth_MNP-IFD" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="904.8" y1="280.2" x2="895.8" y2="289.2"></line>
-        <line id="lul-elizabeth_IFD-SVK" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="913.8" y1="271.2" x2="903.7" y2="281.3"></line>
-        <line id="lul-elizabeth_SVK-GDM" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="923.1" y1="261.9" x2="913.8" y2="271.2"></line>
-        <path id="lul-elizabeth_GDM-CWH" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M939.4,245.6C932.9,252.1,922,263,922,263"></path>
-        <path id="lul-elizabeth_CWH-RFD" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M954.6,230.4c-4.9,4.9-15.2,15.2-15.2,15.2"></path>
-        <line id="lul-elizabeth_RFD-GDP" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="969" y1="216" x2="954.6" y2="230.4"></line>
-        <path id="lul-elizabeth_GDP-HWD" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M979.4,205.6C976.2,208.8,969,216,969,216"></path>
-        <line id="lul-elizabeth_HWD-BWD" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="1002" y1="183" x2="978.4" y2="206.6"></line>
-        <line id="lul-elizabeth_BWD-SND" fill="none" stroke="#1C3F94" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="1019.7" y1="165.3" x2="1002" y2="183"></line>
+        <path id="lul-elizabeth_LST-SFD" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M845,340c-38.2,38.2-69,69-69.7,69.7c-1.2,1.2-3.7,2.3-5.4,2.3c-2.9,0-107.1,0-107.1,0"></path>
+        <line id="lul-elizabeth_SFD-MLD" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="863.6" y1="321.4" x2="845" y2="340"></line>
+        <path id="lul-elizabeth_MLD-FGT" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M881.2,303.8c-6.5,6.5-17.6,17.6-17.6,17.6"></path>
+        <line id="lul-elizabeth_FGT-MNP" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="895.8" y1="289.2" x2="881.2" y2="303.8"></line>
+        <line id="lul-elizabeth_MNP-IFD" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="904.8" y1="280.2" x2="895.8" y2="289.2"></line>
+        <line id="lul-elizabeth_IFD-SVK" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="913.8" y1="271.2" x2="903.7" y2="281.3"></line>
+        <line id="lul-elizabeth_SVK-GDM" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="923.1" y1="261.9" x2="913.8" y2="271.2"></line>
+        <path id="lul-elizabeth_GDM-CWH" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M939.4,245.6C932.9,252.1,922,263,922,263"></path>
+        <path id="lul-elizabeth_CWH-RFD" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M954.6,230.4c-4.9,4.9-15.2,15.2-15.2,15.2"></path>
+        <line id="lul-elizabeth_RFD-GDP" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="969" y1="216" x2="954.6" y2="230.4"></line>
+        <path id="lul-elizabeth_GDP-HWD" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" d=" M979.4,205.6C976.2,208.8,969,216,969,216"></path>
+        <line id="lul-elizabeth_HWD-BWD" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="1002" y1="183" x2="978.4" y2="206.6"></line>
+        <line id="lul-elizabeth_BWD-SND" fill="none" stroke="#634EA0" stroke-width="2.2707" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="1019.7" y1="165.3" x2="1002" y2="183"></line>
+        <!--Paddington to Abbey Wood-->
+        <path id="lul-elizabeth_PAD_910gtotctrd" fill="none" stroke="#634EA0" stroke-width="2.3443" stroke-linejoin="round" stroke-miterlimit="3.994" d=" M405.4,401.9h15.2c1.6,0,3.8,0.9,4.9,2l20.3,20.3c1.1,1.1,3.3,2,4.9,2h86.1"></path>
+        <path id="lul-elizabeth_910gtotctrd_910gfrndxr" fill="none" stroke="#634EA0" stroke-width="2.3443" stroke-linejoin="round" stroke-miterlimit="3.994" d=" M537.1,426.3l8.8,0l6,0c1.6,0,3.8-0.9,4.9-2l16.9-16.9l1.6-1.6l3.4-3.4c1.1-1.1,3.3-2,4.9-2h9.3"></path>
+        <line id="lul-elizabeth_910gfrndxr_LST" fill="none" stroke="#634EA0" stroke-width="2.3443" stroke-linejoin="round" stroke-miterlimit="3.994" x1="593.5" y1="400.4" x2="646.1" y2="400.4"></line>
         <!--White line-->
         <g id="lul-elizabeth_white_line">
             <line fill="none" stroke="#FFFFFF" stroke-width="0.8042" stroke-linejoin="round" stroke-miterlimit="3.9938" x1="129.3" y1="572.3" x2="129.3" y2="617.1"></line>
@@ -193,7 +197,7 @@
             <path fill="none" stroke="#FFFFFF" stroke-width="0.8042" stroke-linejoin="round" stroke-miterlimit="3.9938" d="M129.3,572.3 c0,0,0-117.9,0-119.8h0c0-1.8,1-4.2,2.3-5.4c1.2-1.2,3.7-2.3,5.4-2.3c1.7,0,6.8,0,6.8,0">
             </path>
         </g>
-        <rect id="lul-elizabeth_IFD-dash" x="904.9" y="281.3" transform="matrix(0.7071 -0.7071 0.7071 0.7071 65.7946 722.9854)" fill="#1C3F94" width="1.5" height="1.6" class="blue-fill"></rect>
+        <rect id="lul-elizabeth_IFD-dash" x="904.9" y="281.3" transform="matrix(0.7071 -0.7071 0.7071 0.7071 65.7946 722.9854)" fill="#634EA0" width="1.5" height="1.6" class="blue-fill"></rect>
     </g>
     <g id="lul-overground" class="line">
         <!--Watford Junction - Euston-->
