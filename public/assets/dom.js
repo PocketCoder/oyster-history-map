@@ -44,7 +44,7 @@ function loadMapData() {
 	}
 }
 function loadMap() {
-	fetch('./assets/map.min.svg')
+	fetch('./assets/map.svg')
 		.then((res) => res.text())
 		.then((data) => {
 			mapEl.innerHTML = data;
