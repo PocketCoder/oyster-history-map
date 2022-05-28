@@ -40,12 +40,20 @@ function addStnsToMap(stns) {
 	}
 	s.sort();
 	s.forEach((v) => {
-		$(`[id*="${stations[v]}-dash"]`).addClass('visible');
-		$(`[id*="${stations[v]}-label"]`).addClass('visible');
-		$(`[id*="IC_${stations[v]}"]`).addClass('visible');
+		var _a, _b, _c;
+		(_a = document.querySelector(`[id*="${stations[v]}-dash"]`)) === null || _a === void 0
+			? void 0
+			: _a.classList.add('visible');
+		(_b = document.querySelector(`[id*="${stations[v]}-label"]`)) === null || _b === void 0
+			? void 0
+			: _b.classList.add('visible');
+		(_c = document.querySelector(`[id*="IC_${stations[v]}"]`)) === null || _c === void 0
+			? void 0
+			: _c.classList.add('visible');
 	});
 }
 function updateLineSegs() {
+	var _a;
 	let stnCodes = findVisCodes(usrData('get', 'stations'));
 	let data = {
 		bakerloo: 0,
@@ -96,6 +104,7 @@ function updateLineSegs() {
 				if (top && bottom) {
 					let total = 0;
 					lineObj['top'].forEach((e) => {
+						var _a;
 						let first = 100;
 						e.forEach((a) => {
 							const index = e.indexOf(a);
@@ -107,10 +116,13 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < e.length; i++) {
-							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
+								? void 0
+								: _a.classList.add('visible');
 						}
 					});
 					lineObj['bottom'].forEach((e) => {
+						var _a;
 						let last = 0;
 						e.forEach((a) => {
 							const index = e.indexOf(a);
@@ -122,13 +134,16 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = 0; i < last; i++) {
-							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
+								? void 0
+								: _a.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (top) {
 					let total = 0;
 					lineObj['top'].forEach((e) => {
+						var _a;
 						let first = 100,
 							last = 0;
 						e.forEach((a) => {
@@ -144,13 +159,16 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < last; i++) {
-							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
+								? void 0
+								: _a.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (bottom) {
 					let total = 0;
 					lineObj['bottom'].forEach((e) => {
+						var _a;
 						let first = 100,
 							last = 0;
 						e.forEach((a) => {
@@ -166,7 +184,9 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < last; i++) {
-							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
+								? void 0
+								: _a.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
@@ -191,7 +211,10 @@ function updateLineSegs() {
 				}
 			});
 			for (let i = first; i < last; i++) {
-				$(`#lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`).addClass('visible');
+				(_a = document.getElementById(`lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`)) === null ||
+				_a === void 0
+					? void 0
+					: _a.classList.add('visible');
 			}
 			data[lineObj['line']] = data[lineObj['line']] + total;
 		}
@@ -221,14 +244,13 @@ function updateStats(data) {
 		let percent = 0,
 			visited;
 		if (data[l] === NaN) {
-			$(`progress#${l}`).attr('value', 0);
+			document.getElementById(`${l}`).setAttribute('value', '0');
 		} else {
 			const total = totals[l];
 			visited = data[l];
 			percent = Math.floor((visited / total) * 100);
-			console.log(l, percent);
 		}
-		$(`progress#${l}`).attr('value', percent);
+		document.getElementById(`${l}`).setAttribute('value', percent.toString());
 	}
 }
 function readFile(file) {

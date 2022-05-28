@@ -42,9 +42,9 @@ function addStnsToMap(stns: string | Array<string>) {
 	}
 	s.sort();
 	s.forEach((v) => {
-		$(`[id*="${stations[v]}-dash"]`).addClass('visible');
-		$(`[id*="${stations[v]}-label"]`).addClass('visible');
-		$(`[id*="IC_${stations[v]}"]`).addClass('visible');
+		document.querySelector(`[id*="${stations[v]}-dash"]`)?.classList.add('visible');
+		document.querySelector(`[id*="${stations[v]}-label"]`)?.classList.add('visible');
+		document.querySelector(`[id*="IC_${stations[v]}"]`)?.classList.add('visible');
 	});
 }
 
@@ -118,7 +118,7 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < e.length; i++) {
-							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					lineObj['bottom']!.forEach((e) => {
@@ -133,7 +133,7 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = 0; i < last; i++) {
-							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
@@ -156,7 +156,7 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < last; i++) {
-							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
@@ -179,7 +179,7 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < last; i++) {
-							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
@@ -205,7 +205,7 @@ function updateLineSegs() {
 				}
 			});
 			for (let i = first; i < last; i++) {
-				$(`#lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`).addClass('visible');
+				document.getElementById(`lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`)?.classList.add('visible');
 			}
 			data[lineObj['line']] = data[lineObj['line']] + total;
 		}
@@ -235,14 +235,13 @@ function updateStats(data: {[line: string]: number}) {
 	for (const l in totals) {
 		let percent: number = 0, visited: number;
 		if (data[l] === NaN) {
-			$(`progress#${l}`).attr('value', 0);
+			document.getElementById(`${l}`)!.setAttribute('value', '0');
 		} else {
 			const total: number = totals[l];
 			visited = data[l];
 			percent = Math.floor((visited / total) * 100);
-			console.log(l, percent);
 		}
-		$(`progress#${l}`).attr('value', percent);
+		document.getElementById(`${l}`)!.setAttribute('value', percent.toString());
 	}
 }
 

@@ -102,7 +102,7 @@ window.onkeyup = (e: any) => {
 	}
 };
 
-$('#js-menu').on('click', () => {
+document.getElementById('js-menu')!.addEventListener('click', () => {
 	document.getElementById('js-footer')!.classList.toggle('aside-active');
 	document.getElementById('js-aside')!.classList.toggle('aside-out');
 });
@@ -117,7 +117,7 @@ document.getElementById('js-stnInput')!.addEventListener('blur', (event) => {
 	document.getElementById('js-footer')!.style.bottom = '10px';
 });
 
-$('#js-stnInput').on('keyup', (e) => {
+document.getElementById('js-stnInput')?.addEventListener('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
 		const stnEl = <HTMLInputElement>document.getElementById('js-stnInput');
 		if (newStation(stnEl.value)) {

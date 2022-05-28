@@ -1,4 +1,5 @@
 'use strict';
+var _a;
 let panInst;
 const mapEl = document.getElementById('map');
 function storageAvailable(type) {
@@ -87,7 +88,7 @@ window.onkeyup = (e) => {
 		document.getElementById('js-stnInput').focus();
 	}
 };
-$('#js-menu').on('click', () => {
+document.getElementById('js-menu').addEventListener('click', () => {
 	document.getElementById('js-footer').classList.toggle('aside-active');
 	document.getElementById('js-aside').classList.toggle('aside-out');
 });
@@ -99,15 +100,17 @@ document.getElementById('js-stnInput').addEventListener('blur', (event) => {
 	document.getElementById('js-footer').style.top = '';
 	document.getElementById('js-footer').style.bottom = '10px';
 });
-$('#js-stnInput').on('keyup', (e) => {
-	if (e.key === 'Enter' || e.keyCode === 13) {
-		const stnEl = document.getElementById('js-stnInput');
-		if (newStation(stnEl.value)) {
-			stnEl.value = '';
-			popUp('Station added!', 'confirm');
-		}
-	}
-});
+(_a = document.getElementById('js-stnInput')) === null || _a === void 0
+	? void 0
+	: _a.addEventListener('keyup', (e) => {
+			if (e.key === 'Enter' || e.keyCode === 13) {
+				const stnEl = document.getElementById('js-stnInput');
+				if (newStation(stnEl.value)) {
+					stnEl.value = '';
+					popUp('Station added!', 'confirm');
+				}
+			}
+	  });
 function newStation(input) {
 	if (stations[input] !== undefined) {
 		addStnsToMap(input);
