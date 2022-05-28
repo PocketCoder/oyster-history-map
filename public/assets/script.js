@@ -270,8 +270,9 @@ function loadData(arr) {
 		usrData('save', 'stations', stations);
 		usrData('save', 'bus', busses);
 	} catch (e) {
-		console.error(`loadData(): ${e}`);
+		console.error(`[script.ts | loadData()]: ${e}`);
 	} finally {
+		addStnsToMap(stations);
 		updateLineSegs();
 	}
 }
@@ -299,19 +300,9 @@ function CSVtoArray(strData, strDelimiter = ',') {
 }
 function dragOverHandler(e) {
 	e.preventDefault();
-	$('body').toggleClass('dragOver');
 }
 function dropHandler(e) {
 	e.preventDefault();
-	$('body').toggleClass('dragOver');
 	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);
-}
-function uploadHandler(e) {
-	$('#fileSelect').click();
-	$('#fileSelect').on('change', () => {
-		const fileEl = document.getElementById('fileSelect');
-		const file = fileEl === null || fileEl === void 0 ? void 0 : fileEl.files[0];
-		readFile(file);
-	});
 }

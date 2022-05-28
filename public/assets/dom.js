@@ -22,15 +22,13 @@ function storageAvailable(type) {
 		);
 	}
 }
-function loadMapData() {
+function populateMapData() {
 	var _a, _b;
-	try {
-		if (!storageAvailable('localStorage')) {
-			throw 'No localStorage available';
-		}
-	} catch (e) {
-		alert("Sorry, local storage isn't available in your browser. That means we can't save the data you upload.");
-	} finally {
+	if (!storageAvailable('localStorage')) {
+		popUp("LocalStorage isn't supported", 'error');
+		alert("LocalStorage isn't supported");
+		throw new Error('No localStorage available');
+	} else {
 		if (localStorage.getItem('stations') !== null) {
 			document.getElementById('js-welcome').style.display = 'none';
 			addStnsToMap(usrData('get', 'stations'));
@@ -66,7 +64,7 @@ function loadMap() {
 				boundsPadding: 0.4
 			});
 			setTimeout(() => {
-				loadMapData();
+				populateMapData();
 			}, 1500);
 		});
 }
@@ -78,16 +76,21 @@ document.onreadystatechange = (e) => {
 		document.getElementById('js-bus').innerHTML = noBus;
 	}
 };
+const fileEl = document.getElementById('fileSelect');
+fileEl.addEventListener('change', () => {
+	const files = fileEl.files;
+	for (const file of files) {
+		readFile(file);
+	}
+});
 window.onkeyup = (e) => {
-	var _a;
 	if (e.key === '/' || e.keyCode === 191) {
-		(_a = document.getElementById('js-stnInput')) === null || _a === void 0 ? void 0 : _a.focus();
+		document.getElementById('js-stnInput').focus();
 	}
 };
 $('#js-menu').on('click', () => {
-	var _a, _b;
-	(_a = document.getElementById('js-footer')) === null || _a === void 0 ? void 0 : _a.classList.toggle('aside-active');
-	(_b = document.getElementById('js-aside')) === null || _b === void 0 ? void 0 : _b.classList.toggle('aside-out');
+	document.getElementById('js-footer').classList.toggle('aside-active');
+	document.getElementById('js-aside').classList.toggle('aside-out');
 });
 (_a = document.getElementById('js-stnInput')) === null || _a === void 0
 	? void 0
@@ -106,14 +109,42 @@ $('#js-stnInput').on('keyup', (e) => {
 		const stnEl = document.getElementById('js-stnInput');
 		if (newStation(stnEl.value)) {
 			stnEl.value = '';
+			popUp('Station added!', 'confirm');
 		}
 	}
 });
 function newStation(input) {
-	addStnsToMap(input);
-	usrData('save', 'stations', input);
-	updateLineSegs();
-	return true;
+	if (stations[input] !== undefined) {
+		addStnsToMap(input);
+		usrData('save', 'stations', input);
+		updateLineSegs();
+		return true;
+	} else {
+		popUp(`${input} doesn\'t exist.`, 'error');
+		return false;
+	}
+}
+function popUp(title, type, text = '', customColour) {
+	const types = ['info', 'confirm', 'error'];
+	const el = document.createElement('div');
+	el.classList.add('pop');
+	if (!types.includes(type)) {
+		el.style.cssText = `background:${customColour}`;
+	} else {
+		el.classList.add(type);
+	}
+	const head = document.createElement('h4');
+	head.innerHTML = title;
+	el.appendChild(head);
+	if (text !== '') {
+		const body = document.createElement('p');
+		body.innerHTML = text;
+		el.appendChild(body);
+	}
+	document.body.appendChild(el);
+	setTimeout(() => {
+		document.body.removeChild(el);
+	}, 10000);
 }
 const autoCompleteJS = new autoComplete({
 	selector: '#js-stnInput',
@@ -603,8 +634,11 @@ const autoCompleteJS = new autoComplete({
 	events: {
 		input: {
 			selection: (event) => {
-				const selection = event.detail.selection.value;
+				let selection = event.detail.selection.value;
+				selection = selection.replaceAll(/&amp;/g, '&');
 				autoCompleteJS.input.value = selection;
+				newStation(selection);
+				popUp('Station added!', 'confirm');
 			}
 		}
 	}
