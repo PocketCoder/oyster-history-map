@@ -139,7 +139,7 @@ function popUp(title, type, text = '', customColour) {
 	document.body.appendChild(el);
 	setTimeout(() => {
 		document.body.removeChild(el);
-	}, 10000);
+	}, 1e4);
 }
 const autoCompleteJS = new autoComplete({
 	selector: '#js-stnInput',
@@ -608,10 +608,7 @@ const autoCompleteJS = new autoComplete({
 		],
 		cache: true
 	},
-	resultItem: {
-		highlight: true,
-		id: 'resultItem'
-	},
+	resultItem: {highlight: true, id: 'resultItem'},
 	resultsList: {
 		id: 'resultList',
 		maxResults: 3,
