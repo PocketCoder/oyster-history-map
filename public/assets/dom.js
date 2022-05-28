@@ -1,5 +1,4 @@
 'use strict';
-var _a, _b;
 let panInst;
 const mapEl = document.getElementById('map');
 function storageAvailable(type) {
@@ -92,18 +91,14 @@ $('#js-menu').on('click', () => {
 	document.getElementById('js-footer').classList.toggle('aside-active');
 	document.getElementById('js-aside').classList.toggle('aside-out');
 });
-(_a = document.getElementById('js-stnInput')) === null || _a === void 0
-	? void 0
-	: _a.addEventListener('focus', (event) => {
-			document.getElementById('js-footer').style.bottom = '';
-			document.getElementById('js-footer').style.top = '10px';
-	  });
-(_b = document.getElementById('js-stnInput')) === null || _b === void 0
-	? void 0
-	: _b.addEventListener('blur', (event) => {
-			document.getElementById('js-footer').style.top = '';
-			document.getElementById('js-footer').style.bottom = '10px';
-	  });
+document.getElementById('js-stnInput').addEventListener('focus', (event) => {
+	document.getElementById('js-footer').style.bottom = '';
+	document.getElementById('js-footer').style.top = '10px';
+});
+document.getElementById('js-stnInput').addEventListener('blur', (event) => {
+	document.getElementById('js-footer').style.top = '';
+	document.getElementById('js-footer').style.bottom = '10px';
+});
 $('#js-stnInput').on('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
 		const stnEl = document.getElementById('js-stnInput');

@@ -102,12 +102,12 @@ $('#js-menu').on('click', () => {
 	document.getElementById('js-aside')!.classList.toggle('aside-out');
 });
 
-document.getElementById('js-stnInput')?.addEventListener('focus', (event) => {
+document.getElementById('js-stnInput')!.addEventListener('focus', (event) => {
 	document.getElementById('js-footer')!.style.bottom = '';
 	document.getElementById('js-footer')!.style.top = '10px';
 });
 
-document.getElementById('js-stnInput')?.addEventListener('blur', (event) => {
+document.getElementById('js-stnInput')!.addEventListener('blur', (event) => {
 	document.getElementById('js-footer')!.style.top = '';
 	document.getElementById('js-footer')!.style.bottom = '10px';
 });
