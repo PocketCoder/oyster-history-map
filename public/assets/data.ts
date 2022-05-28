@@ -432,6 +432,11 @@ const lines: LineObj = {
 		line: 'elizabeth',
 		stations: ['LST', 'SFD', 'MLD', 'FGT', 'MNP', 'IFD', 'SVK', 'GDM', 'CWH', 'RFD', 'GDP', 'HWD', 'BWD', 'SND']
 	},
+	'elizabeth-central': {
+		branch: false,
+		line: 'elizabeth',
+		stations: ['PAD', 'TCR', 'FAR', 'LST', 'WCL', 'CWF', 'CUH', 'WOO', 'ABW']
+	},
 	'overground_WTJ-EUS': {
 		branch: false,
 		line: 'overground',
@@ -678,6 +683,7 @@ const lines: LineObj = {
 
 const stations: StationDict = {
 	'Abbey Road': 'ABR',
+	'Abbey Wood': 'ABW',
 	'Acton Central': 'ACC',
 	'Acton Mainline': 'AML',
 	'Acton Town': 'ACT',
@@ -1136,5 +1142,6 @@ const stations: StationDict = {
 	Woodside: 'WDS',
 	'Woodside Park': 'WSP',
 	'Wood Street': 'WOS',
-	'Woolwich Arsenal': 'WOA'
+	'Woolwich Arsenal': 'WOA',
+	'Woolwich': 'WOO'
 };
