@@ -264,8 +264,8 @@ function readFile(file) {
 }
 
 function loadData(arr: string[][]) {
-	let stations = [],
-		busses = [];
+	let stations: Array<string> = [],
+		busses: Array<String> = [];
 	for (const a in arr) {
 		const journey = arr[a][3];
 		if (journey == undefined) continue;
@@ -291,8 +291,9 @@ function loadData(arr: string[][]) {
 		usrData('save', 'stations', stations);
 		usrData('save', 'bus', busses);
 	} catch (e) {
-		console.error(`loadData(): ${e}`);
+		console.error(`[script.ts | loadData()]: ${e}`);
 	} finally {
+		addStnsToMap(stations);
 		updateLineSegs();
 	}
 }
@@ -335,12 +336,10 @@ function CSVtoArray(strData, strDelimiter = ',') {
 
 function dragOverHandler(e) {
 	e.preventDefault();
-	$('body').toggleClass('dragOver');
 }
 
 function dropHandler(e) {
 	e.preventDefault();
-	$('body').toggleClass('dragOver');
 	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);
 }
