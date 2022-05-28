@@ -133,7 +133,7 @@ const lines = {
 		]
 	},
 	piccadilly: {
-		branch: 'true',
+		branch: true,
 		line: 'piccadilly',
 		top: [
 			[
@@ -315,8 +315,7 @@ const lines = {
 			'NHG',
 			'BAY',
 			'PAD',
-			'ERD',
-			'PAD'
+			'ERD'
 		]
 	},
 	'hammersmith-city': {
@@ -501,7 +500,11 @@ const lines = {
 			]
 		]
 	},
-	overground_UPM: {branch: false, line: 'overground', stations: ['RFD', 'EMP', 'UPM']},
+	overground_UPM: {
+		branch: false,
+		line: 'overground',
+		stations: ['RFD', 'EMP', 'UPM']
+	},
 	tram: {
 		branch: true,
 		line: 'tram',
@@ -555,8 +558,16 @@ const lines = {
 			['SAN', 'ADS', 'BSL', 'WDS', 'ARN', 'HRD', 'BKB', 'AVR', 'BCR', 'BCJ']
 		]
 	},
-	'waterloo-city': {branch: false, line: 'waterloo-city', stations: ['WLO', 'BNK']},
-	'cable-car': {branch: false, line: 'cable-car', stations: ['EGP', 'EMD']},
+	'waterloo-city': {
+		branch: false,
+		line: 'waterloo-city',
+		stations: ['WLO', 'BNK']
+	},
+	'cable-car': {
+		branch: false,
+		line: 'cable-car',
+		stations: ['EGP', 'EMD']
+	},
 	'dlr_E-W': {
 		branch: true,
 		line: 'dlr',

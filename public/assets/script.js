@@ -218,7 +218,8 @@ function updateStats(data) {
 		tram: 39
 	};
 	for (const l in totals) {
-		let percent, visited;
+		let percent = 0,
+			visited;
 		if (data[l] === NaN) {
 			$(`progress#${l}`).attr('value', 0);
 		} else {
@@ -234,7 +235,7 @@ function readFile(file) {
 	const reader = new FileReader();
 	reader.readAsText(file, 'UTF-8');
 	reader.onload = (evt) => {
-		const fileString = evt.target.result;
+		const fileString = evt.target.result || '';
 		const CSVarr = CSVtoArray(fileString);
 		loadData(CSVarr);
 	};
@@ -278,21 +279,22 @@ function loadData(arr) {
 }
 function CSVtoArray(strData, strDelimiter = ',') {
 	strDelimiter = strDelimiter || ',';
-	var objPattern = new RegExp(
+	let objPattern = new RegExp(
 		'(\\' + strDelimiter + '|\\r?\\n|\\r|^)' + '(?:"([^"]*(?:""[^"]*)*)"|' + '([^"\\' + strDelimiter + '\\r\\n]*))',
 		'gi'
 	);
-	var arrData = [[]];
-	var arrMatches = null;
+	let arrData = [[]];
+	let arrMatches = null;
 	while ((arrMatches = objPattern.exec(strData))) {
-		var strMatchedDelimiter = arrMatches[1];
+		let strMatchedDelimiter = arrMatches[1];
 		if (strMatchedDelimiter.length && strMatchedDelimiter != strDelimiter) {
 			arrData.push([]);
 		}
+		let strMatchedValue;
 		if (arrMatches[2]) {
-			var strMatchedValue = arrMatches[2].replace(new RegExp('""', 'g'), '"');
+			strMatchedValue = arrMatches[2].replace(new RegExp('""', 'g'), '"');
 		} else {
-			var strMatchedValue = arrMatches[3];
+			strMatchedValue = arrMatches[3];
 		}
 		arrData[arrData.length - 1].push(strMatchedValue);
 	}

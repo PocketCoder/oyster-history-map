@@ -34,7 +34,7 @@ function findVisCodes(arr: string | Array<string>) {
 }
 
 function addStnsToMap(stns: string | Array<string>) {
-	let s: Array<String> = [];
+	let s: Array<string> = [];
 	if (typeof stns === 'string') {
 		s.push(stns);
 	} else {
@@ -50,7 +50,7 @@ function addStnsToMap(stns: string | Array<string>) {
 
 function updateLineSegs() {
 	let stnCodes = findVisCodes(usrData('get', 'stations'));
-	let data = {
+	let data: {[line: string]: number} = {
 		bakerloo: 0,
 		central: 0,
 		piccadilly: 0,
@@ -74,7 +74,7 @@ function updateLineSegs() {
 			// Check if top branches are active.
 			function top() {
 				let active = false;
-				lineObj['top'].forEach((a: string[]) => {
+				lineObj['top']!.forEach((a: string[]) => {
 					a.forEach((s) => {
 						if (stnCodes.includes(s)) {
 							active = true;
@@ -89,7 +89,7 @@ function updateLineSegs() {
 			// Check if bottom branches are active
 			function bottom() {
 				let active = false;
-				lineObj['bottom'].forEach((a: string[]) => {
+				lineObj['bottom']!.forEach((a: string[]) => {
 					a.forEach((s) => {
 						if (stnCodes.includes(s)) {
 							active = true;
@@ -106,7 +106,7 @@ function updateLineSegs() {
 				// If the top and bottom branches are active then go from the the first visited station of the top branches in those arrays to the last station, then from the first station of the bottom branches to the last visited station.
 				if (top && bottom) {
 					let total = 0;
-					lineObj['top'].forEach((e: string[]) => {
+					lineObj['top']!.forEach((e: string[]) => {
 						let first = 100;
 						e.forEach((a) => {
 							const index = e.indexOf(a);
@@ -121,7 +121,7 @@ function updateLineSegs() {
 							$(`#lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`).addClass('visible');
 						}
 					});
-					lineObj['bottom'].forEach((e) => {
+					lineObj['bottom']!.forEach((e) => {
 						let last = 0;
 						e.forEach((a: string) => {
 							const index = e.indexOf(a);
@@ -139,7 +139,7 @@ function updateLineSegs() {
 					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (top) {
 					let total = 0;
-					lineObj['top'].forEach((e) => {
+					lineObj['top']!.forEach((e) => {
 						let first = 100,
 							last = 0;
 						e.forEach((a) => {
@@ -162,7 +162,7 @@ function updateLineSegs() {
 					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (bottom) {
 					let total = 0;
-					lineObj['bottom'].forEach((e) => {
+					lineObj['bottom']!.forEach((e) => {
 						let first = 100,
 							last = 0;
 						e.forEach((a) => {
@@ -187,7 +187,7 @@ function updateLineSegs() {
 			}
 			complete(top(), bottom());
 		} else {
-			const lineArr = lineObj['stations'];
+			const lineArr = lineObj['stations']!;
 			let first = 100,
 				last = 0,
 				total = 0;
@@ -213,8 +213,8 @@ function updateLineSegs() {
 	updateStats(data);
 }
 
-function updateStats(data) {
-	const totals = {
+function updateStats(data: {[line: string]: number}) {
+	const totals: {[line: string]: number} = {
 		bakerloo: 25,
 		central: 49,
 		piccadilly: 53,
@@ -233,11 +233,11 @@ function updateStats(data) {
 		tram: 39
 	};
 	for (const l in totals) {
-		let percent: number, visited;
+		let percent: number = 0, visited: number;
 		if (data[l] === NaN) {
 			$(`progress#${l}`).attr('value', 0);
 		} else {
-			const total = totals[l];
+			const total: number = totals[l];
 			visited = data[l];
 			percent = Math.floor((visited / total) * 100);
 			console.log(l, percent);
@@ -246,14 +246,14 @@ function updateStats(data) {
 	}
 }
 
-function readFile(file) {
+function readFile(file: File) {
 	const reader = new FileReader();
 
 	reader.readAsText(file, 'UTF-8');
 
 	// reader.onprogress = updateProgress;
 	reader.onload = (evt) => {
-		const fileString = evt.target.result;
+		const fileString: any = evt.target!.result || '';
 		const CSVarr = CSVtoArray(fileString);
 		loadData(CSVarr);
 	};
@@ -264,8 +264,8 @@ function readFile(file) {
 }
 
 function loadData(arr: string[][]) {
-	let stations: Array<string> = [],
-		busses: Array<String> = [];
+	let stations: string[] = [],
+		busses: string[] = [];
 	for (const a in arr) {
 		const journey = arr[a][3];
 		if (journey == undefined) continue;
@@ -298,10 +298,10 @@ function loadData(arr: string[][]) {
 	}
 }
 
-function CSVtoArray(strData, strDelimiter = ',') {
+function CSVtoArray(strData: string, strDelimiter = ',') {
 	// https://gist.github.com/luishdez/644215
 	strDelimiter = strDelimiter || ',';
-	var objPattern = new RegExp(
+	let objPattern = new RegExp(
 		// Delimiters.
 		'(\\' +
 			strDelimiter +
@@ -315,30 +315,31 @@ function CSVtoArray(strData, strDelimiter = ',') {
 		'gi'
 	);
 
-	var arrData = [[]];
-	var arrMatches = null;
+	let arrData: string[][] = [[]];
+	let arrMatches: any = null;
 
 	while ((arrMatches = objPattern.exec(strData))) {
-		var strMatchedDelimiter = arrMatches[1];
+		let strMatchedDelimiter = arrMatches[1];
 		if (strMatchedDelimiter.length && strMatchedDelimiter != strDelimiter) {
 			arrData.push([]);
 		}
-
+		
+		let strMatchedValue: any;
 		if (arrMatches[2]) {
-			var strMatchedValue = arrMatches[2].replace(new RegExp('""', 'g'), '"');
+			strMatchedValue = arrMatches[2].replace(new RegExp('""', 'g'), '"');
 		} else {
-			var strMatchedValue = arrMatches[3];
+			strMatchedValue = arrMatches[3];
 		}
 		arrData[arrData.length - 1].push(strMatchedValue);
 	}
 	return arrData;
 }
 
-function dragOverHandler(e) {
+function dragOverHandler(e: any) {
 	e.preventDefault();
 }
 
-function dropHandler(e) {
+function dropHandler(e: any) {
 	e.preventDefault();
 	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);

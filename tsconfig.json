@@ -6,7 +6,7 @@
 		// "watch": false,
 		/* Visit https://aka.ms/tsconfig.json to read more about this file */
 
-		"lib": ["ESNext", "DOM"],
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
 
 		/* Projects */
 		// "incremental": true,                              /* Enable incremental compilation */

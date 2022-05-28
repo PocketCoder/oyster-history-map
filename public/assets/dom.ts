@@ -1,3 +1,8 @@
+interface Window {
+	setItem(x:any, y:any): any;
+	removeItem(x: any): any;
+}
+
 let panInst: any;
 const mapEl = document.getElementById('map') as HTMLDivElement;
 

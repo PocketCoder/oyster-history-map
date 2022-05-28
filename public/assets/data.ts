@@ -1,4 +1,18 @@
-const lines: Object = {
+type LineObj = {
+	[line: string]: {
+		branch: Boolean,
+		line: string,
+		stations?: string[]
+		top?: string[][],
+		bottom?: string[][]
+	}
+}
+
+type StationDict = {
+	[station: string]: string
+}
+
+const lines: LineObj = {
 	bakerloo: {
 		branch: false,
 		line: 'bakerloo',
@@ -132,7 +146,7 @@ const lines: Object = {
 		]
 	},
 	piccadilly: {
-		branch: 'true',
+		branch: true,
 		line: 'piccadilly',
 		top: [
 			[
@@ -314,8 +328,7 @@ const lines: Object = {
 			'NHG',
 			'BAY',
 			'PAD',
-			'ERD',
-			'PAD'
+			'ERD'
 		]
 	},
 	'hammersmith-city': {
@@ -663,7 +676,7 @@ const lines: Object = {
 	}
 };
 
-const stations: Object = {
+const stations: StationDict = {
 	'Abbey Road': 'ABR',
 	'Acton Central': 'ACC',
 	'Acton Mainline': 'AML',
