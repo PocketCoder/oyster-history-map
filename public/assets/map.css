@@ -35,5 +35,5 @@ svg > g > g {
 .visible,
 .visible *,
 *[id*='white_line'] {
-	opacity: 1 !important;
+	opacity: 2 !important;
 }
