@@ -28,14 +28,12 @@ function storageAvailable(type: any) {
 	}
 }
 
-function loadMapData() {
-	try {
-		if (!storageAvailable('localStorage')) {
-			throw 'No localStorage available';
-		}
-	} catch (e) {
-		alert("Sorry, local storage isn't available in your browser. That means we can't save the data you upload.");
-	} finally {
+function populateMapData() {
+	if (!storageAvailable('localStorage')) {
+		popUp("LocalStorage isn't supported", 'error');
+		alert("LocalStorage isn't supported");
+		throw new Error('No localStorage available');
+	} else {
 		if (localStorage.getItem('stations') !== null) {
 			document.getElementById('js-welcome')!.style.display = 'none';
 			addStnsToMap(usrData('get', 'stations'));
@@ -71,7 +69,7 @@ function loadMap() {
 				boundsPadding: 0.4
 			});
 			setTimeout(() => {
-				loadMapData();
+				populateMapData();
 			}, 1500);
 		});
 }
@@ -95,13 +93,13 @@ fileEl.addEventListener('change', () => {
 
 window.onkeyup = (e: any) => {
 	if (e.key === '/' || e.keyCode === 191) {
-		document.getElementById('js-stnInput')?.focus();
+		document.getElementById('js-stnInput')!.focus();
 	}
 };
 
 $('#js-menu').on('click', () => {
-	document.getElementById('js-footer')?.classList.toggle('aside-active');
-	document.getElementById('js-aside')?.classList.toggle('aside-out');
+	document.getElementById('js-footer')!.classList.toggle('aside-active');
+	document.getElementById('js-aside')!.classList.toggle('aside-out');
 });
 
 document.getElementById('js-stnInput')?.addEventListener('focus', (event) => {
@@ -119,15 +117,21 @@ $('#js-stnInput').on('keyup', (e) => {
 		const stnEl = <HTMLInputElement>document.getElementById('js-stnInput');
 		if (newStation(stnEl.value)) {
 			stnEl.value = '';
+			popUp('Station added!', 'confirm');
 		}
 	}
 });
 
 function newStation(input: string) {
-	addStnsToMap(input);
-	usrData('save', 'stations', input);
-	updateLineSegs();
-	return true;
+	if (stations[input] !== undefined) {
+		addStnsToMap(input);
+		usrData('save', 'stations', input);
+		updateLineSegs();
+		return true;
+	} else {
+		popUp(`${input} doesn\'t exist.`, 'error');
+		return false;
+	}
 }
 
 function popUp(title: string, type: string, text: string = '', customColour?: string) {
@@ -642,8 +646,11 @@ const autoCompleteJS = new autoComplete({
 	events: {
 		input: {
 			selection: (event: any) => {
-				const selection = event.detail.selection.value;
+				let selection: string = event.detail.selection.value;
+				selection = selection.replaceAll(/&amp;/g, '&');
 				autoCompleteJS.input.value = selection;
+				newStation(selection);
+				popUp('Station added!', 'confirm');
 			}
 		}
 	}
