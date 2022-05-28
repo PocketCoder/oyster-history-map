@@ -233,6 +233,11 @@ aside .bubble:last-child {
 	accent-color: #b36305;
 }
 
+/* cable-car */
+#line-progress progress#cable-car {
+	accent-color: #e21836;
+}
+
 /* Central */
 #line-progress progress#central {
 	accent-color: #e32017;
@@ -289,7 +294,7 @@ aside .bubble:last-child {
 }
 
 /* Trams */
-#line-progress progress#trams {
+#line-progress progress#tram {
 	accent-color: #84b817;
 }
 
