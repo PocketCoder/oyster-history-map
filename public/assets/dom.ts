@@ -122,7 +122,7 @@ function newStation(input: string) {
 	return true;
 }
 
-function popUp(title: string, text: string, type: string, customColour: string) {
+function popUp(title: string, type: string, text: string = '', customColour?: string) {
 	const types = ['info', 'confirm', 'error'];
 	const el = document.createElement('div');
 	el.classList.add('pop');
@@ -133,10 +133,12 @@ function popUp(title: string, text: string, type: string, customColour: string) 
 	}
 	const head = document.createElement('h4');
 	head.innerHTML = title;
-	const body = document.createElement('p');
-	body.innerHTML = text;
 	el.appendChild(head);
-	el.appendChild(body);
+	if (text !== '') {
+		const body = document.createElement('p');
+		body.innerHTML = text;
+		el.appendChild(body);
+	}
 	document.body.appendChild(el);
 	setTimeout(() => {
 		document.body.removeChild(el);
