@@ -85,6 +85,14 @@ document.onreadystatechange = (e) => {
 	}
 };
 
+const fileEl = document.getElementById('fileSelect') as HTMLInputElement;
+fileEl.addEventListener('change', () => {
+	const files = fileEl.files!;
+	for (const file of files) {
+		readFile(file); // => script.ts
+	}
+});
+
 window.onkeyup = (e: any) => {
 	if (e.key === '/' || e.keyCode === 191) {
 		document.getElementById('js-stnInput')?.focus();

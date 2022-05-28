@@ -344,12 +344,3 @@ function dropHandler(e) {
 	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);
 }
-
-function uploadHandler(e) {
-	$('#fileSelect').click();
-	$('#fileSelect').on('change', () => {
-		const fileEl = document.getElementById('fileSelect') as HTMLInputElement | null;
-		const file = fileEl?.files![0];
-		readFile(file);
-	});
-}
