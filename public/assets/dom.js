@@ -1,6 +1,6 @@
 'use strict';
-var _a;
 let panInst;
+let mapInst = 'tube';
 const mapEl = document.getElementById('map');
 function storageAvailable(type) {
 	var storage;
@@ -23,7 +23,6 @@ function storageAvailable(type) {
 	}
 }
 function populateMapData() {
-	var _a, _b;
 	if (!storageAvailable('localStorage')) {
 		popUp("LocalStorage isn't supported", 'error');
 		alert("LocalStorage isn't supported");
@@ -34,19 +33,19 @@ function populateMapData() {
 			addStnsToMap(usrData('get', 'stations'));
 			updateLineSegs();
 		} else {
-			(_a = document.getElementById('js-footer')) === null || _a === void 0
-				? void 0
-				: _a.classList.toggle('aside-active');
-			(_b = document.getElementById('js-aside')) === null || _b === void 0 ? void 0 : _b.classList.toggle('aside-out');
+			document.getElementById('js-footer').classList.toggle('aside-active');
+			document.getElementById('js-aside').classList.toggle('aside-out');
 		}
 	}
 }
-function loadMap() {
-	fetch('./assets/map.svg')
+function loadMap(map) {
+	mapEl.innerHTML = '';
+	fetch(`./assets/${map}-map.svg`)
 		.then((res) => res.text())
 		.then((data) => {
 			mapEl.innerHTML = data;
-			const elem = document.getElementById('status-map');
+			const elem = document.getElementById(`${map}-map`);
+			elem.style.opacity = '0';
 			setTimeout(() => {
 				elem.style.opacity = '1';
 			}, 500);
@@ -70,7 +69,7 @@ function loadMap() {
 }
 document.onreadystatechange = (e) => {
 	if (document.readyState === 'complete') {
-		loadMap();
+		loadMap(mapInst);
 		const busses = usrData('get', 'bus');
 		const noBus = busses.length;
 		document.getElementById('js-bus').innerHTML = noBus;
@@ -100,17 +99,28 @@ document.getElementById('js-stnInput').addEventListener('blur', (event) => {
 	document.getElementById('js-footer').style.top = '';
 	document.getElementById('js-footer').style.bottom = '10px';
 });
-(_a = document.getElementById('js-stnInput')) === null || _a === void 0
-	? void 0
-	: _a.addEventListener('keyup', (e) => {
-			if (e.key === 'Enter' || e.keyCode === 13) {
-				const stnEl = document.getElementById('js-stnInput');
-				if (newStation(stnEl.value)) {
-					stnEl.value = '';
-					popUp('Station added!', 'confirm');
-				}
-			}
-	  });
+document.getElementById('js-stnInput').addEventListener('keyup', (e) => {
+	if (e.key === 'Enter' || e.keyCode === 13) {
+		const stnEl = document.getElementById('js-stnInput');
+		if (newStation(stnEl.value)) {
+			stnEl.value = '';
+			popUp('Station added!', 'confirm');
+		}
+	}
+});
+document.getElementById('js-mapSwitch').addEventListener('click', () => {
+	const icon = document.getElementById('js-mapSwitch');
+	if (mapInst === 'tube') {
+		icon.classList.remove('liz');
+		mapInst = 'liz';
+		icon.classList.add('tube');
+	} else {
+		icon.classList.remove('tube');
+		mapInst = 'tube';
+		icon.classList.add('liz');
+	}
+	loadMap(mapInst);
+});
 function newStation(input) {
 	if (stations[input] !== undefined) {
 		addStnsToMap(input);

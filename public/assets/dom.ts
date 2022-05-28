@@ -4,6 +4,7 @@ interface Window {
 }
 
 let panInst: any;
+let mapInst = 'tube';
 const mapEl = document.getElementById('map') as HTMLDivElement;
 
 function storageAvailable(type: any) {
@@ -44,18 +45,20 @@ function populateMapData() {
 			addStnsToMap(usrData('get', 'stations'));
 			updateLineSegs();
 		} else {
-			document.getElementById('js-footer')?.classList.toggle('aside-active');
-			document.getElementById('js-aside')?.classList.toggle('aside-out');
+			document.getElementById('js-footer')!.classList.toggle('aside-active');
+			document.getElementById('js-aside')!.classList.toggle('aside-out');
 		}
 	}
 }
 
-function loadMap() {
-	fetch('./assets/map.svg')
+function loadMap(map: string) {
+	mapEl.innerHTML = '';
+	fetch(`./assets/${map}-map.svg`)
 		.then((res) => res.text())
 		.then((data) => {
 			mapEl.innerHTML = data;
-			const elem = document.getElementById('status-map') as HTMLDivElement;
+			const elem = document.getElementById(`${map}-map`) as HTMLDivElement;
+			elem.style.opacity = '0';
 			setTimeout(() => {
 				elem.style.opacity = '1';
 			}, 500);
@@ -81,7 +84,7 @@ function loadMap() {
 
 document.onreadystatechange = (e) => {
 	if (document.readyState === 'complete') {
-		loadMap();
+		loadMap(mapInst);
 		const busses = usrData('get', 'bus');
 		const noBus = busses.length;
 		document.getElementById('js-bus')!.innerHTML = noBus;
@@ -117,7 +120,7 @@ document.getElementById('js-stnInput')!.addEventListener('blur', (event) => {
 	document.getElementById('js-footer')!.style.bottom = '10px';
 });
 
-document.getElementById('js-stnInput')?.addEventListener('keyup', (e) => {
+document.getElementById('js-stnInput')!.addEventListener('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
 		const stnEl = <HTMLInputElement>document.getElementById('js-stnInput');
 		if (newStation(stnEl.value)) {
@@ -125,6 +128,20 @@ document.getElementById('js-stnInput')?.addEventListener('keyup', (e) => {
 			popUp('Station added!', 'confirm');
 		}
 	}
+});
+
+document.getElementById('js-mapSwitch')!.addEventListener('click', () => {
+	const icon = document.getElementById('js-mapSwitch')!;
+	if (mapInst === 'tube') {
+		icon.classList.remove('liz');
+		mapInst = 'liz';
+		icon.classList.add('tube');
+	} else {
+		icon.classList.remove('tube');
+		mapInst = 'tube'
+		icon.classList.add('liz');
+	}
+	loadMap(mapInst);
 });
 
 function newStation(input: string) {

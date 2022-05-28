@@ -106,21 +106,30 @@ input[type='text']:focus {
 i {
 	display: inline-block;
 	background-color: white;
+	width: 30px;
+	height: 30px;
 	padding: 10px;
 	-webkit-box-shadow: -6px 4px 12px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow: -6px 4px 12px 0px rgba(50, 50, 50, 0.75);
 	box-shadow: -6px 4px 12px 0px rgba(50, 50, 50, 0.75);
 	border-radius: 50px;
+	cursor: pointer;
 }
 
 i.menu {
 	content: url('icons/menu.svg');
-	cursor: pointer;
+}
+
+i.tube {
+	content: url('icons/tfl.svg');
+}
+
+i.liz {
+	content: url('icons/liz.svg');
 }
 
 i.info {
 	content: url('icons/info.svg');
-	cursor: pointer;
 }
 
 footer.aside-active {
