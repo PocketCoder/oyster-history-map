@@ -339,10 +339,17 @@ function CSVtoArray(strData: string, strDelimiter = ',') {
 
 function dragOverHandler(e: any) {
 	e.preventDefault();
+	document.getElementById('drag')?.classList.add('dragOver');
+}
+
+function dragLeaveHandler(e: any) {
+	e.preventDefault();
+	document.getElementById('drag')?.classList.remove('dragOver');
 }
 
 function dropHandler(e: any) {
 	e.preventDefault();
 	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);
+	document.getElementById('drag')?.classList.remove('dragOver');
 }

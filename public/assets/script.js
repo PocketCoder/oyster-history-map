@@ -326,10 +326,19 @@ function CSVtoArray(strData, strDelimiter = ',') {
 	return arrData;
 }
 function dragOverHandler(e) {
+	var _a;
 	e.preventDefault();
+	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.add('dragOver');
+}
+function dragLeaveHandler(e) {
+	var _a;
+	e.preventDefault();
+	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.remove('dragOver');
 }
 function dropHandler(e) {
+	var _a;
 	e.preventDefault();
 	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);
+	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.remove('dragOver');
 }

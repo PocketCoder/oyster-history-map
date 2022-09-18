@@ -52,7 +52,10 @@
         <script defer src="assets/script.js"></script>
         <script defer src="assets/dom.js"></script>
     </head>
-    <body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);">
+    <body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);" ondragleave="dragLeaveHandler(event);">
+        <div id="drag">
+            <h1>Drop your <code>.csv</code> files here...</h1>
+        </div>
         <noscript>
             <h1>You don't have JavaScript enabled in your browser which means this website won't work. Turn JavaScript on and refresh the page to get going!</h1>
         </noscript>

@@ -72,8 +72,35 @@ input {
 	font-size: 1.3em;
 }
 
+#drag {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	pointer-events: none;
+	background-color: none;
+	transition: all 0.25s ease;
+	z-index: 9999;
+}
+
+#drag h1 {
+	opacity: 0;
+	transition: all 0.25s ease;
+}
+
 .dragOver {
-	/*TODO: Body style change on drag over and drop.*/
+	background-color: rgba(132, 184, 23, 0.5);
+}
+
+.dragOver h1 {
+	opacity: 1 !important;
+}
+
+code {
+	font-family: 'Courier New', Courier, monospace;
 }
 
 footer {
