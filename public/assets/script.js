@@ -244,13 +244,13 @@ function updateStats(data) {
 		let percent = 0,
 			visited;
 		if (data[l] === NaN) {
-			document.getElementById(`${l}`).setAttribute('value', '0');
+			document.getElementById(`js-lp-${l}`).innerText = '0%';
 		} else {
 			const total = totals[l];
 			visited = data[l];
 			percent = Math.floor((visited / total) * 100);
 		}
-		document.getElementById(`${l}`).setAttribute('value', percent.toString());
+		document.getElementById(`js-lp-${l}`).innerText = percent.toString() + '%';
 	}
 }
 function readFile(file) {

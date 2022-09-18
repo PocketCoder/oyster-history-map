@@ -235,13 +235,13 @@ function updateStats(data: {[line: string]: number}) {
 	for (const l in totals) {
 		let percent: number = 0, visited: number;
 		if (data[l] === NaN) {
-			document.getElementById(`${l}`)!.setAttribute('value', '0');
+			document.getElementById(`js-lp-${l}`)!.innerText = '0%';
 		} else {
 			const total: number = totals[l];
 			visited = data[l];
 			percent = Math.floor((visited / total) * 100);
 		}
-		document.getElementById(`${l}`)!.setAttribute('value', percent.toString());
+		document.getElementById(`js-lp-${l}`)!.innerText = percent.toString() + '%';
 	}
 }
 
