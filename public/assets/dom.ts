@@ -91,6 +91,16 @@ document.onreadystatechange = (e) => {
 	}
 };
 
+function expand(t: any) {
+	const $bubble = t.parentNode.parentNode;
+	$bubble.classList.toggle('collapsed');
+	if (t.innerHTML === 'More') {
+		t.innerHTML = 'Less';
+	} else {
+		t.innerHTML = 'More';
+	}
+}
+
 const fileEl = document.getElementById('fileSelect') as HTMLInputElement;
 fileEl.addEventListener('change', () => {
 	const files = fileEl.files!;

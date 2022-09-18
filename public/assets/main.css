@@ -41,6 +41,10 @@ body {
 	cursor: move;
 }
 
+h4 {
+	font-size: 18px;
+}
+
 i.up {
 	content: url('icons/upload.svg');
 	-webkit-transition: all 0.5s;
@@ -159,19 +163,70 @@ aside {
 aside .bubble {
 	margin: 0 auto;
 	width: 90%;
-	height: auto;
-	min-height: 50px;
+	height: max-content;
+	min-height: auto;
 	background-color: white;
 	border-radius: 20px;
 	padding: 25px 15px;
 	margin: 7px 0;
-	-webkit-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.75);
-	-moz-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.75);
-	box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.75);
+	overflow: hidden;
+	-webkit-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.5);
+	box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.5);
+	transition: all 0.3s ease;
+}
+
+aside .bubble header {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+aside .bubble.single-line {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+aside .bubble.single-line header {
+	margin: 0;
+	padding: 0;
+}
+
+aside .bubble header .expand {
+	border: 1px solid black;
+	background: none;
+	border-radius: 50px;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+aside .bubble.collapsed header {
+	margin: 0;
+}
+
+aside .bubble.collapsed section {
+	display: none;
 }
 
 aside .bubble:last-child {
-	margin: 0 0 100px 0;
+	margin: 0 0 30px 0;
+}
+
+aside .bubble .line {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+aside .bubble .line h5,
+aside .bubble .line span {
+	font-size: 16px;
 }
 
 .pop {

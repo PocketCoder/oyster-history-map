@@ -75,6 +75,15 @@ document.onreadystatechange = (e) => {
 		document.getElementById('js-bus').innerHTML = noBus;
 	}
 };
+function expand(t) {
+	const $bubble = t.parentNode.parentNode;
+	$bubble.classList.toggle('collapsed');
+	if (t.innerHTML === 'More') {
+		t.innerHTML = 'Less';
+	} else {
+		t.innerHTML = 'More';
+	}
+}
 const fileEl = document.getElementById('fileSelect');
 fileEl.addEventListener('change', () => {
 	const files = fileEl.files;
@@ -90,14 +99,6 @@ window.onkeyup = (e) => {
 document.getElementById('js-menu').addEventListener('click', () => {
 	document.getElementById('js-footer').classList.toggle('aside-active');
 	document.getElementById('js-aside').classList.toggle('aside-out');
-});
-document.getElementById('js-stnInput').addEventListener('focus', (event) => {
-	document.getElementById('js-footer').style.bottom = '';
-	document.getElementById('js-footer').style.top = '10px';
-});
-document.getElementById('js-stnInput').addEventListener('blur', (event) => {
-	document.getElementById('js-footer').style.top = '';
-	document.getElementById('js-footer').style.bottom = '10px';
 });
 document.getElementById('js-stnInput').addEventListener('keyup', (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
@@ -161,6 +162,7 @@ const autoCompleteJS = new autoComplete({
 	data: {
 		src: [
 			'Abbey Road',
+			'Abbey Wood',
 			'Acton Central',
 			'Acton Mainline',
 			'Acton Town',
@@ -223,7 +225,7 @@ const autoCompleteJS = new autoComplete({
 			'Bush Hill Park',
 			'Bushey',
 			'Caledonian Road',
-			'Caledonian Road &amp; Barnsbury',
+			'Caledonian Road & Barnsbury',
 			'Cambridge Heath',
 			'Camden Road',
 			'Camden Town',
@@ -236,7 +238,7 @@ const autoCompleteJS = new autoComplete({
 			'Carpenders Park',
 			'Centrale',
 			'Chadwell Heath',
-			'Chalfont &amp; Latimer',
+			'Chalfont & Latimer',
 			'Chalk Farm',
 			'Chancery Lane',
 			'Charing Cross',
@@ -287,9 +289,9 @@ const autoCompleteJS = new autoComplete({
 			'Eastcote',
 			'Edgware',
 			'Edgware Road (Bakerloo line)',
-			'Edgware Road (District, Circle, H&amp;C lines)',
+			'Edgware Road (District, Circle, H&C lines)',
 			'Edmonton Green',
-			'Elephant &amp; Castle',
+			'Elephant & Castle',
 			'Elmers End',
 			'Elm Park',
 			'Elverson Road',
@@ -306,7 +308,7 @@ const autoCompleteJS = new autoComplete({
 			'Fieldway',
 			'Finchley Central',
 			'Finchley Road',
-			'Finchley Road &amp; Frognal',
+			'Finchley Road & Frognal',
 			'Finsbury Park',
 			'Forest Gate',
 			'Forest Hill',
@@ -333,7 +335,7 @@ const autoCompleteJS = new autoComplete({
 			'Hackney Wick',
 			'Haggerston',
 			'Hainault',
-			'Hammersmith (Circle, H&amp;C lines)',
+			'Hammersmith (Circle, H&C lines)',
 			'Hammersmith (District, Piccadilly lines)',
 			'Hampstead',
 			'Hampstead Heath',
@@ -343,11 +345,11 @@ const autoCompleteJS = new autoComplete({
 			'Harringay Green Lanes',
 			'Harrington Road',
 			'Harold Wood',
-			'Harrow &amp; Wealdstone',
+			'Harrow & Wealdstone',
 			'Harrow on the Hill',
 			'Hatch End',
 			'Hatton Cross',
-			'Hayes &amp; Harrlington',
+			'Hayes & Harrlington',
 			'Headstone Lane',
 			'Heathrow Terminal 4',
 			'Heathrow Terminal 5',
@@ -357,7 +359,7 @@ const autoCompleteJS = new autoComplete({
 			'Highams Park',
 			'High Barnet',
 			'High Street Kensington',
-			'Highbury &amp; Islington',
+			'Highbury & Islington',
 			'Highgate',
 			'Hillingdon',
 			'Holborn',
@@ -554,7 +556,7 @@ const autoCompleteJS = new autoComplete({
 			'Tooting Broadway',
 			'Tottenham Court Road',
 			'Tottenham Hale',
-			'Totteridge &amp; Whetstone',
+			'Totteridge & Whetstone',
 			'Tower Gateway',
 			'Tower Hill',
 			'Tufnell Park',
@@ -617,7 +619,8 @@ const autoCompleteJS = new autoComplete({
 			'Woodside',
 			'Woodside Park',
 			'Wood Street',
-			'Woolwich Arsenal'
+			'Woolwich Arsenal',
+			'Woolwich'
 		],
 		cache: true
 	},

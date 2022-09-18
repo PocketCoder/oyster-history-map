@@ -63,52 +63,99 @@
             <i class="liz" id="js-mapSwitch"></i>
         </footer>
         <aside id="js-aside">
-            <div class="bubble" style="background-color: #7156A5; color: white; min-height: auto;">
-                <h4>Elizabeth line coming soon...</h4><br />
-                <p>Due to the many changes on the new Tube Map, integrating the new Elizabeth line will take a lot of work! I anticipate this being a task for when the line is fully opened and the map will face no further changes.</p><br />
-                <p>For now you can click the roundal to change between the current map and the new branch.</p><br />
-                <p>Feel free to contribute on <a href="https://www.github.com/PocketCoder/tubular" targe="_blank">Github.</a></p>
+            <div class="bubble" style="background-color: #7156A5; color: white;">
+                <header>
+                    <h4>New Map Update</h4>
+                    <button class="expand" onclick="expand(this);" style="border-color: white; color: white">Less</button>
+                </header>
+                <section>
+                    <p>Due to the many changes on the new Tube Map, integrating the new Elizabeth line will take a lot of work! I anticipate this being a task for when the line is fully opened and the map will face no further changes.</p><br />
+                    <p>For now you can click the roundal to change between the current map and the new branch.</p><br />
+                    <p>Feel free to contribute on <a href="https://www.github.com/PocketCoder/tubular" targe="_blank">Github.</a></p>
+                </section>
             </div>
             <div class="bubble" id="js-welcome">
-                <h4>Welcome!</h4>
-                <br />
-                <p>This is a fun website to help you visualise your history on TfL. Starting with a faded map, once you begin to add stations their names will light up. As you add more stations on a line, the segments in-between will become visible, too.</p>
+                <header>
+                    <h4>Welcome!</h4>
+                    <button class="expand" onclick="expand(this);">Less</button>
+                </header>
+                <section>
+                    <p>This is a fun website to help you visualise your history on TfL. Starting with a faded map, once you begin to add stations their names will light up. As you add more stations on a line, the segments in-between will become visible, too.</p>
                 <br />
                 <p>TfL let you export the last 8 weeks of journey data from their <a href="https://oyster.tfl.gov.uk" target="_blank">website.</a> Simply log in and click on the button to export your jouney history as a <u>CSV</u> file. If you don't have an account, but have an Oyster/contactless card you use for journeys, just sign up and follow the steps to link them.</p>
                 <br />
                 <p class="nb">N.B.: Syncing between this device and others is currently unavailable. All data is stored in the browser's <code>localStorage</code>. Support for accounts and cross-device syncing will come in the near future.</p>
+                </section>
             </div>
             <div class="bubble">
-                <h4>Upload CSV</h4>
-                <br />
-                <input id="fileSelect" type="file" accept=".csv" style="font-size: unset" multiple />
+                <header>
+                    <h4>Upload CSV</h4>
+                </header>
+                <section>
+                    <input id="fileSelect" type="file" accept=".csv" style="font-size: unset" multiple />
+                </section>
             </div>
             <div class="bubble" id="line-progress">
-                <h4>Stats</h4>
-                <progress id="bakerloo" max="100" value="0"></progress><br />
-                <progress id="cable-car" max="100" value="0"></progress><br />
-                <progress id="central" max="100" value="0"></progress><br />
-                <progress id="circle" max="100" value="0"></progress><br />
-                <progress id="district" max="100" value="0"></progress><br />
-                <progress id="dlr" max="100" value="0"></progress><br />
-                <progress id="elizabeth" max="100" value="0"></progress><br />
-                <progress id="hammersmith-city" max="100" value="0"></progress><br />
-                <progress id="jubilee" max="100" value="0"></progress><br />
-                <progress id="metropolitan" max="100" value="0"></progress><br />
-                <progress id="northern" max="100" value="0"></progress><br />
-                <progress id="overground" max="100" value="0"></progress><br />
-                <progress id="piccadilly" max="100" value="0"></progress><br />
-                <progress id="tram" max="100" value="0"></progress><br />
-                <progress id="victoria" max="100" value="0"></progress><br />
-                <progress id="waterloo-city" max="100" value="0"></progress>
+                <header>
+                    <h4>Stats</h4>
+                </header>
+                <section>
+                    <div class="line">
+                        <h5>Bakerloo</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Cable Car</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Central</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Circle</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>District</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>DLR</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Elizabeth Line</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>H & S</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Jubilee</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Metropolitan</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Overground</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Piccadilly</h5><span id="js-data">50%</span>
+                    </div>
+                    <div class="line">
+                        <h5>Waterloo & City</h5><span id="js-data">50%</span>
+                    </div>
+                </section>
             </div>
-            <div class="bubble" id="line-progress">
-                <h4>Busses</h4>
-                <span id="js-bus"></span><span> / 700 bus routes used!</span>
+            <div class="bubble single-line">
+                <header>
+                    <h4>Busses</h4>
+                </header>
+                <section>
+                    <span id="js-bus"></span><span> / 700</span>
+                </section>
             </div>
             <div class="bubble">
-                <h4>See something wrong?</h4>
-                <p>Help me fix it by reporting an <a href="https://github.com/PocketCoder/tubular/issues/new/choose" target="_blank">issue on GitHub</a>.</p>
+                <header>
+                    <h4>See something wrong?</h4>
+                </header>
+                <section>
+                    <p>Help me fix it by reporting an <a href="https://github.com/PocketCoder/tubular/issues/new/choose" target="_blank">issue on GitHub</a>.</p>
+                </section>
             </div>
         </aside>
     </body>
