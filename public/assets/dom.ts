@@ -158,7 +158,7 @@ function newStation(input: string) {
 }
 
 function popUp(title: string, type: string, text: string = '', customColour?: string) {
-	const types = ['info', 'confirm', 'error'];
+	const types = ['info', 'confirm', 'warn', 'error'];
 	const el = document.createElement('div');
 	el.classList.add('pop');
 	if (!types.includes(type)) {
@@ -166,7 +166,7 @@ function popUp(title: string, type: string, text: string = '', customColour?: st
 	} else {
 		el.classList.add(type);
 	}
-	const head = document.createElement('h4');
+	const head = document.createElement('h3');
 	head.innerHTML = title;
 	el.appendChild(head);
 	if (text !== '') {
