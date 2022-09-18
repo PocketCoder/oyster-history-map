@@ -36,8 +36,8 @@ function storageAvailable(type: any) {
 
 function populateMapData() {
 	if (!storageAvailable('localStorage')) {
-		popUp("LocalStorage isn't supported", 'error');
-		alert("LocalStorage isn't supported");
+		popUp('LocalStorage isn\'t supported', 'error');
+		alert('LocalStorage isn\'t supported');
 		throw new Error('No localStorage available');
 	} else {
 		if (localStorage.getItem('stations') !== null) {
