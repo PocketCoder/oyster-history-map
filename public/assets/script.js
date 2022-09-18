@@ -67,10 +67,11 @@ function updateLineSegs() {
 		'hammersmith-city': 0,
 		district: 0,
 		elizabeth: 0,
-		overground: 0,
+		overground: 10,
 		'waterloo-city': 0,
 		'cable-car': 0,
 		dlr: 0,
+		tram: 0,
 		OSI: 0
 	};
 	for (const l in lines) {
@@ -238,11 +239,13 @@ function updateStats(data) {
 		'waterloo-city': 2,
 		'cable-car': 2,
 		dlr: 45,
-		tram: 39
+		tram: 39,
+		OSI: 0
 	};
 	for (const l in totals) {
 		let percent = 0,
 			visited;
+		if (l === 'OSI') continue;
 		if (data[l] === NaN) {
 			document.getElementById(`js-lp-${l}`).innerText = '0%';
 		} else {
