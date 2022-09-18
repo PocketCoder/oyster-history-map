@@ -41,7 +41,8 @@ function populateMapData() {
 		throw new Error('No localStorage available');
 	} else {
 		if (localStorage.getItem('stations') !== null) {
-			document.getElementById('js-welcome')!.style.display = 'none';
+			document.getElementById('js-welcome')!.classList.add('collapsed');
+			document.getElementById('js-mapUpdate')!.classList.add('collapsed');
 			addStnsToMap(usrData('get', 'stations'));
 			updateLineSegs();
 		} else {
