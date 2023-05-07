@@ -87,8 +87,8 @@ document.onreadystatechange = (e) => {
 	if (document.readyState === 'complete') {
 		loadMap(mapInst);
 		const busses = usrData('get', 'bus');
-		const noBus = busses.length;
-		document.getElementById('js-bus')!.innerHTML = noBus;
+		const noBus = busses!.length;
+		document.getElementById('js-bus')!.innerHTML = noBus.toString();
 	}
 };
 
