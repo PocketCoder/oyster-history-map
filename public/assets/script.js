@@ -10,6 +10,8 @@ function usrData(func, type, data = []) {
 		usrDataObj.stations.push(...obj.stations);
 		usrDataObj.bus.push(...obj.bus);
 		document.getElementById('url').innerHTML = '/#' + wlh.substring(0, 45) + '...';
+	} else {
+		document.getElementById('url').innerHTML = '/# ' + 'Start entering some data to generate your URL' + '...';
 	}
 	if (func === 'get') {
 		if (type === 'stations') {
