@@ -103,7 +103,7 @@ code {
 	font-family: 'Courier New', Courier, monospace;
 }
 
-header {
+header#toplvl {
 	display: flex;
 	display: -webkit-flex;
 	justify-content: center;
@@ -113,11 +113,11 @@ header {
 	margin: 0 auto;
 }
 
-header * {
+header#toplvl * {
 	z-index: 9999;
 }
 
-header div {
+header#toplvl div {
 	display: flex;
 	display: -webkit-flex;
 	justify-content: space-between;
