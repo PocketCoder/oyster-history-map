@@ -23,20 +23,17 @@ function storageAvailable(type) {
 	}
 }
 function populateMapData() {
-	if (!storageAvailable('localStorage')) {
-		popUp("LocalStorage isn't supported", 'error');
-		alert("LocalStorage isn't supported");
-		throw new Error('No localStorage available');
+	let wlh = window.location.hash;
+	if (wlh !== '') {
+		document.getElementById('js-welcome').classList.add('collapsed');
+		document.getElementById('js-wel-but').innerHTML = 'More';
+		document.getElementById('js-mapUpdate').classList.add('collapsed');
+		document.getElementById('js-nmu-but').innerHTML = 'More';
+		addStnsToMap(usrData('get', 'stations'));
+		updateLineSegs();
 	} else {
-		if (localStorage.getItem('stations') !== null) {
-			document.getElementById('js-welcome').classList.add('collapsed');
-			document.getElementById('js-mapUpdate').classList.add('collapsed');
-			addStnsToMap(usrData('get', 'stations'));
-			updateLineSegs();
-		} else {
-			document.getElementById('js-footer').classList.toggle('aside-active');
-			document.getElementById('js-aside').classList.toggle('aside-out');
-		}
+		document.getElementById('js-footer').classList.toggle('aside-active');
+		document.getElementById('js-aside').classList.toggle('aside-out');
 	}
 }
 function loadMap(map) {
@@ -68,12 +65,23 @@ function loadMap(map) {
 			}, 1500);
 		});
 }
+function wlhCopy() {
+	const wlh = window.location.hash;
+	navigator.clipboard.writeText(wlh).then(
+		() => {
+			popUp('Copied to clipboard!', 'confirm');
+		},
+		() => {
+			popUp("Couldn't copy to clipbaord", 'error');
+		}
+	);
+}
 document.onreadystatechange = (e) => {
 	if (document.readyState === 'complete') {
 		loadMap(mapInst);
 		const busses = usrData('get', 'bus');
 		const noBus = busses.length;
-		document.getElementById('js-bus').innerHTML = noBus;
+		document.getElementById('js-bus').innerHTML = noBus.toString();
 	}
 };
 function expand(t) {

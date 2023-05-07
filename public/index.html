@@ -46,6 +46,7 @@
         <link rel="stylesheet" href="assets/main.css" type="text/css" />
         <link rel="stylesheet" href="assets/map.css" type="text/css" />
 
+        <script src="assets/lz-string.js"></script>
         <script defer src="assets/data.js"></script>
         <script defer src="assets/autoComplete.min.js"></script>
         <script defer src="assets/panzoom.min.js"></script>
@@ -59,6 +60,13 @@
         <noscript>
             <h1>You don't have JavaScript enabled in your browser which means this website won't work. Turn JavaScript on and refresh the page to get going!</h1>
         </noscript>
+        <header>
+            <div id="">
+                <span id="url"></span>
+                <span id="info">Your unqiue URL that takes you right back to where you were. <a href="#" onclick="wlhCopy()">Copy.</a></span>
+            </div>
+            <!--<i class="copy"></i>-->
+        </header>
         <div id="map"></div>
         <footer id="js-footer">
             <i class="menu" id="js-menu"></i>

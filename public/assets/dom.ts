@@ -1,5 +1,5 @@
 interface Window {
-	setItem(x:any, y:any): any;
+	setItem(x: any, y: any): any;
 	removeItem(x: any): any;
 }
 
@@ -35,20 +35,17 @@ function storageAvailable(type: any) {
 }
 
 function populateMapData() {
-	if (!storageAvailable('localStorage')) {
-		popUp('LocalStorage isn\'t supported', 'error');
-		alert('LocalStorage isn\'t supported');
-		throw new Error('No localStorage available');
+	let wlh = window.location.hash;
+	if (wlh !== '') {
+		document.getElementById('js-welcome')!.classList.add('collapsed');
+		document.getElementById('js-wel-but')!.innerHTML = 'More';
+		document.getElementById('js-mapUpdate')!.classList.add('collapsed');
+		document.getElementById('js-nmu-but')!.innerHTML = 'More';
+		addStnsToMap(usrData('get', 'stations'));
+		updateLineSegs();
 	} else {
-		if (localStorage.getItem('stations') !== null) {
-			document.getElementById('js-welcome')!.classList.add('collapsed');
-			document.getElementById('js-mapUpdate')!.classList.add('collapsed');
-			addStnsToMap(usrData('get', 'stations'));
-			updateLineSegs();
-		} else {
-			document.getElementById('js-footer')!.classList.toggle('aside-active');
-			document.getElementById('js-aside')!.classList.toggle('aside-out');
-		}
+		document.getElementById('js-footer')!.classList.toggle('aside-active');
+		document.getElementById('js-aside')!.classList.toggle('aside-out');
 	}
 }
 
@@ -81,6 +78,20 @@ function loadMap(map: string) {
 				populateMapData();
 			}, 1500);
 		});
+}
+
+function wlhCopy() {
+	const wlh = window.location.hash;
+	navigator.clipboard.writeText(wlh).then(
+		() => {
+			/* clipboard successfully set */
+			popUp('Copied to clipboard!', 'confirm');
+		},
+		() => {
+			/* clipboard write failed */
+			popUp("Couldn't copy to clipbaord", 'error');
+		}
+	);
 }
 
 document.onreadystatechange = (e) => {
@@ -139,7 +150,7 @@ document.getElementById('js-mapSwitch')!.addEventListener('click', () => {
 		icon.classList.add('tube');
 	} else {
 		icon.classList.remove('tube');
-		mapInst = 'tube'
+		mapInst = 'tube';
 		icon.classList.add('liz');
 	}
 	loadMap(mapInst);

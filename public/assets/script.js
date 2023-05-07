@@ -1,24 +1,46 @@
 'use strict';
 function usrData(func, type, data = []) {
+	let wlh = window.location.hash;
+	let usrDataObj = {bus: [], stations: []};
+	if (wlh !== '') {
+		if (wlh.startsWith('#')) {
+			wlh = wlh.substring(1);
+		}
+		let obj = JSON.parse(LZString.decompressFromEncodedURIComponent(wlh));
+		usrDataObj.stations.push(...obj.stations);
+		usrDataObj.bus.push(...obj.bus);
+		document.getElementById('url').innerHTML = '/#' + wlh.substring(0, 45) + '...';
+	}
 	if (func === 'get') {
-		if (localStorage.getItem(type) != null && localStorage.getItem(type) != '[]') {
-			return JSON.parse(localStorage.getItem(type));
+		if (type === 'stations') {
+			return usrDataObj.stations;
+		} else if (type === 'bus') {
+			return usrDataObj.bus;
 		} else {
-			return [];
+			throw "Type param only accepts 'stations' or 'bus'";
 		}
 	} else if (func === 'save') {
-		let current = JSON.parse(localStorage.getItem(type)) ? JSON.parse(localStorage.getItem(type)) : [];
 		let newData = [];
 		if (typeof data === 'string') {
 			newData.push(data);
 		} else {
 			newData.push(...data);
 		}
-		current.push(...newData);
-		let unique = current.filter((c, i) => {
-			return current.indexOf(c) === i;
-		});
-		localStorage.setItem(type, JSON.stringify(unique));
+		if (type === 'stations') {
+			usrDataObj.stations.push(...newData);
+			let unique = usrDataObj.stations.filter((c, i) => {
+				return usrDataObj.stations.indexOf(c) === i;
+			});
+		} else if (type === 'bus') {
+			usrDataObj.bus.push(...newData);
+			let unique = usrDataObj.bus.filter((c, i) => {
+				return usrDataObj.bus.indexOf(c) === i;
+			});
+		} else {
+			throw "Type param only accepts 'stations' or 'bus'";
+		}
+		const newHash = LZString.compressToEncodedURIComponent(JSON.stringify(usrDataObj));
+		window.location.hash = newHash;
 	} else {
 		throw "Func param only accepts 'get' or 'save'";
 	}
@@ -38,8 +60,11 @@ function addStnsToMap(stns) {
 	} else {
 		s.push(...stns);
 	}
-	s.sort();
-	s.forEach((v) => {
+	let unique = s.filter((c, i) => {
+		return s.indexOf(c) === i;
+	});
+	unique.sort();
+	unique.forEach((v) => {
 		var _a, _b, _c;
 		(_a = document.querySelector(`[id*="${stations[v]}-dash"]`)) === null || _a === void 0
 			? void 0
