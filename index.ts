@@ -5,63 +5,108 @@ require('dotenv').config();
 const redis = require('redis');
 const words = [
 	'bakerloo',
-	'central',
-	'circle',
-	'district',
-	'hammersmith',
-	'jubilee',
-	'metropolitan',
-	'northern',
-	'piccadilly',
-	'victoria',
-	'waterloo',
-	'dlr',
-	'tube',
-	'bus',
-	'london',
-	'underground',
-	'oyster',
-	'tfl',
-	'train',
-	'travelcard',
-	'cycle',
+	'barking',
+	'barnet',
+	'bexley',
 	'bike',
-	'overground',
+	'brent',
+	'bromley',
+	'bus',
+	'camden',
+	'central',
+	'chelsea',
+	'circle',
+	'commute',
 	'crossrail',
-	'elizabeth',
-	'fare',
-	'journey',
-	'map',
-	'route',
-	'timetable',
-	'platform',
-	'ticket',
-	'zone',
-	'tramlink',
+	'croydon',
+	'cycle',
 	'cycleway',
-	'waterloo',
-	'liverpoolst',
-	'londonbridge',
+	'dagenham',
+	'delay',
+	'district',
+	'dlr',
+	'ealing',
+	'elizabeth',
+	'enfield',
 	'euston',
+	'fare',
+	'fulham',
+	'gatwick',
+	'gla',
+	'greenwich',
+	'hackney',
+	'hammersmith',
+	'haringey',
+	'harrow',
+	'havering',
+	'heathrow',
+	'hillingdon',
+	'hounslow',
+	'interchange',
+	'islington',
+	'journey',
+	'jubilee',
+	'kensington',
+	'kingscross',
+	'kingston',
+	'lambeth',
+	'lewisham',
+	'liverpoolst',
+	'london',
+	'londonbridge',
+	'map',
+	'merton',
+	'metropolitan',
+	'newham',
+	'northern',
+	'offpeak',
+	'overground',
+	'oyster',
 	'paddington',
+	'peak',
+	'piccadilly',
+	'platform',
+	'platform',
+	'railcard',
+	'redbridge',
+	'richmond',
+	'route',
+	'route',
+	'rushhour',
+	'schedule',
+	'southwark',
+	'stop',
 	'stpancras',
 	'stratford',
-	'kingscross',
-	'heathrow',
-	'gatwick',
-	'ticket',
+	'sutton',
 	'taxi',
-	'commute',
-	'schedule',
+	'tfl',
+	'ticket',
+	'ticket',
 	'timetable',
-	'route',
-	'stop',
-	'platform',
-	'peak',
-	'offpeak',
-	'rushhour',
-	'delay',
-	'interchange'
+	'timetable',
+	'tower-hamlets',
+	'train',
+	'tramlink',
+	'travelcard',
+	'tube',
+	'underground',
+	'victoria',
+	'waltham-forest',
+	'wandsworth',
+	'waterloo',
+	'waterloo',
+	'westminster',
+	'zone',
+	'zone1',
+	'zone2',
+	'zone3',
+	'zone4',
+	'zone5',
+	'zone6',
+	'zone7',
+	'zone8',
+	'zone9'
 ];
 
 const existingStrings: Array<string> = []; // TODO: Keep in a database.
@@ -70,13 +115,11 @@ function generateUniqueString(): string {
 	let phrase = '';
 	const one = Math.floor(Math.random() * words.length),
 		two = Math.floor(Math.random() * words.length),
-		three = Math.floor(Math.random() * words.length);
-	phrase = words[one];
-	phrase += '.' + words[two];
-	phrase += '.' + words[three];
+		three = Math.floor(Math.random() * words.length),
+		four = Math.floor(Math.random() * words.length);
+	phrase = words[one] + '.' + words[two] + '.' + words[three] + '.' + words[three];
 
 	if (existingStrings.includes(phrase)) {
-		// TODO: Add in more words/aceess to a dictionary.
 		return generateUniqueString();
 	} else {
 		existingStrings.push(phrase);
@@ -93,9 +136,8 @@ const client = redis.createClient({
 });
 client.on('error', (err) => console.log('Redis Client Error', err));
 
-async function getHash(vars) {
-	await client.connect();
-	const key = vars.one + '.' + vars.two + '.' + vars.three;
+async function getHash(vars: object) {
+	const key = vars.one + '.' + vars.two + '.' + vars.three + '.' + vars.four;
 	const hash = await client.get(key);
 	if (hash === null) {
 		// TODO: Handle error.
@@ -104,18 +146,23 @@ async function getHash(vars) {
 	}
 }
 
-app.get('/:one.:two.:three', async (req, res) => {
+app.get('/:one.:two.:three.:four', async (req, res) => {
 	res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/hash/:one.:two.:three', async (req, res) => {
+app.get('/hash/:one.:two.:three.:four', async (req, res) => {
 	console.log(req.params);
 	const hash = await getHash(req.params);
 	res.json({hash});
 });
 
+app.get('/hash/:hash', async (req, res) => {
+	console.log(req.params);
+});
+
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
 	console.log('Listening on port 3000');
+	await client.connect();
 });

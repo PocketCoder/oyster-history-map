@@ -35,15 +35,18 @@ function storageAvailable(type: any) {
 }
 
 async function populateMapData() {
-	let wlh = window.location.hash;
-	if (wlh !== '') {
+	const wlh = window.location.hash;
+	const wlp = window.location.pathname;
+	if (wlh !== '' || wlp !== '') {
 		document.getElementById('js-welcome')!.classList.add('collapsed');
 		document.getElementById('js-wel-but')!.innerHTML = 'More';
 		document.getElementById('js-mapUpdate')!.classList.add('collapsed');
 		document.getElementById('js-nmu-but')!.innerHTML = 'More';
-		const usrStns = await usrData('get', 'stations');
-		addStnsToMap(usrStns);
-		await updateLineSegs(usrStns);
+		const stns = await DataHandler.get('stations');
+		addStnsToMap(stns);
+		await updateLineSegs(stns).catch((e) => {
+			console.error(e);
+		});
 	} else {
 		document.getElementById('js-footer')!.classList.toggle('aside-active');
 		document.getElementById('js-aside')!.classList.toggle('aside-out');
@@ -76,7 +79,9 @@ function loadMap(map: string) {
 				boundsPadding: 0.4
 			});
 			setTimeout(async () => {
-				await populateMapData();
+				await populateMapData().catch((e) => {
+					console.error(e);
+				});
 			}, 1500);
 		});
 }
@@ -98,8 +103,8 @@ function wlhCopy() {
 document.onreadystatechange = async (e) => {
 	if (document.readyState === 'complete') {
 		loadMap(mapInst);
-		const busses = await usrData('get', 'bus');
-		const noBus = busses!.length;
+		const busses = await DataHandler.get('bus');
+		const noBus = busses.length;
 		document.getElementById('js-bus')!.innerHTML = noBus.toString();
 	}
 };
@@ -159,10 +164,10 @@ document.getElementById('js-mapSwitch')!.addEventListener('click', () => {
 
 async function newStation(input: string) {
 	if (stations[input] !== undefined) {
-		addStnsToMap(input);
-		await usrData('save', 'stations', input);
-		const usrStns = await usrData('get', 'stations');
-		await updateLineSegs(usrStns);
+		addStnsToMap([input]);
+		await DataHandler.save('stations', input);
+		const stns = await DataHandler.get('stations');
+		await updateLineSegs(stns);
 		return true;
 	} else {
 		popUp(`${input} doesn\'t exist.`, 'error');
