@@ -1,6 +1,6 @@
 {
 	"name": "tubular",
-	"version": "1.5.2",
+	"version": "1.5.3",
 	"description": "Your history on TfL, visualised",
 	"main": "index.js",
 	"scripts": {
