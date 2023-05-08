@@ -1,67 +1,87 @@
 'use strict';
-async function usrData(func, type, data = []) {
-	let wlh = window.location.hash;
-	let usrDataObj = {bus: [], stations: []};
-	if (wlh !== '') {
-		if (wlh.startsWith('#')) {
-			wlh = wlh.substring(1);
+class UserDataHandler {
+	constructor() {
+		this.usrDataObj = {bus: [], stations: []};
+		this.urlSpan = document.getElementById('url');
+		this.wlh = window.location.hash;
+		this.wlp = window.location.pathname;
+		this.hash = '';
+		this.phrase = '';
+		this.type = 'none';
+		if (this.wlh !== '') {
+			this.type = 'hash';
+			if (this.wlh.startsWith('#')) {
+				this.hash = this.wlh.substring(1);
+			}
+		} else if (this.wlp !== '') {
+			this.type = 'path';
+			if (this.wlp.startsWith('/')) {
+				this.phrase = this.wlp.substring(1);
+			}
 		}
-		const obj = JSON.parse(LZString.decompressFromEncodedURIComponent(wlh));
-		usrDataObj.stations.push(...obj.stations);
-		usrDataObj.bus.push(...obj.bus);
-		document.getElementById('url').innerHTML = '/#' + wlh.substring(0, 45) + '...';
-	} else if (window.location.pathname !== '') {
-		const wlp = window.location.pathname.substring(1);
-		const data = (await fetch(`/hash/${wlp}`)).json();
-		console.log(data);
-		data
-			.then(async (d) => {
-				const hash = d.hash;
-				const hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(d.hash));
-				addStnsToMap(hashData);
-				await updateLineSegs(hashData);
-			})
-			.catch((e) => {
-				console.error(e);
-			});
-		document.getElementById('url').innerHTML = window.location.pathname;
-	} else {
-		document.getElementById('url').innerHTML = '/# ' + 'Start entering some data to generate your URL' + '...';
+		this.loadData();
 	}
-	if (func === 'get') {
-		if (type === 'stations') {
-			return usrDataObj.stations;
-		} else if (type === 'bus') {
-			return usrDataObj.bus;
+	async loadData() {
+		if (this.type === 'none') {
+			this.urlElement.innerHTML = '/# ' + 'Start entering some data to generate your URL' + '...';
+			return;
+		} else if (this.type === 'hash') {
+			this.usrDataObj = JSON.parse(LZString.decompressFromEncodedURIComponent(this.hash));
+			this.urlSpan.innerHTML = '/#' + this.wlh.substring(0, 45) + '...';
+			return;
+		} else if (this.type === 'path') {
+			const res = await fetch(`/hash/${this.phrase}`);
+			const data = res.json();
+			this.urlSpan.innerHTML = this.wlp;
+			data
+				.then((d) => {
+					const hash = d.hash;
+					try {
+						const hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(d.hash));
+						this.usrDataObj = hashData;
+					} catch (e) {
+						console.error(e);
+					}
+				})
+				.catch((e) => {
+					console.error(e);
+				});
+			return;
 		} else {
-			throw "Type param only accepts 'stations' or 'bus'";
+			throw new Error('loadData() & this.type error.');
 		}
-	} else if (func === 'save') {
-		let newData = [];
-		if (typeof data === 'string') {
-			newData.push(data);
-		} else {
-			newData.push(...data);
-		}
-		if (type === 'stations') {
-			usrDataObj.stations.push(...newData);
-			let unique = usrDataObj.stations.filter((c, i) => {
-				return usrDataObj.stations.indexOf(c) === i;
-			});
-		} else if (type === 'bus') {
-			usrDataObj.bus.push(...newData);
-			let unique = usrDataObj.bus.filter((c, i) => {
-				return usrDataObj.bus.indexOf(c) === i;
-			});
-		} else {
-			throw "Type param only accepts 'stations' or 'bus'";
-		}
-		const newHash = LZString.compressToEncodedURIComponent(JSON.stringify(usrDataObj));
-		window.location.hash = newHash;
-	} else {
-		throw "Func param only accepts 'get' or 'save'";
 	}
+	async get(type) {
+		if (type === 'stations') {
+			return this.usrDataObj.stations;
+		} else if (type === 'bus') {
+			return this.usrDataObj.bus;
+		} else {
+			throw new Error(`Variable type can only be 'stations' or 'bus'`);
+		}
+	}
+	async save(type, data) {
+		let newData = Array.isArray(data) ? data : [data];
+		let unique;
+		if (type === 'stations') {
+			this.usrDataObj.stations.push(...newData);
+			unique = this.userDataObj.stations.filter((c, i) => {
+				return this.userDataObj.stations.indexOf(c) === i;
+			});
+		} else if (type === 'bus') {
+			this.usrDataObj.bus.push(...newData);
+			unique = this.usrDataObj.bus.filter((c, i) => {
+				return this.usrDataObj.bus.indexOf(c) === i;
+			});
+		} else {
+			throw new Error("Type param only accepts 'stations' or 'bus'");
+		}
+		const newHash = LZString.compressToEncodedURIComponent(JSON.stringify(unique));
+		this.getNewPhrase(newHash);
+	}
+	async getNewPhrase(hash) {}
 }
+const DataHandler = new UserDataHandler();
 function findVisCodes(arr) {
 	const stnArr = [...arr];
 	let visArr = [];
@@ -71,9 +91,16 @@ function findVisCodes(arr) {
 	return visArr;
 }
 function addStnsToMap(stns) {
-	let unique = stns.stations.filter((c, i) => {
-		return stns.stations.indexOf(c) === i;
-	});
+	let unique;
+	if (stns.stations !== undefined) {
+		unique = stns.stations.filter((c, i) => {
+			return stns.stations.indexOf(c) === i;
+		});
+	} else {
+		unique = stns.filter((c, i) => {
+			return stns.indexOf(c) === i;
+		});
+	}
 	unique.sort();
 	unique.forEach((v) => {
 		document.querySelector(`[id*="${stations[v]}-dash"]`)?.classList.add('visible');
@@ -82,7 +109,12 @@ function addStnsToMap(stns) {
 	});
 }
 async function updateLineSegs(usrData) {
-	let stnCodes = findVisCodes(usrData.stations);
+	let stnCodes;
+	if (usrData.stations !== 'undefined') {
+		stnCodes = findVisCodes(usrData);
+	} else {
+		stnCodes = findVisCodes(usrData.stations);
+	}
 	let data = {
 		bakerloo: 0,
 		central: 0,
@@ -306,13 +338,13 @@ async function loadData(arr) {
 		}
 	}
 	try {
-		await usrData('save', 'stations', stations);
-		await usrData('save', 'bus', busses);
+		await DataHandler.save('stations', stations);
+		await DataHandler.save('bus', busses);
 	} catch (e) {
 		console.error(`[script.ts | loadData()]: ${e}`);
 	} finally {
 		addStnsToMap(stations);
-		const usrStns = await usrData('get', 'stations');
+		const usrStns = await DataHandler.get('stations');
 		await updateLineSegs(usrStns);
 	}
 }
