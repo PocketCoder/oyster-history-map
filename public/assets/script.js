@@ -1,15 +1,30 @@
 'use strict';
-function usrData(func, type, data = []) {
+async function usrData(func, type, data = []) {
 	let wlh = window.location.hash;
 	let usrDataObj = {bus: [], stations: []};
 	if (wlh !== '') {
 		if (wlh.startsWith('#')) {
 			wlh = wlh.substring(1);
 		}
-		let obj = JSON.parse(LZString.decompressFromEncodedURIComponent(wlh));
+		const obj = JSON.parse(LZString.decompressFromEncodedURIComponent(wlh));
 		usrDataObj.stations.push(...obj.stations);
 		usrDataObj.bus.push(...obj.bus);
 		document.getElementById('url').innerHTML = '/#' + wlh.substring(0, 45) + '...';
+	} else if (window.location.pathname !== '') {
+		const wlp = window.location.pathname.substring(1);
+		const data = (await fetch(`/hash/${wlp}`)).json();
+		console.log(data);
+		data
+			.then(async (d) => {
+				const hash = d.hash;
+				const hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(d.hash));
+				addStnsToMap(hashData);
+				await updateLineSegs(hashData);
+			})
+			.catch((e) => {
+				console.error(e);
+			});
+		document.getElementById('url').innerHTML = window.location.pathname;
 	} else {
 		document.getElementById('url').innerHTML = '/# ' + 'Start entering some data to generate your URL' + '...';
 	}
@@ -56,32 +71,18 @@ function findVisCodes(arr) {
 	return visArr;
 }
 function addStnsToMap(stns) {
-	let s = [];
-	if (typeof stns === 'string') {
-		s.push(stns);
-	} else {
-		s.push(...stns);
-	}
-	let unique = s.filter((c, i) => {
-		return s.indexOf(c) === i;
+	let unique = stns.stations.filter((c, i) => {
+		return stns.stations.indexOf(c) === i;
 	});
 	unique.sort();
 	unique.forEach((v) => {
-		var _a, _b, _c;
-		(_a = document.querySelector(`[id*="${stations[v]}-dash"]`)) === null || _a === void 0
-			? void 0
-			: _a.classList.add('visible');
-		(_b = document.querySelector(`[id*="${stations[v]}-label"]`)) === null || _b === void 0
-			? void 0
-			: _b.classList.add('visible');
-		(_c = document.querySelector(`[id*="IC_${stations[v]}"]`)) === null || _c === void 0
-			? void 0
-			: _c.classList.add('visible');
+		document.querySelector(`[id*="${stations[v]}-dash"]`)?.classList.add('visible');
+		document.querySelector(`[id*="${stations[v]}-label"]`)?.classList.add('visible');
+		document.querySelector(`[id*="IC_${stations[v]}"]`)?.classList.add('visible');
 	});
 }
-function updateLineSegs() {
-	var _a;
-	let stnCodes = findVisCodes(usrData('get', 'stations'));
+async function updateLineSegs(usrData) {
+	let stnCodes = findVisCodes(usrData.stations);
 	let data = {
 		bakerloo: 0,
 		central: 0,
@@ -132,7 +133,6 @@ function updateLineSegs() {
 				if (top && bottom) {
 					let total = 0;
 					lineObj['top'].forEach((e) => {
-						var _a;
 						let first = 100;
 						e.forEach((a) => {
 							const index = e.indexOf(a);
@@ -144,13 +144,10 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < e.length; i++) {
-							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
-								? void 0
-								: _a.classList.add('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					lineObj['bottom'].forEach((e) => {
-						var _a;
 						let last = 0;
 						e.forEach((a) => {
 							const index = e.indexOf(a);
@@ -162,16 +159,13 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = 0; i < last; i++) {
-							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
-								? void 0
-								: _a.classList.add('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (top) {
 					let total = 0;
 					lineObj['top'].forEach((e) => {
-						var _a;
 						let first = 100,
 							last = 0;
 						e.forEach((a) => {
@@ -187,16 +181,13 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < last; i++) {
-							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
-								? void 0
-								: _a.classList.add('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (bottom) {
 					let total = 0;
 					lineObj['bottom'].forEach((e) => {
-						var _a;
 						let first = 100,
 							last = 0;
 						e.forEach((a) => {
@@ -212,9 +203,7 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < last; i++) {
-							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
-								? void 0
-								: _a.classList.add('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
@@ -239,10 +228,7 @@ function updateLineSegs() {
 				}
 			});
 			for (let i = first; i < last; i++) {
-				(_a = document.getElementById(`lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`)) === null ||
-				_a === void 0
-					? void 0
-					: _a.classList.add('visible');
+				document.getElementById(`lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`)?.classList.add('visible');
 			}
 			data[lineObj['line']] = data[lineObj['line']] + total;
 		}
@@ -286,16 +272,16 @@ function updateStats(data) {
 function readFile(file) {
 	const reader = new FileReader();
 	reader.readAsText(file, 'UTF-8');
-	reader.onload = (evt) => {
+	reader.onload = async (evt) => {
 		const fileString = evt.target.result || '';
 		const CSVarr = CSVtoArray(fileString);
-		loadData(CSVarr);
+		await loadData(CSVarr);
 	};
 	reader.onerror = (err) => {
 		console.error(err);
 	};
 }
-function loadData(arr) {
+async function loadData(arr) {
 	let stations = [],
 		busses = [];
 	for (const a in arr) {
@@ -320,13 +306,14 @@ function loadData(arr) {
 		}
 	}
 	try {
-		usrData('save', 'stations', stations);
-		usrData('save', 'bus', busses);
+		await usrData('save', 'stations', stations);
+		await usrData('save', 'bus', busses);
 	} catch (e) {
 		console.error(`[script.ts | loadData()]: ${e}`);
 	} finally {
 		addStnsToMap(stations);
-		updateLineSegs();
+		const usrStns = await usrData('get', 'stations');
+		await updateLineSegs(usrStns);
 	}
 }
 function CSVtoArray(strData, strDelimiter = ',') {
@@ -353,19 +340,16 @@ function CSVtoArray(strData, strDelimiter = ',') {
 	return arrData;
 }
 function dragOverHandler(e) {
-	var _a;
 	e.preventDefault();
-	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.add('dragOver');
+	document.getElementById('drag')?.classList.add('dragOver');
 }
 function dragLeaveHandler(e) {
-	var _a;
 	e.preventDefault();
-	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.remove('dragOver');
+	document.getElementById('drag')?.classList.remove('dragOver');
 }
 function dropHandler(e) {
-	var _a;
 	e.preventDefault();
 	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);
-	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.remove('dragOver');
+	document.getElementById('drag')?.classList.remove('dragOver');
 }

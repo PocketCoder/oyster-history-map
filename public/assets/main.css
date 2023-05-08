@@ -137,7 +137,7 @@ header#toplvl div {
 }
 
 span#url {
-	width: auto;
+	width: 95%;
 	height: auto;
 	padding: 7px 10px 7px 10px;
 	background-color: #ededed;

@@ -1,14 +1,29 @@
-function usrData(func: string, type: string, data: string | Array<string> = []) {
+async function usrData(func: string, type: string, data: string | Array<string> = []) {
 	let wlh = window.location.hash;
 	let usrDataObj = {bus: [], stations: []};
 	if (wlh !== '') {
 		if (wlh.startsWith('#')) {
 			wlh = wlh.substring(1);
 		}
-		let obj = JSON.parse(LZString.decompressFromEncodedURIComponent(wlh));
+		const obj = JSON.parse(LZString.decompressFromEncodedURIComponent(wlh));
 		usrDataObj.stations.push(...obj.stations);
 		usrDataObj.bus.push(...obj.bus);
 		document.getElementById('url')!.innerHTML = '/#' + wlh.substring(0, 45) + '...';
+	} else if (window.location.pathname !== '') {
+		const wlp = window.location.pathname.substring(1);
+		const data = (await fetch(`/hash/${wlp}`)).json();
+		console.log(data);
+		data
+			.then(async (d) => {
+				const hash = d.hash;
+				const hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(d.hash));
+				addStnsToMap(hashData);
+				await updateLineSegs(hashData);
+			})
+			.catch((e) => {
+				console.error(e);
+			});
+		document.getElementById('url')!.innerHTML = window.location.pathname;
 	} else {
 		document.getElementById('url')!.innerHTML = '/# ' + 'Start entering some data to generate your URL' + '...';
 	}
@@ -21,6 +36,7 @@ function usrData(func: string, type: string, data: string | Array<string> = []) 
 			throw "Type param only accepts 'stations' or 'bus'";
 		}
 	} else if (func === 'save') {
+		// TODO: Handle what happens when new information is saved and the hash is changed.
 		let newData = [];
 		if (typeof data === 'string') {
 			newData.push(data);
@@ -47,7 +63,7 @@ function usrData(func: string, type: string, data: string | Array<string> = []) 
 	}
 }
 
-function findVisCodes(arr: string | Array<string>) {
+function findVisCodes(arr: Array<string>) {
 	const stnArr: Array<string> = [...arr];
 	let visArr: Array<string> = [];
 	for (const stn of stnArr) {
@@ -56,26 +72,20 @@ function findVisCodes(arr: string | Array<string>) {
 	return visArr;
 }
 
-function addStnsToMap(stns: string | Array<string>) {
-	let s: Array<string> = [];
-	if (typeof stns === 'string') {
-		s.push(stns);
-	} else {
-		s.push(...stns);
-	}
-	let unique = s.filter((c: string, i: number) => {
-		return s.indexOf(c) === i;
+function addStnsToMap(stns: object) {
+	let unique = stns.stations.filter((c: string, i: number) => {
+		return stns.stations.indexOf(c) === i;
 	});
 	unique.sort();
-	unique.forEach((v) => {
+	unique.forEach((v: string) => {
 		document.querySelector(`[id*="${stations[v]}-dash"]`)?.classList.add('visible');
 		document.querySelector(`[id*="${stations[v]}-label"]`)?.classList.add('visible');
 		document.querySelector(`[id*="IC_${stations[v]}"]`)?.classList.add('visible');
 	});
 }
 
-function updateLineSegs() {
-	let stnCodes = findVisCodes(usrData('get', 'stations'));
+async function updateLineSegs(usrData: Array<string>) {
+	let stnCodes = findVisCodes(usrData.stations);
 	let data: {[line: string]: number} = {
 		bakerloo: 0,
 		central: 0,
@@ -281,10 +291,10 @@ function readFile(file: File) {
 	reader.readAsText(file, 'UTF-8');
 
 	// reader.onprogress = updateProgress;
-	reader.onload = (evt) => {
+	reader.onload = async (evt) => {
 		const fileString: any = evt.target!.result || '';
 		const CSVarr = CSVtoArray(fileString);
-		loadData(CSVarr);
+		await loadData(CSVarr);
 	};
 
 	reader.onerror = (err) => {
@@ -292,7 +302,7 @@ function readFile(file: File) {
 	};
 }
 
-function loadData(arr: string[][]) {
+async function loadData(arr: string[][]) {
 	let stations: string[] = [],
 		busses: string[] = [];
 	for (const a in arr) {
@@ -317,13 +327,14 @@ function loadData(arr: string[][]) {
 		}
 	}
 	try {
-		usrData('save', 'stations', stations);
-		usrData('save', 'bus', busses);
+		await usrData('save', 'stations', stations);
+		await usrData('save', 'bus', busses);
 	} catch (e) {
 		console.error(`[script.ts | loadData()]: ${e}`);
 	} finally {
 		addStnsToMap(stations);
-		updateLineSegs();
+		const usrStns = await usrData('get', 'stations');
+		await updateLineSegs(usrStns);
 	}
 }
 

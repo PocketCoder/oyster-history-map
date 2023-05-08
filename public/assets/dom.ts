@@ -34,15 +34,16 @@ function storageAvailable(type: any) {
 	}
 }
 
-function populateMapData() {
+async function populateMapData() {
 	let wlh = window.location.hash;
 	if (wlh !== '') {
 		document.getElementById('js-welcome')!.classList.add('collapsed');
 		document.getElementById('js-wel-but')!.innerHTML = 'More';
 		document.getElementById('js-mapUpdate')!.classList.add('collapsed');
 		document.getElementById('js-nmu-but')!.innerHTML = 'More';
-		addStnsToMap(usrData('get', 'stations'));
-		updateLineSegs();
+		const usrStns = await usrData('get', 'stations');
+		addStnsToMap(usrStns);
+		await updateLineSegs(usrStns);
 	} else {
 		document.getElementById('js-footer')!.classList.toggle('aside-active');
 		document.getElementById('js-aside')!.classList.toggle('aside-out');
@@ -74,8 +75,8 @@ function loadMap(map: string) {
 				bounds: true,
 				boundsPadding: 0.4
 			});
-			setTimeout(() => {
-				populateMapData();
+			setTimeout(async () => {
+				await populateMapData();
 			}, 1500);
 		});
 }
@@ -94,10 +95,10 @@ function wlhCopy() {
 	);
 }
 
-document.onreadystatechange = (e) => {
+document.onreadystatechange = async (e) => {
 	if (document.readyState === 'complete') {
 		loadMap(mapInst);
-		const busses = usrData('get', 'bus');
+		const busses = await usrData('get', 'bus');
 		const noBus = busses!.length;
 		document.getElementById('js-bus')!.innerHTML = noBus.toString();
 	}
@@ -132,10 +133,10 @@ document.getElementById('js-menu')!.addEventListener('click', () => {
 	document.getElementById('js-aside')!.classList.toggle('aside-out');
 });
 
-document.getElementById('js-stnInput')!.addEventListener('keyup', (e) => {
+document.getElementById('js-stnInput')!.addEventListener('keyup', async (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
 		const stnEl = <HTMLInputElement>document.getElementById('js-stnInput');
-		if (newStation(stnEl.value)) {
+		if (await newStation(stnEl.value)) {
 			stnEl.value = '';
 			popUp('Station added!', 'confirm');
 		}
@@ -156,11 +157,12 @@ document.getElementById('js-mapSwitch')!.addEventListener('click', () => {
 	loadMap(mapInst);
 });
 
-function newStation(input: string) {
+async function newStation(input: string) {
 	if (stations[input] !== undefined) {
 		addStnsToMap(input);
-		usrData('save', 'stations', input);
-		updateLineSegs();
+		await usrData('save', 'stations', input);
+		const usrStns = await usrData('get', 'stations');
+		await updateLineSegs(usrStns);
 		return true;
 	} else {
 		popUp(`${input} doesn\'t exist.`, 'error');
@@ -681,11 +683,11 @@ const autoCompleteJS = new autoComplete({
 	},
 	events: {
 		input: {
-			selection: (event: any) => {
+			selection: async (event: any) => {
 				let selection: string = event.detail.selection.value;
 				selection = selection.replaceAll(/&amp;/g, '&');
 				autoCompleteJS.input.value = selection;
-				newStation(selection);
+				await newStation(selection);
 				popUp('Station added!', 'confirm');
 			}
 		}
