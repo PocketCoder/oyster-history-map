@@ -155,7 +155,7 @@ class UserDataHandler {
 }
 const DataHandler = new UserDataHandler();
 
-document.getElementById('url')!.addEventListener('keyup', (e) => {
+document.getElementById('url')!.addEventListener('keyup', async (e) => {
 	const urlEl = <HTMLInputElement>document.getElementById('url');
 	const input = e.target.value;
 	let type = '';
@@ -169,7 +169,7 @@ document.getElementById('url')!.addEventListener('keyup', (e) => {
 		}
 		if (type === 'hash') {
 			try {
-				DataHandler.loadNewHash(input);
+				await DataHandler.loadNewHash(input);
 				popUp('Accepted!', 'confirm');
 			} catch (e) {
 				console.log(e);
@@ -178,8 +178,7 @@ document.getElementById('url')!.addEventListener('keyup', (e) => {
 			}
 		} else if (type === 'phrase') {
 			try {
-				// TODO: DataHandler handle phrase.
-				DataHandler.loadNewPhrase(input);
+				await DataHandler.loadNewPhrase(input);
 				popUp('Accepted!', 'confirm');
 			} catch (e) {
 				console.log(e);
@@ -190,7 +189,7 @@ document.getElementById('url')!.addEventListener('keyup', (e) => {
 	}
 });
 
-document.getElementById('url')!.addEventListener('paste', (e) => {
+document.getElementById('url')!.addEventListener('paste', async (e) => {
 	const urlEl = document.getElementById('url')!;
 	const pasted = e.clipboardData?.getData('text')!;
 	let type = '';
@@ -203,7 +202,7 @@ document.getElementById('url')!.addEventListener('paste', (e) => {
 	}
 	if (type === 'hash') {
 		try {
-			DataHandler.loadNewHash(pasted);
+			await DataHandler.loadNewHash(pasted);
 			popUp('Accepted!', 'confirm');
 		} catch (e) {
 			console.log(e);
@@ -212,7 +211,7 @@ document.getElementById('url')!.addEventListener('paste', (e) => {
 		}
 	} else if (type === 'phrase') {
 		try {
-			// TODO: DataHandler handle phrase.
+			await DataHandler.loadNewPhrase(pasted);
 			popUp('Accepted!', 'confirm');
 		} catch (e) {
 			console.log(e);
