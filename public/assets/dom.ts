@@ -34,6 +34,14 @@ function storageAvailable(type: any) {
 	}
 }
 
+async function reloadMapData() {
+	const stns = await DataHandler.get('stations');
+	addStnsToMap(stns);
+	await updateLineSegs(stns).catch((e) => {
+		console.error(e);
+	});
+}
+
 async function populateMapData() {
 	const wlh = window.location.hash;
 	const wlp = window.location.pathname;
@@ -42,11 +50,7 @@ async function populateMapData() {
 		document.getElementById('js-wel-but')!.innerHTML = 'More';
 		document.getElementById('js-mapUpdate')!.classList.add('collapsed');
 		document.getElementById('js-nmu-but')!.innerHTML = 'More';
-		const stns = await DataHandler.get('stations');
-		addStnsToMap(stns);
-		await updateLineSegs(stns).catch((e) => {
-			console.error(e);
-		});
+		await reloadMapData();
 	} else {
 		document.getElementById('js-footer')!.classList.toggle('aside-active');
 		document.getElementById('js-aside')!.classList.toggle('aside-out');
@@ -86,9 +90,9 @@ function loadMap(map: string) {
 		});
 }
 
-function wlhCopy() {
-	const wlh = window.location.hash;
-	navigator.clipboard.writeText(wlh).then(
+function copyURL() {
+	const url = window.location.href;
+	navigator.clipboard.writeText(url).then(
 		() => {
 			/* clipboard successfully set */
 			popUp('Copied to clipboard!', 'confirm');
@@ -98,6 +102,10 @@ function wlhCopy() {
 			popUp("Couldn't copy to clipbaord", 'error');
 		}
 	);
+}
+
+function genURL() {
+	// TODO:
 }
 
 document.onreadystatechange = async (e) => {
@@ -165,9 +173,24 @@ document.getElementById('js-mapSwitch')!.addEventListener('click', () => {
 async function newStation(input: string) {
 	if (stations[input] !== undefined) {
 		addStnsToMap([input]);
-		await DataHandler.save('stations', input);
-		const stns = await DataHandler.get('stations');
-		await updateLineSegs(stns);
+		let stns: Array<string>;
+		try {
+			await DataHandler.save('stations', input);
+		} catch (e) {
+			console.log(e);
+		}
+		try {
+			stns = await DataHandler.get('stations');
+		} catch (e) {
+			console.log(e);
+		} finally {
+			stns = [];
+		}
+		try {
+			await updateLineSegs(stns);
+		} catch (e) {
+			console.log(e);
+		}
 		return true;
 	} else {
 		popUp(`${input} doesn\'t exist.`, 'error');

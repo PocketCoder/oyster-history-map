@@ -97,22 +97,20 @@
             <header>
                 <h4>URL</h4>
                 <button id="js-wel-but" class="expand" onclick="expand(this);">Less</button>
-                <span id="url"></span> <!--TODO: Make it editable and have the map populate that has/url.-->
+                <input id="url"></input>
             </header>
             <section>
                 <p>This is your unique URL that takes you right back to where you are.</p>
                 <br />
-                <p>Keep this safe this as it contains all your data.</p>
+                <p>Have a unique string or four-word phrase already? Paste it into the box.</p>
                 <br />
                 <p>Wish it were more memorable? Click generate and your map as it is will be saved as a unqiue four-word phrase.</p>
                 <br />
-                <!--TODO: Make buttons icons/pretty.-->
                 <div class="bubble-wrapper">
-                    <button id="js-copy-but" class="bubble-but" onclick="copyURL();">Copy</button>
-                    <button id="js-gen-but" class="bubble-but" onclick="genURL();">Generate</button>
+                    <button onclick="copyURL();">Copy</button>
+                    <button onclick="genURL();">Generate</button>
                 </div>
                 <br />
-                <!--TODO: Make smaller and italic.-->
                 <p id="info">Note: Each URL will only create the exact map that it was made for. As you add new stations the URL will change.</p>
             </section>
         </div>

@@ -1,7 +1,9 @@
 class UserDataHandler {
+	// TODO: Handle hash being not right.
+	// TODO: Clean URL
 	constructor() {
 		this.usrDataObj = {bus: [], stations: []};
-		this.urlSpan = document.getElementById('url');
+		this.URLInputEl = document.getElementById('url');
 		this.wlh = window.location.hash;
 		this.wlp = window.location.pathname;
 		this.hash = '';
@@ -24,18 +26,18 @@ class UserDataHandler {
 	async loadData() {
 		if (this.type === 'none') {
 			// Do nothing
-			this.urlElement.innerHTML = '/# ' + 'Start entering some data to generate your URL' + '...';
+			this.urlElement.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
 			return;
 		} else if (this.type === 'hash') {
 			// Decode hash
 			this.usrDataObj = JSON.parse(LZString.decompressFromEncodedURIComponent(this.hash));
-			this.urlSpan.innerHTML = '/#' + this.wlh.substring(0, 45) + '...';
+			this.URLInputEl.placeholder = '/#' + this.hash.substring(0, 27) + '...';
 			return;
 		} else if (this.type === 'path') {
 			// Fetch hash and decode.
 			const res = await fetch(`/hash/${this.phrase}`);
-			const data = res.json();
-			this.urlSpan.innerHTML = this.wlp;
+			const data = await res.json();
+			this.URLInputEl.placeholder = this.wlp;
 			data
 				.then((d) => {
 					const hash = d.hash;
@@ -61,28 +63,89 @@ class UserDataHandler {
 		} else if (type === 'bus') {
 			return this.usrDataObj.bus;
 		} else {
-			throw new Error(`Variable type can only be 'stations' or 'bus'`);
+			throw new Error(`Invalid argument: type must be 'stations' or 'bus'`);
 		}
 	}
 
 	async save(type: string, data: Array<string> | string) {
-		let newData = Array.isArray(data) ? data : [data];
-		let unique;
+		if (!type || (type !== 'stations' && type !== 'bus')) {
+			throw new Error("Invalid argument: type must be 'stations' or 'bus'");
+		}
+
+		const newData = Array.isArray(data) ? data : [data];
+
+		if (newData.some((d) => typeof d !== 'string')) {
+			throw new Error('Invalid argument: data must be a string or an array of strings.');
+		}
+
 		if (type === 'stations') {
 			this.usrDataObj.stations.push(...newData);
-			unique = this.userDataObj.stations.filter((c, i) => {
-				return this.userDataObj.stations.indexOf(c) === i;
-			});
 		} else if (type === 'bus') {
 			this.usrDataObj.bus.push(...newData);
-			unique = this.usrDataObj.bus.filter((c, i) => {
-				return this.usrDataObj.bus.indexOf(c) === i;
-			});
-		} else {
-			throw new Error("Type param only accepts 'stations' or 'bus'");
 		}
-		const newHash = LZString.compressToEncodedURIComponent(JSON.stringify(unique));
-		this.getNewPhrase(newHash);
+
+		const unique = Array.from(new Set(this.usrDataObj[type]));
+		unique.sort();
+		if (type === 'stations') {
+			this.usrDataObj.stations = unique;
+		} else if (type === 'bus') {
+			this.usrDataObj.bus = unique;
+		}
+
+		const newHash = LZString.compressToEncodedURIComponent(JSON.stringify(this.usrDataObj));
+		this.newHashSort(newHash);
+	}
+
+	async newHashSort(newHash: string) {
+		window.location.hash = newHash;
+		this.wlh = window.location.hash;
+	}
+
+	async loadNewHash(usrHash: string) {
+		try {
+			const newData = JSON.parse(LZString.decompressFromEncodedURIComponent(usrHash));
+			if (
+				newData.stations === undefined ||
+				newData.stations === null ||
+				newData.bus === undefined ||
+				newData.bus === null
+			) {
+				throw new Error('Invalid Hash');
+			} else {
+				this.hash = usrHash;
+				this.type = 'hash';
+				this.usrDataObj = newData;
+				this.newHashSort(usrHash);
+				window.location.reload();
+				return true;
+			}
+		} catch (e) {
+			console.log(e);
+			throw new Error(`${e}`);
+		}
+	}
+
+	getHash() {
+		return this.hash;
+	}
+
+	async loadNewPhrase(phrase: string) {
+		// Fetch hash and decode.
+		const res = await fetch(`/hash/${phrase}`);
+		const data = await res.json();
+		data
+			.then((d) => {
+				const hash = d.hash;
+				try {
+					this.loadNewHash(hash);
+				} catch (e) {
+					console.error(e);
+				}
+			})
+			.catch((e) => {
+				console.error(e);
+			});
+		return this.usrDataObj;
 	}
 
 	async getNewPhrase(hash: string) {
@@ -91,6 +154,82 @@ class UserDataHandler {
 	}
 }
 const DataHandler = new UserDataHandler();
+
+document.getElementById('url')!.addEventListener('keyup', (e) => {
+	const urlEl = <HTMLInputElement>document.getElementById('url');
+	const input = e.target.value;
+	let type = '';
+	if (e.key === 'Enter' || e.keyCode === 13) {
+		if (input === null || input === '' || input === undefined) {
+			popUp('Enter your code or phrase', 'error');
+			urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+			return;
+		} else {
+			type = urlDeterminer(input);
+		}
+		if (type === 'hash') {
+			try {
+				DataHandler.loadNewHash(input);
+				popUp('Accepted!', 'confirm');
+			} catch (e) {
+				console.log(e);
+				urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+				popUp('Input invalid', 'error');
+			}
+		} else if (type === 'phrase') {
+			try {
+				// TODO: DataHandler handle phrase.
+				DataHandler.loadNewPhrase(input);
+				popUp('Accepted!', 'confirm');
+			} catch (e) {
+				console.log(e);
+				urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+				popUp('Input invalid', 'error');
+			}
+		}
+	}
+});
+
+document.getElementById('url')!.addEventListener('paste', (e) => {
+	const urlEl = document.getElementById('url')!;
+	const pasted = e.clipboardData?.getData('text')!;
+	let type = '';
+	if (pasted === '' || pasted === null) {
+		popUp('Paste your code or phrase', 'error');
+		urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+		return;
+	} else {
+		type = urlDeterminer(pasted);
+	}
+	if (type === 'hash') {
+		try {
+			DataHandler.loadNewHash(pasted);
+			popUp('Accepted!', 'confirm');
+		} catch (e) {
+			console.log(e);
+			urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+			popUp('Input invalid', 'error');
+		}
+	} else if (type === 'phrase') {
+		try {
+			// TODO: DataHandler handle phrase.
+			popUp('Accepted!', 'confirm');
+		} catch (e) {
+			console.log(e);
+			urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+			popUp('Input invalid', 'error');
+		}
+	}
+});
+
+function urlDeterminer(str: string) {
+	const validPhraseReg = /^[a-z]+\.[a-z]+\.[a-z]+\.[a-z]+$/;
+	if (validPhraseReg.test(str)) {
+		return 'phrase';
+	} else {
+		return 'hash';
+	}
+}
 
 function findVisCodes(arr: Array<string>) {
 	const stnArr: Array<string> = [...arr];
@@ -370,8 +509,6 @@ async function loadData(arr: string[][]) {
 	try {
 		await DataHandler.save('stations', stations);
 		await DataHandler.save('bus', busses);
-		//await usrData('save', 'stations', stations);
-		//await usrData('save', 'bus', busses);
 	} catch (e) {
 		console.error(`[script.ts | loadData()]: ${e}`);
 	} finally {
