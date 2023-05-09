@@ -45,15 +45,17 @@ async function reloadMapData() {
 async function populateMapData() {
 	const wlh = window.location.hash;
 	const wlp = window.location.pathname;
-	if (wlh !== '' || wlp !== '') {
-		document.getElementById('js-welcome')!.classList.add('collapsed');
-		document.getElementById('js-wel-but')!.innerHTML = 'More';
+	if (wlh === '' && (wlp === '/' || wlp === '')) {
+		// First visit
+		showWelc();
+		document.getElementById('js-footer')!.classList.toggle('aside-active');
+		document.getElementById('js-aside')!.classList.toggle('aside-out');
+	} else {
+		// Not first visit
+		hideWelc();
 		document.getElementById('js-mapUpdate')!.classList.add('collapsed');
 		document.getElementById('js-nmu-but')!.innerHTML = 'More';
 		await reloadMapData();
-	} else {
-		document.getElementById('js-footer')!.classList.toggle('aside-active');
-		document.getElementById('js-aside')!.classList.toggle('aside-out');
 	}
 }
 
@@ -90,7 +92,16 @@ function loadMap(map: string) {
 		});
 }
 
+function showWelc() {
+	document.getElementById('js-welc-dialog')!.style.display = 'block';
+}
+
+function hideWelc() {
+	document.getElementById('js-welc-dialog')!.style.display = 'none';
+}
+
 function copyURL() {
+	// TODO: Make so that it will copy the phrase url if there is one.
 	const url = window.location.href;
 	navigator.clipboard.writeText(url).then(
 		() => {
@@ -104,8 +115,11 @@ function copyURL() {
 	);
 }
 
-function genURL() {
-	// TODO:
+async function genURL() {
+	const phrase = await DataHandler.getNewPhrase();
+	const urlEl = <HTMLInputElement>document.getElementById('url');
+	urlEl.placeholder = phrase;
+	popUp('Success', 'confirm', phrase);
 }
 
 document.onreadystatechange = async (e) => {

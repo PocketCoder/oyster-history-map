@@ -109,21 +109,35 @@ const words = [
 	'zone9'
 ];
 
-const existingStrings: Array<string> = []; // TODO: Keep in a database.
-
-function generateUniqueString(): string {
+async function generateUniqueString(hash): Promise<string> {
+	const value = await client.get('keys');
+	const inUse = JSON.parse(value);
 	let phrase = '';
 	const one = Math.floor(Math.random() * words.length),
 		two = Math.floor(Math.random() * words.length),
 		three = Math.floor(Math.random() * words.length),
 		four = Math.floor(Math.random() * words.length);
-	phrase = words[one] + '.' + words[two] + '.' + words[three] + '.' + words[three];
+	phrase = words[one] + '.' + words[two] + '.' + words[three] + '.' + words[four];
 
-	if (existingStrings.includes(phrase)) {
+	if (inUse['keys'].includes(phrase)) {
 		return generateUniqueString();
 	} else {
-		existingStrings.push(phrase);
+		inUse['keys'].push(phrase);
+		await client.set('keys', JSON.stringify(inUse));
 		return phrase;
+	}
+}
+
+async function checkAndGet(hash: string): string {
+	const hashList = await client.get('hashList');
+	const list = JSON.parse(hashList);
+	if (list[hash]) {
+		return list[hash];
+	} else {
+		const newPhrase = await generateUniqueString();
+		list[hash] = newPhrase;
+		await client.set('hashList', JSON.stringify(list));
+		return newPhrase;
 	}
 }
 
@@ -149,7 +163,7 @@ app.get('/:one.:two.:three.:four', async (req, res) => {
 	res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/hash/:one.:two.:three.:four', async (req, res) => {
+app.get('/phrase/:one.:two.:three.:four', async (req, res) => {
 	try {
 		const hash = await getHash(req.params);
 		res.status(200).json({hash});
@@ -159,7 +173,9 @@ app.get('/hash/:one.:two.:three.:four', async (req, res) => {
 });
 
 app.get('/hash/:hash', async (req, res) => {
-	console.log(req.params);
+	const hashCheck = await checkAndGet(req.params.hash);
+	await client.set(hashCheck, req.params.hash); // Save hash to DB.
+	res.status(200).json({phrase: hashCheck});
 });
 
 app.use('/', express.static(path.join(__dirname, 'public')));

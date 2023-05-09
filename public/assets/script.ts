@@ -9,18 +9,23 @@ class UserDataHandler {
 		this.hash = '';
 		this.phrase = '';
 		this.type = 'none';
-		if (this.wlh !== '') {
+		if (this.wlh === '' && (this.wlp === '/' || this.wlp === '')) {
+			// First visit
+		} else if (this.wlh !== '' && (this.wlp === '/' || this.wlp === '')) {
+			// Subsequent visit with hash.
 			this.type = 'hash';
 			if (this.wlh.startsWith('#')) {
 				this.hash = this.wlh.substring(1);
 			}
-		} else if (this.wlp !== '') {
+			this.loadData();
+		} else if ((this.wlp !== '' || this.wlp !== '/') && this.wlh === '') {
+			// Subsequent visit with code
 			this.type = 'path';
 			if (this.wlp.startsWith('/')) {
 				this.phrase = this.wlp.substring(1);
 			}
+			this.loadData();
 		}
-		this.loadData();
 	}
 
 	async loadData() {
@@ -131,26 +136,26 @@ class UserDataHandler {
 
 	async loadNewPhrase(phrase: string) {
 		// Fetch hash and decode.
-		const res = await fetch(`/hash/${phrase}`);
-		const data = await res.json();
-		data
-			.then((d) => {
-				const hash = d.hash;
-				try {
-					this.loadNewHash(hash);
-				} catch (e) {
-					console.error(e);
-				}
-			})
-			.catch((e) => {
-				console.error(e);
-			});
+		const res = await fetch(`/phrase/${phrase}`);
+		const data = await res.json().catch((e) => {
+			console.error(e);
+		});
+		const hash = data.hash;
+		try {
+			this.loadNewHash(hash);
+		} catch (e) {
+			console.error(e);
+		}
 		return this.usrDataObj;
 	}
 
-	async getNewPhrase(hash: string) {
-		// TODO: Think of process for this.
-		// Every single save item a new hash is generated? or after a certain time / certain number of saves or stations have been added?
+	async getNewPhrase() {
+		// Fetch phrase
+		const res = await fetch(`/hash/${this.hash}`);
+		const data = await res.json().catch((e) => {
+			console.error(e);
+		});
+		return data.phrase;
 	}
 }
 const DataHandler = new UserDataHandler();
@@ -222,7 +227,7 @@ document.getElementById('url')!.addEventListener('paste', async (e) => {
 });
 
 function urlDeterminer(str: string) {
-	const validPhraseReg = /^[a-z]+\.[a-z]+\.[a-z]+\.[a-z]+$/;
+	const validPhraseReg = /^\w+\.\w+\.\w+\.\w+$/;
 	if (validPhraseReg.test(str)) {
 		return 'phrase';
 	} else {
