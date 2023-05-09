@@ -8,18 +8,20 @@ class UserDataHandler {
 		this.hash = '';
 		this.phrase = '';
 		this.type = 'none';
-		if (this.wlh !== '') {
+		if (this.wlh === '' && (this.wlp === '/' || this.wlp === '')) {
+		} else if (this.wlh !== '' && (this.wlp === '/' || this.wlp === '')) {
 			this.type = 'hash';
 			if (this.wlh.startsWith('#')) {
 				this.hash = this.wlh.substring(1);
 			}
-		} else if (this.wlp !== '') {
+			this.loadData();
+		} else if ((this.wlp !== '' || this.wlp !== '/') && this.wlh === '') {
 			this.type = 'path';
 			if (this.wlp.startsWith('/')) {
 				this.phrase = this.wlp.substring(1);
 			}
+			this.loadData();
 		}
-		this.loadData();
 	}
 	async loadData() {
 		if (this.type === 'none') {
@@ -114,23 +116,25 @@ class UserDataHandler {
 		return this.hash;
 	}
 	async loadNewPhrase(phrase) {
-		const res = await fetch(`/hash/${phrase}`);
-		const data = await res.json();
-		data
-			.then((d) => {
-				const hash = d.hash;
-				try {
-					this.loadNewHash(hash);
-				} catch (e) {
-					console.error(e);
-				}
-			})
-			.catch((e) => {
-				console.error(e);
-			});
+		const res = await fetch(`/phrase/${phrase}`);
+		const data = await res.json().catch((e) => {
+			console.error(e);
+		});
+		const hash = data.hash;
+		try {
+			this.loadNewHash(hash);
+		} catch (e) {
+			console.error(e);
+		}
 		return this.usrDataObj;
 	}
-	async getNewPhrase(hash) {}
+	async getNewPhrase() {
+		const res = await fetch(`/hash/${this.hash}`);
+		const data = await res.json().catch((e) => {
+			console.error(e);
+		});
+		return data.phrase;
+	}
 }
 const DataHandler = new UserDataHandler();
 document.getElementById('url').addEventListener('keyup', async (e) => {
@@ -198,7 +202,7 @@ document.getElementById('url').addEventListener('paste', async (e) => {
 	}
 });
 function urlDeterminer(str) {
-	const validPhraseReg = /^[a-z]+\.[a-z]+\.[a-z]+\.[a-z]+$/;
+	const validPhraseReg = /^\w+\.\w+\.\w+\.\w+$/;
 	if (validPhraseReg.test(str)) {
 		return 'phrase';
 	} else {

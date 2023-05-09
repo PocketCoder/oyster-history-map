@@ -32,15 +32,15 @@ async function reloadMapData() {
 async function populateMapData() {
 	const wlh = window.location.hash;
 	const wlp = window.location.pathname;
-	if (wlh !== '' || wlp !== '') {
-		document.getElementById('js-welcome').classList.add('collapsed');
-		document.getElementById('js-wel-but').innerHTML = 'More';
+	if (wlh === '' && (wlp === '/' || wlp === '')) {
+		showWelc();
+		document.getElementById('js-footer').classList.toggle('aside-active');
+		document.getElementById('js-aside').classList.toggle('aside-out');
+	} else {
+		hideWelc();
 		document.getElementById('js-mapUpdate').classList.add('collapsed');
 		document.getElementById('js-nmu-but').innerHTML = 'More';
 		await reloadMapData();
-	} else {
-		document.getElementById('js-footer').classList.toggle('aside-active');
-		document.getElementById('js-aside').classList.toggle('aside-out');
 	}
 }
 function loadMap(map) {
@@ -74,6 +74,12 @@ function loadMap(map) {
 			}, 1500);
 		});
 }
+function showWelc() {
+	document.getElementById('js-welc-dialog').style.display = 'block';
+}
+function hideWelc() {
+	document.getElementById('js-welc-dialog').style.display = 'none';
+}
 function copyURL() {
 	const url = window.location.href;
 	navigator.clipboard.writeText(url).then(
@@ -85,7 +91,12 @@ function copyURL() {
 		}
 	);
 }
-function genURL() {}
+async function genURL() {
+	const phrase = await DataHandler.getNewPhrase();
+	const urlEl = document.getElementById('url');
+	urlEl.placeholder = phrase;
+	popUp('Success', 'confirm', phrase);
+}
 document.onreadystatechange = async (e) => {
 	if (document.readyState === 'complete') {
 		loadMap(mapInst);
