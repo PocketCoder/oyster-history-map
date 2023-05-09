@@ -136,14 +136,13 @@ const client = redis.createClient({
 });
 client.on('error', (err) => console.log('Redis Client Error', err));
 
-async function getHash(vars: object) {
-	const key = vars.one + '.' + vars.two + '.' + vars.three + '.' + vars.four;
+async function getHash(vars: {one: string; two: string; three: string; four: string}): Promise<string | null> {
+	const key = `${vars.one}.${vars.two}.${vars.three}.${vars.four}`;
 	const hash = await client.get(key);
 	if (hash === null) {
-		// TODO: Handle error.
-	} else {
-		return hash;
+		throw new Error("Hash couldn't be found.");
 	}
+	return hash;
 }
 
 app.get('/:one.:two.:three.:four', async (req, res) => {
@@ -151,9 +150,12 @@ app.get('/:one.:two.:three.:four', async (req, res) => {
 });
 
 app.get('/hash/:one.:two.:three.:four', async (req, res) => {
-	console.log(req.params);
-	const hash = await getHash(req.params);
-	res.json({hash});
+	try {
+		const hash = await getHash(req.params);
+		res.status(200).json({hash});
+	} catch (err) {
+		res.status(404).json({error: err.message}); // TODO: Handle error client-side
+	}
 });
 
 app.get('/hash/:hash', async (req, res) => {

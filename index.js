@@ -133,20 +133,23 @@ const client = redis.createClient({
 });
 client.on('error', (err) => console.log('Redis Client Error', err));
 async function getHash(vars) {
-	const key = vars.one + '.' + vars.two + '.' + vars.three + '.' + vars.four;
+	const key = `${vars.one}.${vars.two}.${vars.three}.${vars.four}`;
 	const hash = await client.get(key);
 	if (hash === null) {
-	} else {
-		return hash;
+		throw new Error("Hash couldn't be found.");
 	}
+	return hash;
 }
 app.get('/:one.:two.:three.:four', async (req, res) => {
 	res.sendFile(__dirname + '/public/index.html');
 });
 app.get('/hash/:one.:two.:three.:four', async (req, res) => {
-	console.log(req.params);
-	const hash = await getHash(req.params);
-	res.json({hash});
+	try {
+		const hash = await getHash(req.params);
+		res.status(200).json({hash});
+	} catch (err) {
+		res.status(404).json({error: err.message});
+	}
 });
 app.get('/hash/:hash', async (req, res) => {
 	console.log(req.params);
