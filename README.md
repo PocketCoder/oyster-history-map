@@ -18,7 +18,7 @@ I made this project because I wanted to see how much of the TfL network I've bee
 
 _I am open to new ideas for names._
 
-## M.V.P.
+## M.V.P. - Achieved
 
 - The map displays and is faded out initially.
 - Any previously added stations are retrieved from `localStorage` and added to the map.
@@ -39,40 +39,13 @@ _(Some of the three-letter station codes were non-existent so I made them up. I 
 
 ## Next steps
 
-- [x] UI Polish
-  - [x] Mobile-friendly UI
-  - [x] Make it prettier
-  - [x] Fix font
-  - [ ] Rough text match for station input.
-  - [x] Visual handling of correct and incorrect input.
-- [x] Bus route data (X routes used out of X) (for now)
-- [ ] Login and User Profiles (WIP)
-  - [ ] Data saved in database, not LS; therefore syncing across devices
-- [ ] Stats
-  - [ ] % of stations visited
-    - [x] on a line
-    - [ ] on the whole TfL service
-  - [ ] % label next to progress bar
-  - [ ] Line label next to progress bar
-- [ ] Export data as CSV or PNG Map.
-- [x] Move development to TypeScript.
-
-## Roadmap
-
-| Version | Feature                           |
-| ------- | --------------------------------- |
-| 1.0.0   | Minimum Viable Product            |
-| N.X.0   | Stats are better labelled         |
-| N.X.0   | Bus routes displayed more clearly |
-| N.X.0   | Sharable PNG of map/stats         |
-| 2.0.0   | User Login and info stored in DB  |
-| 3.0.0   | PWA                               |
+[Notion board of my To Do list](https://jakepwilliams.notion.site/92fdf5b91da94b5abb587ea19614d91b?v=fa2196f2fe25480d846ace1afa0e0363)
 
 ## Brand
 
 ### Type faces
 
-To keep it open source, the station labels on the map are [`Hammersmith One`](https://fonts.google.com/specimen/Hammersmith+One)—a copyright friendly font alternative to the official [`Johnston`](https://en.wikipedia.org/wiki/Johnston_(typeface)).
+To keep it open source, the station labels on the map are [`Hammersmith One`](https://fonts.google.com/specimen/Hammersmith+One)—a copyright friendly font alternative to the official [`Johnston`](<https://en.wikipedia.org/wiki/Johnston_(typeface)>).
 
 ![Hammersmith One font sample](/README%20assets/hammersmith-one.png)
 
@@ -160,7 +133,7 @@ let stnCodes = findVisCodes(usrData('get', 'stations'));
 
 First we get an array of station codes that the user has visited. `usrData('get', 'stations')` retrieves a list of all the stations a user has visited and returns the array. `findVisCodes()` takes in the array and outputs a new array of only the three-letter codes.
 
-> In future I will change it so the stations are saved as codes.
+> In future I might change it so the stations are saved as codes.
 
 ```js
 let data = {
