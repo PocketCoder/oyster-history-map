@@ -1234,7 +1234,7 @@
         <text id="CWD-label" transform="matrix(1 0 0 1 145.5918 177.1592)" fill="#1C3F94" class="blue-fill">Chorleywood</text>
         <text id="RKY-label" transform="matrix(1 0 0 1 156.6265 190.1495)" fill="#1C3F94" class="blue-fill">Rickmansworth</text>
         <text id="CHE-label" transform="matrix(1 0 0 1 86.0957 145.7715)" fill="#1C3F94" class="blue-fill">Chesham</text>
-        <g id="AME-abel">
+        <g id="AME-label">
             <text id="AME-label" transform="matrix(1 0 0 1 86.6807 168.92)" fill="#1C3F94" class="blue-fill">Amersham</text>
             <polygon id="AME-NR" fill="#EE3124" points="91.2,173.1 89.5,172.4 91.9,172.4 91.9,171.8 89.4,171.8 90.7,171.2 91.9,171.2 91.9,170.7 90.7,170.7 89.1,170 87.9,170 89.6,170.7 87.1,170.7 87.1,171.2 89.6,171.2 88.3,171.8 87.1,171.8 87.1,172.4 88.4,172.4 90,173.1 ">
             </polygon>

@@ -103,7 +103,38 @@ code {
 	font-family: 'Courier New', Courier, monospace;
 }
 
-footer {
+input#url {
+	margin: 10px 0 0 0;
+	flex-grow: 1;
+	width: 90%;
+	height: auto;
+	padding: 7px 10px 7px 10px;
+	background-color: #ededed;
+	border-radius: 50px;
+	border: none;
+	font-size: 0.75em;
+	cursor: text;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+input#url::placeholder {
+	color: black;
+}
+
+#info {
+	font-size: 14px;
+	font-style: italic;
+}
+
+i.copy {
+	content: url('icons/clipboard.svg');
+	width: 20px;
+	height: 20px;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.bottom-bar {
 	display: flex;
 	display: -webkit-flex;
 	justify-content: center;
@@ -114,6 +145,37 @@ footer {
 	bottom: 10px;
 	left: 10px;
 	transition: all 0.5s ease-in-out;
+}
+
+dialog {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: 0 auto;
+	padding: 20px;
+	width: 80%;
+	height: max-content;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: white;
+	border: 1px solid black;
+	-webkit-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.5);
+	box-shadow: 3px 0px 12px 0px rgba(50, 50, 50, 0.5);
+	border-radius: 20px;
+	z-index: 9999;
+}
+
+dialog::backdrop,
+dialog::-moz-backdrop {
+	background: rgba(255, 0, 0, 1) !important; /* TODO: Make work */
+}
+
+dialog > * {
+	margin: 10px;
 }
 
 input[type='text'] {
@@ -220,6 +282,7 @@ aside .bubble header {
 	display: flex;
 	display: -webkit-flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	align-items: center;
 	margin-bottom: 10px;
 }
@@ -237,12 +300,20 @@ aside .bubble.single-line header {
 	padding: 0;
 }
 
-aside .bubble header .expand {
+aside .bubble button,
+button {
 	border: 1px solid black;
 	background: none;
 	border-radius: 50px;
 	padding: 5px 10px;
 	cursor: pointer;
+	transition: all 0.5s ease-in-out;
+}
+
+aside .bubble button:hover,
+button:hover {
+	background-color: #a0a5a9;
+	transition: all 0.15s ease-in-out;
 }
 
 aside .bubble.collapsed header {
@@ -262,6 +333,14 @@ aside .bubble .line {
 	display: -webkit-flex;
 	justify-content: space-between;
 	align-items: flex-start;
+}
+
+aside .bubble section .bubble-wrapper {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 aside .bubble .line h5,

@@ -1,5 +1,5 @@
 interface Window {
-	setItem(x:any, y:any): any;
+	setItem(x: any, y: any): any;
 	removeItem(x: any): any;
 }
 
@@ -34,21 +34,28 @@ function storageAvailable(type: any) {
 	}
 }
 
-function populateMapData() {
-	if (!storageAvailable('localStorage')) {
-		popUp('LocalStorage isn\'t supported', 'error');
-		alert('LocalStorage isn\'t supported');
-		throw new Error('No localStorage available');
+async function reloadMapData() {
+	const stns = await DH.get('stations');
+	addStnsToMap(stns);
+	await updateLineSegs(stns).catch((e) => {
+		console.error(e);
+	});
+}
+
+async function populateMapData() {
+	const wlh = window.location.hash;
+	const wlp = window.location.pathname;
+	if (wlh === '' && (wlp === '/' || wlp === '')) {
+		// First visit
+		showWelc();
 	} else {
-		if (localStorage.getItem('stations') !== null) {
-			document.getElementById('js-welcome')!.classList.add('collapsed');
-			document.getElementById('js-mapUpdate')!.classList.add('collapsed');
-			addStnsToMap(usrData('get', 'stations'));
-			updateLineSegs();
-		} else {
-			document.getElementById('js-footer')!.classList.toggle('aside-active');
-			document.getElementById('js-aside')!.classList.toggle('aside-out');
-		}
+		// Not first visit
+		hideWelc();
+		document.getElementById('js-mapUpdate')!.classList.add('collapsed');
+		document.getElementById('js-url')!.classList.add('collapsed');
+		document.getElementById('js-nmu-but')!.innerHTML = 'More';
+		document.getElementById('js-url-but')!.innerHTML = 'More';
+		await reloadMapData();
 	}
 }
 
@@ -77,18 +84,49 @@ function loadMap(map: string) {
 				bounds: true,
 				boundsPadding: 0.4
 			});
-			setTimeout(() => {
-				populateMapData();
+			setTimeout(async () => {
+				await populateMapData().catch((e) => {
+					console.error(e);
+				});
 			}, 1500);
 		});
 }
 
-document.onreadystatechange = (e) => {
+function showWelc() {
+	document.getElementById('js-welc-dialog')!.style.display = 'block';
+}
+
+function hideWelc() {
+	document.getElementById('js-welc-dialog')!.style.display = 'none';
+}
+
+function copyURL() {
+	// TODO: Make so that it will copy the phrase url if there is one.
+	const url = window.location.href;
+	navigator.clipboard.writeText(url).then(
+		() => {
+			/* clipboard successfully set */
+			popUp('Copied to clipboard!', 'confirm');
+		},
+		() => {
+			/* clipboard write failed */
+			popUp("Couldn't copy to clipbaord", 'error');
+		}
+	);
+}
+
+async function genURL() {
+	const phrase = await DH.getNewPhrase();
+	popUp('Success', 'confirm', phrase);
+}
+
+document.onreadystatechange = async (e) => {
 	if (document.readyState === 'complete') {
+		await DH.init();
 		loadMap(mapInst);
-		const busses = usrData('get', 'bus');
+		const busses = await DH.get('bus');
 		const noBus = busses.length;
-		document.getElementById('js-bus')!.innerHTML = noBus;
+		document.getElementById('js-bus')!.innerHTML = noBus.toString();
 	}
 };
 
@@ -121,10 +159,10 @@ document.getElementById('js-menu')!.addEventListener('click', () => {
 	document.getElementById('js-aside')!.classList.toggle('aside-out');
 });
 
-document.getElementById('js-stnInput')!.addEventListener('keyup', (e) => {
+document.getElementById('js-stnInput')!.addEventListener('keyup', async (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
 		const stnEl = <HTMLInputElement>document.getElementById('js-stnInput');
-		if (newStation(stnEl.value)) {
+		if (await newStation(stnEl.value)) {
 			stnEl.value = '';
 			popUp('Station added!', 'confirm');
 		}
@@ -139,17 +177,33 @@ document.getElementById('js-mapSwitch')!.addEventListener('click', () => {
 		icon.classList.add('tube');
 	} else {
 		icon.classList.remove('tube');
-		mapInst = 'tube'
+		mapInst = 'tube';
 		icon.classList.add('liz');
 	}
 	loadMap(mapInst);
 });
 
-function newStation(input: string) {
+async function newStation(input: string) {
 	if (stations[input] !== undefined) {
-		addStnsToMap(input);
-		usrData('save', 'stations', input);
-		updateLineSegs();
+		addStnsToMap([input]);
+		let stns: Array<string>;
+		try {
+			await DH.save('stations', input);
+		} catch (e) {
+			console.log(e);
+		}
+		try {
+			stns = await DH.get('stations');
+		} catch (e) {
+			console.log(e);
+		} finally {
+			stns = [];
+		}
+		try {
+			await updateLineSegs(stns);
+		} catch (e) {
+			console.log(e);
+		}
 		return true;
 	} else {
 		popUp(`${input} doesn\'t exist.`, 'error');
@@ -670,11 +724,11 @@ const autoCompleteJS = new autoComplete({
 	},
 	events: {
 		input: {
-			selection: (event: any) => {
+			selection: async (event: any) => {
 				let selection: string = event.detail.selection.value;
 				selection = selection.replaceAll(/&amp;/g, '&');
 				autoCompleteJS.input.value = selection;
-				newStation(selection);
+				await newStation(selection);
 				popUp('Station added!', 'confirm');
 			}
 		}

@@ -22,21 +22,25 @@ function storageAvailable(type) {
 		);
 	}
 }
-function populateMapData() {
-	if (!storageAvailable('localStorage')) {
-		popUp("LocalStorage isn't supported", 'error');
-		alert("LocalStorage isn't supported");
-		throw new Error('No localStorage available');
+async function reloadMapData() {
+	const stns = await DH.get('stations');
+	addStnsToMap(stns);
+	await updateLineSegs(stns).catch((e) => {
+		console.error(e);
+	});
+}
+async function populateMapData() {
+	const wlh = window.location.hash;
+	const wlp = window.location.pathname;
+	if (wlh === '' && (wlp === '/' || wlp === '')) {
+		showWelc();
 	} else {
-		if (localStorage.getItem('stations') !== null) {
-			document.getElementById('js-welcome').classList.add('collapsed');
-			document.getElementById('js-mapUpdate').classList.add('collapsed');
-			addStnsToMap(usrData('get', 'stations'));
-			updateLineSegs();
-		} else {
-			document.getElementById('js-footer').classList.toggle('aside-active');
-			document.getElementById('js-aside').classList.toggle('aside-out');
-		}
+		hideWelc();
+		document.getElementById('js-mapUpdate').classList.add('collapsed');
+		document.getElementById('js-url').classList.add('collapsed');
+		document.getElementById('js-nmu-but').innerHTML = 'More';
+		document.getElementById('js-url-but').innerHTML = 'More';
+		await reloadMapData();
 	}
 }
 function loadMap(map) {
@@ -63,17 +67,41 @@ function loadMap(map) {
 				bounds: true,
 				boundsPadding: 0.4
 			});
-			setTimeout(() => {
-				populateMapData();
+			setTimeout(async () => {
+				await populateMapData().catch((e) => {
+					console.error(e);
+				});
 			}, 1500);
 		});
 }
-document.onreadystatechange = (e) => {
+function showWelc() {
+	document.getElementById('js-welc-dialog').style.display = 'block';
+}
+function hideWelc() {
+	document.getElementById('js-welc-dialog').style.display = 'none';
+}
+function copyURL() {
+	const url = window.location.href;
+	navigator.clipboard.writeText(url).then(
+		() => {
+			popUp('Copied to clipboard!', 'confirm');
+		},
+		() => {
+			popUp("Couldn't copy to clipbaord", 'error');
+		}
+	);
+}
+async function genURL() {
+	const phrase = await DH.getNewPhrase();
+	popUp('Success', 'confirm', phrase);
+}
+document.onreadystatechange = async (e) => {
 	if (document.readyState === 'complete') {
+		await DH.init();
 		loadMap(mapInst);
-		const busses = usrData('get', 'bus');
+		const busses = await DH.get('bus');
 		const noBus = busses.length;
-		document.getElementById('js-bus').innerHTML = noBus;
+		document.getElementById('js-bus').innerHTML = noBus.toString();
 	}
 };
 function expand(t) {
@@ -101,10 +129,10 @@ document.getElementById('js-menu').addEventListener('click', () => {
 	document.getElementById('js-footer').classList.toggle('aside-active');
 	document.getElementById('js-aside').classList.toggle('aside-out');
 });
-document.getElementById('js-stnInput').addEventListener('keyup', (e) => {
+document.getElementById('js-stnInput').addEventListener('keyup', async (e) => {
 	if (e.key === 'Enter' || e.keyCode === 13) {
 		const stnEl = document.getElementById('js-stnInput');
-		if (newStation(stnEl.value)) {
+		if (await newStation(stnEl.value)) {
 			stnEl.value = '';
 			popUp('Station added!', 'confirm');
 		}
@@ -123,11 +151,27 @@ document.getElementById('js-mapSwitch').addEventListener('click', () => {
 	}
 	loadMap(mapInst);
 });
-function newStation(input) {
+async function newStation(input) {
 	if (stations[input] !== undefined) {
-		addStnsToMap(input);
-		usrData('save', 'stations', input);
-		updateLineSegs();
+		addStnsToMap([input]);
+		let stns;
+		try {
+			await DH.save('stations', input);
+		} catch (e) {
+			console.log(e);
+		}
+		try {
+			stns = await DH.get('stations');
+		} catch (e) {
+			console.log(e);
+		} finally {
+			stns = [];
+		}
+		try {
+			await updateLineSegs(stns);
+		} catch (e) {
+			console.log(e);
+		}
 		return true;
 	} else {
 		popUp(`${input} doesn\'t exist.`, 'error');
@@ -645,11 +689,11 @@ const autoCompleteJS = new autoComplete({
 	},
 	events: {
 		input: {
-			selection: (event) => {
+			selection: async (event) => {
 				let selection = event.detail.selection.value;
 				selection = selection.replaceAll(/&amp;/g, '&');
 				autoCompleteJS.input.value = selection;
-				newStation(selection);
+				await newStation(selection);
 				popUp('Station added!', 'confirm');
 			}
 		}

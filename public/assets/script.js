@@ -1,28 +1,175 @@
 'use strict';
-function usrData(func, type, data = []) {
-	if (func === 'get') {
-		if (localStorage.getItem(type) != null && localStorage.getItem(type) != '[]') {
-			return JSON.parse(localStorage.getItem(type));
-		} else {
-			return [];
+class UserDataHandler {
+	constructor() {
+		this.usrDataObj = {bus: [], stations: []};
+		this.URLInputEl = document.getElementById('url');
+		this.wlh = window.location.hash;
+		this.wlp = window.location.pathname;
+		this.hash = '';
+		this.phrase = '';
+		this.type = 'none';
+		if (this.wlh === '' && (this.wlp === '/' || this.wlp === '')) {
+		} else if (this.wlh !== '' && (this.wlp === '/' || this.wlp === '')) {
+			this.type = 'hash';
+			if (this.wlh.startsWith('#')) {
+				this.hash = this.wlh.substring(1);
+			}
+			this.loadData();
+		} else if ((this.wlp !== '' || this.wlp !== '/') && this.wlh === '') {
+			this.type = 'path';
+			if (this.wlp.startsWith('/')) {
+				this.phrase = this.wlp.substring(1);
+			}
+			this.loadData();
 		}
-	} else if (func === 'save') {
-		let current = JSON.parse(localStorage.getItem(type)) ? JSON.parse(localStorage.getItem(type)) : [];
-		let newData = [];
-		if (typeof data === 'string') {
-			newData.push(data);
+	}
+	async loadData() {
+		if (this.type === 'none') {
+			this.urlElement.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+			return;
+		} else if (this.type === 'hash') {
+			this.usrDataObj = JSON.parse(LZString.decompressFromEncodedURIComponent(this.hash));
+			this.URLInputEl.placeholder = '/#' + this.hash.substring(0, 27) + '...';
+			return;
+		} else if (this.type === 'path') {
+			const res = await fetch(`/hash/${this.phrase}`);
+			const data = await res.json();
+			this.URLInputEl.placeholder = this.wlp;
+			data
+				.then((d) => {
+					const hash = d.hash;
+					try {
+						const hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(d.hash));
+						this.usrDataObj = hashData;
+					} catch (e) {
+						console.error(e);
+					}
+				})
+				.catch((e) => {
+					console.error(e);
+				});
+			return;
 		} else {
-			newData.push(...data);
+			throw new Error('loadData() & this.type error.');
 		}
-		current.push(...newData);
-		let unique = current.filter((c, i) => {
-			return current.indexOf(c) === i;
+	}
+	async get(type) {
+		if (type === 'stations') {
+			return this.usrDataObj.stations;
+		} else if (type === 'bus') {
+			return this.usrDataObj.bus;
+		} else {
+			throw new Error(`Invalid argument: type must be 'stations' or 'bus'`);
+		}
+	}
+	async save(type, data) {
+		if (!type || (type !== 'stations' && type !== 'bus')) {
+			throw new Error("Invalid argument: type must be 'stations' or 'bus'");
+		}
+		const newData = Array.isArray(data) ? data : [data];
+		if (newData.some((d) => typeof d !== 'string')) {
+			throw new Error('Invalid argument: data must be a string or an array of strings.');
+		}
+		if (type === 'stations') {
+			this.usrDataObj.stations.push(...newData);
+		} else if (type === 'bus') {
+			this.usrDataObj.bus.push(...newData);
+		}
+		const unique = Array.from(new Set(this.usrDataObj[type]));
+		unique.sort();
+		if (type === 'stations') {
+			this.usrDataObj.stations = unique;
+		} else if (type === 'bus') {
+			this.usrDataObj.bus = unique;
+		}
+		const newHash = LZString.compressToEncodedURIComponent(JSON.stringify(this.usrDataObj));
+		this.newHashSort(newHash);
+	}
+	async newHashSort(newHash) {
+		window.location.hash = newHash;
+		this.wlh = window.location.hash;
+	}
+	async loadNewHash(usrHash) {
+		try {
+			const newData = JSON.parse(LZString.decompressFromEncodedURIComponent(usrHash));
+			if (
+				newData.stations === undefined ||
+				newData.stations === null ||
+				newData.bus === undefined ||
+				newData.bus === null
+			) {
+				throw new Error('Invalid Hash');
+			} else {
+				this.hash = usrHash;
+				this.type = 'hash';
+				this.usrDataObj = newData;
+				this.newHashSort(usrHash);
+				window.location.reload();
+				return true;
+			}
+		} catch (e) {
+			console.log(e);
+			throw new Error(`${e}`);
+		}
+	}
+	getHash() {
+		return this.hash;
+	}
+	async loadNewPhrase(phrase) {
+		const res = await fetch(`/phrase/${phrase}`);
+		const data = await res.json().catch((e) => {
+			console.error(e);
 		});
-		localStorage.setItem(type, JSON.stringify(unique));
-	} else {
-		throw "Func param only accepts 'get' or 'save'";
+		const hash = data.hash;
+		try {
+			this.loadNewHash(hash);
+		} catch (e) {
+			console.error(e);
+		}
+		return this.usrDataObj;
+	}
+	async getNewPhrase() {
+		const res = await fetch(`/hash/${this.hash}`);
+		const data = await res.json().catch((e) => {
+			console.error(e);
+		});
+		return data.phrase;
 	}
 }
+const DH = new DataHandler();
+document.getElementById('url').addEventListener('keyup', async (e) => {
+	const urlEl = document.getElementById('url');
+	const input = e.target.value;
+	if (e.key === 'Enter' || e.keyCode === 13) {
+		if (input === null || input === '' || input === undefined) {
+			popUp('Enter your code or phrase', 'error');
+			urlEl.placeholder = '/# ' + 'Add to the map to generate your URL' + '...';
+			return;
+		} else {
+			try {
+				DH.processInput(input);
+			} catch (e) {
+				popUp('Error', 'error', e);
+			}
+		}
+	}
+});
+document.getElementById('url').addEventListener('paste', async (e) => {
+	const urlEl = document.getElementById('url');
+	const pasted = e.clipboardData?.getData('text');
+	let type = '';
+	if (pasted === '' || pasted === null) {
+		popUp('Paste your code or phrase', 'error');
+		urlEl.placeholder = '/# ' + 'Add to the map to generate your URL' + '...';
+		return;
+	} else {
+		try {
+			DH.processInput(pasted);
+		} catch (e) {
+			popUp('Error', 'error', e);
+		}
+	}
+});
 function findVisCodes(arr) {
 	const stnArr = [...arr];
 	let visArr = [];
@@ -32,29 +179,30 @@ function findVisCodes(arr) {
 	return visArr;
 }
 function addStnsToMap(stns) {
-	let s = [];
-	if (typeof stns === 'string') {
-		s.push(stns);
+	let unique;
+	if (stns.stations !== undefined) {
+		unique = stns.stations.filter((c, i) => {
+			return stns.stations.indexOf(c) === i;
+		});
 	} else {
-		s.push(...stns);
+		unique = stns.filter((c, i) => {
+			return stns.indexOf(c) === i;
+		});
 	}
-	s.sort();
-	s.forEach((v) => {
-		var _a, _b, _c;
-		(_a = document.querySelector(`[id*="${stations[v]}-dash"]`)) === null || _a === void 0
-			? void 0
-			: _a.classList.add('visible');
-		(_b = document.querySelector(`[id*="${stations[v]}-label"]`)) === null || _b === void 0
-			? void 0
-			: _b.classList.add('visible');
-		(_c = document.querySelector(`[id*="IC_${stations[v]}"]`)) === null || _c === void 0
-			? void 0
-			: _c.classList.add('visible');
+	unique.sort();
+	unique.forEach((v) => {
+		document.querySelector(`[id*="${stations[v]}-dash"]`)?.classList.add('visible');
+		document.querySelector(`[id*="${stations[v]}-label"]`)?.classList.add('visible');
+		document.querySelector(`[id*="IC_${stations[v]}"]`)?.classList.add('visible');
 	});
 }
-function updateLineSegs() {
-	var _a;
-	let stnCodes = findVisCodes(usrData('get', 'stations'));
+async function updateLineSegs(usrData) {
+	let stnCodes;
+	if (usrData.stations !== 'undefined') {
+		stnCodes = findVisCodes(usrData);
+	} else {
+		stnCodes = findVisCodes(usrData.stations);
+	}
 	let data = {
 		bakerloo: 0,
 		central: 0,
@@ -105,7 +253,6 @@ function updateLineSegs() {
 				if (top && bottom) {
 					let total = 0;
 					lineObj['top'].forEach((e) => {
-						var _a;
 						let first = 100;
 						e.forEach((a) => {
 							const index = e.indexOf(a);
@@ -117,13 +264,10 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < e.length; i++) {
-							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
-								? void 0
-								: _a.classList.add('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					lineObj['bottom'].forEach((e) => {
-						var _a;
 						let last = 0;
 						e.forEach((a) => {
 							const index = e.indexOf(a);
@@ -135,16 +279,13 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = 0; i < last; i++) {
-							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
-								? void 0
-								: _a.classList.add('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (top) {
 					let total = 0;
 					lineObj['top'].forEach((e) => {
-						var _a;
 						let first = 100,
 							last = 0;
 						e.forEach((a) => {
@@ -160,16 +301,13 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < last; i++) {
-							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
-								? void 0
-								: _a.classList.add('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
 				} else if (bottom) {
 					let total = 0;
 					lineObj['bottom'].forEach((e) => {
-						var _a;
 						let first = 100,
 							last = 0;
 						e.forEach((a) => {
@@ -185,9 +323,7 @@ function updateLineSegs() {
 							}
 						});
 						for (let i = first; i < last; i++) {
-							(_a = document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)) === null || _a === void 0
-								? void 0
-								: _a.classList.add('visible');
+							document.getElementById(`lul-${lineObj['line']}_${e[i]}-${e[i + 1]}`)?.classList.add('visible');
 						}
 					});
 					data[lineObj['line']] = data[lineObj['line']] + total;
@@ -212,10 +348,7 @@ function updateLineSegs() {
 				}
 			});
 			for (let i = first; i < last; i++) {
-				(_a = document.getElementById(`lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`)) === null ||
-				_a === void 0
-					? void 0
-					: _a.classList.add('visible');
+				document.getElementById(`lul-${lineObj['line']}_${lineArr[i]}-${lineArr[i + 1]}`)?.classList.add('visible');
 			}
 			data[lineObj['line']] = data[lineObj['line']] + total;
 		}
@@ -259,16 +392,16 @@ function updateStats(data) {
 function readFile(file) {
 	const reader = new FileReader();
 	reader.readAsText(file, 'UTF-8');
-	reader.onload = (evt) => {
+	reader.onload = async (evt) => {
 		const fileString = evt.target.result || '';
 		const CSVarr = CSVtoArray(fileString);
-		loadData(CSVarr);
+		await loadData(CSVarr);
 	};
 	reader.onerror = (err) => {
 		console.error(err);
 	};
 }
-function loadData(arr) {
+async function loadData(arr) {
 	let stations = [],
 		busses = [];
 	for (const a in arr) {
@@ -293,13 +426,14 @@ function loadData(arr) {
 		}
 	}
 	try {
-		usrData('save', 'stations', stations);
-		usrData('save', 'bus', busses);
+		await DataHandler.save('stations', stations);
+		await DataHandler.save('bus', busses);
 	} catch (e) {
 		console.error(`[script.ts | loadData()]: ${e}`);
 	} finally {
 		addStnsToMap(stations);
-		updateLineSegs();
+		const usrStns = await DataHandler.get('stations');
+		await updateLineSegs(usrStns);
 	}
 }
 function CSVtoArray(strData, strDelimiter = ',') {
@@ -326,19 +460,16 @@ function CSVtoArray(strData, strDelimiter = ',') {
 	return arrData;
 }
 function dragOverHandler(e) {
-	var _a;
 	e.preventDefault();
-	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.add('dragOver');
+	document.getElementById('drag')?.classList.add('dragOver');
 }
 function dragLeaveHandler(e) {
-	var _a;
 	e.preventDefault();
-	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.remove('dragOver');
+	document.getElementById('drag')?.classList.remove('dragOver');
 }
 function dropHandler(e) {
-	var _a;
 	e.preventDefault();
 	const file = e.dataTransfer.items[0].getAsFile();
 	readFile(file);
-	(_a = document.getElementById('drag')) === null || _a === void 0 ? void 0 : _a.classList.remove('dragOver');
+	document.getElementById('drag')?.classList.remove('dragOver');
 }

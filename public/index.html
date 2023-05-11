@@ -1,174 +1,214 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-        <title>Tubular</title>
-        <meta name="description" content="Your history on TfL, visualised">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="white">
 
-        <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-touch-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-touch-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-touch-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-touch-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-touch-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-touch-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-touch-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-        <link rel="manifest" href="assets/favicon/site.webmanifest">
-        <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
-        <link rel="shortcut icon" href="assets/favicon/favicon.ico">
-        <meta name="msapplication-TileColor" content="#ffc40d">
-        <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
-        <meta name="theme-color" content="#ffffff">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Tubular</title>
+    <meta name="description" content="Your history on TfL, visualised">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
 
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://tubular.110399.xyz">
-        <meta property="og:title" content="Tubular">
-        <meta property="og:image" content="https://tubular.110399.xyz/assets/logo.png">
-        <meta property="og:description" content="Your history on TfL, visualised">
-        <meta property="og:site_name" content="Tubular">
-        <meta property="og:locale" content="en_GB">
-        <meta name="twitter:card" content="summary">
-        <!--<meta name="twitter:site" content="@site_account">-->
-        <meta name="twitter:creator" content="@lactaselacking">
-        <meta name="twitter:url" content="https://tubular.110399.xyz">
-        <meta name="twitter:title" content="Tubular">
-        <meta name="twitter:description" content="Your history on TfL, visualised">
-        <meta name="twitter:image" content="https://tubular.110399.xyz/assets/logo.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 
-        <link rel="stylesheet" href="assets/autoComplete.min.css" type="text/css" />
-        <link rel="stylesheet" href="assets/normalize.min.css" type="text/css" />
-        <link rel="stylesheet" href="assets/main.css" type="text/css" />
-        <link rel="stylesheet" href="assets/map.css" type="text/css" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tubular.110399.xyz">
+    <meta property="og:title" content="Tubular">
+    <meta property="og:image" content="https://tubular.110399.xyz/assets/logo.png">
+    <meta property="og:description" content="Your history on TfL, visualised">
+    <meta property="og:site_name" content="Tubular">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary">
+    <!--<meta name="twitter:site" content="@site_account">-->
+    <meta name="twitter:creator" content="@lactaselacking">
+    <meta name="twitter:url" content="https://tubular.110399.xyz">
+    <meta name="twitter:title" content="Tubular">
+    <meta name="twitter:description" content="Your history on TfL, visualised">
+    <meta name="twitter:image" content="https://tubular.110399.xyz/assets/logo.png">
 
-        <script defer src="assets/data.js"></script>
-        <script defer src="assets/autoComplete.min.js"></script>
-        <script defer src="assets/panzoom.min.js"></script>
-        <script defer src="assets/script.js"></script>
-        <script defer src="assets/dom.js"></script>
-    </head>
-    <body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);" ondragleave="dragLeaveHandler(event);">
-        <div id="drag">
-            <h1>Drop your <code>.csv</code> files here...</h1>
-        </div>
-        <noscript>
-            <h1>You don't have JavaScript enabled in your browser which means this website won't work. Turn JavaScript on and refresh the page to get going!</h1>
-        </noscript>
-        <div id="map"></div>
-        <footer id="js-footer">
-            <i class="menu" id="js-menu"></i>
-            <input id="js-stnInput" type="text" placeholder="Add a station..." dir="ltr" spellcheck=true />
-            <i class="liz" id="js-mapSwitch"></i>
+    <link rel="stylesheet" href="assets/autoComplete.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/normalize.min.css" type="text/css" />
+    <link rel="stylesheet" href="assets/main.css" type="text/css" />
+    <link rel="stylesheet" href="assets/map.css" type="text/css" />
+
+    <script src="assets/lz-string.js"></script>
+    <script defer src="assets/data.js"></script>
+    <script defer src="assets/autoComplete.min.js"></script>
+    <script defer src="assets/panzoom.min.js"></script>
+    <script defer src="assets/class.js"></script>
+    <script defer src="assets/script.js"></script>
+    <script defer src="assets/dom.js"></script>
+</head>
+
+<body ondragover="dragOverHandler(event);" ondrop="dropHandler(event);" ondragleave="dragLeaveHandler(event);">
+    <div id="drag">
+        <h1>Drop your <code>.csv</code> files here...</h1>
+    </div>
+    <dialog id="js-welc-dialog" style="display: none;">
+        <header>
+            <h4>Welcome!</h4>
+        </header>
+        <section>
+            <p>This website is a cool way to see your travel history on TfL. When you add stations, the map comes to life! As you add more stations on a line, the parts between them light up, too.</p>
+            <br />
+            <p>You can get your journey data from the last 8 weeks from the TfL website. All you have to do is log in and click the export button to get your journey history as a CSV file. Drag and drop onto the page, or upload using the option in the sidebar.</p>
+            <br />
+            <p>As you begin filling in your map, a URL that's unqiue to you will be available. It changes every time you add a new station so make sure to copy it and save it somewhere before you go.</p>
+            <br />
+            <p>Want it to be more memorable? Click generate in the sidebar and a four-word phrase will be created to take you back to where you were.</p>
+            <br />
+            <p id="info">Note: Each phrase or URL will only create the exact map that it was made for. As you add new stations the URL will change. Make sure to generate a new one once you've added your changes.</p>
+        </section>
+        <footer>
+            <button onclick="hideWelc()">Close</button>
         </footer>
-        <aside id="js-aside">
-            <div class="bubble" id="js-mapUpdate" style="background-color: #7156A5; color: white;">
-                <header>
-                    <h4>New Map Update</h4>
-                    <button class="expand" onclick="expand(this);" style="border-color: white; color: white">Less</button>
-                </header>
-                <section>
-                    <p>Due to the many changes on the new Tube Map, integrating the new Elizabeth line will take a lot of work! I anticipate this being a task for when the line is fully opened and the map will face no further changes.</p><br />
-                    <p>For now you can click the roundal to change between the current map and the new branch.</p><br />
-                    <p>Feel free to contribute on <a href="https://www.github.com/PocketCoder/tubular" targe="_blank">Github.</a></p>
-                </section>
-            </div>
-            <div class="bubble" id="js-welcome">
-                <header>
-                    <h4>Welcome!</h4>
-                    <button class="expand" onclick="expand(this);">Less</button>
-                </header>
-                <section>
-                    <p>This is a fun website to help you visualise your history on TfL. Starting with a faded map, once you begin to add stations their names will light up. As you add more stations on a line, the segments in-between will become visible, too.</p>
+    </dialog>
+    <noscript>
+        <h1>You don't have JavaScript enabled in your browser which means this website won't work. Turn JavaScript on and refresh the page to get going!</h1>
+    </noscript>
+    <div id="map"></div>
+    <footer class="bottom-bar" id="js-footer">
+        <i class="menu" id="js-menu"></i>
+        <input id="js-stnInput" type="text" placeholder="Add a station..." dir="ltr" spellcheck=true />
+        <i class="liz" id="js-mapSwitch"></i>
+    </footer>
+    <aside id="js-aside">
+        <div class="bubble" id="js-mapUpdate" style="background-color: #7156A5; color: white;">
+            <header>
+                <h4>New Map Update</h4>
+                <button id="js-nmu-but" class="expand" onclick="expand(this);" style="border-color: white; color: white">Less</button>
+            </header>
+            <section>
+                <p>Due to the many changes on the new Tube Map, integrating the new Elizabeth line will take a lot of work! I anticipate this being a task for when the line is fully opened and the map will face no further changes.</p><br />
+                <p>For now you can click the roundal to change between the current map and the new branch.</p><br />
+                <p>Feel free to contribute on <a href="https://www.github.com/PocketCoder/tubular" targe="_blank">Github.</a></p>
+            </section>
+        </div>
+        <div class="bubble" id="js-url">
+            <header>
+                <h4>URL</h4>
+                <button id="js-url-but" class="expand" onclick="expand(this);">Less</button>
+                <input id="url"></input>
+            </header>
+            <section>
+                <div class="bubble-wrapper">
+                    <button onclick="copyURL();">Copy</button>
+                    <button onclick="genURL();">Generate</button>
+                </div>
                 <br />
-                <p>TfL let you export the last 8 weeks of journey data from their <a href="https://oyster.tfl.gov.uk" target="_blank">website.</a> Simply log in and click on the button to export your jouney history as a <u>CSV</u> file. If you don't have an account, but have an Oyster/contactless card you use for journeys, just sign up and follow the steps to link them.</p>
+                <p>This is your unique URL that takes you right back to where you are.</p>
                 <br />
-                <p class="nb">N.B.: Syncing between this device and others is currently unavailable. All data is stored in the browser's <code>localStorage</code>. Support for accounts and cross-device syncing will come in the near future.</p>
-                </section>
-            </div>
-            <div class="bubble">
-                <header>
-                    <h4>Upload CSV</h4>
-                </header>
-                <section>
-                    <input id="fileSelect" type="file" accept=".csv" style="font-size: unset" multiple />
-                </section>
-            </div>
-            <div class="bubble" id="line-progress">
-                <header>
-                    <h4>Stats</h4>
-                </header>
-                <section>
-                    <div class="line">
-                        <h5>Bakerloo</h5><span id="js-lp-bakerloo">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Cable Car</h5><span id="js-lp-cable-car">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Central</h5><span id="js-lp-central">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Circle</h5><span id="js-lp-circle">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>District</h5><span id="js-lp-district">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>DLR</h5><span id="js-lp-dlr">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Elizabeth Line</h5><span id="js-lp-elizabeth">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>H & S</h5><span id="js-lp-hammersmith-city">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Jubilee</h5><span id="js-lp-jubilee">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Nothern</h5><span id="js-lp-northern">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Metropolitan</h5><span id="js-lp-metropolitan">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Overground</h5><span id="js-lp-overground">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Piccadilly</h5><span id="js-lp-piccadilly">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Tram</h5><span id="js-lp-tram">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Victoria</h5><span id="js-lp-victoria">0%</span>
-                    </div>
-                    <div class="line">
-                        <h5>Waterloo & City</h5><span id="js-lp-waterloo-city">0%</span>
-                    </div>
-                </section>
-            </div>
-            <div class="bubble single-line">
-                <header>
-                    <h4>Busses</h4>
-                </header>
-                <section>
-                    <span id="js-bus"></span><span> / 700</span>
-                </section>
-            </div>
-            <div class="bubble">
-                <header>
-                    <h4>See something wrong?</h4>
-                </header>
-                <section>
-                    <p>Help me fix it by reporting an <a href="https://github.com/PocketCoder/tubular/issues/new/choose" target="_blank">issue on GitHub</a>.</p>
-                </section>
-            </div>
-        </aside>
-    </body>
+                <p>Have a unique string or four-word phrase already? Paste it into the box.</p>
+                <br />
+                <p>Wish it were more memorable? Click generate and your map as it is will be saved as a unqiue four-word phrase.</p>
+                <br />
+                <p id="info">Note: Each URL will only create the exact map that it was made for. As you add new stations the URL will change.</p>
+            </section>
+        </div>
+        <div class="bubble">
+            <header>
+                <h4>Upload CSV</h4>
+            </header>
+            <section>
+                <input id="fileSelect" type="file" accept=".csv" style="font-size: unset" multiple />
+            </section>
+        </div>
+        <div class="bubble" id="line-progress">
+            <header>
+                <h4>Stats</h4>
+            </header>
+            <section>
+                <div class="line">
+                    <h5>Bakerloo</h5><span id="js-lp-bakerloo">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Cable Car</h5><span id="js-lp-cable-car">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Central</h5><span id="js-lp-central">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Circle</h5><span id="js-lp-circle">0%</span>
+                </div>
+                <div class="line">
+                    <h5>District</h5><span id="js-lp-district">0%</span>
+                </div>
+                <div class="line">
+                    <h5>DLR</h5><span id="js-lp-dlr">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Elizabeth Line</h5><span id="js-lp-elizabeth">0%</span>
+                </div>
+                <div class="line">
+                    <h5>H & S</h5><span id="js-lp-hammersmith-city">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Jubilee</h5><span id="js-lp-jubilee">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Nothern</h5><span id="js-lp-northern">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Metropolitan</h5><span id="js-lp-metropolitan">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Overground</h5><span id="js-lp-overground">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Piccadilly</h5><span id="js-lp-piccadilly">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Tram</h5><span id="js-lp-tram">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Victoria</h5><span id="js-lp-victoria">0%</span>
+                </div>
+                <div class="line">
+                    <h5>Waterloo & City</h5><span id="js-lp-waterloo-city">0%</span>
+                </div>
+            </section>
+        </div>
+        <div class="bubble single-line">
+            <header>
+                <h4>Busses</h4>
+            </header>
+            <section>
+                <span id="js-bus"></span><span> / 700</span>
+            </section>
+        </div>
+        <div class="bubble single-line">
+            <header>
+                <h4>Show welcome</h4>
+            </header>
+            <section>
+                <button onclick="showWelc();">Show</button>
+            </section>
+        </div>
+        <div class="bubble">
+            <header>
+                <h4>See something wrong?</h4>
+            </header>
+            <section>
+                <p>Help me fix it by reporting an <a href="https://github.com/PocketCoder/tubular/issues/new/choose" target="_blank">issue on GitHub</a>.</p>
+            </section>
+        </div>
+    </aside>
+</body>
+
 </html>

@@ -1,30 +1,202 @@
-function usrData(func: string, type: string, data: string | Array<string> = []) {
-	if (func === 'get') {
-		if (localStorage.getItem(type) != null && localStorage.getItem(type) != '[]') {
-			return JSON.parse(localStorage.getItem(type)!);
-		} else {
-			// Does not exist/empty.
-			return [];
+class UserDataHandler {
+	// TODO: Handle hash being not right.
+	// TODO: Clean URL
+	constructor() {
+		this.usrDataObj = {bus: [], stations: []};
+		this.URLInputEl = document.getElementById('url');
+		this.wlh = window.location.hash;
+		this.wlp = window.location.pathname;
+		this.hash = '';
+		this.phrase = '';
+		this.type = 'none';
+		if (this.wlh === '' && (this.wlp === '/' || this.wlp === '')) {
+			// First visit
+		} else if (this.wlh !== '' && (this.wlp === '/' || this.wlp === '')) {
+			// Subsequent visit with hash.
+			this.type = 'hash';
+			if (this.wlh.startsWith('#')) {
+				this.hash = this.wlh.substring(1);
+			}
+			this.loadData();
+		} else if ((this.wlp !== '' || this.wlp !== '/') && this.wlh === '') {
+			// Subsequent visit with code
+			this.type = 'path';
+			if (this.wlp.startsWith('/')) {
+				this.phrase = this.wlp.substring(1);
+			}
+			this.loadData();
 		}
-	} else if (func === 'save') {
-		let current = JSON.parse(localStorage.getItem(type)!) ? JSON.parse(localStorage.getItem(type)!) : [];
-		let newData = [];
-		if (typeof data === 'string') {
-			newData.push(data);
+	}
+
+	async loadData() {
+		if (this.type === 'none') {
+			// Do nothing
+			this.urlElement.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+			return;
+		} else if (this.type === 'hash') {
+			// Decode hash
+			this.usrDataObj = JSON.parse(LZString.decompressFromEncodedURIComponent(this.hash));
+			this.URLInputEl.placeholder = '/#' + this.hash.substring(0, 27) + '...';
+			return;
+		} else if (this.type === 'path') {
+			// Fetch hash and decode.
+			const res = await fetch(`/hash/${this.phrase}`);
+			const data = await res.json();
+			this.URLInputEl.placeholder = this.wlp;
+			data
+				.then((d) => {
+					const hash = d.hash;
+					try {
+						const hashData = JSON.parse(LZString.decompressFromEncodedURIComponent(d.hash));
+						this.usrDataObj = hashData;
+					} catch (e) {
+						console.error(e);
+					}
+				})
+				.catch((e) => {
+					console.error(e);
+				});
+			return;
 		} else {
-			newData.push(...data);
+			throw new Error('loadData() & this.type error.');
 		}
-		current.push(...newData);
-		let unique = current.filter((c: string, i: number) => {
-			return current.indexOf(c) === i;
+	}
+
+	async get(type: string): Promise<string[]> {
+		if (type === 'stations') {
+			return this.usrDataObj.stations;
+		} else if (type === 'bus') {
+			return this.usrDataObj.bus;
+		} else {
+			throw new Error(`Invalid argument: type must be 'stations' or 'bus'`);
+		}
+	}
+
+	async save(type: string, data: Array<string> | string) {
+		if (!type || (type !== 'stations' && type !== 'bus')) {
+			throw new Error("Invalid argument: type must be 'stations' or 'bus'");
+		}
+
+		const newData = Array.isArray(data) ? data : [data];
+
+		if (newData.some((d) => typeof d !== 'string')) {
+			throw new Error('Invalid argument: data must be a string or an array of strings.');
+		}
+
+		if (type === 'stations') {
+			this.usrDataObj.stations.push(...newData);
+		} else if (type === 'bus') {
+			this.usrDataObj.bus.push(...newData);
+		}
+
+		const unique = Array.from(new Set(this.usrDataObj[type]));
+		unique.sort();
+		if (type === 'stations') {
+			this.usrDataObj.stations = unique;
+		} else if (type === 'bus') {
+			this.usrDataObj.bus = unique;
+		}
+
+		const newHash = LZString.compressToEncodedURIComponent(JSON.stringify(this.usrDataObj));
+		this.newHashSort(newHash);
+	}
+
+	async newHashSort(newHash: string) {
+		window.location.hash = newHash;
+		this.wlh = window.location.hash;
+	}
+
+	async loadNewHash(usrHash: string) {
+		try {
+			const newData = JSON.parse(LZString.decompressFromEncodedURIComponent(usrHash));
+			if (
+				newData.stations === undefined ||
+				newData.stations === null ||
+				newData.bus === undefined ||
+				newData.bus === null
+			) {
+				throw new Error('Invalid Hash');
+			} else {
+				this.hash = usrHash;
+				this.type = 'hash';
+				this.usrDataObj = newData;
+				this.newHashSort(usrHash);
+				window.location.reload();
+				return true;
+			}
+		} catch (e) {
+			console.log(e);
+			throw new Error(`${e}`);
+		}
+	}
+
+	getHash() {
+		return this.hash;
+	}
+
+	async loadNewPhrase(phrase: string) {
+		// Fetch hash and decode.
+		const res = await fetch(`/phrase/${phrase}`);
+		const data = await res.json().catch((e) => {
+			console.error(e);
 		});
-		localStorage.setItem(type, JSON.stringify(unique));
-	} else {
-		throw "Func param only accepts 'get' or 'save'";
+		const hash = data.hash;
+		try {
+			this.loadNewHash(hash);
+		} catch (e) {
+			console.error(e);
+		}
+		return this.usrDataObj;
+	}
+
+	async getNewPhrase() {
+		// Fetch phrase
+		const res = await fetch(`/hash/${this.hash}`);
+		const data = await res.json().catch((e) => {
+			console.error(e);
+		});
+		return data.phrase;
 	}
 }
 
-function findVisCodes(arr: string | Array<string>) {
+const DH = new DataHandler();
+
+document.getElementById('url')!.addEventListener('keyup', async (e) => {
+	const urlEl = <HTMLInputElement>document.getElementById('url');
+	const input = e.target.value;
+	if (e.key === 'Enter' || e.keyCode === 13) {
+		if (input === null || input === '' || input === undefined) {
+			popUp('Enter your code or phrase', 'error');
+			urlEl.placeholder = '/# ' + 'Add to the map to generate your URL' + '...';
+			return;
+		} else {
+			try {
+				DH.processInput(input);
+			} catch (e) {
+				popUp('Error', 'error', e);
+			}
+		}
+	}
+});
+
+document.getElementById('url')!.addEventListener('paste', async (e) => {
+	const urlEl = <HTMLInputElement>document.getElementById('url');
+	const pasted = e.clipboardData?.getData('text')!;
+	let type = '';
+	if (pasted === '' || pasted === null) {
+		popUp('Paste your code or phrase', 'error');
+		urlEl.placeholder = '/# ' + 'Add to the map to generate your URL' + '...';
+		return;
+	} else {
+		try {
+			DH.processInput(pasted);
+		} catch (e) {
+			popUp('Error', 'error', e);
+		}
+	}
+});
+
+function findVisCodes(arr: Array<string>) {
 	const stnArr: Array<string> = [...arr];
 	let visArr: Array<string> = [];
 	for (const stn of stnArr) {
@@ -33,23 +205,32 @@ function findVisCodes(arr: string | Array<string>) {
 	return visArr;
 }
 
-function addStnsToMap(stns: string | Array<string>) {
-	let s: Array<string> = [];
-	if (typeof stns === 'string') {
-		s.push(stns);
+function addStnsToMap(stns) {
+	let unique;
+	if (stns.stations !== undefined) {
+		unique = stns.stations.filter((c: string, i: number) => {
+			return stns.stations.indexOf(c) === i;
+		});
 	} else {
-		s.push(...stns);
+		unique = stns.filter((c: string, i: number) => {
+			return stns.indexOf(c) === i;
+		});
 	}
-	s.sort();
-	s.forEach((v) => {
+	unique.sort();
+	unique.forEach((v: string) => {
 		document.querySelector(`[id*="${stations[v]}-dash"]`)?.classList.add('visible');
 		document.querySelector(`[id*="${stations[v]}-label"]`)?.classList.add('visible');
 		document.querySelector(`[id*="IC_${stations[v]}"]`)?.classList.add('visible');
 	});
 }
 
-function updateLineSegs() {
-	let stnCodes = findVisCodes(usrData('get', 'stations'));
+async function updateLineSegs(usrData: Array<string>) {
+	let stnCodes: Array<string>;
+	if (usrData.stations !== 'undefined') {
+		stnCodes = findVisCodes(usrData);
+	} else {
+		stnCodes = findVisCodes(usrData.stations);
+	}
 	let data: {[line: string]: number} = {
 		bakerloo: 0,
 		central: 0,
@@ -63,8 +244,8 @@ function updateLineSegs() {
 		district: 0,
 		elizabeth: 0,
 		overground: 10,
-		'waterloo-city':0,
-		'cable-car':0,
+		'waterloo-city': 0,
+		'cable-car': 0,
 		dlr: 0,
 		tram: 0,
 		OSI: 0
@@ -235,7 +416,8 @@ function updateStats(data: {[line: string]: number}) {
 		OSI: 0
 	};
 	for (const l in totals) {
-		let percent: number = 0, visited: number;
+		let percent: number = 0,
+			visited: number;
 		if (l === 'OSI') continue;
 		if (data[l] === NaN) {
 			document.getElementById(`js-lp-${l}`)!.innerText = '0%';
@@ -254,10 +436,10 @@ function readFile(file: File) {
 	reader.readAsText(file, 'UTF-8');
 
 	// reader.onprogress = updateProgress;
-	reader.onload = (evt) => {
+	reader.onload = async (evt) => {
 		const fileString: any = evt.target!.result || '';
 		const CSVarr = CSVtoArray(fileString);
-		loadData(CSVarr);
+		await loadData(CSVarr);
 	};
 
 	reader.onerror = (err) => {
@@ -265,7 +447,7 @@ function readFile(file: File) {
 	};
 }
 
-function loadData(arr: string[][]) {
+async function loadData(arr: string[][]) {
 	let stations: string[] = [],
 		busses: string[] = [];
 	for (const a in arr) {
@@ -290,13 +472,14 @@ function loadData(arr: string[][]) {
 		}
 	}
 	try {
-		usrData('save', 'stations', stations);
-		usrData('save', 'bus', busses);
+		await DataHandler.save('stations', stations);
+		await DataHandler.save('bus', busses);
 	} catch (e) {
 		console.error(`[script.ts | loadData()]: ${e}`);
 	} finally {
 		addStnsToMap(stations);
-		updateLineSegs();
+		const usrStns = await DataHandler.get('stations');
+		await updateLineSegs(usrStns);
 	}
 }
 
@@ -325,7 +508,7 @@ function CSVtoArray(strData: string, strDelimiter = ',') {
 		if (strMatchedDelimiter.length && strMatchedDelimiter != strDelimiter) {
 			arrData.push([]);
 		}
-		
+
 		let strMatchedValue: any;
 		if (arrMatches[2]) {
 			strMatchedValue = arrMatches[2].replace(new RegExp('""', 'g'), '"');
