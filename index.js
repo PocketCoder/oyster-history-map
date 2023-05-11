@@ -4,6 +4,14 @@ const app = express();
 const path = require('path');
 require('dotenv').config();
 const redis = require('redis');
+const client = redis.createClient({
+	password: process.env.redisPW,
+	socket: {
+		host: 'redis-12926.c78.eu-west-1-2.ec2.cloud.redislabs.com',
+		port: 12926
+	}
+});
+client.on('error', (err) => console.log('Redis Client Error', err));
 const words = [
 	'bakerloo',
 	'barking',
@@ -154,14 +162,6 @@ async function savePhrase(phrase, hash) {
 	await client.set('hashList', JSON.stringify(hashList));
 	await client.set(phrase, hash);
 }
-const client = redis.createClient({
-	password: process.env.redisPW,
-	socket: {
-		host: 'redis-12926.c78.eu-west-1-2.ec2.cloud.redislabs.com',
-		port: 12926
-	}
-});
-client.on('error', (err) => console.log('Redis Client Error', err));
 app.get('/:one.:two.:three.:four', async (req, res) => {
 	res.sendFile(__dirname + '/public/index.html');
 });
