@@ -48,13 +48,13 @@ async function populateMapData() {
 	if (wlh === '' && (wlp === '/' || wlp === '')) {
 		// First visit
 		showWelc();
-		document.getElementById('js-footer')!.classList.toggle('aside-active');
-		document.getElementById('js-aside')!.classList.toggle('aside-out');
 	} else {
 		// Not first visit
 		hideWelc();
 		document.getElementById('js-mapUpdate')!.classList.add('collapsed');
+		document.getElementById('js-url')!.classList.add('collapsed');
 		document.getElementById('js-nmu-but')!.innerHTML = 'More';
+		document.getElementById('js-url-but')!.innerHTML = 'More';
 		await reloadMapData();
 	}
 }
