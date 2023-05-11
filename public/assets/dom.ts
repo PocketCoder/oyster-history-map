@@ -35,7 +35,7 @@ function storageAvailable(type: any) {
 }
 
 async function reloadMapData() {
-	const stns = await DataHandler.get('stations');
+	const stns = await DH.get('stations');
 	addStnsToMap(stns);
 	await updateLineSegs(stns).catch((e) => {
 		console.error(e);
@@ -116,16 +116,15 @@ function copyURL() {
 }
 
 async function genURL() {
-	const phrase = await DataHandler.getNewPhrase();
-	const urlEl = <HTMLInputElement>document.getElementById('url');
-	urlEl.placeholder = phrase;
+	const phrase = await DH.getNewPhrase();
 	popUp('Success', 'confirm', phrase);
 }
 
 document.onreadystatechange = async (e) => {
 	if (document.readyState === 'complete') {
+		await DH.init();
 		loadMap(mapInst);
-		const busses = await DataHandler.get('bus');
+		const busses = await DH.get('bus');
 		const noBus = busses.length;
 		document.getElementById('js-bus')!.innerHTML = noBus.toString();
 	}
@@ -189,12 +188,12 @@ async function newStation(input: string) {
 		addStnsToMap([input]);
 		let stns: Array<string>;
 		try {
-			await DataHandler.save('stations', input);
+			await DH.save('stations', input);
 		} catch (e) {
 			console.log(e);
 		}
 		try {
-			stns = await DataHandler.get('stations');
+			stns = await DH.get('stations');
 		} catch (e) {
 			console.log(e);
 		} finally {

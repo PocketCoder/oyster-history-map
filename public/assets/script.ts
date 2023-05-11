@@ -158,82 +158,43 @@ class UserDataHandler {
 		return data.phrase;
 	}
 }
-const DataHandler = new UserDataHandler();
+
+const DH = new DataHandler();
 
 document.getElementById('url')!.addEventListener('keyup', async (e) => {
 	const urlEl = <HTMLInputElement>document.getElementById('url');
 	const input = e.target.value;
-	let type = '';
 	if (e.key === 'Enter' || e.keyCode === 13) {
 		if (input === null || input === '' || input === undefined) {
 			popUp('Enter your code or phrase', 'error');
-			urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+			urlEl.placeholder = '/# ' + 'Add to the map to generate your URL' + '...';
 			return;
 		} else {
-			type = urlDeterminer(input);
-		}
-		if (type === 'hash') {
 			try {
-				await DataHandler.loadNewHash(input);
-				popUp('Accepted!', 'confirm');
+				DH.processInput(input);
 			} catch (e) {
-				console.log(e);
-				urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
-				popUp('Input invalid', 'error');
-			}
-		} else if (type === 'phrase') {
-			try {
-				await DataHandler.loadNewPhrase(input);
-				popUp('Accepted!', 'confirm');
-			} catch (e) {
-				console.log(e);
-				urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
-				popUp('Input invalid', 'error');
+				popUp('Error', 'error', e);
 			}
 		}
 	}
 });
 
 document.getElementById('url')!.addEventListener('paste', async (e) => {
-	const urlEl = document.getElementById('url')!;
+	const urlEl = <HTMLInputElement>document.getElementById('url');
 	const pasted = e.clipboardData?.getData('text')!;
 	let type = '';
 	if (pasted === '' || pasted === null) {
 		popUp('Paste your code or phrase', 'error');
-		urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
+		urlEl.placeholder = '/# ' + 'Add to the map to generate your URL' + '...';
 		return;
 	} else {
-		type = urlDeterminer(pasted);
-	}
-	if (type === 'hash') {
 		try {
-			await DataHandler.loadNewHash(pasted);
-			popUp('Accepted!', 'confirm');
+			DH.processInput(pasted);
 		} catch (e) {
-			console.log(e);
-			urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
-			popUp('Input invalid', 'error');
-		}
-	} else if (type === 'phrase') {
-		try {
-			await DataHandler.loadNewPhrase(pasted);
-			popUp('Accepted!', 'confirm');
-		} catch (e) {
-			console.log(e);
-			urlEl.innerHTML = '/# ' + 'Add to the map to generate your URL' + '...';
-			popUp('Input invalid', 'error');
+			popUp('Error', 'error', e);
 		}
 	}
 });
-
-function urlDeterminer(str: string) {
-	const validPhraseReg = /^\w+\.\w+\.\w+\.\w+$/;
-	if (validPhraseReg.test(str)) {
-		return 'phrase';
-	} else {
-		return 'hash';
-	}
-}
 
 function findVisCodes(arr: Array<string>) {
 	const stnArr: Array<string> = [...arr];

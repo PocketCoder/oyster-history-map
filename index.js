@@ -109,34 +109,50 @@ const words = [
 	'zone8',
 	'zone9'
 ];
-async function generateUniqueString(hash) {
-	const value = await client.get('keys');
-	const inUse = JSON.parse(value);
+async function generateNewPhrase() {
+	const keys = await client.get('keys');
+	const keyList = JSON.parse(keys);
 	let phrase = '';
 	const one = Math.floor(Math.random() * words.length),
 		two = Math.floor(Math.random() * words.length),
 		three = Math.floor(Math.random() * words.length),
 		four = Math.floor(Math.random() * words.length);
 	phrase = words[one] + '.' + words[two] + '.' + words[three] + '.' + words[four];
-	if (inUse['keys'].includes(phrase)) {
-		return generateUniqueString();
+	if (keyList.keys.includes(phrase)) {
+		return generateNewPhrase();
 	} else {
-		inUse['keys'].push(phrase);
-		await client.set('keys', JSON.stringify(inUse));
+		keyList.keys.push(phrase);
+		await client.set('keys', JSON.stringify(keyList));
 		return phrase;
 	}
 }
-async function checkAndGet(hash) {
-	const hashList = await client.get('hashList');
-	const list = JSON.parse(hashList);
-	if (list[hash]) {
-		return list[hash];
-	} else {
-		const newPhrase = await generateUniqueString();
-		list[hash] = newPhrase;
-		await client.set('hashList', JSON.stringify(list));
-		return newPhrase;
+async function getHashFromPhrase(vars) {
+	const phrase = `${vars.one}.${vars.two}.${vars.three}.${vars.four}`;
+	const hash = await client.get(phrase);
+	if (hash === null) {
+		throw new Error("Hash couldn't be found.");
 	}
+	return hash;
+}
+async function checkHash(hash) {
+	const hashListStr = await client.get('hashList');
+	const hashList = JSON.parse(hashListStr);
+	if (hashList[hash]) {
+		return hashList[hash];
+	} else {
+		return false;
+	}
+}
+async function savePhrase(phrase, hash) {
+	const keysStr = await client.get('keys');
+	const keyList = JSON.parse(keysStr);
+	keyList.keys.push(phrase);
+	await client.set('keys', JSON.stringify(keyList));
+	const hashes = await client.get('hashList');
+	const hashList = JSON.parse(hashes);
+	hashList[hash] = phrase;
+	await client.set('hashList', JSON.stringify(hashList));
+	await client.set(phrase, hash);
 }
 const client = redis.createClient({
 	password: process.env.redisPW,
@@ -146,29 +162,22 @@ const client = redis.createClient({
 	}
 });
 client.on('error', (err) => console.log('Redis Client Error', err));
-async function getHash(vars) {
-	const key = `${vars.one}.${vars.two}.${vars.three}.${vars.four}`;
-	const hash = await client.get(key);
-	if (hash === null) {
-		throw new Error("Hash couldn't be found.");
-	}
-	return hash;
-}
 app.get('/:one.:two.:three.:four', async (req, res) => {
 	res.sendFile(__dirname + '/public/index.html');
 });
 app.get('/phrase/:one.:two.:three.:four', async (req, res) => {
-	try {
-		const hash = await getHash(req.params);
-		res.status(200).json({hash});
-	} catch (err) {
-		res.status(404).json({error: err.message});
-	}
+	const hash = await getHashFromPhrase(req.params);
+	res.json({hash: hash});
 });
 app.get('/hash/:hash', async (req, res) => {
-	const hashCheck = await checkAndGet(req.params.hash);
-	await client.set(hashCheck, req.params.hash);
-	res.status(200).json({phrase: hashCheck});
+	const check = await checkHash(req.params.hash);
+	if (!check) {
+		const phrase = await generateNewPhrase();
+		await savePhrase(phrase, req.params.hash);
+		res.json({phrase: phrase});
+	} else {
+		res.json({phrase: check});
+	}
 });
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.listen(3000, async () => {
