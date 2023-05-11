@@ -71,10 +71,8 @@ class DataHandler {
 				}
 				break;
 			case 'none':
-				console.log('DataHandler.stripper() found no usable URL parts.');
-				break;
 			default:
-				console.log('DataHandler.stripper() Defaulted.');
+				console.log('DataHandler.stripper() found no usable URL parts.');
 				break;
 		}
 	}
@@ -97,7 +95,7 @@ class DataHandler {
 				this.URLInputEl.placeholder = `/${this.phrase}`;
 				await this.getHashFromPhrase();
 				break;
-			case 'clean':
+			case 'none':
 			default:
 				this.URLInputEl.placeholder = `Add to the map to generate your URL...`;
 		}
@@ -140,6 +138,10 @@ class DataHandler {
 	}
 	dehash(hash = this.hash) {
 		let decompressed, newData;
+		if (this.hash === '' || this.type === 'none') {
+			console.log('DataHandler.dehash(): No hash');
+			return;
+		}
 		try {
 			decompressed = LZString.decompressFromEncodedURIComponent(hash);
 			newData = JSON.parse(decompressed);
