@@ -43,11 +43,11 @@ class DataHandler {
 	typeDeterminer(input) {
 		if (input !== undefined) {
 			this.type = this.phraseTester(input) ? 'phrase' : 'hash';
-		} else if (this.wlh !== '' && (this.wlp === '' || this.wlp === '/')) {
+		} else if (this.wlh !== '' && this.wlp === '/') {
 			this.type = 'hash';
-		} else if ((this.wlp !== '' || this.wlp !== '/') && this.wlh === '') {
+		} else if (this.wlp !== '/' && this.wlh === '') {
 			this.type = 'phrase';
-		} else if (this.wlh === '' && (this.wlp === '' || this.wlp === '/')) {
+		} else if (this.wlh === '' && this.wlp === '/') {
 			this.type = 'clean';
 		} else {
 			this.type = '';
