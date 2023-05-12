@@ -5,7 +5,7 @@ import {connect} from 'https://deno.land/x/redis/mod.ts';
 const redis = await connect({
 	hostname: 'redis-12926.c78.eu-west-1-2.ec2.cloud.redislabs.com',
 	port: 12926,
-	password: Deno.evn.get('redisPW')
+	password: Deno.env.get('redisPW')
 });
 //redis.on('error', (err) => console.log('Redis Client Error', err));
 
