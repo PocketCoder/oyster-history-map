@@ -1,16 +1,14 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-require('dotenv').config();
-const redis = require('redis');
-const client = redis.createClient({
-	password: process.env.redisPW,
-	socket: {
-		host: 'redis-12926.c78.eu-west-1-2.ec2.cloud.redislabs.com',
-		port: 12926
-	}
+import {Application, Router} from 'https://deno.land/x/oak/mod.ts';
+const app = new Application();
+const router = new Router();
+import {config} from 'https://deno.land/x/dotenv/mod.ts';
+import {connect} from 'https://deno.land/x/redis/mod.ts';
+const redis = await connect({
+	hostname: 'redis-12926.c78.eu-west-1-2.ec2.cloud.redislabs.com',
+	port: 12926,
+	password: config().redisPW
 });
-client.on('error', (err) => console.log('Redis Client Error', err));
+//redis.on('error', (err) => console.log('Redis Client Error', err));
 
 const words = [
 	'bakerloo',
@@ -119,7 +117,7 @@ const words = [
 ];
 
 async function generateNewPhrase(): Promise<any> {
-	const keys = await client.get('keys');
+	const keys = await redis.get('keys');
 	const keyList = JSON.parse(keys);
 	let phrase = '';
 	const one = Math.floor(Math.random() * words.length),
@@ -132,7 +130,7 @@ async function generateNewPhrase(): Promise<any> {
 		return generateNewPhrase();
 	} else {
 		keyList.keys.push(phrase);
-		await client.set('keys', JSON.stringify(keyList));
+		await redis.set('keys', JSON.stringify(keyList));
 		return phrase;
 	}
 }
@@ -144,7 +142,7 @@ async function getHashFromPhrase(vars: {
 	four: string;
 }): Promise<string | null> {
 	const phrase = `${vars.one}.${vars.two}.${vars.three}.${vars.four}`;
-	const hash = await client.get(phrase);
+	const hash = await redis.get(phrase);
 	if (hash === null) {
 		throw new Error("Hash couldn't be found.");
 	}
@@ -152,7 +150,7 @@ async function getHashFromPhrase(vars: {
 }
 
 async function checkHash(hash: string) {
-	const hashListStr = await client.get('hashList');
+	const hashListStr = await redis.get('hashList');
 	const hashList = JSON.parse(hashListStr);
 	if (hashList[hash]) {
 		return hashList[hash];
@@ -163,45 +161,73 @@ async function checkHash(hash: string) {
 }
 
 async function savePhrase(phrase: string, hash: string) {
-	const keysStr = await client.get('keys');
+	const keysStr = await redis.get('keys');
 	const keyList = JSON.parse(keysStr);
 	keyList.keys.push(phrase);
-	await client.set('keys', JSON.stringify(keyList));
-	const hashes = await client.get('hashList');
+	await redis.set('keys', JSON.stringify(keyList));
+	const hashes = await redis.get('hashList');
 	const hashList = JSON.parse(hashes);
 	hashList[hash] = phrase;
-	await client.set('hashList', JSON.stringify(hashList));
-	await client.set(phrase, hash);
+	await redis.set('hashList', JSON.stringify(hashList));
+	await redis.set(phrase, hash);
 }
 
 // Functions end
 
-app.get('/:one.:two.:three.:four', async (req, res) => {
-	// Displays the main page if user navigates to their phrase.
-	res.status(200).sendFile(__dirname + '/public/index.html');
+// Logger
+app.use(async (ctx, next) => {
+	await next();
+	const rt = ctx.response.headers.get('X-Response-Time');
+	console.log(`${ctx.request.method} ${ctx.request.url} - ${rt}`);
 });
 
-app.get('/phrase/:one.:two.:three.:four', async (req, res) => {
-	// Returns Hash
-	const hash = await getHashFromPhrase(req.params);
-	res.status(200).json({hash: hash}); // Check what's receiving this and change to .text()?
+// Timing
+app.use(async (ctx, next) => {
+	const start = Date.now();
+	await next();
+	const ms = Date.now() - start;
+	ctx.response.headers.set('X-Response-Time', `${ms}ms`);
 });
 
-app.get('/hash/:hash', async (req, res) => {
-	// Receives new hash. Returns existing key or generates a new one and returns it.
-	const check = await checkHash(req.params.hash);
-	if (!check) {
-		const phrase = await generateNewPhrase();
-		await savePhrase(phrase, req.params.hash);
-		res.status(200).json({phrase: phrase});
-	} else {
-		res.status(200).json({phrase: check});
+router
+	.get('/:one.:two.:three.:four', (ctx, next) => {
+		// Send back index.html
+		next();
+	})
+	.get('/phrase/:one.:two.:three.:four', async (ctx) => {
+		// Returns Hash
+		console.log(ctx);
+		const hash = await getHashFromPhrase(ctx.params);
+		ctx.response.body = {hash: hash}; // Check what's receiving this and change to .text()?
+	})
+	.get('/hash/:hash', async (ctx) => {
+		// Receives new hash. Returns existing key or generates a new one and returns it.
+		const check = await checkHash(ctx.params.hash);
+		if (!check) {
+			const phrase = await generateNewPhrase();
+			await savePhrase(phrase, ctx.params.hash);
+			ctx.response.body = {phrase: phrase};
+		} else {
+			ctx.response.body = {phrase: check};
+		}
+	});
+
+app.use(async (ctx, next) => {
+	try {
+		await ctx.send({
+			root: `${Deno.cwd()}/public/`,
+			index: 'index.html'
+		});
+	} catch {
+		await next();
 	}
 });
 
-app.use('/', express.static(path.join(__dirname, 'public')));
-
-app.listen(3000, async () => {
+app.use(router.routes());
+app.use(router.allowedMethods());
+app.addEventListener('listen', async () => {
 	console.log('Listening on port 3000');
-	await client.connect();
+	await redis.connect();
 });
+
+await app.listen({port: 3000});
