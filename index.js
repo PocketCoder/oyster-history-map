@@ -163,20 +163,20 @@ async function savePhrase(phrase, hash) {
 	await client.set(phrase, hash);
 }
 app.get('/:one.:two.:three.:four', async (req, res) => {
-	res.sendFile(__dirname + '/public/index.html');
+	res.status(200).sendFile(__dirname + '/public/index.html');
 });
 app.get('/phrase/:one.:two.:three.:four', async (req, res) => {
 	const hash = await getHashFromPhrase(req.params);
-	res.json({hash: hash});
+	res.status(200).json({hash: hash});
 });
 app.get('/hash/:hash', async (req, res) => {
 	const check = await checkHash(req.params.hash);
 	if (!check) {
 		const phrase = await generateNewPhrase();
 		await savePhrase(phrase, req.params.hash);
-		res.json({phrase: phrase});
+		res.status(200).json({phrase: phrase});
 	} else {
-		res.json({phrase: check});
+		res.status(200).json({phrase: check});
 	}
 });
 app.use('/', express.static(path.join(__dirname, 'public')));

@@ -178,13 +178,13 @@ async function savePhrase(phrase: string, hash: string) {
 
 app.get('/:one.:two.:three.:four', async (req, res) => {
 	// Displays the main page if user navigates to their phrase.
-	res.sendFile(__dirname + '/public/index.html');
+	res.status(200).sendFile(__dirname + '/public/index.html');
 });
 
 app.get('/phrase/:one.:two.:three.:four', async (req, res) => {
 	// Returns Hash
 	const hash = await getHashFromPhrase(req.params);
-	res.json({hash: hash}); // Check what's receiving this and change to .text()?
+	res.status(200).json({hash: hash}); // Check what's receiving this and change to .text()?
 });
 
 app.get('/hash/:hash', async (req, res) => {
@@ -193,9 +193,9 @@ app.get('/hash/:hash', async (req, res) => {
 	if (!check) {
 		const phrase = await generateNewPhrase();
 		await savePhrase(phrase, req.params.hash);
-		res.json({phrase: phrase});
+		res.status(200).json({phrase: phrase});
 	} else {
-		res.json({phrase: check});
+		res.status(200).json({phrase: check});
 	}
 });
 
