@@ -1,12 +1,11 @@
 import {Application, Router} from 'https://deno.land/x/oak/mod.ts';
 const app = new Application();
 const router = new Router();
-import {config} from 'https://deno.land/x/dotenv/mod.ts';
 import {connect} from 'https://deno.land/x/redis/mod.ts';
 const redis = await connect({
 	hostname: 'redis-12926.c78.eu-west-1-2.ec2.cloud.redislabs.com',
 	port: 12926,
-	password: config().redisPW
+	password: Deno.evn.get('redisPW')
 });
 //redis.on('error', (err) => console.log('Redis Client Error', err));
 
